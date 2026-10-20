@@ -35,7 +35,7 @@ export default function UpcomingDryDays({ groups }: UpcomingDryDaysProps) {
 
       {groups.length === 0 ? (
         <div className="mt-3 p-5 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
-          No dry days scheduled in the next 4 weeks. Normal retail licenses apply.
+          No verified dry day dates yet
         </div>
       ) : (
         <div className="mt-3 space-y-2.5">

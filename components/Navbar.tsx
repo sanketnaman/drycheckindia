@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useMemo } from 'react';
 import { Search, MapPin, X } from 'lucide-react';
 import { getAllStates, StateInfo } from '@/lib/dryday';
@@ -35,22 +36,16 @@ export default function Navbar() {
             <Link
               href="/"
               className="flex items-center gap-2 min-h-[44px] min-w-[44px] py-1 text-left group"
-              aria-label="DryCheck India Homepage"
+              aria-label="DRY CHECK India home"
             >
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-amber-400 transition-colors">
-                    DryCheck India
-                  </span>
-                  <span className="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-300 border border-neutral-700">
-                    IST
-                  </span>
-                </div>
-                {/* Tagline */}
-                <span className="text-[10px] text-amber-400/90 font-medium tracking-tight -mt-0.5 hidden xs:block">
-                  Aaj sookha hai ya nahi, ek nazar mein.
-                </span>
-              </div>
+              <Image
+                src="/logo-header.png"
+                alt="DRY CHECK India"
+                width={300}
+                height={100}
+                className="h-10 sm:h-12 w-auto object-contain"
+                priority={false}
+              />
             </Link>
           </div>
 

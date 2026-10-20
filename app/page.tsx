@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { Metadata } from 'next';
 import HeroAnswer from '@/components/HeroAnswer';
+import LocationBanner from '@/components/LocationBanner';
 import DryStateList from '@/components/DryStateList';
 import UpcomingDryDays from '@/components/UpcomingDryDays';
 import StateDirectory from '@/components/StateDirectory';
@@ -26,12 +28,20 @@ export const metadata: Metadata = {
     canonical: 'https://drycheck.in',
   },
   openGraph: {
-    title: 'DryCheck India | Aaj sookha hai ya nahi, ek nazar mein',
+    title: 'DRY CHECK India | Aaj sookha hai ya nahi, ek nazar mein',
     description:
       'Real-time check for alcohol store openings, dry dates, and excise directives in all 36 Indian states and union territories.',
     url: 'https://drycheck.in',
     type: 'website',
-    siteName: 'DryCheck India',
+    siteName: 'DRY CHECK India',
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DRY CHECK India',
+      },
+    ],
   },
 };
 
@@ -77,6 +87,11 @@ export default function HomePage() {
       <div className="mx-auto w-full max-w-4xl px-3 sm:px-6 pt-1 pb-12">
         <AdSlot id="home-top" />
 
+        {/* Location banner — client-side only, does not affect cached HTML */}
+        <LocationBanner />
+
+        <LocationBanner />
+
         {/* 1, 2, 3: Headline, Big Answer (>=96px, no scroll on 360x640), Secondary line (>=20px) */}
         <HeroAnswer
           headline="Is today a dry day?"
@@ -93,7 +108,7 @@ export default function HomePage() {
           title="Dry Today In:"
           dateDisplay={formattedToday}
           items={dryStatesToday}
-          emptyMessage="No nationwide dry day scheduled today. Regular retail hours apply."
+          emptyMessage="No verified dry day dates yet"
         />
 
         <AdSlot id="home-middle" />
@@ -103,7 +118,7 @@ export default function HomePage() {
           title="Dry Tomorrow In:"
           dateDisplay={formattedTomorrow}
           items={dryStatesTomorrow}
-          emptyMessage="No state-level dry day scheduled tomorrow. Regular retail hours apply."
+          emptyMessage="No verified dry day dates yet"
           isTomorrow
         />
 

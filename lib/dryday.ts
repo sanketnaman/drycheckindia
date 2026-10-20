@@ -23,14 +23,51 @@ export interface DryDayEntry {
   reason: string;
   status: DryDayStatus;
   sourceUrl: string;
+  sourceNote?: string;
 }
 
 export interface DryDaysData {
   states: StateInfo[];
   entries: DryDayEntry[];
+  nationalDryDays?: Array<{
+    date: string;
+    type: string;
+    reason: string;
+    status: string;
+    sourceUrl: string;
+    sourceNote?: string;
+  }>;
 }
 
 const data = rawData as DryDaysData;
+
+// Expand nationalDryDays to all non-prohibition states for each date
+const expandedEntries: DryDayEntry[] = [...data.entries];
+
+if (data.nationalDryDays) {
+  for (const national of data.nationalDryDays) {
+    for (const state of data.states) {
+      // Skip prohibition states (already dry all year)
+      if (state.prohibition === true) continue;
+
+      // Skip if state already has an entry for this date
+      const existing = data.entries.find(
+        (e) => (e.state === state.slug || e.state === 'all') && e.date === national.date
+      );
+      if (existing) continue;
+
+      expandedEntries.push({
+        state: state.slug,
+        date: national.date,
+        type: national.type as DryDayType,
+        reason: national.reason,
+        status: national.status as DryDayStatus,
+        sourceUrl: national.sourceUrl,
+        sourceNote: national.sourceNote,
+      });
+    }
+  }
+}
 
 const MONTH_NAMES_LONG = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -96,7 +133,7 @@ export function getStateBySlug(slug: string): StateInfo | undefined {
 }
 
 export function getAllEntries(): DryDayEntry[] {
-  return data.entries;
+  return expandedEntries;
 }
 
 /**
@@ -174,8 +211,11 @@ export function formatDateDisplay(
  */
 export function getStatus(stateSlug: string, dateIST: string): 'dry' | 'not_dry' | 'maybe' {
   const state = getStateBySlug(stateSlug);
-  if (state?.prohibition) {
+  if (state?.prohibition === true) {
     return 'dry';
+  }
+  if (state?.prohibition === null) {
+    return 'maybe';
   }
 
   const entries = data.entries.filter(
@@ -262,11 +302,20 @@ export function getDryStatesOn(dateIST: string): {
   }[] = [];
 
   for (const state of data.states) {
-    if (state.prohibition) {
+    if (state.prohibition === true) {
       result.push({
         state,
         status: 'dry',
         isProhibition: true,
+      });
+      continue;
+    }
+
+    if (state.prohibition === null) {
+      result.push({
+        state,
+        status: 'maybe',
+        isProhibition: false,
       });
       continue;
     }

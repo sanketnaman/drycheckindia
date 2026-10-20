@@ -8,8 +8,8 @@ const SITE_URL = 'https://drycheck.in';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'DryCheck India | Aaj sookha hai ya nahi, ek nazar mein',
-    template: '%s | DryCheck India',
+    default: 'DRY CHECK India | Aaj sookha hai ya nahi, ek nazar mein',
+    template: '%s | DRY CHECK India',
   },
   description:
     'Aaj sookha hai ya nahi, ek nazar mein. Instant check for dry days today and tomorrow across all 36 Indian states and union territories with real-time IST calendars.',
@@ -36,10 +36,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: SITE_URL,
-    siteName: 'DryCheck India',
-    title: 'DryCheck India | Aaj sookha hai ya nahi, ek nazar mein',
+    siteName: 'DRY CHECK India',
+    title: 'DRY CHECK India | Aaj sookha hai ya nahi, ek nazar mein',
     description:
       'Aaj sookha hai ya nahi, ek nazar mein. Find out whether liquor shops and bars are open or closed today and tomorrow in your Indian state or UT.',
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DRY CHECK India',
+      },
+    ],
+  },
+  icons: {
+    icon: [{ url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }],
+    shortcut: '/favicon-32x32.png',
   },
   twitter: {
     card: 'summary_large_image',

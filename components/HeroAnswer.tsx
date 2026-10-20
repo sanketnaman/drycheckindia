@@ -105,14 +105,14 @@ export default function HeroAnswer({
           </div>
 
           <div
-            className={`mt-1 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-semibold ${styleConfig.badgeBg}`}
+            className={`mt-4 inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-semibold ${styleConfig.badgeBg}`}
           >
             <StatusIcon className="h-3.5 w-3.5 shrink-0" />
             <span>{styleConfig.subtext}</span>
           </div>
 
           {prohibitionNote && (
-            <p className="mt-2 text-xs text-rose-300 max-w-xs leading-relaxed bg-rose-950/40 p-2 rounded-xl border border-rose-900/40">
+            <p className="mt-4 text-xs text-rose-300 max-w-xs leading-relaxed bg-rose-950/40 p-2 rounded-xl border border-rose-900/40">
               {prohibitionNote}
             </p>
           )}

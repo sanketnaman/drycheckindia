@@ -1,0 +1,9 @@
+{
+  "name": "drycheck",
+  "compatibility_date": "2025-10-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
+}

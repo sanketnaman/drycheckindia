@@ -111,8 +111,11 @@ export default function AboutPage() {
         <section className="space-y-2 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4">
           <div className="flex items-center gap-2 text-rose-300 font-semibold text-xs">
             <ShieldAlert className="h-4 w-4 shrink-0" />
-            <span>Strict Public Service Notice</span>
+            <span>Strict Public Service Notice — Coverage: Partial</span>
           </div>
+          <p className="text-xs text-neutral-400">
+            Not a complete all-India dry-day calendar. Unknown state prohibition values are null, not false. Do not display null as 'not a dry day'. Date entries are empty because the reviewed sources did not establish a complete, current, state-wise date calendar.
+          </p>
           <p className="text-xs text-neutral-400">
             DryCheck India does not sell, promote, deliver, facilitate, or market alcohol. It is an independent public-interest web utility designed to save citizens time and prevent unnecessary trips to shuttered stores.
           </p>

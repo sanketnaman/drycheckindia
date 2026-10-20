@@ -39,6 +39,9 @@ export default function PrivacyPolicyPage() {
           <p>
             State selections and searches are handled entirely client-side or through clean URL routes (e.g., <code>/india/maharashtra</code>). We do not record or store your precise GPS coordinates.
           </p>
+          <p>
+            If you choose to use the optional location feature, your approximate region (derived from the hosting platform's edge headers such as Vercel <code>request.geo</code> or Cloudflare <code>request.cf</code>) is used only to suggest a state on the current page. This information is kept in component state for the current page view only — it is not stored in localStorage, cookies, server logs, or any database.
+          </p>
         </section>
 
         <section className="space-y-2">

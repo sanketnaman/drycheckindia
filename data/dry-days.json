@@ -1,876 +1,682 @@
 {
+  "nationalDryDays": [
+    {
+      "date": "2026-01-26",
+      "type": "national",
+      "reason": "Republic Day",
+      "status": "confirmed",
+      "sourceUrl": "https://excise.delhi.gov.in/notifications",
+      "sourceNote": "Confirmed for Delhi by official order dated 15.01.2026. Applied to all states as a national holiday; state notifications should be confirmed."
+    },
+    {
+      "date": "2026-08-15",
+      "type": "national",
+      "reason": "Independence Day",
+      "status": "confirmed",
+      "sourceUrl": "https://excise.delhi.gov.in/notifications",
+      "sourceNote": "Confirmed for Delhi by official order dated 24.04.2026. Applied to all states as a national holiday; state notifications should be confirmed."
+    },
+    {
+      "date": "2026-10-02",
+      "type": "national",
+      "reason": "Gandhi Jayanti",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "Widely reported as a nationwide dry day. Official state notifications not yet verified."
+    }
+  ],
+  "meta": {
+    "datasetName": "DryCheck India â€” source-verified starter dataset",
+    "generatedAt": "2026-10-20",
+    "coverage": "Partial",
+    "important": "Not a complete all-India dry-day calendar. Unknown state prohibition values are null, not false. Do not display null as 'not a dry day'. Date entries are empty because the reviewed sources did not establish a complete, current, state-wise date calendar.",
+    "officialSourcesReviewed": [
+      {
+        "state": "Bihar",
+        "title": "Prohibition Excise & Registration Department, Government of Bihar",
+        "url": "https://state.bihar.gov.in/excise/CitizenHome.html"
+      },
+      {
+        "state": "Nagaland",
+        "title": "Nagaland Liquor Total Prohibition Act, 1989",
+        "url": "https://police.nagaland.gov.in/wp-content/uploads/2019/06/NLTP-Act-1989.pdf"
+      },
+      {
+        "state": "Delhi",
+        "title": "Department of Excise, Government of NCT of Delhi â€” notifications",
+        "url": "https://excise.delhi.gov.in/notifications"
+      }
+    ]
+  },
   "states": [
     {
       "slug": "andhra-pradesh",
       "name": "Andhra Pradesh",
       "region": "South",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["telangana", "karnataka", "tamil-nadu", "odisha", "puducherry"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "telangana",
+        "karnataka",
+        "tamil-nadu",
+        "odisha",
+        "puducherry"
+      ]
     },
     {
       "slug": "arunachal-pradesh",
       "name": "Arunachal Pradesh",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["assam", "nagaland", "meghalaya", "manipur", "sikkim"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "assam",
+        "nagaland",
+        "meghalaya",
+        "manipur",
+        "sikkim"
+      ]
     },
     {
       "slug": "assam",
       "name": "Assam",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["meghalaya", "arunachal-pradesh", "nagaland", "west-bengal", "tripura"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "meghalaya",
+        "arunachal-pradesh",
+        "nagaland",
+        "west-bengal",
+        "tripura"
+      ]
     },
     {
       "slug": "bihar",
       "name": "Bihar",
       "region": "East",
       "prohibition": true,
-      "prohibitionNote": "Total statewide prohibition enforced under the Bihar Excise Act 2016. Every day is a dry day.",
+      "verificationStatus": "verified_source",
       "lastVerified": "2026-10-20",
-      "nearby": ["jharkhand", "uttar-pradesh", "west-bengal", "delhi", "madhya-pradesh"]
+      "nearby": [
+        "jharkhand",
+        "uttar-pradesh",
+        "west-bengal",
+        "delhi",
+        "madhya-pradesh"
+      ],
+      "prohibitionNote": "Official department states complete prohibition was declared in Bihar. Confirm amendments and current enforcement before relying on this record.",
+      "sourceUrl": "https://state.bihar.gov.in/excise/CitizenHome.html",
+      "sourceTitle": "Prohibition Excise & Registration Department, Government of Bihar"
     },
     {
       "slug": "chhattisgarh",
       "name": "Chhattisgarh",
       "region": "Central",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["madhya-pradesh", "maharashtra", "odisha", "jharkhand", "uttar-pradesh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "madhya-pradesh",
+        "maharashtra",
+        "odisha",
+        "jharkhand",
+        "uttar-pradesh"
+      ]
     },
     {
       "slug": "goa",
       "name": "Goa",
       "region": "West",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["maharashtra", "karnataka", "kerala", "delhi", "gujarat"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "maharashtra",
+        "karnataka",
+        "kerala",
+        "delhi",
+        "gujarat"
+      ]
     },
     {
       "slug": "gujarat",
       "name": "Gujarat",
       "region": "West",
-      "prohibition": true,
-      "prohibitionNote": "Total statewide statutory prohibition under the Gujarat Prohibition Act 1949. Every day is a dry day (except licensed visitor permits).",
-      "lastVerified": "2026-10-20",
-      "nearby": ["maharashtra", "rajasthan", "madhya-pradesh", "dadra-and-nagar-haveli-and-daman-and-diu", "delhi"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "maharashtra",
+        "rajasthan",
+        "madhya-pradesh",
+        "dadra-and-nagar-haveli-and-daman-and-diu",
+        "delhi"
+      ]
     },
     {
       "slug": "haryana",
       "name": "Haryana",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["delhi", "punjab", "rajasthan", "uttar-pradesh", "himachal-pradesh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "delhi",
+        "punjab",
+        "rajasthan",
+        "uttar-pradesh",
+        "himachal-pradesh"
+      ]
     },
     {
       "slug": "himachal-pradesh",
       "name": "Himachal Pradesh",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["punjab", "haryana", "uttarakhand", "jammu-and-kashmir", "chandigarh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "punjab",
+        "haryana",
+        "uttarakhand",
+        "jammu-and-kashmir",
+        "chandigarh"
+      ]
     },
     {
       "slug": "jharkhand",
       "name": "Jharkhand",
       "region": "East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["bihar", "west-bengal", "odisha", "chhattisgarh", "uttar-pradesh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "bihar",
+        "west-bengal",
+        "odisha",
+        "chhattisgarh",
+        "uttar-pradesh"
+      ]
     },
     {
       "slug": "karnataka",
       "name": "Karnataka",
       "region": "South",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["goa", "maharashtra", "kerala", "tamil-nadu", "telangana"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "goa",
+        "maharashtra",
+        "kerala",
+        "tamil-nadu",
+        "telangana"
+      ]
     },
     {
       "slug": "kerala",
       "name": "Kerala",
       "region": "South",
-      "prohibition": false,
-      "note": "Statewide dry day on the 1st of every month by Kerala State Beverages Corporation (Bevco).",
-      "lastVerified": "2026-10-20",
-      "nearby": ["tamil-nadu", "karnataka", "puducherry", "goa", "lakshadweep"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "tamil-nadu",
+        "karnataka",
+        "puducherry",
+        "goa",
+        "lakshadweep"
+      ]
     },
     {
       "slug": "madhya-pradesh",
       "name": "Madhya Pradesh",
       "region": "Central",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["uttar-pradesh", "rajasthan", "gujarat", "maharashtra", "chhattisgarh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "uttar-pradesh",
+        "rajasthan",
+        "gujarat",
+        "maharashtra",
+        "chhattisgarh"
+      ]
     },
     {
       "slug": "maharashtra",
       "name": "Maharashtra",
       "region": "West",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["goa", "gujarat", "karnataka", "madhya-pradesh", "telangana"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "goa",
+        "gujarat",
+        "karnataka",
+        "madhya-pradesh",
+        "telangana"
+      ]
     },
     {
       "slug": "manipur",
       "name": "Manipur",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["nagaland", "mizoram", "assam", "meghalaya", "tripura"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "nagaland",
+        "mizoram",
+        "assam",
+        "meghalaya",
+        "tripura"
+      ]
     },
     {
       "slug": "meghalaya",
       "name": "Meghalaya",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["assam", "tripura", "west-bengal", "arunachal-pradesh", "manipur"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "assam",
+        "tripura",
+        "west-bengal",
+        "arunachal-pradesh",
+        "manipur"
+      ]
     },
     {
       "slug": "mizoram",
       "name": "Mizoram",
       "region": "North East",
-      "prohibition": true,
-      "prohibitionNote": "Total statewide prohibition under the Mizoram Liquor Prohibition Act 2019. Every day is a dry day.",
-      "lastVerified": "2026-10-20",
-      "nearby": ["assam", "manipur", "tripura", "nagaland", "meghalaya"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "assam",
+        "manipur",
+        "tripura",
+        "nagaland",
+        "meghalaya"
+      ]
     },
     {
       "slug": "nagaland",
       "name": "Nagaland",
       "region": "North East",
       "prohibition": true,
-      "prohibitionNote": "Total statewide prohibition under the Nagaland Liquor Total Prohibition (NLTP) Act 1989. Every day is a dry day.",
+      "verificationStatus": "verified_source",
       "lastVerified": "2026-10-20",
-      "nearby": ["assam", "arunachal-pradesh", "manipur", "meghalaya", "mizoram"]
+      "nearby": [
+        "assam",
+        "arunachal-pradesh",
+        "manipur",
+        "meghalaya",
+        "mizoram"
+      ],
+      "prohibitionNote": "Section 3 describes Nagaland as a dry state and provides for total prohibition, subject to statutory exceptions.",
+      "sourceUrl": "https://police.nagaland.gov.in/wp-content/uploads/2019/06/NLTP-Act-1989.pdf",
+      "sourceTitle": "Nagaland Liquor Total Prohibition Act, 1989 (official PDF)"
     },
     {
       "slug": "odisha",
       "name": "Odisha",
       "region": "East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["west-bengal", "jharkhand", "chhattisgarh", "andhra-pradesh", "bihar"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "west-bengal",
+        "jharkhand",
+        "chhattisgarh",
+        "andhra-pradesh",
+        "bihar"
+      ]
     },
     {
       "slug": "punjab",
       "name": "Punjab",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["haryana", "chandigarh", "himachal-pradesh", "rajasthan", "delhi"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "haryana",
+        "chandigarh",
+        "himachal-pradesh",
+        "rajasthan",
+        "delhi"
+      ]
     },
     {
       "slug": "rajasthan",
       "name": "Rajasthan",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["delhi", "haryana", "punjab", "gujarat", "madhya-pradesh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "delhi",
+        "haryana",
+        "punjab",
+        "gujarat",
+        "madhya-pradesh"
+      ]
     },
     {
       "slug": "sikkim",
       "name": "Sikkim",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["west-bengal", "assam", "bihar", "arunachal-pradesh", "meghalaya"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "west-bengal",
+        "assam",
+        "bihar",
+        "arunachal-pradesh",
+        "meghalaya"
+      ]
     },
     {
       "slug": "tamil-nadu",
       "name": "Tamil Nadu",
       "region": "South",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["kerala", "karnataka", "andhra-pradesh", "puducherry", "telangana"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "kerala",
+        "karnataka",
+        "andhra-pradesh",
+        "puducherry",
+        "telangana"
+      ]
     },
     {
       "slug": "telangana",
       "name": "Telangana",
       "region": "South",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["andhra-pradesh", "karnataka", "maharashtra", "chhattisgarh", "tamil-nadu"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "andhra-pradesh",
+        "karnataka",
+        "maharashtra",
+        "chhattisgarh",
+        "tamil-nadu"
+      ]
     },
     {
       "slug": "tripura",
       "name": "Tripura",
       "region": "North East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["assam", "mizoram", "meghalaya", "west-bengal", "manipur"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "assam",
+        "mizoram",
+        "meghalaya",
+        "west-bengal",
+        "manipur"
+      ]
     },
     {
       "slug": "uttar-pradesh",
       "name": "Uttar Pradesh",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["delhi", "haryana", "madhya-pradesh", "bihar", "uttarakhand"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "delhi",
+        "haryana",
+        "madhya-pradesh",
+        "bihar",
+        "uttarakhand"
+      ]
     },
     {
       "slug": "uttarakhand",
       "name": "Uttarakhand",
       "region": "North",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["uttar-pradesh", "himachal-pradesh", "haryana", "delhi", "chandigarh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "uttar-pradesh",
+        "himachal-pradesh",
+        "haryana",
+        "delhi",
+        "chandigarh"
+      ]
     },
     {
       "slug": "west-bengal",
       "name": "West Bengal",
       "region": "East",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["odisha", "jharkhand", "bihar", "sikkim", "assam"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "odisha",
+        "jharkhand",
+        "bihar",
+        "sikkim",
+        "assam"
+      ]
     },
     {
       "slug": "andaman-and-nicobar-islands",
       "name": "Andaman and Nicobar Islands",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["tamil-nadu", "andhra-pradesh", "puducherry", "kerala", "west-bengal"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "tamil-nadu",
+        "andhra-pradesh",
+        "puducherry",
+        "kerala",
+        "west-bengal"
+      ]
     },
     {
       "slug": "chandigarh",
       "name": "Chandigarh",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["punjab", "haryana", "himachal-pradesh", "delhi", "uttarakhand"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "punjab",
+        "haryana",
+        "himachal-pradesh",
+        "delhi",
+        "uttarakhand"
+      ]
     },
     {
       "slug": "dadra-and-nagar-haveli-and-daman-and-diu",
       "name": "Dadra and Nagar Haveli and Daman and Diu",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["gujarat", "maharashtra", "goa", "madhya-pradesh", "rajasthan"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "gujarat",
+        "maharashtra",
+        "goa",
+        "madhya-pradesh",
+        "rajasthan"
+      ]
     },
     {
       "slug": "delhi",
       "name": "Delhi (NCT)",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["haryana", "uttar-pradesh", "rajasthan", "punjab", "chandigarh"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "haryana",
+        "uttar-pradesh",
+        "rajasthan",
+        "punjab",
+        "chandigarh"
+      ]
     },
     {
       "slug": "jammu-and-kashmir",
       "name": "Jammu and Kashmir",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["ladakh", "himachal-pradesh", "punjab", "chandigarh", "delhi"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "ladakh",
+        "himachal-pradesh",
+        "punjab",
+        "chandigarh",
+        "delhi"
+      ]
     },
     {
       "slug": "ladakh",
       "name": "Ladakh",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["jammu-and-kashmir", "himachal-pradesh", "punjab", "chandigarh", "delhi"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "jammu-and-kashmir",
+        "himachal-pradesh",
+        "punjab",
+        "chandigarh",
+        "delhi"
+      ]
     },
     {
       "slug": "lakshadweep",
       "name": "Lakshadweep",
       "region": "Union Territory",
-      "prohibition": true,
-      "prohibitionNote": "Statutory prohibition enforced across all inhabited islands (permitted only at Bangaram Island tourist resort).",
-      "lastVerified": "2026-10-20",
-      "nearby": ["kerala", "karnataka", "goa", "tamil-nadu", "puducherry"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "kerala",
+        "karnataka",
+        "goa",
+        "tamil-nadu",
+        "puducherry"
+      ]
     },
     {
       "slug": "puducherry",
       "name": "Puducherry",
       "region": "Union Territory",
-      "prohibition": false,
-      "lastVerified": "2026-10-20",
-      "nearby": ["tamil-nadu", "kerala", "andhra-pradesh", "karnataka", "telangana"]
+      "prohibition": null,
+      "verificationStatus": "not_verified",
+      "lastVerified": null,
+      "nearby": [
+        "tamil-nadu",
+        "kerala",
+        "andhra-pradesh",
+        "karnataka",
+        "telangana"
+      ]
     }
   ],
   "entries": [
     {
-      "state": "all",
-      "date": "2026-01-26",
-      "type": "national",
-      "reason": "Republic Day",
-      "status": "confirmed",
-      "sourceUrl": "https://mha.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-01-30",
-      "type": "national",
-      "reason": "Shaheed Diwas (Martyrs' Day)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-01-30",
+      "state": "west-bengal",
+      "date": "2026-10-19",
       "type": "state",
-      "reason": "Mahatma Gandhi Death Anniversary",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "rajasthan",
-      "date": "2026-01-30",
-      "type": "state",
-      "reason": "Shaheed Diwas",
-      "status": "confirmed",
-      "sourceUrl": "https://rajexcise.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-02-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-02-15",
-      "type": "festival",
-      "reason": "Maha Shivratri",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-02-15",
-      "type": "festival",
-      "reason": "Maha Shivratri",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-02-15",
-      "type": "festival",
-      "reason": "Maha Shivratri",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "karnataka",
-      "date": "2026-02-15",
-      "type": "festival",
-      "reason": "Maha Shivratri",
-      "status": "confirmed",
-      "sourceUrl": "https://kexcise.karnataka.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-03-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi (Dhulandi)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "haryana",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi",
-      "status": "confirmed",
-      "sourceUrl": "https://haryanatax.gov.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "madhya-pradesh",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.mp.gov.in"
-    },
-    {
-      "state": "rajasthan",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Dhulandi / Holi",
-      "status": "confirmed",
-      "sourceUrl": "https://rajexcise.gov.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi (Rangpanchami observance)",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "punjab",
-      "date": "2026-03-03",
-      "type": "festival",
-      "reason": "Holi / Hola Mohalla",
-      "status": "confirmed",
-      "sourceUrl": "https://punjabexcise.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-03-21",
-      "type": "festival",
-      "reason": "Eid-ul-Fitr",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "telangana",
-      "date": "2026-03-21",
-      "type": "festival",
-      "reason": "Eid-ul-Fitr / Ramzan Id",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.telangana.gov.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-03-21",
-      "type": "festival",
-      "reason": "Eid-ul-Fitr",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "karnataka",
-      "date": "2026-03-21",
-      "type": "festival",
-      "reason": "Eid-ul-Fitr",
-      "status": "confirmed",
-      "sourceUrl": "https://kexcise.karnataka.gov.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-03-21",
-      "type": "festival",
-      "reason": "Eid-ul-Fitr",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-03-31",
-      "type": "festival",
-      "reason": "Mahavir Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "rajasthan",
-      "date": "2026-03-31",
-      "type": "festival",
-      "reason": "Mahavir Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://rajexcise.gov.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-03-31",
-      "type": "festival",
-      "reason": "Mahavir Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-04-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-04-03",
-      "type": "festival",
-      "reason": "Good Friday",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "goa",
-      "date": "2026-04-03",
-      "type": "festival",
-      "reason": "Good Friday",
-      "status": "confirmed",
-      "sourceUrl": "https://goaexcise.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-04-03",
-      "type": "festival",
-      "reason": "Good Friday",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-04-14",
-      "type": "national",
-      "reason": "Dr. B.R. Ambedkar Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-04-14",
-      "type": "national",
-      "reason": "Dr. Babasaheb Ambedkar Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-04-14",
-      "type": "national",
-      "reason": "Dr. B.R. Ambedkar Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-05-01",
-      "type": "state",
-      "reason": "Maharashtra Day / International Labour Day",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-05-01",
-      "type": "state",
-      "reason": "May Day & 1st of the Month",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-05-01",
-      "type": "festival",
-      "reason": "Buddha Purnima",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-05-27",
-      "type": "festival",
-      "reason": "Bakrid / Eid-ul-Adha",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-06-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-06-25",
-      "type": "festival",
-      "reason": "Muharram",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-06-25",
-      "type": "festival",
-      "reason": "Muharram",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-06-25",
-      "type": "festival",
-      "reason": "Muharram (10th day Ashura)",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-07-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-08-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "all",
-      "date": "2026-08-15",
-      "type": "national",
-      "reason": "Independence Day",
-      "status": "confirmed",
-      "sourceUrl": "https://mha.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-08-26",
-      "type": "festival",
-      "reason": "Milad-un-Nabi (Id-e-Milad)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-09-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-09-04",
-      "type": "festival",
-      "reason": "Janmashtami",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-09-04",
-      "type": "festival",
-      "reason": "Krishna Janmashtami",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-09-14",
-      "type": "festival",
-      "reason": "Ganesh Chaturthi",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "goa",
-      "date": "2026-09-14",
-      "type": "festival",
-      "reason": "Ganesh Chaturthi (Day 1)",
-      "status": "confirmed",
-      "sourceUrl": "https://goaexcise.gov.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-09-24",
-      "type": "festival",
-      "reason": "Anant Chaturdashi (Ganesh Visarjan)",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-10-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "all",
-      "date": "2026-10-02",
-      "type": "national",
-      "reason": "Mahatma Gandhi Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://mha.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-10-20",
-      "type": "festival",
-      "reason": "Maharishi Valmiki Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "haryana",
-      "date": "2026-10-20",
-      "type": "festival",
-      "reason": "Maharishi Valmiki Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://haryanatax.gov.in"
-    },
-    {
-      "state": "punjab",
-      "date": "2026-10-20",
-      "type": "festival",
-      "reason": "Pargat Diwas of Bhagwan Valmiki Ji",
-      "status": "confirmed",
-      "sourceUrl": "https://punjabexcise.gov.in"
-    },
-    {
-      "state": "karnataka",
-      "date": "2026-10-20",
-      "type": "festival",
-      "reason": "Maharishi Valmiki Jayanti Observance",
+      "reason": "Maha Ashtami (Durga Puja)",
       "status": "pending",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "sourceNote": "Special State Ban â€” verification pending until official West Bengal excise notification or authoritative source is located."
     },
     {
       "state": "jharkhand",
-      "date": "2026-10-21",
-      "type": "election",
-      "reason": "Local Panchayat By-election (Polling day 48hr ban)",
+      "date": "2026-01-26",
+      "type": "national",
+      "reason": "Republic Day",
       "status": "pending",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
     },
     {
-      "state": "maharashtra",
-      "date": "2026-10-21",
-      "type": "election",
-      "reason": "Zilla Parishad By-election (Designated constituencies)",
+      "state": "jharkhand",
+      "date": "2026-02-15",
+      "type": "state",
+      "reason": "Maha Shivratri",
       "status": "pending",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "sourceNote": "State order reference from screenshot; official Jharkhand excise notification URL not located."
     },
     {
-      "state": "delhi",
-      "date": "2026-10-25",
-      "type": "festival",
-      "reason": "Dussehra (Vijayadashami)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
+      "state": "jharkhand",
+      "date": "2026-03-04",
+      "type": "state",
+      "reason": "Holi",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "State Gazette notification (NI Act) reference from screenshot; official URL not located."
     },
     {
-      "state": "uttar-pradesh",
-      "date": "2026-10-25",
-      "type": "festival",
+      "state": "jharkhand",
+      "date": "2026-08-15",
+      "type": "national",
+      "reason": "Independence Day",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
+    },
+    {
+      "state": "jharkhand",
+      "date": "2026-10-02",
+      "type": "national",
+      "reason": "Gandhi Jayanti",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
+    },
+    {
+      "state": "jharkhand",
+      "date": "2026-10-20",
+      "type": "state",
       "reason": "Vijayadashami / Dussehra",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "west-bengal",
-      "date": "2026-10-25",
-      "type": "festival",
-      "reason": "Bijoya Dashami (Durga Puja finale)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.wb.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-11-01",
-      "type": "state",
-      "reason": "Kerala Piravi (State Formation Day) & 1st of the Month",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "karnataka",
-      "date": "2026-11-01",
-      "type": "state",
-      "reason": "Karnataka Rajyotsava (State Formation Day)",
-      "status": "confirmed",
-      "sourceUrl": "https://kexcise.karnataka.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-11-08",
-      "type": "festival",
-      "reason": "Diwali (Deepavali)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "rajasthan",
-      "date": "2026-11-08",
-      "type": "festival",
-      "reason": "Deepawali",
-      "status": "confirmed",
-      "sourceUrl": "https://rajexcise.gov.in"
-    },
-    {
-      "state": "uttar-pradesh",
-      "date": "2026-11-08",
-      "type": "festival",
-      "reason": "Deepawali",
-      "status": "confirmed",
-      "sourceUrl": "https://upexcise.in"
-    },
-    {
-      "state": "maharashtra",
-      "date": "2026-11-08",
-      "type": "festival",
-      "reason": "Laxmi Pujan / Diwali",
-      "status": "confirmed",
-      "sourceUrl": "https://stateexcise.maharashtra.gov.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-11-24",
-      "type": "festival",
-      "reason": "Guru Nanak Jayanti (Gurpurab)",
-      "status": "confirmed",
-      "sourceUrl": "https://excise.delhigovt.nic.in"
-    },
-    {
-      "state": "punjab",
-      "date": "2026-11-24",
-      "type": "festival",
-      "reason": "Guru Nanak Dev Ji Prakash Purab",
-      "status": "confirmed",
-      "sourceUrl": "https://punjabexcise.gov.in"
-    },
-    {
-      "state": "haryana",
-      "date": "2026-11-24",
-      "type": "festival",
-      "reason": "Guru Nanak Jayanti",
-      "status": "confirmed",
-      "sourceUrl": "https://haryanatax.gov.in"
-    },
-    {
-      "state": "kerala",
-      "date": "2026-12-01",
-      "type": "state",
-      "reason": "First Day of the Month (State Excise Mandate)",
-      "status": "confirmed",
-      "sourceUrl": "https://bevco.in"
-    },
-    {
-      "state": "delhi",
-      "date": "2026-12-25",
-      "type": "festival",
-      "reason": "Christmas Day Observance",
       "status": "pending",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "sourceNote": "State major festival (Full Ban) — screenshot reference; official Jharkhand excise notification URL not located."
+    },
+    {
+      "state": "jharkhand",
+      "date": "2026-11-08",
+      "type": "state",
+      "reason": "Diwali",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "Religious / state order (Sunday) — screenshot reference; official notification URL not located."
+    },
+    {
+      "state": "jharkhand",
+      "date": "2026-11-16",
+      "type": "state",
+      "reason": "Chhath Puja (morning Arghya)",
+      "status": "pending",
+      "sourceUrl": "",
+      "sourceNote": "State-specific major festival holiday — screenshot reference; official notification URL not located."
     }
   ]
 }

@@ -96,8 +96,10 @@ export default async function StatePage({ params }: Props) {
   const todayStatus = getStatus(state.slug, todayIST);
   const tomorrowStatus = getStatus(state.slug, tomorrowIST);
 
-  const todayLabel = state.prohibition
+  const todayLabel = state.prohibition === true
     ? 'Always'
+    : state.prohibition === null
+    ? 'Maybe'
     : todayStatus === 'dry'
     ? 'Yes'
     : todayStatus === 'not_dry'
@@ -239,7 +241,7 @@ export default async function StatePage({ params }: Props) {
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
             <Clock className="h-3 w-3 text-amber-400" />
             <span>
-              Last verified: <strong className="text-neutral-200">{state.lastVerified}</strong> (IST)
+              Last verified: <strong className="text-neutral-200">{state.lastVerified ? state.lastVerified : 'Not verified yet'}</strong> (IST)
             </span>
           </div>
         </div>
@@ -375,6 +377,11 @@ export default async function StatePage({ params }: Props) {
                         ) : (
                           <span className="text-neutral-500 text-[11px] px-2">
                             Source: Pending gazette
+                          </span>
+                        )}
+                        {entry.sourceNote && (
+                          <span className="text-[10px] text-neutral-500 mt-1 block">
+                            {entry.sourceNote}
                           </span>
                         )}
                       </div>
