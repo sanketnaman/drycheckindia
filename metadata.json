@@ -1,0 +1,6 @@
+{
+  "name": "DryCheck India",
+  "description": "Aaj sookha hai ya nahi, ek nazar mein. Find out instantly whether today or tomorrow is a dry day across Indian states and union territories with real-time IST calendars.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
