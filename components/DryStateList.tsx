@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { StateInfo, DryDayEntry } from '@/lib/dryday';
+import { StateInfo, DryDayEntry, DATA_UNAVAILABLE_LIST_MESSAGE } from '@/lib/dryday';
 import { AlertTriangle, ChevronRight, ShieldCheck } from 'lucide-react';
 
 interface DryStateItem {
   state: StateInfo;
   entry?: DryDayEntry;
-  status: 'dry' | 'maybe' | 'unavailable';
+  status: 'dry' | 'maybe';
   isProhibition?: boolean;
   isReported?: boolean;
 }
@@ -18,6 +18,8 @@ interface DryStateListProps {
   isTomorrow?: boolean;
   /** True when the public dataset has no published entries at all. */
   datasetEmpty?: boolean;
+  /** True when the public dataset fetch failed — the status is unknown. */
+  dataUnavailable?: boolean;
 }
 
 export default function DryStateList({
@@ -27,6 +29,7 @@ export default function DryStateList({
   emptyMessage = 'No general dry day scheduled. Regular retail licensing rules apply.',
   isTomorrow = false,
   datasetEmpty = false,
+  dataUnavailable = false,
 }: DryStateListProps) {
   const eventDryDays = items.filter((item) => !item.isProhibition);
   const prohibitionStates = items.filter((item) => item.isProhibition);
@@ -45,7 +48,9 @@ export default function DryStateList({
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300">
-            {datasetEmpty
+            {dataUnavailable
+              ? 'Data unavailable'
+              : datasetEmpty
               ? 'Awaiting published data'
               : `${eventDryDays.length} ${eventDryDays.length === 1 ? 'state' : 'states'} on schedule`}
           </span>
@@ -57,7 +62,6 @@ export default function DryStateList({
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {eventDryDays.map(({ state, entry, status }) => {
             const isPending = entry?.status === 'pending' || status === 'maybe';
-            const isUnavailable = status === 'unavailable';
             const isReported = entry?.status === 'reported';
 
             return (
@@ -72,16 +76,12 @@ export default function DryStateList({
                   </span>
                   <span
                     className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border ${
-                      isUnavailable
-                        ? 'bg-neutral-800/80 text-neutral-300 border-neutral-600/60'
-                        : isReported
-                        ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
-                        : isPending
+                      isReported || isPending
                         ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
                         : 'bg-rose-950/80 text-rose-300 border-rose-800/60'
                     }`}
                   >
-                    {isUnavailable ? 'Status not verified' : isReported ? 'Scheduled — reported' : isPending ? 'Maybe' : 'Dry'}
+                    {isReported ? 'Pata nahi' : isPending ? 'Maybe' : 'Dry'}
                   </span>
                 </div>
 
@@ -93,11 +93,6 @@ export default function DryStateList({
                   {isPending && (
                     <span className="text-[10px] text-amber-400/90 font-medium mt-0.5">
                       Official confirmation awaited
-                    </span>
-                  )}
-                  {isUnavailable && (
-                    <span className="text-[10px] text-neutral-500 font-medium mt-0.5">
-                      No verified status for this state and date
                     </span>
                   )}
                   {isReported && (
@@ -113,8 +108,14 @@ export default function DryStateList({
       ) : (
         <div className="mt-3 p-3.5 rounded-xl border border-neutral-800/60 bg-neutral-950/40 text-center">
           <p className="text-xs sm:text-sm text-neutral-300 flex items-center justify-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-emerald-400" />
-            <span>{emptyMessage}</span>
+            {dataUnavailable ? (
+              <span>{DATA_UNAVAILABLE_LIST_MESSAGE}</span>
+            ) : (
+              <>
+                <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                <span>{emptyMessage}</span>
+              </>
+            )}
           </p>
         </div>
       )}

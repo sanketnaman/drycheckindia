@@ -9,6 +9,7 @@ import {
   insertDryDay,
   updateDryDay,
   setDryDayPublished,
+  setDryDayVerification,
   validateDryDayInput,
 } from '@/lib/admin/drydays';
 import {
@@ -19,7 +20,14 @@ import {
   validateNoticeInput,
 } from '@/lib/admin/notices';
 import { INVALID_ID_MESSAGE, isUuid } from '@/lib/admin/ids';
-import type { ActionResult, DryDayInput, NoticeInput, SaveResult } from '@/lib/admin/types';
+import {
+  VERIFICATION_STATUSES,
+  type ActionResult,
+  type DryDayInput,
+  type NoticeInput,
+  type SaveResult,
+  type VerificationStatus,
+} from '@/lib/admin/types';
 
 const UNAUTHENTICATED_MESSAGE = 'Your session has expired. Please sign in again.';
 const FORBIDDEN_MESSAGE = 'This account does not have admin access.';
@@ -51,6 +59,17 @@ function validateRecordId(id: string | undefined): ActionResult | null {
 function validatePublishedFlag(published: unknown): ActionResult | null {
   if (typeof published !== 'boolean') {
     return invalidActionArgument('Publication flag must be a boolean.');
+  }
+  return null;
+}
+
+/** Validates a verification status value. */
+function validateVerificationStatus(status: unknown): ActionResult | null {
+  if (
+    typeof status !== 'string' ||
+    !VERIFICATION_STATUSES.includes(status as VerificationStatus)
+  ) {
+    return invalidActionArgument('Choose a verification status.');
   }
   return null;
 }
@@ -150,6 +169,32 @@ export async function setDryDayPublishedAction(
   if (!guard.ok) return guard.result;
 
   const result = await setDryDayPublished(guard.supabase, id, published);
+  if (!result.ok) return result;
+
+  revalidatePath('/admin/dry-days');
+  revalidatePath('/admin');
+  return { ok: true };
+}
+
+/**
+ * Quick confirm/unconfirm from the list view. Confirm sets verification to
+ * 'confirmed'; unconfirm returns it to 'pending' (honest "unverified" — never
+ * invents a 'reported' news signal). Publication is never changed here.
+ */
+export async function setDryDayVerificationAction(
+  id: string,
+  status: VerificationStatus
+): Promise<ActionResult> {
+  const idError = validateRecordId(id);
+  if (idError) return idError;
+
+  const statusError = validateVerificationStatus(status);
+  if (statusError) return statusError;
+
+  const guard = await requireAdminForAction();
+  if (!guard.ok) return guard.result;
+
+  const result = await setDryDayVerification(guard.supabase, id, status);
   if (!result.ok) return result;
 
   revalidatePath('/admin/dry-days');

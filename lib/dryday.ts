@@ -337,25 +337,45 @@ export function formatDateDisplay(
   return `${dayOfWeekStr}${d} ${monthStr} ${y}`;
 }
 
+/** Public status vocabulary shared by pages, components and copy helpers. */
+export type PublicStatus = 'dry' | 'not_dry' | 'maybe' | 'unavailable';
+
+/**
+ * Verification statuses the public site treats as eligible records. Matches
+ * the public read layer's query filter (lib/public-drydays.ts): pending drafts
+ * are never publicly eligible.
+ */
+const PUBLICLY_ELIGIBLE_STATUSES: ReadonlySet<DryDayStatus> = new Set([
+  'confirmed',
+  'reported',
+]);
+
 /**
  * Returns dry status for a specific state on a specific date:
  * 'dry' | 'not_dry' | 'maybe' | 'unavailable'
  *
- * - confirmed statewide entry → dry
- * - reported (news) entry → maybe (never confirmed)
- * - pending-only entry → unverified (unavailable)
- * - no applicable entry + prohibition false → not_dry
- * - no applicable entry + prohibition unknown (null) → unavailable
- * - EMPTY dataset (no published entries at all) → unavailable for every
- *   non-prohibition state: absence of the whole dataset is not evidence of
- *   "not dry" for any date
- * - local-only entries never produce a statewide dry/maybe result
+ * Decision tree (Default Theka Status logic):
+ * - statutory prohibition (prohibition === true) → dry — a standing legal
+ *   fact, never overridden by the default-open rule
+ * - publicly-eligible statewide confirmed entry → dry
+ * - publicly-eligible statewide reported entry (no confirmed) → maybe
+ *   (an unconfirmed record must stay distinguishable from no record)
+ * - NO publicly-eligible statewide entry → not_dry: the default open status
+ *   for every past/present/future date without an admin-created public
+ *   record. Applies when the dataset is empty, contains only pending drafts,
+ *   or only local-scope records (locals never answer statewide).
+ * - unknown state slug → unavailable (defensive; pages validate slugs)
+ *
+ * 'unavailable' does NOT mean "database fetch failed": a failed query never
+ * reaches this function. Pages detect fetch failures through
+ * getPublicDataset() (lib/public-drydays.ts) and render the separate
+ * data-unavailable state, so an error is never mistaken for "no entry".
  */
 export function getStatus(
   stateSlug: string,
   dateIST: string,
   entries: DryDayEntry[]
-): 'dry' | 'not_dry' | 'maybe' | 'unavailable' {
+): PublicStatus {
   const state = getStateBySlug(stateSlug);
   if (!state) {
     return 'unavailable';
@@ -363,31 +383,56 @@ export function getStatus(
   if (state.prohibition === true) {
     return 'dry';
   }
-  // An entirely unpopulated dataset must never read as "not dry".
-  if (entries.length === 0) {
-    return 'unavailable';
+
+  const eligible = getStatewideEntriesOn(stateSlug, dateIST, entries).filter((e) =>
+    PUBLICLY_ELIGIBLE_STATUSES.has(e.status)
+  );
+
+  if (eligible.some((e) => e.status === 'confirmed')) {
+    return 'dry';
+  }
+  if (eligible.some((e) => e.status === 'reported')) {
+    return 'maybe';
   }
 
-  const stateEntries = getStatewideEntriesOn(stateSlug, dateIST, entries);
-
-  if (stateEntries.length > 0) {
-    if (stateEntries.some((e) => e.status === 'confirmed')) {
-      return 'dry';
-    }
-    if (stateEntries.some((e) => e.status === 'reported')) {
-      return 'maybe';
-    }
-    // pending-only: must not be presented as verified
-    return 'unavailable';
-  }
-
-  // No applicable statewide entries for this date.
-  if (state.prohibition === false) {
-    return 'not_dry';
-  }
-  // prohibition unknown (null): absence of entries is not proof of "not dry"
-  return 'unavailable';
+  // Default: no admin-created public record for this state and date.
+  return 'not_dry';
 }
+
+/**
+ * Required public answer copy for a state/date status. The confirmed outcome
+ * refers to the date being checked: "aaj" only when that date is today in
+ * IST, otherwise the neutral "is din" wording so no other date is called
+ * "today".
+ */
+export function getStatusHeadline(
+  status: PublicStatus,
+  dateIST: string,
+  todayIST: string = getTodayIST()
+): string {
+  switch (status) {
+    case 'dry':
+      return dateIST === todayIST
+        ? 'Haan, aaj theka band hai.'
+        : 'Haan, is din theka band hai.';
+    case 'maybe':
+      return 'Pata nahi, confirm nahi hai.';
+    case 'unavailable':
+      return 'Abhi status check nahi ho pa raha hai.';
+    default:
+      return 'Nahi, theka band nahi hai.';
+  }
+}
+
+/**
+ * Shared copy for the data-unavailable state (the database fetch failed).
+ * It explains that the status could not be retrieved and never claims that
+ * someone is actively checking.
+ */
+export const DATA_UNAVAILABLE_SECONDARY =
+  'Database se status abhi retrieve nahi ho pa raha hai. Thodi der baad dobara try karein.';
+export const DATA_UNAVAILABLE_LIST_MESSAGE =
+  'Status abhi check nahi ho pa raha hai. Thodi der baad dobara try karein.';
 
 /**
  * Get active statewide entries for a specific state on a date
@@ -402,15 +447,19 @@ export function getEntriesForStateOnDate(
 }
 
 /**
- * Get the nationwide answer for today/tomorrow
+ * Get the nationwide answer for today/tomorrow.
+ * 'maybe' covers any non-dry signal: dryCount > 0 means at least one state is
+ * confirmed dry (a partial dry day), dryCount === 0 means only unconfirmed
+ * (reported) signals exist.
  */
 export function getNationwideStatus(
   dateIST: string,
   entries: DryDayEntry[]
 ): {
-  status: 'dry' | 'not_dry' | 'maybe' | 'unavailable';
+  status: PublicStatus;
   label: 'Yes' | 'No' | 'Maybe' | 'Status not verified';
   dryCount: number;
+  maybeCount: number;
   totalStates: number;
 } {
   const source = entries;
@@ -428,6 +477,7 @@ export function getNationwideStatus(
       status: 'dry',
       label: 'Yes',
       dryCount: data.states.length,
+      maybeCount: 0,
       totalStates: data.states.length,
     };
   }
@@ -437,6 +487,7 @@ export function getNationwideStatus(
       status: 'maybe',
       label: 'Maybe',
       dryCount: dryStates.length,
+      maybeCount: maybeStates.length,
       totalStates: data.states.length,
     };
   }
@@ -446,6 +497,7 @@ export function getNationwideStatus(
       status: 'unavailable',
       label: 'Status not verified',
       dryCount: 0,
+      maybeCount: 0,
       totalStates: data.states.length,
     };
   }
@@ -454,13 +506,17 @@ export function getNationwideStatus(
     status: 'not_dry',
     label: 'No',
     dryCount: 0,
+    maybeCount: 0,
     totalStates: data.states.length,
   };
 }
 
 /**
- * Returns states with an applicable statewide dry-day record (or prohibition)
- * on dateIST. Local-only restrictions do not appear as statewide dry days.
+ * Returns states with a publicly-eligible statewide dry-day record (or
+ * prohibition) on dateIST. Confirmed records list as 'dry', reported
+ * (unconfirmed) records as 'maybe'. Pending drafts and local-only records
+ * are not publicly eligible, so those states are simply omitted — they fall
+ * back to the default open status everywhere else.
  */
 export function getDryStatesOn(
   dateIST: string,
@@ -468,13 +524,13 @@ export function getDryStatesOn(
 ): {
   state: StateInfo;
   entry?: DryDayEntry;
-  status: 'dry' | 'maybe' | 'unavailable';
+  status: 'dry' | 'maybe';
   isProhibition?: boolean;
 }[] {
   const result: {
     state: StateInfo;
     entry?: DryDayEntry;
-    status: 'dry' | 'maybe' | 'unavailable';
+    status: 'dry' | 'maybe';
     isProhibition?: boolean;
   }[] = [];
 
@@ -489,20 +545,16 @@ export function getDryStatesOn(
     }
 
     const stateEntries = getStatewideEntriesOn(state.slug, dateIST, entries);
+    const confirmed = stateEntries.find((e) => e.status === 'confirmed');
+    const reported = stateEntries.find((e) => e.status === 'reported');
 
-    if (stateEntries.length > 0) {
-      const confirmed = stateEntries.find((e) => e.status === 'confirmed');
-      const reported = stateEntries.find((e) => e.status === 'reported');
-      const entry = confirmed || reported || stateEntries[0];
-      const hasPendingOnly = stateEntries.every((e) => e.status === 'pending');
-      result.push({
-        state,
-        entry,
-        status: confirmed ? 'dry' : reported ? 'maybe' : hasPendingOnly ? 'unavailable' : 'maybe',
-        isProhibition: false,
-      });
+    if (confirmed) {
+      result.push({ state, entry: confirmed, status: 'dry', isProhibition: false });
+    } else if (reported) {
+      result.push({ state, entry: reported, status: 'maybe', isProhibition: false });
     }
-    // States with no applicable statewide record are omitted (not listed as open or dry)
+    // States without a publicly-eligible statewide record are omitted
+    // (not listed as open or dry).
   }
 
   return result;
@@ -641,8 +693,8 @@ const TOMORROW_MAYBE_VARIANTS = [
  * All variants are strictly under 6 words with light Hindi/Hinglish flavor.
  */
 export function getDeterministicSecondaryLine(
-  todayStatus: 'dry' | 'not_dry' | 'maybe' | 'unavailable',
-  tomorrowStatus: 'dry' | 'not_dry' | 'maybe' | 'unavailable',
+  todayStatus: PublicStatus,
+  tomorrowStatus: PublicStatus,
   dateStr: string
 ): string {
   const hash = dateStr.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);

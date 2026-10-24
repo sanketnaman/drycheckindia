@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 
 import { getAllEntries, type DryDayEntry } from '@/lib/dryday';
 import {
+  getPublicDataset,
   getPublicEntries,
   getPublishedNotices,
   isNoticeWindowActive,
@@ -282,6 +283,81 @@ describe('getPublicEntries — errors degrade to empty, never to JSON', () => {
       expect.stringContaining('[public-drydays]'),
       expect.stringContaining('exceeded')
     );
+  });
+});
+
+describe('getPublicDataset — empty success is distinct from a failed fetch', () => {
+  test('unconfigured returns ok:false with the unconfigured reason', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    const result = await getPublicDataset();
+
+    expect(result.ok).toBe(false);
+    expect(result.entries).toEqual([]);
+    if (!result.ok) expect(result.reason).toBe('unconfigured');
+    expect(createClient).not.toHaveBeenCalled();
+  });
+
+  test('browser-like environment returns ok:false without creating a client', async () => {
+    enableSupabaseConfig();
+    (globalThis as { window?: unknown }).window = {};
+
+    const result = await getPublicDataset();
+
+    expect(result.ok).toBe(false);
+    expect(result.entries).toEqual([]);
+    if (!result.ok) expect(result.reason).toBe('browser');
+    expect(createClient).not.toHaveBeenCalled();
+  });
+
+  test('PostgREST error returns ok:false — never an empty success', async () => {
+    enableSupabaseConfig();
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    mockClientWith(makeBuilder([{ data: null, error: { message: 'permission denied' } }]));
+
+    const result = await getPublicDataset();
+
+    // A failed query must never masquerade as "no entries published".
+    expect(result.ok).toBe(false);
+    expect(result.entries).toEqual([]);
+    if (!result.ok) expect(result.reason).toBe('fetch_failed');
+  });
+
+  test('an empty database is ok:true with entries:[]', async () => {
+    enableSupabaseConfig();
+    mockClientWith(makeBuilder([{ data: [] }]));
+
+    const result = await getPublicDataset();
+
+    expect(result.ok).toBe(true);
+    expect(result.entries).toEqual([]);
+    // The archived JSON dataset is non-empty; a fallback would not be [].
+    expect(ARCHIVED_JSON.length).toBeGreaterThan(0);
+  });
+
+  test('a successful fetch is ok:true with the mapped rows', async () => {
+    enableSupabaseConfig();
+    mockClientWith(makeBuilder([{ data: [dryDayRow] }]));
+
+    const result = await getPublicDataset();
+
+    expect(result.ok).toBe(true);
+    expect(result.entries).toHaveLength(1);
+    expect(result.entries[0]).toMatchObject({
+      state: 'maharashtra',
+      date: '2026-11-01',
+      status: 'confirmed',
+    });
+  });
+
+  test('getPublicEntries is exactly the entries of getPublicDataset', async () => {
+    enableSupabaseConfig();
+    mockClientWith(makeBuilder([{ data: [dryDayRow] }]));
+
+    const dataset = await getPublicDataset();
+    const rows = await getPublicEntries();
+
+    expect(rows).toEqual(dataset.entries);
   });
 });
 

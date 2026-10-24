@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { CalendarDays, ChevronRight, Globe } from 'lucide-react';
-import { DryDayEntry } from '@/lib/dryday';
+import { DryDayEntry, DATA_UNAVAILABLE_LIST_MESSAGE } from '@/lib/dryday';
 
 interface GroupedDryDay {
   date: string;
@@ -15,9 +15,15 @@ interface UpcomingDryDaysProps {
   groups: GroupedDryDay[];
   /** True when the public dataset has no published entries at all. */
   datasetEmpty?: boolean;
+  /** True when the public dataset fetch failed — the status is unknown. */
+  dataUnavailable?: boolean;
 }
 
-export default function UpcomingDryDays({ groups, datasetEmpty = false }: UpcomingDryDaysProps) {
+export default function UpcomingDryDays({
+  groups,
+  datasetEmpty = false,
+  dataUnavailable = false,
+}: UpcomingDryDaysProps) {
   return (
     <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-neutral-800 gap-2">
@@ -31,13 +37,19 @@ export default function UpcomingDryDays({ groups, datasetEmpty = false }: Upcomi
           </p>
         </div>
         <span className="text-xs font-mono text-neutral-400">
-          {datasetEmpty ? 'Awaiting published data' : `Showing ${groups.length} dates`}
+          {dataUnavailable
+            ? 'Data unavailable'
+            : datasetEmpty
+            ? 'Awaiting published data'
+            : `Showing ${groups.length} dates`}
         </span>
       </div>
 
       {groups.length === 0 ? (
         <div className="mt-3 p-5 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
-          {datasetEmpty
+          {dataUnavailable
+            ? DATA_UNAVAILABLE_LIST_MESSAGE
+            : datasetEmpty
             ? 'No verified dry-day entries published yet'
             : 'No verified dry days scheduled in the next 4 weeks'}
         </div>

@@ -8,6 +8,7 @@ import { FormAlert, inputClass, labelClass, primaryButtonClass } from '@/compone
 import { PublishBadge, TypeBadge, VerificationBadge } from '@/components/admin/StatusBadge';
 import {
   setDryDayPublishedAction,
+  setDryDayVerificationAction,
   deleteDryDayAction,
 } from '@/app/admin/actions';
 import { authorizeAdmin } from '@/lib/admin/auth';
@@ -265,6 +266,21 @@ export default async function DryDaysAdminPage({
                         >
                           Edit
                         </Link>
+                        {row.verification_status === 'confirmed' ? (
+                          <ActionControl
+                            label="Unconfirm"
+                            confirmTitle="Unconfirm dry day"
+                            confirmMessage={`Mark "${row.reason}" as pending verification again? Pending records are not shown on the public site until they are confirmed or recorded as reported.`}
+                            action={setDryDayVerificationAction.bind(null, row.id, 'pending')}
+                          />
+                        ) : (
+                          <ActionControl
+                            label="Confirm"
+                            confirmTitle="Confirm dry day"
+                            confirmMessage={`Mark "${row.reason}" as officially confirmed? If the record is also published, the public site will show it as a confirmed dry day.`}
+                            action={setDryDayVerificationAction.bind(null, row.id, 'confirmed')}
+                          />
+                        )}
                         <ActionControl
                           label={row.is_published ? 'Unpublish' : 'Publish'}
                           action={setDryDayPublishedAction.bind(null, row.id, !row.is_published)}

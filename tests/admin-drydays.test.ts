@@ -8,6 +8,7 @@ import {
   listDryDays,
   parseDryDayFilters,
   setDryDayPublished,
+  setDryDayVerification,
   updateDryDay,
   validateDryDayInput,
 } from '@/lib/admin/drydays';
@@ -350,6 +351,28 @@ describe('dry-day CRUD queries', () => {
     expect(updateCall?.args[0]).toEqual({ is_published: true });
   });
 
+  test('setDryDayVerification only patches verification_status (not publication)', async () => {
+    const mock = createMockSupabase({
+      tables: { dry_days: { data: { id: ROW_ID }, error: null } },
+    });
+    const result = await setDryDayVerification(asSupabase(mock), ROW_ID, 'confirmed');
+    expect(result.ok).toBe(true);
+
+    const updateCall = mock.queryCalls.dry_days.find((c) => c.method === 'update');
+    expect(updateCall?.args[0]).toEqual({ verification_status: 'confirmed' });
+  });
+
+  test('setDryDayVerification accepts the unconfirm target (pending)', async () => {
+    const mock = createMockSupabase({
+      tables: { dry_days: { data: { id: ROW_ID }, error: null } },
+    });
+    const result = await setDryDayVerification(asSupabase(mock), ROW_ID, 'pending');
+    expect(result.ok).toBe(true);
+
+    const updateCall = mock.queryCalls.dry_days.find((c) => c.method === 'update');
+    expect(updateCall?.args[0]).toEqual({ verification_status: 'pending' });
+  });
+
   test('getDryDay returns null row for an unknown but well-formed id', async () => {
     const mock = createMockSupabase({
       tables: { dry_days: { data: null, error: null } },
@@ -439,6 +462,33 @@ describe('I2 — record ids are validated as UUIDs before any database call', ()
     expect(result.ok).toBe(false);
     expect(result.code).toBe('validation');
     expect(result.error).toMatch(/boolean/i);
+    expect(mock.fromCalls).toHaveLength(0);
+  });
+
+  test('setDryDayVerification rejects a non-UUID id without querying', async () => {
+    const mock = createMockSupabase({
+      tables: { dry_days: { data: { id: ROW_ID }, error: null } },
+    });
+    const result = await setDryDayVerification(asSupabase(mock), 'nope', 'confirmed');
+
+    expect(result.ok).toBe(false);
+    expect(result.code).toBe('validation');
+    expect(result.error).toMatch(/invalid record id/i);
+    expect(mock.fromCalls).toHaveLength(0);
+  });
+
+  test('setDryDayVerification rejects an unknown status value without querying', async () => {
+    const mock = createMockSupabase({
+      tables: { dry_days: { data: { id: ROW_ID }, error: null } },
+    });
+    const result = await setDryDayVerification(
+      asSupabase(mock),
+      ROW_ID,
+      'definitely-verified' as never
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.code).toBe('validation');
     expect(mock.fromCalls).toHaveLength(0);
   });
 

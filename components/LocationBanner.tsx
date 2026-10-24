@@ -16,7 +16,14 @@ const REGION_MAP: Record<string, string> = {
   'PY': 'puducherry', 'DD': 'dadra-and-nagar-haveli-and-daman-and-diu', 'LK': 'lakshadweep',
 };
 
-export default function LocationBanner({ entries }: { entries: DryDayEntry[] }) {
+export default function LocationBanner({
+  entries,
+  dataUnavailable = false,
+}: {
+  entries: DryDayEntry[];
+  /** True when the public dataset fetch failed — the status is unknown. */
+  dataUnavailable?: boolean;
+}) {
   const [stateSlug, setStateSlug] = useState<string | null>(null);
 
   // Read simulated edge header after mount (client-only; no storage)
@@ -33,17 +40,21 @@ export default function LocationBanner({ entries }: { entries: DryDayEntry[] }) 
 
   const state = getStateBySlug(stateSlug);
   const todayIST = getTodayIST();
-  const status = state ? getStatus(state.slug, todayIST, entries) : 'maybe';
+  const status = dataUnavailable
+    ? 'unavailable'
+    : state
+    ? getStatus(state.slug, todayIST, entries)
+    : 'maybe';
 
   const label = state?.prohibition === true
     ? 'Year-round prohibition'
     : status === 'dry'
-    ? 'Yes — dry today'
+    ? 'Haan — aaj theka band'
     : status === 'maybe'
-    ? 'Maybe — pending confirmation'
+    ? 'Pata nahi'
     : status === 'unavailable'
-    ? 'Status not verified'
-    : 'Not dry';
+    ? 'Check nahi ho pa raha'
+    : 'Nahi — theka khula';
 
   return (
     <div className="w-full mb-2 rounded-xl border border-amber-500/30 bg-amber-500/5 px-3 py-2.5 flex items-center justify-between gap-3">

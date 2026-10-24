@@ -11,12 +11,16 @@ import {
   getTodayIST,
   getTomorrowIST,
   getStatus,
+  getStatusHeadline,
   getNextDryDays,
   getDeterministicSecondaryLine,
   formatDateDisplay,
   dateToSlug,
+  DATA_UNAVAILABLE_SECONDARY,
+  DATA_UNAVAILABLE_LIST_MESSAGE,
+  type PublicStatus,
 } from '@/lib/dryday';
-import { getPublicEntries } from '@/lib/public-drydays';
+import { getPublicDataset } from '@/lib/public-drydays';
 import {
   Calendar,
   ExternalLink,
@@ -90,31 +94,43 @@ export default async function StatePage({ params }: Props) {
     notFound();
   }
 
-  const entries = await getPublicEntries();
-  // True while the database has no published, publicly-verifiable entries.
-  const datasetEmpty = entries.length === 0;
+  const dataset = await getPublicDataset();
+  const entries = dataset.entries;
+  // True when the database could not be reached at all — the status is
+  // unknown, which is NOT the same as "no entries published".
+  const dataUnavailable = !dataset.ok;
+  const datasetEmpty = dataset.ok && entries.length === 0;
   const todayIST = getTodayIST();
   const tomorrowIST = getTomorrowIST();
 
-  const todayStatus = getStatus(state.slug, todayIST, entries);
-  const tomorrowStatus = getStatus(state.slug, tomorrowIST, entries);
+  const todayStatus: PublicStatus = dataUnavailable
+    ? 'unavailable'
+    : getStatus(state.slug, todayIST, entries);
+  const tomorrowStatus: PublicStatus = dataUnavailable
+    ? 'unavailable'
+    : getStatus(state.slug, tomorrowIST, entries);
 
-  const todayLabel = state.prohibition === true
-    ? 'Always'
-    : state.prohibition === null
-    ? 'Status not verified'
-    : todayStatus === 'dry'
-    ? 'Yes'
-    : todayStatus === 'not_dry'
-    ? 'No'
-    : todayStatus === 'unavailable'
-    ? 'Status not verified'
-    : 'Maybe';
+  // Primary hero answer: the required status sentences; statutory prohibition
+  // keeps its own standing presentation ("Always" + the legal note).
+  const heroAnswer =
+    state.prohibition === true ? 'Always' : getStatusHeadline(todayStatus, todayIST);
+
+  // Short badge label for the Today comparison card.
+  const todayBadge =
+    state.prohibition === true
+      ? 'Always'
+      : todayStatus === 'dry'
+      ? 'Yes'
+      : todayStatus === 'maybe'
+      ? 'Maybe'
+      : todayStatus === 'unavailable'
+      ? 'Unavailable'
+      : 'No';
 
   const secondaryLine = state.prohibition
     ? `Total statutory prohibition in ${state.name}. Alcohol is prohibited 365 days a year.`
-    : todayStatus === 'unavailable'
-    ? 'No verified dry-day status available for this date.'
+    : dataUnavailable
+    ? DATA_UNAVAILABLE_SECONDARY
     : getDeterministicSecondaryLine(todayStatus, tomorrowStatus, `${todayIST}-${state.slug}`);
 
   const next30Days = state.prohibition ? [] : getNextDryDays(state.slug, todayIST, 30, entries);
@@ -172,9 +188,9 @@ export default async function StatePage({ params }: Props) {
           : todayStatus === 'dry'
           ? `Yes, today (${formattedToday}) is a scheduled dry day in ${state.name} under official state excise department notifications.`
           : todayStatus === 'maybe'
-          ? `Today has a pending or reported dry day signal in ${state.name}. Official confirmation awaited.`
+          ? `Today has a reported dry day signal in ${state.name}. Official confirmation awaited.`
           : todayStatus === 'unavailable'
-          ? `Today's dry-day status in ${state.name} is not verified. No official confirmation is available for this date.`
+          ? `Today's dry-day status in ${state.name} could not be retrieved from the database right now.`
           : `No, today (${formattedToday}) is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
         },
       },
@@ -188,9 +204,9 @@ export default async function StatePage({ params }: Props) {
           : tomorrowStatus === 'dry'
           ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
           : tomorrowStatus === 'maybe'
-          ? `Tomorrow's dry status is pending official confirmation in ${state.name}.`
+          ? `Tomorrow's dry status is reported but not yet officially confirmed in ${state.name}.`
           : tomorrowStatus === 'unavailable'
-          ? `Tomorrow's dry-day status in ${state.name} is not verified. No official confirmation is available.`
+          ? `Tomorrow's dry-day status in ${state.name} could not be retrieved from the database right now.`
           : `No, tomorrow (${formattedTomorrow}) is not scheduled as a dry day in ${state.name}.`,
         },
       },
@@ -237,7 +253,7 @@ export default async function StatePage({ params }: Props) {
         {/* Hero Section with clear H1 */}
         <HeroAnswer
           headline={`Is today a dry day in ${state.name}?`}
-          answer={todayLabel}
+          answer={heroAnswer}
           statusType={todayStatus}
           secondaryLine={secondaryLine}
           todayDateIST={todayIST}
@@ -275,7 +291,7 @@ export default async function StatePage({ params }: Props) {
                     : 'bg-emerald-950/70 text-emerald-300 border-emerald-800/60'
                 }`}
               >
-                {todayLabel}
+                {todayBadge}
               </span>
             </div>
             <p className="mt-2 text-xs sm:text-sm text-neutral-200">
@@ -284,9 +300,9 @@ export default async function StatePage({ params }: Props) {
                 : todayStatus === 'dry'
                 ? 'Liquor retail shops and bars are mandated closed under state excise rules.'
                 : todayStatus === 'maybe'
-                ? 'Pending or constituency-level closure in effect. Official confirmation awaited.'
+                ? 'Reported closure — official confirmation awaited.'
                 : todayStatus === 'unavailable'
-                ? 'No verified dry-day status available for this date.'
+                ? 'Database se status abhi retrieve nahi ho pa raha hai.'
                 : 'No scheduled dry day for this date.'}
             </p>
           </div>
@@ -307,7 +323,7 @@ export default async function StatePage({ params }: Props) {
                     : 'bg-emerald-950/70 text-emerald-300 border-emerald-800/60'
                 }`}
               >
-                {state.prohibition ? 'Always Dry' : tomorrowStatus === 'dry' ? 'Dry' : tomorrowStatus === 'maybe' ? 'Maybe' : tomorrowStatus === 'unavailable' ? 'Status not verified' : 'Open'}
+                {state.prohibition ? 'Always Dry' : tomorrowStatus === 'dry' ? 'Dry' : tomorrowStatus === 'maybe' ? 'Maybe' : tomorrowStatus === 'unavailable' ? 'Unavailable' : 'Open'}
               </span>
             </div>
             <p className="mt-2 text-xs sm:text-sm text-neutral-200">
@@ -316,9 +332,9 @@ export default async function StatePage({ params }: Props) {
                 : tomorrowStatus === 'dry'
                 ? 'Official dry day directive scheduled for tomorrow.'
                 : tomorrowStatus === 'maybe'
-                ? 'Official confirmation awaited for upcoming civic or festival notification.'
+                ? 'Reported closure — official confirmation awaited for tomorrow.'
                 : tomorrowStatus === 'unavailable'
-                ? 'No verified dry-day status available for tomorrow.'
+                ? 'Database se status abhi retrieve nahi ho pa raha hai.'
                 : 'No dry day order scheduled for tomorrow.'}
             </p>
           </div>
@@ -338,7 +354,9 @@ export default async function StatePage({ params }: Props) {
                 </p>
               </div>
               <span className="text-xs font-mono text-neutral-400">
-                {datasetEmpty
+                {dataUnavailable
+                  ? 'Data unavailable'
+                  : datasetEmpty
                   ? 'Awaiting published data'
                   : `${next30Days.length} ${next30Days.length === 1 ? 'date' : 'dates'}`}
               </span>
@@ -347,7 +365,9 @@ export default async function StatePage({ params }: Props) {
             {next30Days.length === 0 ? (
               <div className="mt-3 p-4 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
                 <ShieldCheck className="h-5 w-5 text-emerald-400 mx-auto mb-1.5" />
-                {datasetEmpty
+                {dataUnavailable
+                  ? DATA_UNAVAILABLE_LIST_MESSAGE
+                  : datasetEmpty
                   ? 'No verified dry-day entries published yet. This list will update once state excise notifications are published.'
                   : `No verified dry days scheduled for ${state.name} in the next 30 days.`}
               </div>
@@ -441,7 +461,9 @@ export default async function StatePage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
             {nearbyStates.map((nb) => {
-              const nbStatus = getStatus(nb.slug, todayIST, entries);
+              const nbStatus: PublicStatus = dataUnavailable
+                ? 'unavailable'
+                : getStatus(nb.slug, todayIST, entries);
               const nbLabel = nb.prohibition
                 ? 'Always Dry'
                 : nbStatus === 'dry'
@@ -449,7 +471,7 @@ export default async function StatePage({ params }: Props) {
                 : nbStatus === 'maybe'
                 ? 'Maybe'
                 : nbStatus === 'unavailable'
-                ? 'Status not verified'
+                ? 'Unavailable'
                 : 'Open Today';
 
               return (

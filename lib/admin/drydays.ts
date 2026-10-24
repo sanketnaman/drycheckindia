@@ -359,6 +359,34 @@ export async function setDryDayPublished(
   return { ok: true };
 }
 
+/**
+ * Quick confirm/unconfirm from the list view: patches ONLY
+ * verification_status, leaving publication untouched so the two stay
+ * logically distinct (a confirmed draft is still invisible until published;
+ * an unconfirmed published record stops being shown as confirmed).
+ */
+export async function setDryDayVerification(
+  supabase: AdminSupabase,
+  id: string,
+  status: VerificationStatus
+): Promise<SaveResult> {
+  if (!isUuid(id)) return { ok: false, error: INVALID_ID_MESSAGE, code: 'validation' };
+  if (!VERIFICATION_STATUSES.includes(status)) {
+    return { ok: false, error: 'Choose a verification status.', code: 'validation' };
+  }
+
+  const { data, error } = await supabase
+    .from('dry_days')
+    .update({ verification_status: status })
+    .eq('id', id)
+    .select('id')
+    .maybeSingle();
+
+  if (error) return { ok: false, error: mapDbError(error), code: 'database' };
+  if (!data) return { ok: false, error: 'Dry-day record not found.', code: 'database' };
+  return { ok: true };
+}
+
 /** Exact row count for dashboard stats (head query). null on error. */
 export async function countDryDays(
   supabase: AdminSupabase,

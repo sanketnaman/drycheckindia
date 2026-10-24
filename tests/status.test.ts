@@ -2,12 +2,14 @@ import { describe, test, expect } from 'vitest';
 import {
   getAllEntries,
   getStatus,
+  getStatusHeadline,
   getNationwideStatus,
   getDryStatesOn,
   getNextDryDays,
   getEntriesForStateOnDate,
   isStatewideApplicable,
   getTodayIST,
+  type DryDayEntry,
 } from '@/lib/dryday';
 
 // Archived JSON dataset, used ONLY as a fixture here to exercise the pure
@@ -22,15 +24,16 @@ describe('getStatus — prohibition', () => {
   });
 });
 
-describe('getStatus — pending-only is never verified dry', () => {
-  test('pending-only state entry returns unavailable (not dry, not not_dry)', () => {
-    // west-bengal 2026-10-19 has a pending Maha Ashtami entry
-    expect(getStatus('west-bengal', '2026-10-19', ARCHIVE)).toBe('unavailable');
+describe('getStatus — pending drafts are not publicly eligible', () => {
+  test('pending-only state entry falls back to the default open status', () => {
+    // west-bengal 2026-10-19 has a pending Maha Ashtami entry — pending rows
+    // never reach the public site, so the date behaves like no public record.
+    expect(getStatus('west-bengal', '2026-10-19', ARCHIVE)).toBe('not_dry');
   });
 
-  test('pending national holiday expansion returns unavailable for non-prohibition states', () => {
+  test('pending national holiday expansion returns not_dry for non-prohibition states', () => {
     // Gandhi Jayanti 2026-10-02 is pending in nationalDryDays
-    expect(getStatus('delhi', '2026-10-02', ARCHIVE)).toBe('unavailable');
+    expect(getStatus('delhi', '2026-10-02', ARCHIVE)).toBe('not_dry');
   });
 });
 
@@ -47,12 +50,41 @@ describe('getStatus — confirmed', () => {
   });
 });
 
-describe('getStatus — reported is never confirmed', () => {
-  test('reported local entry does not produce statewide dry', () => {
-    // karnataka 2026-10-21 has only a local reported entry
-    const status = getStatus('karnataka', '2026-10-21', ARCHIVE);
-    expect(status).not.toBe('dry');
-    expect(status).toBe('unavailable');
+describe('getStatus — reported is unconfirmed, never dry', () => {
+  test('statewide reported entry returns maybe (unconfirmed but visible)', () => {
+    const entries: DryDayEntry[] = [
+      {
+        state: 'karnataka',
+        date: '2026-10-21',
+        type: 'state',
+        reason: 'Reported procession curbs',
+        status: 'reported',
+        sourceUrl: '',
+      },
+    ];
+    expect(getStatus('karnataka', '2026-10-21', entries)).toBe('maybe');
+  });
+
+  test('reported does not override a confirmed record on the same date', () => {
+    const entries: DryDayEntry[] = [
+      {
+        state: 'karnataka',
+        date: '2026-10-21',
+        type: 'state',
+        reason: 'Confirmed order',
+        status: 'confirmed',
+        sourceUrl: '',
+      },
+      {
+        state: 'karnataka',
+        date: '2026-10-21',
+        type: 'state',
+        reason: 'Older news report',
+        status: 'reported',
+        sourceUrl: '',
+      },
+    ];
+    expect(getStatus('karnataka', '2026-10-21', entries)).toBe('dry');
   });
 
   test('isStatewideApplicable is true for non-local types', () => {
@@ -70,8 +102,8 @@ describe('getStatus — reported is never confirmed', () => {
 });
 
 describe('getStatus — local scope is never statewide', () => {
-  test('local-only restriction does not apply statewide', () => {
-    expect(getStatus('karnataka', '2026-10-21', ARCHIVE)).toBe('unavailable');
+  test('local-only restriction does not apply statewide (default open)', () => {
+    expect(getStatus('karnataka', '2026-10-21', ARCHIVE)).toBe('not_dry');
     expect(getEntriesForStateOnDate('karnataka', '2026-10-21', ARCHIVE)).toHaveLength(0);
   });
 
@@ -99,24 +131,57 @@ describe('getStatus — local scope is never statewide', () => {
   });
 });
 
-describe('getStatus — unknown prohibition without entries is unverified', () => {
-  test('prohibition null + no entries returns unavailable (not not_dry)', () => {
-    // Most states have prohibition: null; absence of entries must not become "No"
-    expect(getStatus('delhi', '2026-12-31', ARCHIVE)).toBe('unavailable');
-    expect(getStatus('kerala', '2026-12-31', ARCHIVE)).toBe('unavailable');
+describe('getStatus — no entry means the default open status', () => {
+  test('no entries + unknown prohibition returns not_dry (default open)', () => {
+    // Most states have prohibition: null; without a public record the answer
+    // is the default "Nahi, theka band nahi hai."
+    expect(getStatus('delhi', '2026-12-31', ARCHIVE)).toBe('not_dry');
+    expect(getStatus('kerala', '2026-12-31', ARCHIVE)).toBe('not_dry');
   });
-});
 
-describe('getStatus — empty dataset is unverified for every non-prohibition state', () => {
-  test('empty dataset never computes not_dry even for prohibition:false states', () => {
-    // An entirely unpopulated dataset is not evidence that any date is open.
-    expect(getStatus('delhi', '2026-06-15', [])).toBe('unavailable');
+  test('empty dataset returns not_dry for every non-prohibition state', () => {
+    // A successful fetch of zero rows is the default open answer — a FAILED
+    // fetch never reaches getStatus (pages handle it via getPublicDataset).
+    expect(getStatus('delhi', '2026-06-15', [])).toBe('not_dry');
   });
 
   test('empty dataset still returns dry for statutory prohibition states', () => {
     // Statutory prohibition is a standing legal fact, independent of entries.
     expect(getStatus('bihar', '2026-06-15', [])).toBe('dry');
     expect(getStatus('nagaland', '2026-06-15', [])).toBe('dry');
+  });
+
+  test('unknown state slug returns unavailable (defensive)', () => {
+    expect(getStatus('nowhere', '2026-06-15', ARCHIVE)).toBe('unavailable');
+  });
+});
+
+describe('getStatusHeadline — required public copy', () => {
+  const TODAY = '2026-10-24';
+  const OTHER = '2026-11-01';
+
+  test('confirmed today uses the "aaj" wording', () => {
+    expect(getStatusHeadline('dry', TODAY, TODAY)).toBe('Haan, aaj theka band hai.');
+  });
+
+  test('confirmed on another date never says "aaj"', () => {
+    expect(getStatusHeadline('dry', OTHER, TODAY)).toBe('Haan, is din theka band hai.');
+  });
+
+  test('unconfirmed shows the "Pata nahi" copy', () => {
+    expect(getStatusHeadline('maybe', TODAY, TODAY)).toBe('Pata nahi, confirm nahi hai.');
+    expect(getStatusHeadline('maybe', OTHER, TODAY)).toBe('Pata nahi, confirm nahi hai.');
+  });
+
+  test('default open shows the "Nahi" copy', () => {
+    expect(getStatusHeadline('not_dry', TODAY, TODAY)).toBe('Nahi, theka band nahi hai.');
+    expect(getStatusHeadline('not_dry', OTHER, TODAY)).toBe('Nahi, theka band nahi hai.');
+  });
+
+  test('data unavailable has its own distinct copy', () => {
+    expect(getStatusHeadline('unavailable', TODAY, TODAY)).toBe(
+      'Abhi status check nahi ho pa raha hai.'
+    );
   });
 });
 
@@ -131,20 +196,61 @@ describe('getNationwideStatus', () => {
     const result = getNationwideStatus('2026-10-02', ARCHIVE);
     expect(result.label).not.toBe('Yes');
     expect(result.status).not.toBe('dry');
+    // Pending rows are not publicly eligible, so the aggregate is the
+    // default open answer with zero dry/maybe states.
+    expect(result.status).toBe('not_dry');
+    expect(result.dryCount).toBe(0);
+    expect(result.maybeCount).toBe(0);
   });
 
-  test('label uses Status not verified for unavailable (not Data unavailable)', () => {
-    const result = getNationwideStatus('2026-12-31', ARCHIVE);
-    if (result.status === 'unavailable') {
-      expect(result.label).toBe('Status not verified');
-    }
-    expect(result.label).not.toBe('Data unavailable');
+  test('mixed coverage reports dryCount and maybeCount separately', () => {
+    const date = '2099-03-03';
+    const entries: DryDayEntry[] = [
+      {
+        state: 'delhi',
+        date,
+        type: 'state',
+        reason: 'Confirmed local holiday',
+        status: 'confirmed',
+        sourceUrl: '',
+      },
+      {
+        state: 'goa',
+        date,
+        type: 'state',
+        reason: 'Reported festival curbs',
+        status: 'reported',
+        sourceUrl: '',
+      },
+    ];
+    const result = getNationwideStatus(date, entries);
+    expect(result.status).toBe('maybe');
+    expect(result.dryCount).toBe(1);
+    expect(result.maybeCount).toBe(1);
   });
 
-  test('empty dataset never yields Yes or No', () => {
+  test('reported-only coverage has dryCount 0', () => {
+    const date = '2099-03-04';
+    const entries: DryDayEntry[] = [
+      {
+        state: 'goa',
+        date,
+        type: 'state',
+        reason: 'Reported festival curbs',
+        status: 'reported',
+        sourceUrl: '',
+      },
+    ];
+    const result = getNationwideStatus(date, entries);
+    expect(result.status).toBe('maybe');
+    expect(result.dryCount).toBe(0);
+    expect(result.maybeCount).toBe(1);
+  });
+
+  test('empty dataset yields the default open answer', () => {
     const result = getNationwideStatus('2026-06-15', []);
-    expect(result.status).toBe('unavailable');
-    expect(result.label).toBe('Status not verified');
+    expect(result.status).toBe('not_dry');
+    expect(result.label).toBe('No');
   });
 });
 
@@ -153,6 +259,13 @@ describe('getDryStatesOn', () => {
     const items = getDryStatesOn('2026-10-21', ARCHIVE);
     const karnataka = items.find((i) => i.state.slug === 'karnataka');
     expect(karnataka).toBeUndefined();
+  });
+
+  test('pending-only state does not appear in the list', () => {
+    // west-bengal 2026-10-19 has only a pending entry.
+    const items = getDryStatesOn('2026-10-19', ARCHIVE);
+    const westBengal = items.find((i) => i.state.slug === 'west-bengal');
+    expect(westBengal).toBeUndefined();
   });
 
   test('prohibition states appear with isProhibition', () => {

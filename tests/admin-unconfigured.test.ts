@@ -50,6 +50,7 @@ import {
   saveDryDayAction,
   saveNoticeAction,
   setDryDayPublishedAction,
+  setDryDayVerificationAction,
   setNoticePublishedAction,
 } from '@/app/admin/actions';
 
@@ -170,6 +171,12 @@ describe('server actions fail closed and never throw when unconfigured', () => {
 
   test('setDryDayPublishedAction returns a safe result', async () => {
     const result = await setDryDayPublishedAction(ROW_ID, true);
+    expect(result.ok).toBe(false);
+    expect(result.code).toBe('unavailable');
+  });
+
+  test('setDryDayVerificationAction returns a safe result', async () => {
+    const result = await setDryDayVerificationAction(ROW_ID, 'confirmed');
     expect(result.ok).toBe(false);
     expect(result.code).toBe('unavailable');
   });

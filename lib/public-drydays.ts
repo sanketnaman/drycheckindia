@@ -3,22 +3,26 @@
  *
  * Supabase is the SINGLE SOURCE OF TRUTH for manually managed dry-day entries.
  * There is no JSON fallback: when Supabase is unconfigured or a fetch fails we
- * return an empty dataset (and log server-side) so pages can render the
- * explicit "no verified entries published yet" empty state. A silent JSON
- * fallback previously masked an empty/erroring database with stale bundled
- * records — that behaviour is deliberately gone.
+ * return an error result (and log server-side) so pages can render the
+ * explicit data-unavailable state. A silent JSON fallback previously masked an
+ * empty/erroring database with stale bundled records — that behaviour is
+ * deliberately gone.
  *
  * Guarantees:
  *  - Reads only rows with is_published = true AND verification_status in
  *    ('confirmed', 'reported'). Pending/unpublished rows never reach the
- *    public site (reported rows surface as clearly-labelled "Maybe").
+ *    public site (reported rows surface as clearly-labelled unconfirmed).
  *  - Whole-source: the returned rows are the entire public dataset. Nothing
  *    is merged in from anywhere else.
- *  - Any fetch/config error returns [] — never throws into a page render,
- *    never surfaces raw errors to visitors, never invents entries.
+ *  - A SUCCESSFUL fetch of zero rows (ok: true, entries: []) is meaningfully
+ *    different from a FAILED fetch (ok: false): pages must never treat a
+ *    failed query as proof that no entry exists, nor an empty success as a
+ *    technical failure.
+ *  - Any fetch/config error returns ok: false — never throws into a page
+ *    render, never surfaces raw errors to visitors, never invents entries.
  *  - Never called from the browser: this module is imported by server
- *    components only; a window guard returns [] before any client code could
- *    run a network request.
+ *    components only; a window guard reports a browser error before any
+ *    client code could run a network request.
  *  - Error logs contain messages only — no URLs, no keys.
  */
 import { createClient } from '@supabase/supabase-js';
@@ -39,6 +43,19 @@ const NOTICE_LIMIT = 100;
 
 /** Verification statuses the public site is allowed to surface. */
 const PUBLIC_VERIFICATION_STATUSES = ['confirmed', 'reported'] as const;
+
+/** Why a public dataset fetch could not produce rows. */
+export type PublicDatasetErrorReason = 'browser' | 'unconfigured' | 'fetch_failed';
+
+/**
+ * Result of a public dry-day fetch. `ok: true` means the database answered
+ * (entries may still be [] — nothing published yet). `ok: false` means the
+ * status could not be retrieved at all and pages must show the
+ * data-unavailable state instead of the default open answer.
+ */
+export type PublicDataset =
+  | { ok: true; entries: DryDayEntry[] }
+  | { ok: false; entries: DryDayEntry[]; reason: PublicDatasetErrorReason };
 
 type PublicDryDayRow = Pick<
   DryDayRow,
@@ -107,19 +124,19 @@ export function isNoticeWindowActive(
 
 /**
  * Published, publicly-verified dry-day entries from Supabase.
- * Returns [] when unconfigured, in a browser-like environment, or on any
- * fetch error — the empty state is honest; a silent fallback is not.
+ * Distinguishes a successful empty fetch (ok: true, entries: []) from a
+ * failed one (ok: false) — a failed query must never read as "no entry".
  */
-export async function getPublicEntries(): Promise<DryDayEntry[]> {
-  if (typeof window !== 'undefined') return [];
+export async function getPublicDataset(): Promise<PublicDataset> {
+  if (typeof window !== 'undefined') return { ok: false, entries: [], reason: 'browser' };
 
   const config = getSupabaseConfigStatus();
   if (!config.ok) {
     console.error(
-      '[public-drydays] Supabase unconfigured; serving an empty public dataset:',
+      '[public-drydays] Supabase unconfigured; public dataset unavailable:',
       config.reason
     );
-    return [];
+    return { ok: false, entries: [], reason: 'unconfigured' };
   }
 
   try {
@@ -161,14 +178,24 @@ export async function getPublicEntries(): Promise<DryDayEntry[]> {
       }
     }
 
-    return rows;
+    return { ok: true, entries: rows };
   } catch (err) {
     console.error(
-      '[public-drydays] dry-day fetch failed; serving an empty public dataset:',
+      '[public-drydays] dry-day fetch failed; public dataset unavailable:',
       err instanceof Error ? err.message : 'unknown error'
     );
-    return [];
+    return { ok: false, entries: [], reason: 'fetch_failed' };
   }
+}
+
+/**
+ * Convenience wrapper for callers that only need the rows (sitemap, static
+ * params): errors degrade to [] there because those callers cannot show a
+ * status anyway. Pages that answer "is the theka band?" MUST use
+ * getPublicDataset() so a failed fetch is never rendered as "no entry".
+ */
+export async function getPublicEntries(): Promise<DryDayEntry[]> {
+  return (await getPublicDataset()).entries;
 }
 
 /**

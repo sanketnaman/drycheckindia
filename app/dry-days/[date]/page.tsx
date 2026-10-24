@@ -8,8 +8,13 @@ import {
   dateToSlug,
   formatDateDisplay,
   getDryStatesOn,
+  getNationwideStatus,
+  getStatusHeadline,
+  getTodayIST,
+  DATA_UNAVAILABLE_SECONDARY,
+  DATA_UNAVAILABLE_LIST_MESSAGE,
 } from '@/lib/dryday';
-import { getPublicEntries } from '@/lib/public-drydays';
+import { getPublicDataset, getPublicEntries } from '@/lib/public-drydays';
 import {
   Calendar,
   ChevronRight,
@@ -83,9 +88,12 @@ export default async function DatePage({ params }: Props) {
     notFound();
   }
 
-  const entries = await getPublicEntries();
-  // True while the database has no published, publicly-verifiable entries.
-  const datasetEmpty = entries.length === 0;
+  const dataset = await getPublicDataset();
+  const entries = dataset.entries;
+  // True when the database could not be reached at all — the status is
+  // unknown, which is NOT the same as "no entries published".
+  const dataUnavailable = !dataset.ok;
+  const datasetEmpty = dataset.ok && entries.length === 0;
   const formattedDate = formatDateDisplay(dateIST, { showDayOfWeek: true });
   const dryItems = getDryStatesOn(dateIST, entries);
 
@@ -102,6 +110,21 @@ export default async function DatePage({ params }: Props) {
 
   const primaryReason =
     allEntriesOnDate[0]?.reason || (isNational ? 'National Observance' : 'Regional Observance');
+
+  // Primary status line for this date. Only shown when the nationwide answer
+  // is unambiguous: all-India dry day, no dry days anywhere, only unconfirmed
+  // signals, or a failed fetch. Mixed coverage keeps the descriptive copy
+  // below, which lists the exact states.
+  const nationwide = getNationwideStatus(dateIST, entries);
+  const dateHeadline = dataUnavailable
+    ? 'Abhi status check nahi ho pa raha hai.'
+    : nationwide.status === 'dry'
+    ? getStatusHeadline('dry', dateIST)
+    : nationwide.status === 'not_dry'
+    ? getStatusHeadline('not_dry', dateIST)
+    : nationwide.status === 'maybe' && nationwide.dryCount === 0 && nationwide.maybeCount > 0
+    ? getStatusHeadline('maybe', dateIST)
+    : null;
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -159,9 +182,15 @@ export default async function DatePage({ params }: Props) {
             Dry Days on {formattedDate}
           </h1>
 
+          {dateHeadline && (
+            <p className="mt-3 text-xl sm:text-2xl font-black text-white tracking-tight text-balance">
+              {dateHeadline}
+            </p>
+          )}
+
           <p className="mt-2 text-xs sm:text-sm text-neutral-300 max-w-xl mx-auto">
-            {datasetEmpty
-              ? 'No verified dry-day entries published yet. This page will update once state excise notifications are published.'
+            {dataUnavailable
+              ? DATA_UNAVAILABLE_SECONDARY
               : isNational
               ? `Pan-India mandatory dry day in observance of ${primaryReason}. All retail shops and bars remain closed.`
               : eventDryDays.length > 0
@@ -178,14 +207,16 @@ export default async function DatePage({ params }: Props) {
             Nationwide Impact
           </div>
           <div className="mt-1.5 text-3xl sm:text-4xl font-black text-rose-400">
-            {datasetEmpty
-              ? 'Awaiting published data'
+            {dataUnavailable
+              ? 'Data unavailable'
               : isNational
               ? 'All India Dry Day'
               : `${eventDryDays.length} States Affected`}
           </div>
           <p className="mt-1 text-xs text-neutral-300">
-            {datasetEmpty
+            {dataUnavailable
+              ? 'Database se jawab nahi mila — thodi der baad dobara try karein'
+              : datasetEmpty
               ? 'No published entries in the database yet'
               : `${primaryReason} &bull; Verified against state excise circulars`}
           </p>
@@ -198,7 +229,9 @@ export default async function DatePage({ params }: Props) {
               States &amp; UTs Observing Dry Day on {formattedDate}
             </h2>
             <span className="text-xs font-mono text-neutral-400">
-              {datasetEmpty
+              {dataUnavailable
+                ? 'Unavailable'
+                : datasetEmpty
                 ? 'Awaiting data'
                 : isNational
                 ? '36 / 36 Regions'
@@ -273,7 +306,9 @@ export default async function DatePage({ params }: Props) {
             </div>
           ) : (
             <div className="mt-3 p-4 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
-              {datasetEmpty
+              {dataUnavailable
+                ? DATA_UNAVAILABLE_LIST_MESSAGE
+                : datasetEmpty
                 ? 'No verified dry-day entries published yet.'
                 : 'No verified dry days scheduled for this date.'}
             </div>

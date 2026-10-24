@@ -7,7 +7,8 @@ import { AlertCircle, CheckCircle2, HelpCircle, MapPin } from 'lucide-react';
 
 interface HeroAnswerProps {
   headline?: string;
-  answer: 'Yes' | 'No' | 'Maybe' | 'Always' | 'Status not verified';
+  /** Primary answer copy — a short word ("Always") or a full sentence. */
+  answer: string;
   statusType: 'dry' | 'not_dry' | 'maybe' | 'unavailable';
   secondaryLine: string;
   todayDateIST: string;
@@ -58,7 +59,7 @@ export default function HeroAnswer({
       border: 'border-amber-500/40',
       bgGlow: 'bg-amber-500/10 shadow-[0_0_24px_rgba(245,158,11,0.15)]',
       badgeBg: 'bg-amber-950/80 border-amber-700/60 text-amber-300',
-      subtext: 'Status not verified',
+      subtext: 'Reported — official confirmation awaited',
       icon: HelpCircle,
     },
     unavailable: {
@@ -66,12 +67,14 @@ export default function HeroAnswer({
       border: 'border-neutral-600/40',
       bgGlow: 'bg-neutral-800/30',
       badgeBg: 'bg-neutral-900/80 border-neutral-700/60 text-neutral-300',
-      subtext: 'Status not verified',
+      subtext: 'Status retrieve nahi ho pa raha',
       icon: HelpCircle,
     },
   }[statusType];
 
   const StatusIcon = styleConfig.icon;
+  // Full-sentence answers wrap; single words keep the giant poster scale.
+  const isShortAnswer = answer.length <= 10;
 
   return (
     <section
@@ -99,14 +102,18 @@ export default function HeroAnswer({
         {headline}
       </h1>
 
-      {/* 2. Big Yes / No / Maybe Answer Card (Answer text >= 96px, 100% visible on 360x640) */}
+      {/* 2. Big Answer Card (short answers keep the >=96px poster scale; sentences wrap) */}
       <div
         className={`w-full max-w-sm sm:max-w-md my-1.5 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} p-4 sm:p-5 transition-all`}
       >
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-2">
             <span
-              className={`text-[36px] sm:text-[48px] md:text-[64px] font-black tracking-tight leading-none ${styleConfig.color} select-none`}
+              className={`font-black tracking-tight select-none text-balance ${
+                isShortAnswer
+                  ? 'text-[36px] sm:text-[48px] md:text-[64px] leading-none'
+                  : 'text-[22px] sm:text-[26px] md:text-[32px] leading-tight'
+              } ${styleConfig.color}`}
             >
               {answer}
             </span>

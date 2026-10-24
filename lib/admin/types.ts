@@ -52,17 +52,17 @@ export const VERIFICATION_META: Record<VerificationStatus, VerificationMeta> = {
   confirmed: {
     label: 'Officially confirmed',
     badge: 'bg-emerald-950/70 text-emerald-300 border-emerald-800/70',
-    help: 'Backed by an official source (gazette, government order). Shown as verified dry.',
+    help: 'Backed by an official source (gazette, government order). When published, the public site shows "Haan, aaj theka band hai."',
   },
   reported: {
     label: 'Reported (news only)',
     badge: 'bg-sky-950/70 text-sky-300 border-sky-800/70',
-    help: 'News reports without official confirmation. Shown as "maybe", never as verified dry.',
+    help: 'News reports without official confirmation. When published, the public site shows "Pata nahi, confirm nahi hai." — never as confirmed dry.',
   },
   pending: {
     label: 'Pending verification',
     badge: 'bg-amber-950/70 text-amber-300 border-amber-800/70',
-    help: 'Unverified. Never presented as a confirmed dry day.',
+    help: 'Unverified draft. Never shown on the public site — publish only after confirming or recording it as reported.',
   },
 };
 

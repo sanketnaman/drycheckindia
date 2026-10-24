@@ -14,10 +14,14 @@ import {
   getDeterministicSecondaryLine,
   getDryStatesOn,
   getUpcomingDryDaysGrouped,
+  getStatusHeadline,
   formatDateDisplay,
   SITE_URL,
+  DATA_UNAVAILABLE_SECONDARY,
+  DATA_UNAVAILABLE_LIST_MESSAGE,
+  type PublicStatus,
 } from '@/lib/dryday';
-import { getPublicEntries } from '@/lib/public-drydays';
+import { getPublicDataset } from '@/lib/public-drydays';
 
 export const revalidate = 3600; // Hourly ISR for accurate midnight IST rollover
 
@@ -47,17 +51,31 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const entries = await getPublicEntries();
-  // True while the database has no published, publicly-verifiable entries.
-  // Pages must say so explicitly instead of asserting "no dry days".
-  const datasetEmpty = entries.length === 0;
+  const dataset = await getPublicDataset();
+  const entries = dataset.entries;
+  // True when the database could not be reached at all — the status is
+  // unknown, which is NOT the same as "no entries published".
+  const dataUnavailable = !dataset.ok;
+  // True when the fetch succeeded but no entries are published yet.
+  const datasetEmpty = dataset.ok && entries.length === 0;
   const todayIST = getTodayIST();
   const tomorrowIST = getTomorrowIST();
 
   const todayNationwide = getNationwideStatus(todayIST, entries);
   const tomorrowNationwide = getNationwideStatus(tomorrowIST, entries);
 
-  const secondaryLine = datasetEmpty
+  const heroStatus: PublicStatus = dataUnavailable ? 'unavailable' : todayNationwide.status;
+  // Nationwide aggregate: when some (but not all) states are confirmed dry,
+  // neither "Haan" nor "Pata nahi" fits — say exactly that. Reported-only
+  // signals (no confirmed state) are honestly "Pata nahi".
+  const heroAnswer =
+    heroStatus === 'maybe' && todayNationwide.dryCount > 0
+      ? 'Aaj kuch rajyon mein theka band hai.'
+      : getStatusHeadline(heroStatus, todayIST);
+
+  const secondaryLine = dataUnavailable
+    ? DATA_UNAVAILABLE_SECONDARY
+    : datasetEmpty
     ? 'No verified dry-day entries published yet. Status will update once state excise notifications are published.'
     : getDeterministicSecondaryLine(
         todayNationwide.status,
@@ -72,6 +90,12 @@ export default async function HomePage() {
 
   const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: true });
   const formattedTomorrow = formatDateDisplay(tomorrowIST, { showDayOfWeek: true });
+
+  const listEmptyMessage = dataUnavailable
+    ? DATA_UNAVAILABLE_LIST_MESSAGE
+    : datasetEmpty
+    ? 'No verified dry-day entries published yet'
+    : 'No verified dry days scheduled for this date';
 
   const websiteSchema = {
     '@context': 'https://schema.org',
@@ -96,13 +120,13 @@ export default async function HomePage() {
 
         {/* Location banner — client-side region detection; status computed from
             the same entry dataset the server-rendered hero uses */}
-        <LocationBanner entries={entries} />
+        <LocationBanner entries={entries} dataUnavailable={dataUnavailable} />
 
         {/* 1, 2, 3: Headline, Big Answer (>=96px, no scroll on 360x640), Secondary line (>=20px) */}
         <HeroAnswer
           headline="Is today a dry day?"
-          answer={todayNationwide.label}
-          statusType={todayNationwide.status}
+          answer={heroAnswer}
+          statusType={heroStatus}
           secondaryLine={secondaryLine}
           todayDateIST={todayIST}
           tomorrowDateIST={tomorrowIST}
@@ -115,11 +139,8 @@ export default async function HomePage() {
           dateDisplay={formattedToday}
           items={dryStatesToday}
           datasetEmpty={datasetEmpty}
-          emptyMessage={
-            datasetEmpty
-              ? 'No verified dry-day entries published yet'
-              : 'No verified dry days scheduled for this date'
-          }
+          dataUnavailable={dataUnavailable}
+          emptyMessage={listEmptyMessage}
         />
 
         <AdSlot id="home-middle" />
@@ -130,16 +151,17 @@ export default async function HomePage() {
           dateDisplay={formattedTomorrow}
           items={dryStatesTomorrow}
           datasetEmpty={datasetEmpty}
-          emptyMessage={
-            datasetEmpty
-              ? 'No verified dry-day entries published yet'
-              : 'No verified dry days scheduled for this date'
-          }
+          dataUnavailable={dataUnavailable}
+          emptyMessage={listEmptyMessage}
           isTomorrow
         />
 
         {/* 6. "Dry days ahead (next 4 weeks)" list grouped by date */}
-        <UpcomingDryDays groups={upcoming4Weeks} datasetEmpty={datasetEmpty} />
+        <UpcomingDryDays
+          groups={upcoming4Weeks}
+          datasetEmpty={datasetEmpty}
+          dataUnavailable={dataUnavailable}
+        />
 
         {/* Searchable State Selector on mobile (e.g. typing "bih" shows Bihar) */}
         <StateDirectory />

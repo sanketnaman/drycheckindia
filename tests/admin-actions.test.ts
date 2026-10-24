@@ -11,6 +11,7 @@ import {
   saveDryDayAction,
   saveNoticeAction,
   setDryDayPublishedAction,
+  setDryDayVerificationAction,
   setNoticePublishedAction,
 } from '@/app/admin/actions';
 import type { DryDayInput, NoticeInput } from '@/lib/admin/types';
@@ -115,6 +116,14 @@ describe('dry-day mutations — authorization', () => {
     });
   });
 
+  test('non-admin cannot change verification status', async () => {
+    const mock = nonAdminMock();
+    useMock(mock);
+    expect(await setDryDayVerificationAction(ROW_ID, 'confirmed')).toMatchObject({
+      code: 'forbidden',
+    });
+  });
+
   test('non-admin cannot create a notice', async () => {
     const mock = nonAdminMock();
     useMock(mock);
@@ -200,6 +209,28 @@ describe('dry-day mutations — authorized admin', () => {
     expect(result.ok).toBe(true);
     const updateCall = mock.queryCalls.dry_days?.find((c) => c.method === 'update');
     expect(updateCall?.args[0]).toEqual({ is_published: false });
+  });
+
+  test('confirm patches only verification_status and revalidates', async () => {
+    const mock = adminMock({ dry_days: { data: { id: ROW_ID }, error: null } });
+    useMock(mock);
+
+    const result = await setDryDayVerificationAction(ROW_ID, 'confirmed');
+    expect(result.ok).toBe(true);
+    const updateCall = mock.queryCalls.dry_days?.find((c) => c.method === 'update');
+    expect(updateCall?.args[0]).toEqual({ verification_status: 'confirmed' });
+    expect(mockRevalidatePath).toHaveBeenCalledWith('/admin/dry-days');
+    expect(mockRevalidatePath).toHaveBeenCalledWith('/admin');
+  });
+
+  test('unconfirm returns the record to pending (never invents reported)', async () => {
+    const mock = adminMock({ dry_days: { data: { id: ROW_ID }, error: null } });
+    useMock(mock);
+
+    const result = await setDryDayVerificationAction(ROW_ID, 'pending');
+    expect(result.ok).toBe(true);
+    const updateCall = mock.queryCalls.dry_days?.find((c) => c.method === 'update');
+    expect(updateCall?.args[0]).toEqual({ verification_status: 'pending' });
   });
 });
 
@@ -321,6 +352,28 @@ describe('I3 — action arguments are validated before any database call', () =>
     const result = await setDryDayPublishedAction(ROW_ID, 'true' as unknown as boolean);
     expect(result).toMatchObject({ ok: false, code: 'validation' });
     expect(result.error).toMatch(/boolean/i);
+    expect(mock.fromCalls).toHaveLength(0);
+  });
+
+  test('a non-UUID id on the verification action is rejected without any database access', async () => {
+    const mock = adminMock({ dry_days: { data: { id: ROW_ID }, error: null } });
+    useMock(mock);
+
+    const result = await setDryDayVerificationAction('row-5', 'confirmed');
+    expect(result).toMatchObject({ ok: false, code: 'validation' });
+    expect(result.error).toMatch(/invalid record id/i);
+    expect(mock.fromCalls).toHaveLength(0);
+  });
+
+  test('an unknown verification status is rejected without any database access', async () => {
+    const mock = adminMock({ dry_days: { data: { id: ROW_ID }, error: null } });
+    useMock(mock);
+
+    const result = await setDryDayVerificationAction(
+      ROW_ID,
+      'verified-for-real' as never
+    );
+    expect(result).toMatchObject({ ok: false, code: 'validation' });
     expect(mock.fromCalls).toHaveLength(0);
   });
 
