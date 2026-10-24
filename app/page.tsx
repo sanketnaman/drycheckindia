@@ -17,6 +17,7 @@ import {
   formatDateDisplay,
   SITE_URL,
 } from '@/lib/dryday';
+import { getPublicEntries } from '@/lib/public-drydays';
 
 export const revalidate = 3600; // Hourly ISR for accurate midnight IST rollover
 
@@ -45,23 +46,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const entries = await getPublicEntries();
+  // True while the database has no published, publicly-verifiable entries.
+  // Pages must say so explicitly instead of asserting "no dry days".
+  const datasetEmpty = entries.length === 0;
   const todayIST = getTodayIST();
   const tomorrowIST = getTomorrowIST();
 
-  const todayNationwide = getNationwideStatus(todayIST);
-  const tomorrowNationwide = getNationwideStatus(tomorrowIST);
+  const todayNationwide = getNationwideStatus(todayIST, entries);
+  const tomorrowNationwide = getNationwideStatus(tomorrowIST, entries);
 
-  const secondaryLine = getDeterministicSecondaryLine(
-    todayNationwide.status,
-    tomorrowNationwide.status,
-    todayIST
-  );
+  const secondaryLine = datasetEmpty
+    ? 'No verified dry-day entries published yet. Status will update once state excise notifications are published.'
+    : getDeterministicSecondaryLine(
+        todayNationwide.status,
+        tomorrowNationwide.status,
+        todayIST
+      );
 
-  const dryStatesToday = getDryStatesOn(todayIST);
-  const dryStatesTomorrow = getDryStatesOn(tomorrowIST);
+  const dryStatesToday = getDryStatesOn(todayIST, entries);
+  const dryStatesTomorrow = getDryStatesOn(tomorrowIST, entries);
 
-  const upcoming4Weeks = getUpcomingDryDaysGrouped(todayIST, 28);
+  const upcoming4Weeks = getUpcomingDryDaysGrouped(todayIST, 28, entries);
 
   const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: true });
   const formattedTomorrow = formatDateDisplay(tomorrowIST, { showDayOfWeek: true });
@@ -87,10 +94,9 @@ export default function HomePage() {
       <div className="mx-auto w-full max-w-4xl px-3 sm:px-6 pt-1 pb-12">
         <AdSlot id="home-top" />
 
-        {/* Location banner — client-side only, does not affect cached HTML */}
-        <LocationBanner />
-
-        <LocationBanner />
+        {/* Location banner — client-side region detection; status computed from
+            the same entry dataset the server-rendered hero uses */}
+        <LocationBanner entries={entries} />
 
         {/* 1, 2, 3: Headline, Big Answer (>=96px, no scroll on 360x640), Secondary line (>=20px) */}
         <HeroAnswer
@@ -108,7 +114,12 @@ export default function HomePage() {
           title="Dry Today In:"
           dateDisplay={formattedToday}
           items={dryStatesToday}
-          emptyMessage="No verified dry day dates yet"
+          datasetEmpty={datasetEmpty}
+          emptyMessage={
+            datasetEmpty
+              ? 'No verified dry-day entries published yet'
+              : 'No verified dry days scheduled for this date'
+          }
         />
 
         <AdSlot id="home-middle" />
@@ -118,12 +129,17 @@ export default function HomePage() {
           title="Dry Tomorrow In:"
           dateDisplay={formattedTomorrow}
           items={dryStatesTomorrow}
-          emptyMessage="No verified dry day dates yet"
+          datasetEmpty={datasetEmpty}
+          emptyMessage={
+            datasetEmpty
+              ? 'No verified dry-day entries published yet'
+              : 'No verified dry days scheduled for this date'
+          }
           isTomorrow
         />
 
         {/* 6. "Dry days ahead (next 4 weeks)" list grouped by date */}
-        <UpcomingDryDays groups={upcoming4Weeks} />
+        <UpcomingDryDays groups={upcoming4Weeks} datasetEmpty={datasetEmpty} />
 
         {/* Searchable State Selector on mobile (e.g. typing "bih" shows Bihar) */}
         <StateDirectory />

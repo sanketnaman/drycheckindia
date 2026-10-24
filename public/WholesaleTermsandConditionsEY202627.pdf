@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><link href="../ResponsiveWay/fontawesome-free-5.6.3-web/css/all.css" rel="stylesheet" /><link href="../ResponsiveWay/bootstrap/css/bootstrap.min.css" rel="stylesheet" /><link href="../ResponsiveWay/Database/Css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV4PJVZBVJ"></script>
+    <script type='text/JavaScript'>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XV4PJVZBVJ');
+    </script>
+
+    
+    
+    <script type="text/javascript" src="../JS/jquery-3.7.1.min.js"></script>
+    
+    <script src="../ResponsiveWay/bootstrap/js/popper.min.js"></script>
+    
+
+    
+    <script type="text/javascript" src="../JS/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../ResponsiveWay/Database/js/jquery.dataTables.min.js"></script>
+
+
+
+
+    <style type="text/css">
+        .positn {
+            text-transform: none;
+            /*text-shadow: 2px 2px 2px #1C6EA4;
+            color: #FFFFFF;
+background: #996D6D;*/
+            text-shadow: 3px 2px 3px #676767;
+            font-weight: 550;
+            font-family: Tahoma;
+            font-size: 1.5vw;
+            color: #FFFFFF;
+            padding-left: 10px;
+        }
+
+        .positn1 {
+            text-transform: none;
+            font-family: Tahoma;
+            Font-Size: 1vw;
+            color: #FFFFFF;
+            padding-left: 10px;
+            /*vertical-align:top*/
+        }
+
+        body {
+            background-color: #ffffff !important;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+<title>
+
+</title></head>
+<body style="margin: 0; padding: 0px;">
+    <form name="aspnetForm" method="post" action="./Portal_New_Portal_Acts_Rules_Cirular.aspx?type=0" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="oXuh3ATQV/wVXghdGS3vLFBmQNkBkfj/B7n+30vhhUVPdVyzUwrOjZAEZDANjkGwIEoH+SAsomPsev8RZ2Ku5C4ZQO+LecviWbSlgzYjiuELk/oCwZn+iX91PlVTfuxbA3YpXSAsE3ardTqikJ+mXxQK8F6ub+fEFASO9PFyAAs6Rs4JvtHoXQdRqEv+tO16pgthp7+cpsevj3PdQV9BTBl3i2cKebU3AdYRjpomep1OGjludKbR0pCLRmwhAZMV7RKrTIHDQt6P2BqSQhDSqUV8GdTKU7KzTmEInxTBYp4yHYlSOZE8tpb4owl9kQvIfA/pISoG9Q2KCsYPxd1nEJsFV4MK3aKcjGBPSRKMmY7qAbuQte6XBj38sCzzyC0DvRmxS2FwTWi0Ftr0UQ2QU2VVXOfZeNCtvejzoA1Le0B+TS7DTY2CSmQGfNoiQKksZZb+GAPt4MRFlkgMshiHPoWIOsHzjsNQ0zSv1AqrP9TNWhaycGVxLSzmtakGYxYYffb8Td+N+7Hh7C01NHUtV6sHhomULl9VZMuIaDwlHp68IVsOxX9LcwcbUArGIeK+9iCYYvb/IBBL6nhtyzYcWoT3Hc/pwEyhjiE1MG8NN+LFT2mGCt2PQ3C+bbkoDeTE+kAL94Qvn5ZMg2K0EXdQT+7Dkx0kjAmzVuZfImpw4ByUPdR/JT2/Tgkc3izo6VfBoyKL8HP9aHyJppnCczIbHJPh5EDkslvfwQJ6cobS/p47dOo+w3U3XNav0kaXt7XOSYjR3r+1uoVBztdkULH9bypKR8TN9H44dIIdlXab5GahS+OtzNyihP8L7m1SV/IsTxwzbT4u+IdXLvHfBTjkbtaZhws79AFICdDioLOxrBmINnlTFjyGKcuj2vVjKUhNGrHDRB+kGZ3BLyMAtFWaCmmrmy5wRf81bAPpmtS/Gf9Am2HeDgBUXqHvskaj85VuMoxkgW4EHPhbEkg1QeE8iH50Sm6Aa58i5HJeVWV+aiShpV8hfb/nL6RWmOFjLuXPaihMMZiqJNcNuQo2nA32K8DA8D/zUWSqUS/Yk2o16wEUIiu5krg3kwrzBOliOB48WlhjuHHu0kYvR3/nlmhBt4PRmtb3gNruWWdHwI/GuprsChPDBm7j4AokJv8A6hAyCX4J9d51LVxsYq5QkcARmWrvhhioCzN7aVyAHtgDEpu73oh5eY0xQBMa3BLmFukfiVSaF6V6FaN9Gnhp523+BV518P+piNxHCtHjWclwb9tK/T7nXoBPuPp+evjboXguCjUwZKnnJteLJl8GjNywRrOvizTNQBnaGWglXnyc2mNZBk8H3Qb84MzjK8Y2xrOdOCy5wGCW0PC0BH/PfPpVDI9NuTKoL3Uj3vcC0PbNXCD0uLiYL9PqmKArZdP1zctQSj+72CxfwlNqFDsebzK4fle2HfAVJlhA+RLRRXx1Z28ewJASJI6457DX4N+/UTBMoqKwAg9FZDPsELyTPBXPdkBc50i8bXGgZQd9EbxxCotqx9lFxjGZpZDHM9WKr2mHOGXpysgzrCz4bAzdqXV7LgL8Rxq9lXXxPEL5CvHUb3wAVxI3rNJvIUiW1o/87BJV1fKbOLSzhDEKbUIOuTTi/DAb0zBNgmt7YWLRdvdX7017CrqhCxCfEQmynByYnHLRmG9bKp1MoLKvEmsYoO4jjBpwMBS50r0uHFsagYhb9y1CDDvm8WvoiNK8f70ygQofDiBboUwWr0ytYCeKTw6oWYNNMbc=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=q-bRoynsF4Qx2HMGAWfPINM2bIxSbph7-IJeashy-y8dCan8Z85DFdKz0sBJ-Q2n-VbuvBWS-gRzA7Uetvp4_3mDijo1&amp;t=639191031332169432" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=S6GAGbyZS80GNpLiW9WFjUlIkd705v-PH5YhomDzkEDlUWiujjmlX9U6xoj3TXl5qn0MN2FNtmowGcvdhAnZnsEwexqp6LRuas4Z4m_hOGtNOnGRM29rOUFy-OlCKcaKZiAPdgaT0us2rxyOyQlLfGDz_Mg1&amp;t=ffffffffa5405632" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=1x8ziOjRcbt7-zZxZIRCk-G0dYsSWUSK7ue_Vl7eD6j2_QJlKLIIPgbU6rgYBQMyepM2d8ZLRLLR8tI4G_oDlpPJTdMXWqvdBwFsF2xqw08mlNLR0Xqiwn-HZ8ifXDmy4LogpzvZ0JPZyqCwBUXqQ5LYHRVOTt1fAjdO28qwyQNMRz250&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=ghs7NaAPEmylYp4IjwMThioxgvzoylmC145FfYQ5PObwwBrKp0wfxVVX5EvB1NyCg9P9nWDqPzCfQf4Za9TB6_CqdBqot3MYtvMkYZRFAm1onVhcYnnTofZk9ym-IhEYQ8SfWoH-vDLTgBn-ipfZu54j6jgKpJAhyRrFU5riXcILrVI40&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="708D6399" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="PamjY-s9BKjYAIBN5Zcv4yerTCJ9_-7Lv4hFfYbqtJtKxdB1tuakl8ZKHyuPEhTehO_-G3HPC7FkIcI5n5xksaDF5ledxDu-6-ROAdP9_txdw4Urkrue3g13kJaaG2kN_cQZug2" />
+</div>
+        <table width="100%">
+            <tr>
+                <td>
+                    <div style="clear: both;">
+                        <div>
+                            <div>
+                                <div>
+
+                                    <div id="header-container" style="background-color: #0d3759; width: 100%;">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <table width="100%" cellpadding="0" cellspacing="0" style="padding-top: 6px; padding-bottom: 8px;">
+                                                    <tr style="width: 100%;">
+                                                        <td style="width: 9%; vertical-align: middle; padding-right: 10px;" align="right">
+                                                            <img id="ctl00_img_logo" src="../Default_Logo_Image_Handler.aspx?FileName=Logo.png" style="height:80px;border-width:0px;" />
+                                                        </td>
+                                                        <td style="width: 81%; text-align: left; vertical-align: middle;">
+                                                            <div id="logo" style="border-left: 1px solid #6c9a03; vertical-align: top;">
+                                                                
+                                                                
+
+
+                                                                
+                                                                <span id="ctl00_lbl_header1" class="positn">Department of Excise</span>
+                                                                
+                                                                <br />
+                                                                <span id="ctl00_lbl_header2" class="positn1">Government of NCT of Delhi</span>
+                                                                <br />
+                                                            </div>
+                                                        </td>
+                                                        <td align="right" style="width: 10%; padding-right: 20px;">
+                                                            <input type="image" name="ctl00$LinkButton2" id="ctl00_LinkButton2" src="../NewImages/Portal_Home_Button.png" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LinkButton2&quot;, &quot;&quot;, false, &quot;&quot;, &quot;../portal_New_default.aspx&quot;, false, false))" style="height:54px;border-width:0px;" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div style="padding: 0 5px; ">
+                                    
+   
+
+                                    
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Department of Excise, Government of NCT of Delhi</title>
+  
+    <style type="text/css">
+.navbar {
+    background: linear-gradient(to right, #0055a5, #5b2c94, #c9246b, #db0036, #5b2c94, #0055a5);
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.nav-item {
+    margin-right: 30px;
+    position: relative;
+    padding-right: 15px; 
+}
+    .nav-item,
+    .nav-item a,
+    .dropdown-trigger,
+    .dropdown-menu li {
+        cursor: pointer;
+    }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%; 
+            background-color: #ccc; 
+        }
+        .nav-item:last-child {
+            padding-right: 0;
+        }
+            .nav-item:last-child::after {
+                display: none;
+            }
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    
+    position: relative;
+    z-index: 1; 
+}
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding-right: 15px; 
+}
+    .nav-link:hover,
+    .nav-link.active {
+        background-color: #5436ba;
+        color: white;
+    }
+        .nav-link:hover .dropdown-icon,
+        .nav-link.active .dropdown-icon {
+            color: white;
+        }
+.dropdown-icon {
+    margin-left: 5px;
+    font-size: 12px;
+    color: white;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #5436ba;
+    padding: 20px 40px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 200;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+    .dropdown-menu li {
+        padding: 10px 0;
+        color: white; 
+        list-style-type: disc; 
+        list-style-position: outside;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .dropdown-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 0; 
+        display: block;
+        transition: background-color 0.3s ease;
+        cursor: pointer; 
+    }
+        .dropdown-menu a:hover {
+            background-color: #823b1f;
+            color:white;
+        }
+.dropdown:hover .dropdown-menu,
+.dropdown-trigger:hover + .dropdown-menu {
+    display: block;
+}
+    </style>
+    </head>
+        <body><nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-trigger nav-link">About Us
+        <span class="dropdown-icon">+</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Portal_New_aboutUs.aspx">Department</a></li>
+                               
+                                <li><a href="Portal_New_ExciseOrgStruct.aspx">Organisational Structure</a></li>
+                                <li><a href="Portal_New_Functions.aspx">Functions</a></li>
+                                <li><a href="Portal_New_Strength.aspx">Staff</a></li>
+                                <li><a href="Portal_New_keyPeople.aspx">Heads of Organizations</a></li>
+                                <li><a href="Portal_New_excise_commissioner.aspx">Excise Commissioners</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-trigger nav-link">Facts & Figures
+        <span class="dropdown-icon">+</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/FAQ/Portal_New_category_licen.aspx">Licenses Administered </a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-trigger nav-link">Acts, Rules & Orders
+        <span class="dropdown-icon">+</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Portal_New_Portal_Acts_Rules_Cirular.aspx?type=33">Acts</a></li>
+                                <li><a href="Portal_New_Portal_Acts_Rules_Cirular.aspx?type=42">Rules</a></li>
+                                <li><a href="Portal_New_Portal_Acts_Rules_Cirular.aspx?type=47">Circulars</a></li>
+                        </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-trigger nav-link">Right to Information
+        <span class="dropdown-icon">+</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Portal_New_rti_act.aspx">RTI Act 2005</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                    <a class="dropdown-trigger nav-link">Feedback
+<span class="dropdown-icon">+</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/FAQ/Portal_New_Feedback_Form.aspx">Feedback Form</a></li>
+                    </ul>
+                </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-trigger nav-link">Track & Trace +
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Retail/Liquor_View_History.aspx">Track & Trace</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                    <a class="dropdown-trigger nav-link">User Manuals
+<span class="dropdown-icon">+</span>
+                    </a>
+                    <ul class="dropdown-menu">                               
+                        <li><a href="/CommonUser/UserManual.aspx" title="User Manual">User Manual</a></li>
+                       
+                    </ul>
+                </li>
+                    </ul>
+                </nav></body>
+    </html>
+    
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPlaceHolder1$ScriptManager1', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    
+
+    <script type="text/javascript">
+        $(function() {
+            var theTable = $('table.PubList');
+            $('#ctl00_ContentPlaceHolder1_txt_Search_string').keyup(function() {
+                $.uiTableFilter(theTable, this.value);
+            })
+
+
+        });  
+
+    </script>
+
+    <div>
+      <table width="100%">
+                        <tr>
+                            <td style="width: 100%; padding:0px 0px 0px 0px;">
+                                <div style="float: left; background-image: url('../Images/BI_Header_left.png'); background-position: left top;
+                                    background-repeat: no-repeat; height: 34px; width: 9px;">
+                                </div>
+                                <div style="float: left; background-image: url('../Images/BI_Header_left.png'); background-position: left top;
+                                    background-repeat: repeat-x; height: 34px; padding: 7px 6px 0px 0px; font-family: Verdana;
+                                    font-size: 13px; font-weight: 600; color: black;">
+                                   <span id="ctl00_ContentPlaceHolder1_page_hader_Portal">Acts, Rules and Circulars</span>
+                                </div>
+                                <div style="float: left; background-image: url('../Images/BI_Header_Right.png');
+                                    background-position: left top; background-repeat: no-repeat; height: 34px; width: 22px;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+        <table width="100%">
+            <tr>
+                <td valign="top" style="width: 100%; padding: 2px 1px 1px 1px;">
+                    
+                    <div style="padding: 2px 10px 5px 10px; background-image: url('../Images/cell.gif');
+                        background-repeat: repeat-x; text-align: justify; font-size: small; line-height: 2;">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="padding-bottom: 2px; font-size: small; font-weight: bold; color: #2F5B93;"
+                                    align="center">
+                                    <span id="ctl00_ContentPlaceHolder1_Label5" style="color:#336699;font-size:Small;font-weight:bold;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    
+                                    <div style="width: 100%;">
+                                        <table>
+                                         <tr>
+                                                <td colspan="6" align="left" style="font-size: 12px; display:none">
+                                                    <table id="ctl00_ContentPlaceHolder1_rdbCirACct" border="0" style="font-family:verdana;font-weight:bold;">
+	<tr>
+		<td><input id="ctl00_ContentPlaceHolder1_rdbCirACct_0" type="radio" name="ctl00$ContentPlaceHolder1$rdbCirACct" value="33" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$rdbCirACct$0\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_rdbCirACct_0">Acts</label></td><td><input id="ctl00_ContentPlaceHolder1_rdbCirACct_1" type="radio" name="ctl00$ContentPlaceHolder1$rdbCirACct" value="42" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$rdbCirACct$1\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_rdbCirACct_1">Rules</label></td><td><input id="ctl00_ContentPlaceHolder1_rdbCirACct_2" type="radio" name="ctl00$ContentPlaceHolder1$rdbCirACct" value="47" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$rdbCirACct$2\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_rdbCirACct_2">Circulars</label></td><td><input id="ctl00_ContentPlaceHolder1_rdbCirACct_3" type="radio" name="ctl00$ContentPlaceHolder1$rdbCirACct" value="48" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$rdbCirACct$3\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_rdbCirACct_3">Other Documents</label></td><td><input id="ctl00_ContentPlaceHolder1_rdbCirACct_4" type="radio" name="ctl00$ContentPlaceHolder1$rdbCirACct" value="0" checked="checked" /><label for="ctl00_ContentPlaceHolder1_rdbCirACct_4">All</label></td>
+	</tr>
+</table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" align="left" style="font-size: 12px;">
+                                                    <table id="ctl00_ContentPlaceHolder1_RadioButtonList1" border="0" style="font-family:verdana;font-weight:bold;">
+	<tr>
+		<td><input id="ctl00_ContentPlaceHolder1_RadioButtonList1_0" type="radio" name="ctl00$ContentPlaceHolder1$RadioButtonList1" value="0" checked="checked" /><label for="ctl00_ContentPlaceHolder1_RadioButtonList1_0">Search By Order Date </label></td><td><input id="ctl00_ContentPlaceHolder1_RadioButtonList1_1" type="radio" name="ctl00$ContentPlaceHolder1$RadioButtonList1" value="1" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$RadioButtonList1$1\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_RadioButtonList1_1">Search By Subject</label></td><td><input id="ctl00_ContentPlaceHolder1_RadioButtonList1_2" type="radio" name="ctl00$ContentPlaceHolder1$RadioButtonList1" value="2" onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$RadioButtonList1$2\&#39;,\&#39;\&#39;)&#39;, 0)" /><label for="ctl00_ContentPlaceHolder1_RadioButtonList1_2">View All</label></td>
+	</tr>
+</table>
+                                                </td>
+                                                <td>
+                                                  
+                                                </td>
+                                            </tr>
+                                            <tr id="ctl00_ContentPlaceHolder1_tr_date">
+	<td valign="top">
+                                                    <span id="ctl00_ContentPlaceHolder1_Label1" class="Label_normal ">From</span>
+                                                </td>
+	<td valign="top">
+                                                    
+                                                    
+                                                    
+                                                    <input name="ctl00$ContentPlaceHolder1$txtFrom" type="text" id="ctl00_ContentPlaceHolder1_txtFrom" onclick="scwShow(this,event);" style="width: 70px;" value="01/01/2008" />
+                                                    <span id="ctl00_ContentPlaceHolder1_RequiredFieldValidator5" style="color:Red;visibility:hidden;">*</span>
+                                                </td>
+	<td valign="top">
+                                                    <span id="ctl00_ContentPlaceHolder1_Label2" class="Label_normal ">To</span>
+                                                </td>
+	<td valign="top">
+                                                    
+                                                    
+                                                    
+                                                    <input name="ctl00$ContentPlaceHolder1$txtTo" type="text" id="ctl00_ContentPlaceHolder1_txtTo" onclick="scwShow(this,event);" style="width: 70px;" value="22/10/2026" />
+                                                    <span id="ctl00_ContentPlaceHolder1_RequiredFieldValidator1" style="color:Red;visibility:hidden;">*</span>
+                                                </td>
+	<td style="padding-left: 5px;" valign="top">
+                                                    <a id="ctl00_ContentPlaceHolder1_lbtnSearch" class="LinkButton" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lbtnSearch&#39;,&#39;&#39;)" style="text-decoration:none;">Search</a>
+                                                </td>
+</tr>
+
+                                            
+                                            <tr id="ctl00_ContentPlaceHolder1_Tr1">
+	<td colspan="5">
+                                                    
+                                                </td>
+</tr>
+
+                                        </table>
+                                    </div>
+                                 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 10px; padding-bottom: 10px;">
+                                    <div>
+	<table class="mGrid" cellspacing="2" cellpadding="6" rules="all" class="PubList" border="1" id="ctl00_ContentPlaceHolder1_GridView1" style="border-width:1px;border-style:Solid;width:100%;">
+		<tr align="center" style="background-color:#CCCCCC;">
+			<th scope="col">Date</th><th scope="col">Subject</th>
+		</tr><tr>
+			<td align="center" style="font-size:14px;width:90px;">28/03/2026</td><td align="left" style="font-size:14px;">
+                                                    <div style="padding-left: 5px; padding-right: 5px;">
+                                                        <span id="ctl00_ContentPlaceHolder1_GridView1_ctl02_Label3">Public notice and Terms and conditions for grant of L-1, L-1F and L-2 wholesale licenses for the year 2026-27</span>
+                                                        
+                                                        <a id="ctl00_ContentPlaceHolder1_GridView1_ctl02_lb1" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$GridView1$ctl02$lb1&#39;,&#39;&#39;)"><img id="ctl00_ContentPlaceHolder1_GridView1_ctl02_img1" src="../Images/download_icon.png" style="height:12px;border-width:0px;" /></a>
+                                                    </div>
+                                                </td>
+		</tr><tr style="background-color:#EEEEEE;">
+			<td align="center" style="font-size:14px;width:90px;">15/01/2025</td><td align="left" style="font-size:14px;">
+                                                    <div style="padding-left: 5px; padding-right: 5px;">
+                                                        <span id="ctl00_ContentPlaceHolder1_GridView1_ctl03_Label3">Dry Day on account of Delhi Election Notification</span>
+                                                        
+                                                        <a id="ctl00_ContentPlaceHolder1_GridView1_ctl03_lb1" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$GridView1$ctl03$lb1&#39;,&#39;&#39;)"><img id="ctl00_ContentPlaceHolder1_GridView1_ctl03_img1" src="../Images/download_icon.png" style="height:12px;border-width:0px;" /></a>
+                                                    </div>
+                                                </td>
+		</tr><tr>
+			<td align="center" style="font-size:14px;width:90px;">03/10/2024</td><td align="left" style="font-size:14px;">
+                                                    <div style="padding-left: 5px; padding-right: 5px;">
+                                                        <span id="ctl00_ContentPlaceHolder1_GridView1_ctl04_Label3">THE DELHI EXCISE ACT, 2009</span>
+                                                        
+                                                        <a id="ctl00_ContentPlaceHolder1_GridView1_ctl04_lb1" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$GridView1$ctl04$lb1&#39;,&#39;&#39;)"><img id="ctl00_ContentPlaceHolder1_GridView1_ctl04_img1" src="../Images/download_icon.png" style="height:12px;border-width:0px;" /></a>
+                                                    </div>
+                                                </td>
+		</tr><tr style="background-color:#EEEEEE;">
+			<td align="center" style="font-size:14px;width:90px;">03/10/2024</td><td align="left" style="font-size:14px;">
+                                                    <div style="padding-left: 5px; padding-right: 5px;">
+                                                        <span id="ctl00_ContentPlaceHolder1_GridView1_ctl05_Label3">Circular</span>
+                                                        
+                                                        <a id="ctl00_ContentPlaceHolder1_GridView1_ctl05_lb1" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$GridView1$ctl05$lb1&#39;,&#39;&#39;)"><img id="ctl00_ContentPlaceHolder1_GridView1_ctl05_img1" src="../Images/download_icon.png" style="height:12px;border-width:0px;" /></a>
+                                                    </div>
+                                                </td>
+		</tr><tr>
+			<td align="center" style="font-size:14px;width:90px;">03/10/2024</td><td align="left" style="font-size:14px;">
+                                                    <div style="padding-left: 5px; padding-right: 5px;">
+                                                        <span id="ctl00_ContentPlaceHolder1_GridView1_ctl06_Label3">THE DELHI EXCISE RULES, 2010</span>
+                                                        
+                                                        <a id="ctl00_ContentPlaceHolder1_GridView1_ctl06_lb1" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$GridView1$ctl06$lb1&#39;,&#39;&#39;)"><img id="ctl00_ContentPlaceHolder1_GridView1_ctl06_img1" src="../Images/download_icon.png" style="height:12px;border-width:0px;" /></a>
+                                                    </div>
+                                                </td>
+		</tr>
+	</table>
+</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+           
+        </table>
+    </div>
+
+                                    
+                                </div>
+                                <br />
+                                <div class="footer" id="Div1" style="background-color: #293955;">
+
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td align="center" class="copyright-bar1" style="padding: 5px 0px 5px 0px; color: White;">Contents provided by the
+                                            <span id="ctl00_lbl_footer_departmentnm">Department of Excise</span>
+                                                ,
+                                            <span id="ctl00_lbl_footer_distnm">Government of NCT of Delhi</span>. Site Designed,
+                                            hosted and maintained by <a href="http://www.nic.in/" target="_blank" style="color: White;">National Informatics Centre </a>
+                                                <br />
+                                                Best viewed in Internet Explorer 8.0 / Firefox 3.6 or later . <a href="../Common/Portal_New_legalDisclaimer.aspx"
+                                                    target="_self" style="color: White;">Legal Disclaimer </a>
+                                                <br />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator5"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator1"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator5 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator5"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator5");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.controltovalidate = "ctl00_ContentPlaceHolder1_txtFrom";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.errormessage = "Enter Next Increment";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.validationGroup = "sum";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator1 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator1"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator1");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.controltovalidate = "ctl00_ContentPlaceHolder1_txtTo";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.errormessage = "Enter Next Increment";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.validationGroup = "sum";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.initialvalue = "";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('ctl00_ContentPlaceHolder1_RequiredFieldValidator5').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_ContentPlaceHolder1_RequiredFieldValidator5'));
+}
+
+document.getElementById('ctl00_ContentPlaceHolder1_RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_ContentPlaceHolder1_RequiredFieldValidator1'));
+}
+//]]>
+</script>
+</form>
+</body>
+</html>

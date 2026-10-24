@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { getStateBySlug, getStatus, getTodayIST } from '@/lib/dryday';
-import { MapPin, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { getStateBySlug, getStatus, getTodayIST, type DryDayEntry } from '@/lib/dryday';
+import { MapPin } from 'lucide-react';
 
 const REGION_MAP: Record<string, string> = {
   'DL': 'delhi', 'MH': 'maharashtra', 'KA': 'karnataka', 'TN': 'tamil-nadu',
@@ -16,38 +16,33 @@ const REGION_MAP: Record<string, string> = {
   'PY': 'puducherry', 'DD': 'dadra-and-nagar-haveli-and-daman-and-diu', 'LK': 'lakshadweep',
 };
 
-export default function LocationBanner() {
-  const [region, setRegion] = useState<string | null>(null);
+export default function LocationBanner({ entries }: { entries: DryDayEntry[] }) {
   const [stateSlug, setStateSlug] = useState<string | null>(null);
 
-  // Read from simulated edge header (client-side only, no storage)
-  if (typeof window !== 'undefined' && !region && (window as any).__REGION_CODE) {
-    const r = (window as any).__REGION_CODE;
-    if (REGION_MAP[r]) {
-      setRegion(r);
+  // Read simulated edge header after mount (client-only; no storage)
+  useEffect(() => {
+    const r = (window as unknown as { __REGION_CODE?: string }).__REGION_CODE;
+    if (r && REGION_MAP[r]) {
+      // Sync from external system (window region header) once after mount
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStateSlug(REGION_MAP[r]);
     }
-  }
-
-  const handleGPS = useCallback(() => {
-    // GPS reverse-geocoding skipped: no bundled boundary file or external service available.
-    // Falls back silently to IP-based region (already set) or none.
   }, []);
 
   if (!stateSlug) return null;
 
   const state = getStateBySlug(stateSlug);
   const todayIST = getTodayIST();
-  const status = state ? getStatus(state.slug, todayIST) : 'maybe';
+  const status = state ? getStatus(state.slug, todayIST, entries) : 'maybe';
 
   const label = state?.prohibition === true
     ? 'Year-round prohibition'
-    : state?.prohibition === null
-    ? 'Data not verified yet'
     : status === 'dry'
     ? 'Yes — dry today'
     : status === 'maybe'
     ? 'Maybe — pending confirmation'
+    : status === 'unavailable'
+    ? 'Status not verified'
     : 'Not dry';
 
   return (
@@ -61,9 +56,9 @@ export default function LocationBanner() {
       <div className="flex items-center gap-2 shrink-0">
         <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border min-h-[28px] inline-flex items-center ${
           state?.prohibition === true ? 'bg-rose-950/80 text-rose-300 border-rose-800/60' :
-          state?.prohibition === null ? 'bg-neutral-800 text-neutral-300 border-neutral-700' :
           status === 'dry' ? 'bg-rose-950/80 text-rose-300 border-rose-800/60' :
           status === 'maybe' ? 'bg-amber-950/80 text-amber-300 border-amber-800/60' :
+          status === 'unavailable' ? 'bg-neutral-800/80 text-neutral-300 border-neutral-600/60' :
           'bg-emerald-950/80 text-emerald-300 border-emerald-800/60'
         }`}>
           {label}

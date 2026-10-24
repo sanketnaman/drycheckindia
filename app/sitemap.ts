@@ -1,9 +1,14 @@
 import { MetadataRoute } from 'next';
-import { getAllStates, getAllEntries, dateToSlug } from '@/lib/dryday';
+import { getAllStates, dateToSlug } from '@/lib/dryday';
+import { getPublicEntries } from '@/lib/public-drydays';
 
 const SITE_URL = 'https://drycheck.in';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Revalidate hourly (same cadence as the pages) so /dry-days/<date> routes
+// appear after new entries are published without a full redeploy.
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString();
 
   // Static routes
@@ -50,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Unique Date routes
-  const entries = getAllEntries();
+  const entries = await getPublicEntries();
   const dateSet = new Set<string>();
   for (const entry of entries) {
     dateSet.add(dateToSlug(entry.date));

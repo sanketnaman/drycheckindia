@@ -7,8 +7,8 @@ import { AlertCircle, CheckCircle2, HelpCircle, MapPin } from 'lucide-react';
 
 interface HeroAnswerProps {
   headline?: string;
-  answer: 'Yes' | 'No' | 'Maybe' | 'Always';
-  statusType: 'dry' | 'not_dry' | 'maybe';
+  answer: 'Yes' | 'No' | 'Maybe' | 'Always' | 'Status not verified';
+  statusType: 'dry' | 'not_dry' | 'maybe' | 'unavailable';
   secondaryLine: string;
   todayDateIST: string;
   tomorrowDateIST: string;
@@ -58,7 +58,15 @@ export default function HeroAnswer({
       border: 'border-amber-500/40',
       bgGlow: 'bg-amber-500/10 shadow-[0_0_24px_rgba(245,158,11,0.15)]',
       badgeBg: 'bg-amber-950/80 border-amber-700/60 text-amber-300',
-      subtext: 'Official confirmation awaited or state-dependent',
+      subtext: 'Status not verified',
+      icon: HelpCircle,
+    },
+    unavailable: {
+      color: 'text-neutral-300',
+      border: 'border-neutral-600/40',
+      bgGlow: 'bg-neutral-800/30',
+      badgeBg: 'bg-neutral-900/80 border-neutral-700/60 text-neutral-300',
+      subtext: 'Status not verified',
       icon: HelpCircle,
     },
   }[statusType];
@@ -93,12 +101,12 @@ export default function HeroAnswer({
 
       {/* 2. Big Yes / No / Maybe Answer Card (Answer text >= 96px, 100% visible on 360x640) */}
       <div
-        className={`w-full max-w-sm sm:max-w-md my-1.5 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} p-4 sm:p-6 transition-all`}
+        className={`w-full max-w-sm sm:max-w-md my-1.5 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} p-4 sm:p-5 transition-all`}
       >
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-2">
             <span
-              className={`text-[96px] sm:text-[112px] md:text-[124px] font-black tracking-tight leading-none ${styleConfig.color} select-none`}
+              className={`text-[36px] sm:text-[48px] md:text-[64px] font-black tracking-tight leading-none ${styleConfig.color} select-none`}
             >
               {answer}
             </span>

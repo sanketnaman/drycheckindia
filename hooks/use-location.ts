@@ -50,8 +50,10 @@ export function useLocationState() {
     // Client-side only: read from edge headers if available (simulated for demo)
     // In production, this would come from a server-side prop or middleware
     // For this implementation we rely on a simulated region header or skip
-    const region = (window as any).__REGION_CODE || null;
+    const region = (window as unknown as { __REGION_CODE?: string }).__REGION_CODE || null;
     if (region && REGION_MAP[region]) {
+      // Sync from external system (window region header) once after mount
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDetectedState(REGION_MAP[region]);
       setShowBanner(true);
     }

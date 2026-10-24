@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PublicNoticeBar from '@/components/PublicNoticeBar';
+import { getPublishedNotices } from '@/lib/public-drydays';
 
 const SITE_URL = 'https://drycheck.in';
 
@@ -79,11 +81,13 @@ export const viewport: Viewport = {
   themeColor: '#0a0a0a',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const notices = await getPublishedNotices();
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
@@ -98,6 +102,7 @@ export default function RootLayout({
         className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col antialiased selection:bg-amber-500 selection:text-neutral-950 font-sans"
       >
         <Navbar />
+        {notices.length > 0 && <PublicNoticeBar notices={notices} />}
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
       </body>

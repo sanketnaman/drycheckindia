@@ -7,9 +7,9 @@ import {
   slugToDate,
   dateToSlug,
   formatDateDisplay,
-  getAllEntries,
   getDryStatesOn,
 } from '@/lib/dryday';
+import { getPublicEntries } from '@/lib/public-drydays';
 import {
   Calendar,
   ChevronRight,
@@ -29,7 +29,7 @@ interface Props {
 const SITE_URL = 'https://drycheck.in';
 
 export async function generateStaticParams() {
-  const entries = getAllEntries();
+  const entries = await getPublicEntries();
   const dateSet = new Set<string>();
   for (const entry of entries) {
     dateSet.add(dateToSlug(entry.date));
@@ -83,13 +83,16 @@ export default async function DatePage({ params }: Props) {
     notFound();
   }
 
+  const entries = await getPublicEntries();
+  // True while the database has no published, publicly-verifiable entries.
+  const datasetEmpty = entries.length === 0;
   const formattedDate = formatDateDisplay(dateIST, { showDayOfWeek: true });
-  const dryItems = getDryStatesOn(dateIST);
+  const dryItems = getDryStatesOn(dateIST, entries);
 
   const eventDryDays = dryItems.filter((i) => !i.isProhibition);
   const prohibitionStates = dryItems.filter((i) => i.isProhibition);
 
-  const allEntriesOnDate = getAllEntries().filter(
+  const allEntriesOnDate = entries.filter(
     (e) => e.date === dateIST
   );
 
@@ -157,13 +160,15 @@ export default async function DatePage({ params }: Props) {
           </h1>
 
           <p className="mt-2 text-xs sm:text-sm text-neutral-300 max-w-xl mx-auto">
-            {isNational
+            {datasetEmpty
+              ? 'No verified dry-day entries published yet. This page will update once state excise notifications are published.'
+              : isNational
               ? `Pan-India mandatory dry day in observance of ${primaryReason}. All retail shops and bars remain closed.`
               : eventDryDays.length > 0
               ? `${eventDryDays.length} Indian ${
                   eventDryDays.length === 1 ? 'state/UT has' : 'states/UTs have'
                 } dry day restrictions in effect on this date for ${primaryReason}.`
-              : 'No special state-level dry days scheduled on this date.'}
+              : 'No verified dry days scheduled for this date. Statutory-prohibition states remain dry year-round.'}
           </p>
         </div>
 
@@ -173,10 +178,16 @@ export default async function DatePage({ params }: Props) {
             Nationwide Impact
           </div>
           <div className="mt-1.5 text-3xl sm:text-4xl font-black text-rose-400">
-            {isNational ? 'All India Dry Day' : `${eventDryDays.length} States Affected`}
+            {datasetEmpty
+              ? 'Awaiting published data'
+              : isNational
+              ? 'All India Dry Day'
+              : `${eventDryDays.length} States Affected`}
           </div>
           <p className="mt-1 text-xs text-neutral-300">
-            {primaryReason} &bull; Verified against state excise circulars
+            {datasetEmpty
+              ? 'No published entries in the database yet'
+              : `${primaryReason} &bull; Verified against state excise circulars`}
           </p>
         </div>
 
@@ -187,7 +198,11 @@ export default async function DatePage({ params }: Props) {
               States &amp; UTs Observing Dry Day on {formattedDate}
             </h2>
             <span className="text-xs font-mono text-neutral-400">
-              {isNational ? '36 / 36 Regions' : `${eventDryDays.length} Regions`}
+              {datasetEmpty
+                ? 'Awaiting data'
+                : isNational
+                ? '36 / 36 Regions'
+                : `${eventDryDays.length} Regions`}
             </span>
           </div>
 
@@ -258,7 +273,9 @@ export default async function DatePage({ params }: Props) {
             </div>
           ) : (
             <div className="mt-3 p-4 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
-              No specific festival or by-election dry day listed on this date.
+              {datasetEmpty
+                ? 'No verified dry-day entries published yet.'
+                : 'No verified dry days scheduled for this date.'}
             </div>
           )}
 

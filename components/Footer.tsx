@@ -29,7 +29,7 @@ export default function Footer() {
         <div className="mb-6 rounded-xl border border-neutral-800/70 bg-neutral-900/30 p-4 text-xs text-neutral-400 flex items-start gap-3">
           <ShieldAlert className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong className="text-neutral-200">Disclaimer:</strong> Information is compiled from official notifications and may change. Please verify with your state excise department before making plans. DryCheck India is an independent public-service website and does not endorse or promote the sale or consumption of alcohol.
+            <strong className="text-neutral-200">Disclaimer:</strong> Information is compiled from official notifications and may change. DryCheck does not guarantee accuracy, completeness, or timeliness. Please verify with your state excise department before making plans. DryCheck India is an independent public-service website and does not endorse or promote the sale or consumption of alcohol.
           </p>
         </div>
 

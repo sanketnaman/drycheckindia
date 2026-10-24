@@ -1,0 +1,149 @@
+{
+  "country": "India",
+  "year": 2026,
+  "description": "List of major scheduled dry days. Note that applicability varies by state excise policies.",
+  "dry_days": [
+    {
+      "date": "2026-01-14",
+      "occasion": "Makar Sankranti / Pongal",
+      "scope": "Regional (e.g., MH, GJ, UP, KA, RJ)"
+    },
+    {
+      "date": "2026-01-26",
+      "occasion": "Republic Day",
+      "scope": "Nationwide"
+    },
+    {
+      "date": "2026-01-30",
+      "occasion": "Martyrs' Day (Shaheed Diwas)",
+      "scope": "Regional (e.g., DL, MH, RJ)"
+    },
+    {
+      "date": "2026-02-15",
+      "occasion": "Maha Shivratri",
+      "scope": "Regional (e.g., UP, MP, GJ, DL)"
+    },
+    {
+      "date": "2026-03-04",
+      "occasion": "Holi",
+      "scope": "Regional (Varies widely; open in Delhi)"
+    },
+    {
+      "date": "2026-03-21",
+      "occasion": "Eid-ul-Fitr",
+      "scope": "Regional / Lunar dependent"
+    },
+    {
+      "date": "2026-03-26",
+      "occasion": "Ram Navami",
+      "scope": "Regional (e.g., DL, RJ)"
+    },
+    {
+      "date": "2026-03-31",
+      "occasion": "Mahavir Jayanti",
+      "scope": "Regional (e.g., DL, RJ, KA)"
+    },
+    {
+      "date": "2026-04-03",
+      "occasion": "Good Friday",
+      "scope": "Regional (e.g., KL, TN)"
+    },
+    {
+      "date": "2026-04-14",
+      "occasion": "Ambedkar Jayanti",
+      "scope": "Regional (Strict in MH)"
+    },
+    {
+      "date": "2026-05-01",
+      "occasion": "Buddha Purnima / Maharashtra Day",
+      "scope": "Regional (e.g., DL, MH)"
+    },
+    {
+      "date": "2026-05-27",
+      "occasion": "Bakrid / Eid-al-Adha",
+      "scope": "Regional / Lunar dependent"
+    },
+    {
+      "date": "2026-06-26",
+      "occasion": "Muharram",
+      "scope": "Regional / Lunar dependent"
+    },
+    {
+      "date": "2026-07-25",
+      "occasion": "Ashadi Ekadashi",
+      "scope": "Regional (e.g., MH)"
+    },
+    {
+      "date": "2026-07-29",
+      "occasion": "Guru Purnima",
+      "scope": "Regional"
+    },
+    {
+      "date": "2026-08-15",
+      "occasion": "Independence Day",
+      "scope": "Nationwide"
+    },
+    {
+      "date": "2026-08-25",
+      "occasion": "Eid-e-Milad / Miladi Navmi",
+      "scope": "Regional / Lunar dependent"
+    },
+    {
+      "date": "2026-09-04",
+      "occasion": "Janmashtami",
+      "scope": "Regional (e.g., DL, MH)"
+    },
+    {
+      "date": "2026-09-14",
+      "occasion": "Ganesh Chaturthi",
+      "scope": "Regional (e.g., MH, KA)"
+    },
+    {
+      "date": "2026-09-25",
+      "occasion": "Anant Chaturdashi / Ganpati Visarjan",
+      "scope": "Regional (e.g., MH)"
+    },
+    {
+      "date": "2026-10-02",
+      "occasion": "Gandhi Jayanti",
+      "scope": "Nationwide"
+    },
+    {
+      "date": "2026-10-20",
+      "occasion": "Dussehra (Vijayadashami)",
+      "scope": "Regional (e.g., DL, MH, UP)"
+    },
+    {
+      "date": "2026-10-26",
+      "occasion": "Maharishi Valmiki Jayanti",
+      "scope": "Regional (e.g., DL)"
+    },
+    {
+      "date": "2026-11-05",
+      "occasion": "Kartiki Ekadashi",
+      "scope": "Regional (e.g., MH)"
+    },
+    {
+      "date": "2026-11-08",
+      "occasion": "Diwali",
+      "scope": "Regional (e.g., DL NCR)"
+    },
+    {
+      "date": "2026-11-24",
+      "occasion": "Guru Nanak Jayanti",
+      "scope": "Regional (e.g., DL, UP)"
+    },
+    {
+      "date": "2026-12-25",
+      "occasion": "Christmas",
+      "scope": "Regional (e.g., DL, KL, GA, AS)"
+    }
+  ],
+  "prohibited_states": [
+    "Gujarat",
+    "Bihar",
+    "Mizoram",
+    "Nagaland",
+    "Lakshadweep"
+  ]
+}

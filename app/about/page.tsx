@@ -114,7 +114,7 @@ export default function AboutPage() {
             <span>Strict Public Service Notice — Coverage: Partial</span>
           </div>
           <p className="text-xs text-neutral-400">
-            Not a complete all-India dry-day calendar. Unknown state prohibition values are null, not false. Do not display null as 'not a dry day'. Date entries are empty because the reviewed sources did not establish a complete, current, state-wise date calendar.
+            Not a complete all-India dry-day calendar. Unknown state prohibition values are null, not false. Do not display null as &apos;not a dry day&apos;. Date entries are empty because the reviewed sources did not establish a complete, current, state-wise date calendar.
           </p>
           <p className="text-xs text-neutral-400">
             DryCheck India does not sell, promote, deliver, facilitate, or market alcohol. It is an independent public-interest web utility designed to save citizens time and prevent unnecessary trips to shuttered stores.

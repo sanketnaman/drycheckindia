@@ -5,8 +5,8 @@
       "type": "national",
       "reason": "Republic Day",
       "status": "confirmed",
-      "sourceUrl": "https://excise.delhi.gov.in/notifications",
-      "sourceNote": "Confirmed for Delhi by official order dated 15.01.2026. Applied to all states as a national holiday; state notifications should be confirmed."
+      "sourceUrl": "https://excise.delhi.gov.in/excise/dry-day-order-dated-15012026",
+      "sourceNote": "Official Delhi Excise Department dry-day order dated 15.01.2026. Confirmed for Delhi; applied nationally per order."
     },
     {
       "date": "2026-08-15",
@@ -611,9 +611,9 @@
       "date": "2026-01-26",
       "type": "national",
       "reason": "Republic Day",
-      "status": "pending",
-      "sourceUrl": "",
-      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
+      "status": "confirmed",
+      "sourceUrl": "https://excise.delhi.gov.in/excise/dry-day-order-dated-15012026",
+      "sourceNote": "Official Delhi Excise Department dry-day order dated 15.01.2026. Confirmed for Delhi; applied nationally per order."
     },
     {
       "state": "jharkhand",
@@ -640,7 +640,7 @@
       "reason": "Independence Day",
       "status": "pending",
       "sourceUrl": "",
-      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
+      "sourceNote": "National holiday â€” Jharkhand Gazette reference from screenshot; official notification URL not located."
     },
     {
       "state": "jharkhand",
@@ -649,7 +649,7 @@
       "reason": "Gandhi Jayanti",
       "status": "pending",
       "sourceUrl": "",
-      "sourceNote": "National holiday — Jharkhand Gazette reference from screenshot; official notification URL not located."
+      "sourceNote": "National holiday â€” Jharkhand Gazette reference from screenshot; official notification URL not located."
     },
     {
       "state": "jharkhand",
@@ -658,7 +658,7 @@
       "reason": "Vijayadashami / Dussehra",
       "status": "pending",
       "sourceUrl": "",
-      "sourceNote": "State major festival (Full Ban) — screenshot reference; official Jharkhand excise notification URL not located."
+      "sourceNote": "State major festival (Full Ban) â€” screenshot reference; official Jharkhand excise notification URL not located."
     },
     {
       "state": "jharkhand",
@@ -667,7 +667,7 @@
       "reason": "Diwali",
       "status": "pending",
       "sourceUrl": "",
-      "sourceNote": "Religious / state order (Sunday) — screenshot reference; official notification URL not located."
+      "sourceNote": "Religious / state order (Sunday) â€” screenshot reference; official notification URL not located."
     },
     {
       "state": "jharkhand",
@@ -676,7 +676,16 @@
       "reason": "Chhath Puja (morning Arghya)",
       "status": "pending",
       "sourceUrl": "",
-      "sourceNote": "State-specific major festival holiday — screenshot reference; official notification URL not located."
+      "sourceNote": "State-specific major festival holiday â€” screenshot reference; official notification URL not located."
+    },
+    {
+      "state": "karnataka",
+      "date": "2026-10-21",
+      "type": "local",
+      "reason": "Dasara processions â€” liquor sales curbs (RT Nagar, JC Nagar, Hebbal police limits)",
+      "status": "reported",
+      "sourceUrl": "https://timesofindia.indiatimes.com/city/bengaluru/liquor-sales-curbs-from-oct-21-for-dasara-processions-mlc-polls/articleshow/135054400.cms",
+      "sourceNote": "Times of India news report (Oct 19, 2026). Area-specific restriction for Bengaluru police station limits; not an official police order URL."
     }
   ]
 }

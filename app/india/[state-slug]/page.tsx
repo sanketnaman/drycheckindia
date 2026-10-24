@@ -12,11 +12,11 @@ import {
   getTomorrowIST,
   getStatus,
   getNextDryDays,
-  getAllEntries,
   getDeterministicSecondaryLine,
   formatDateDisplay,
   dateToSlug,
 } from '@/lib/dryday';
+import { getPublicEntries } from '@/lib/public-drydays';
 import {
   Calendar,
   ExternalLink,
@@ -90,29 +90,36 @@ export default async function StatePage({ params }: Props) {
     notFound();
   }
 
+  const entries = await getPublicEntries();
+  // True while the database has no published, publicly-verifiable entries.
+  const datasetEmpty = entries.length === 0;
   const todayIST = getTodayIST();
   const tomorrowIST = getTomorrowIST();
 
-  const todayStatus = getStatus(state.slug, todayIST);
-  const tomorrowStatus = getStatus(state.slug, tomorrowIST);
+  const todayStatus = getStatus(state.slug, todayIST, entries);
+  const tomorrowStatus = getStatus(state.slug, tomorrowIST, entries);
 
   const todayLabel = state.prohibition === true
     ? 'Always'
     : state.prohibition === null
-    ? 'Maybe'
+    ? 'Status not verified'
     : todayStatus === 'dry'
     ? 'Yes'
     : todayStatus === 'not_dry'
     ? 'No'
+    : todayStatus === 'unavailable'
+    ? 'Status not verified'
     : 'Maybe';
 
   const secondaryLine = state.prohibition
     ? `Total statutory prohibition in ${state.name}. Alcohol is prohibited 365 days a year.`
+    : todayStatus === 'unavailable'
+    ? 'No verified dry-day status available for this date.'
     : getDeterministicSecondaryLine(todayStatus, tomorrowStatus, `${todayIST}-${state.slug}`);
 
-  const next30Days = state.prohibition ? [] : getNextDryDays(state.slug, todayIST, 30);
+  const next30Days = state.prohibition ? [] : getNextDryDays(state.slug, todayIST, 30, entries);
 
-  const allEntries = getAllEntries().filter(
+  const allEntries = entries.filter(
     (e) => e.state === state.slug || e.state === 'all'
   );
 
@@ -160,13 +167,15 @@ export default async function StatePage({ params }: Props) {
         name: `Is today a dry day in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: state.prohibition
-            ? `Yes, ${state.name} observes complete statewide statutory prohibition. Every day is a dry day.`
-            : todayStatus === 'dry'
-            ? `Yes, today (${formattedToday}) is a scheduled dry day in ${state.name} under official state excise department notifications.`
-            : todayStatus === 'maybe'
-            ? `Today has a pending or constituency-level dry day status in ${state.name}. Official confirmation awaited.`
-            : `No, today (${formattedToday}) is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
+        text: state.prohibition
+          ? `Yes, ${state.name} observes complete statewide statutory prohibition. Every day is a dry day.`
+          : todayStatus === 'dry'
+          ? `Yes, today (${formattedToday}) is a scheduled dry day in ${state.name} under official state excise department notifications.`
+          : todayStatus === 'maybe'
+          ? `Today has a pending or reported dry day signal in ${state.name}. Official confirmation awaited.`
+          : todayStatus === 'unavailable'
+          ? `Today's dry-day status in ${state.name} is not verified. No official confirmation is available for this date.`
+          : `No, today (${formattedToday}) is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
         },
       },
       {
@@ -174,13 +183,15 @@ export default async function StatePage({ params }: Props) {
         name: `Is tomorrow a dry day in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: state.prohibition
-            ? `Yes, because ${state.name} enforces permanent prohibition year-round.`
-            : tomorrowStatus === 'dry'
-            ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
-            : tomorrowStatus === 'maybe'
-            ? `Tomorrow's dry status is pending official confirmation in ${state.name}.`
-            : `No, tomorrow (${formattedTomorrow}) is not scheduled as a dry day in ${state.name}.`,
+        text: state.prohibition
+          ? `Yes, because ${state.name} enforces permanent prohibition year-round.`
+          : tomorrowStatus === 'dry'
+          ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
+          : tomorrowStatus === 'maybe'
+          ? `Tomorrow's dry status is pending official confirmation in ${state.name}.`
+          : tomorrowStatus === 'unavailable'
+          ? `Tomorrow's dry-day status in ${state.name} is not verified. No official confirmation is available.`
+          : `No, tomorrow (${formattedTomorrow}) is not scheduled as a dry day in ${state.name}.`,
         },
       },
       {
@@ -259,6 +270,8 @@ export default async function StatePage({ params }: Props) {
                     ? 'bg-rose-950/70 text-rose-300 border-rose-800/60'
                     : todayStatus === 'maybe'
                     ? 'bg-amber-950/70 text-amber-300 border-amber-800/60'
+                    : todayStatus === 'unavailable'
+                    ? 'bg-neutral-800/80 text-neutral-300 border-neutral-600/60'
                     : 'bg-emerald-950/70 text-emerald-300 border-emerald-800/60'
                 }`}
               >
@@ -272,7 +285,9 @@ export default async function StatePage({ params }: Props) {
                 ? 'Liquor retail shops and bars are mandated closed under state excise rules.'
                 : todayStatus === 'maybe'
                 ? 'Pending or constituency-level closure in effect. Official confirmation awaited.'
-                : 'Retail shops and licensed premises remain open for business.'}
+                : todayStatus === 'unavailable'
+                ? 'No verified dry-day status available for this date.'
+                : 'No scheduled dry day for this date.'}
             </p>
           </div>
 
@@ -287,10 +302,12 @@ export default async function StatePage({ params }: Props) {
                     ? 'bg-rose-950/70 text-rose-300 border-rose-800/60'
                     : tomorrowStatus === 'maybe'
                     ? 'bg-amber-950/70 text-amber-300 border-amber-800/60'
+                    : tomorrowStatus === 'unavailable'
+                    ? 'bg-neutral-800/80 text-neutral-300 border-neutral-600/60'
                     : 'bg-emerald-950/70 text-emerald-300 border-emerald-800/60'
                 }`}
               >
-                {state.prohibition ? 'Always Dry' : tomorrowStatus === 'dry' ? 'Dry' : tomorrowStatus === 'maybe' ? 'Maybe' : 'Open'}
+                {state.prohibition ? 'Always Dry' : tomorrowStatus === 'dry' ? 'Dry' : tomorrowStatus === 'maybe' ? 'Maybe' : tomorrowStatus === 'unavailable' ? 'Status not verified' : 'Open'}
               </span>
             </div>
             <p className="mt-2 text-xs sm:text-sm text-neutral-200">
@@ -300,6 +317,8 @@ export default async function StatePage({ params }: Props) {
                 ? 'Official dry day directive scheduled for tomorrow.'
                 : tomorrowStatus === 'maybe'
                 ? 'Official confirmation awaited for upcoming civic or festival notification.'
+                : tomorrowStatus === 'unavailable'
+                ? 'No verified dry-day status available for tomorrow.'
                 : 'No dry day order scheduled for tomorrow.'}
             </p>
           </div>
@@ -319,19 +338,25 @@ export default async function StatePage({ params }: Props) {
                 </p>
               </div>
               <span className="text-xs font-mono text-neutral-400">
-                {next30Days.length} {next30Days.length === 1 ? 'date' : 'dates'}
+                {datasetEmpty
+                  ? 'Awaiting published data'
+                  : `${next30Days.length} ${next30Days.length === 1 ? 'date' : 'dates'}`}
               </span>
             </div>
 
             {next30Days.length === 0 ? (
               <div className="mt-3 p-4 rounded-xl border border-neutral-800 bg-neutral-950/40 text-center text-xs text-neutral-400">
                 <ShieldCheck className="h-5 w-5 text-emerald-400 mx-auto mb-1.5" />
-                No dry days scheduled for {state.name} in the next 30 days.
+                {datasetEmpty
+                  ? 'No verified dry-day entries published yet. This list will update once state excise notifications are published.'
+                  : `No verified dry days scheduled for ${state.name} in the next 30 days.`}
               </div>
             ) : (
               <div className="mt-3 space-y-2">
                 {next30Days.map((entry, idx) => {
                   const isPending = entry.status === 'pending';
+                  const isReported = entry.status === 'reported';
+                  const isLocal = entry.type === 'local';
 
                   return (
                     <div
@@ -350,9 +375,16 @@ export default async function StatePage({ params }: Props) {
                             {entry.reason}
                           </Link>
                           <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-neutral-400 mt-0.5">
-                            <span className="capitalize">{entry.type}</span>
+                            <span className="capitalize">
+                              {isLocal ? 'Local restriction' : entry.type}
+                              {entry.locality ? `: ${entry.locality}` : ''}
+                            </span>
                             <span>&bull;</span>
-                            {isPending ? (
+                            {isReported ? (
+                              <span className="text-amber-400 font-medium">
+                                Reported — not officially confirmed
+                              </span>
+                            ) : isPending || isLocal ? (
                               <span className="text-amber-400 font-medium">
                                 Maybe &bull; Official confirmation awaited
                               </span>
@@ -409,13 +441,15 @@ export default async function StatePage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
             {nearbyStates.map((nb) => {
-              const nbStatus = getStatus(nb.slug, todayIST);
+              const nbStatus = getStatus(nb.slug, todayIST, entries);
               const nbLabel = nb.prohibition
                 ? 'Always Dry'
                 : nbStatus === 'dry'
                 ? 'Dry Today'
                 : nbStatus === 'maybe'
                 ? 'Maybe'
+                : nbStatus === 'unavailable'
+                ? 'Status not verified'
                 : 'Open Today';
 
               return (
@@ -433,6 +467,8 @@ export default async function StatePage({ params }: Props) {
                         ? 'text-rose-400'
                         : nbStatus === 'maybe'
                         ? 'text-amber-400'
+                        : nbStatus === 'unavailable'
+                        ? 'text-neutral-400'
                         : 'text-emerald-400'
                     }`}
                   >

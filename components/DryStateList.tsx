@@ -5,8 +5,9 @@ import { AlertTriangle, ChevronRight, ShieldCheck } from 'lucide-react';
 interface DryStateItem {
   state: StateInfo;
   entry?: DryDayEntry;
-  status: 'dry' | 'maybe';
+  status: 'dry' | 'maybe' | 'unavailable';
   isProhibition?: boolean;
+  isReported?: boolean;
 }
 
 interface DryStateListProps {
@@ -15,6 +16,8 @@ interface DryStateListProps {
   items: DryStateItem[];
   emptyMessage?: string;
   isTomorrow?: boolean;
+  /** True when the public dataset has no published entries at all. */
+  datasetEmpty?: boolean;
 }
 
 export default function DryStateList({
@@ -23,6 +26,7 @@ export default function DryStateList({
   items,
   emptyMessage = 'No general dry day scheduled. Regular retail licensing rules apply.',
   isTomorrow = false,
+  datasetEmpty = false,
 }: DryStateListProps) {
   const eventDryDays = items.filter((item) => !item.isProhibition);
   const prohibitionStates = items.filter((item) => item.isProhibition);
@@ -41,7 +45,9 @@ export default function DryStateList({
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300">
-            {eventDryDays.length} {eventDryDays.length === 1 ? 'state' : 'states'} on schedule
+            {datasetEmpty
+              ? 'Awaiting published data'
+              : `${eventDryDays.length} ${eventDryDays.length === 1 ? 'state' : 'states'} on schedule`}
           </span>
         </div>
       </div>
@@ -51,6 +57,8 @@ export default function DryStateList({
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {eventDryDays.map(({ state, entry, status }) => {
             const isPending = entry?.status === 'pending' || status === 'maybe';
+            const isUnavailable = status === 'unavailable';
+            const isReported = entry?.status === 'reported';
 
             return (
               <Link
@@ -64,12 +72,16 @@ export default function DryStateList({
                   </span>
                   <span
                     className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border ${
-                      isPending
+                      isUnavailable
+                        ? 'bg-neutral-800/80 text-neutral-300 border-neutral-600/60'
+                        : isReported
+                        ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
+                        : isPending
                         ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
                         : 'bg-rose-950/80 text-rose-300 border-rose-800/60'
                     }`}
                   >
-                    {isPending ? 'Maybe' : 'Dry'}
+                    {isUnavailable ? 'Status not verified' : isReported ? 'Scheduled — reported' : isPending ? 'Maybe' : 'Dry'}
                   </span>
                 </div>
 
@@ -81,6 +93,16 @@ export default function DryStateList({
                   {isPending && (
                     <span className="text-[10px] text-amber-400/90 font-medium mt-0.5">
                       Official confirmation awaited
+                    </span>
+                  )}
+                  {isUnavailable && (
+                    <span className="text-[10px] text-neutral-500 font-medium mt-0.5">
+                      No verified status for this state and date
+                    </span>
+                  )}
+                  {isReported && (
+                    <span className="text-[10px] text-amber-400/90 font-medium mt-0.5">
+                      Reported by news source — official confirmation not verified
                     </span>
                   )}
                 </div>

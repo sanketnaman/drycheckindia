@@ -1,4 +1,25 @@
-import rawData from '@/data/dry-days.json';
+/**
+ * Domain helpers for dry-day status computation.
+ *
+ * TWO SEPARATE CONCERNS LIVE IN THIS MODULE:
+ *
+ * 1. STATUTORY REFERENCE DATA (used at runtime by the public site):
+ *    the 36-state list with `prohibition` flags, region names and `lastVerified`
+ *    metadata from data/dry-days.json. This is intentionally a separate,
+ *    explicitly documented source: total statutory prohibition (e.g. Bihar,
+ *    Gujarat) is a standing legal fact, NOT a manually entered date-specific
+ *    record, and it is rendered as such (always dry, every date).
+ *
+ * 2. ARCHIVED DATE-SPECIFIC ENTRIES (NOT used by any app route):
+ *    data/dry-days.json `entries` + `nationalDryDays` and the datadry.json
+ *    import are expanded into `expandedEntries` and exposed ONLY through
+ *    getAllEntries() for tests and offline tooling. The public site's
+ *    source of truth for managed dry-day entries is Supabase via
+ *    lib/public-drydays.ts — every status helper takes the dataset as a
+ *    REQUIRED parameter so no call site can silently fall back to JSON.
+ */
+import dryDayRaw from '@/data/dry-days.json';
+import datadryRaw from '@/data/datadry.json';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://drycheck.in';
 
@@ -14,7 +35,7 @@ export interface StateInfo {
 }
 
 export type DryDayType = 'national' | 'festival' | 'election' | 'state' | 'local';
-export type DryDayStatus = 'confirmed' | 'pending';
+export type DryDayStatus = 'confirmed' | 'pending' | 'reported';
 
 export interface DryDayEntry {
   state: string; // state slug or 'all'
@@ -24,6 +45,8 @@ export interface DryDayEntry {
   status: DryDayStatus;
   sourceUrl: string;
   sourceNote?: string;
+  /** Locality scope for type='local' records (from dry_days.locality). */
+  locality?: string;
 }
 
 export interface DryDaysData {
@@ -39,7 +62,7 @@ export interface DryDaysData {
   }>;
 }
 
-const data = rawData as DryDaysData;
+const data = dryDayRaw as DryDaysData;
 
 // Expand nationalDryDays to all non-prohibition states for each date
 const expandedEntries: DryDayEntry[] = [...data.entries];
@@ -67,6 +90,110 @@ if (data.nationalDryDays) {
       });
     }
   }
+}
+
+// Import datadry.json dataset (regional/national dry days without official URLs)
+const datadryData = datadryRaw as {
+  country: string;
+  year: number;
+  description: string;
+  dry_days: Array<{
+    date: string;
+    occasion: string;
+    scope: string;
+  }>;
+  prohibited_states: string[];
+};
+
+// Map regional scopes to state slugs (only where scope explicitly names states)
+const REGIONAL_SCOPE_MAP: Record<string, string[]> = {
+  'MH': ['maharashtra'],
+  'GJ': ['gujarat'],
+  'UP': ['uttar-pradesh'],
+  'KA': ['karnataka'],
+  'RJ': ['rajasthan'],
+  'DL': ['delhi'],
+  'MP': ['madhya-pradesh'],
+  'KL': ['kerala'],
+  'TN': ['tamil-nadu'],
+  'GA': ['goa'],
+  'AS': ['assam'],
+};
+
+// Process datadry dry_days: only import scopes that explicitly name states.
+// Scopes containing "e.g.", "varies", or "lunar" are ambiguous examples and
+// must NOT be elevated to state-level claims (would fabricate entries).
+for (const dd of datadryData.dry_days) {
+  const scope = dd.scope || '';
+  const scopeLower = scope.toLowerCase();
+  const isNational = scopeLower.includes('nationwide');
+  const isAmbiguous =
+    scopeLower.includes('e.g.') ||
+    scopeLower.includes('varies') ||
+    scopeLower.includes('lunar');
+
+  if (isNational || isAmbiguous) {
+    continue;
+  }
+
+  const isRegional = scopeLower.includes('regional');
+  if (!isRegional) {
+    continue;
+  }
+
+  const codes = scope.match(/([A-Z]{2})/g) || [];
+  const matchedStates = new Set<string>();
+  for (const code of codes) {
+    const mapped = REGIONAL_SCOPE_MAP[code];
+    if (mapped) {
+      for (const s of mapped) matchedStates.add(s);
+    }
+  }
+  if (matchedStates.size === 0) continue;
+
+  for (const slug of matchedStates) {
+    const stateInfo = data.states.find((s) => s.slug === slug);
+    if (stateInfo?.prohibition === true) continue;
+    const existing = expandedEntries.find(
+      (e) => e.state === slug && e.date === dd.date
+    );
+    if (existing) continue;
+    expandedEntries.push({
+      state: slug,
+      date: dd.date,
+      type: 'state' as DryDayType,
+      reason: dd.occasion,
+      status: 'pending' as DryDayStatus,
+      sourceUrl: '',
+      sourceNote: `Imported from datadry.json (scope: ${scope}). No official source URL verified.`,
+    });
+  }
+}
+
+/**
+ * Local restrictions (police-limits, procession routes, etc.) are never
+ * treated as statewide unless locality metadata explicitly proves otherwise.
+ */
+export function isStatewideApplicable(entry: DryDayEntry): boolean {
+  return entry.type !== 'local';
+}
+
+/**
+ * Applicable statewide entries for a state (or 'all') on a date.
+ * The dataset is always supplied by the caller (public routes pass the
+ * Supabase-derived list; tests pass fixtures).
+ */
+function getStatewideEntriesOn(
+  stateSlug: string,
+  dateIST: string,
+  entries: DryDayEntry[]
+): DryDayEntry[] {
+  return entries.filter(
+    (e) =>
+      (e.state === stateSlug || e.state === 'all') &&
+      e.date === dateIST &&
+      isStatewideApplicable(e)
+  );
 }
 
 const MONTH_NAMES_LONG = [
@@ -132,6 +259,11 @@ export function getStateBySlug(slug: string): StateInfo | undefined {
   return data.states.find((s) => s.slug.toLowerCase() === slug.toLowerCase());
 }
 
+/**
+ * Archived JSON dataset — TEST FIXTURES AND OFFLINE TOOLING ONLY.
+ * Never called by app routes; the public source of truth is Supabase
+ * via lib/public-drydays.ts.
+ */
 export function getAllEntries(): DryDayEntry[] {
   return expandedEntries;
 }
@@ -207,59 +339,91 @@ export function formatDateDisplay(
 
 /**
  * Returns dry status for a specific state on a specific date:
- * 'dry' | 'not_dry' | 'maybe'
+ * 'dry' | 'not_dry' | 'maybe' | 'unavailable'
+ *
+ * - confirmed statewide entry → dry
+ * - reported (news) entry → maybe (never confirmed)
+ * - pending-only entry → unverified (unavailable)
+ * - no applicable entry + prohibition false → not_dry
+ * - no applicable entry + prohibition unknown (null) → unavailable
+ * - EMPTY dataset (no published entries at all) → unavailable for every
+ *   non-prohibition state: absence of the whole dataset is not evidence of
+ *   "not dry" for any date
+ * - local-only entries never produce a statewide dry/maybe result
  */
-export function getStatus(stateSlug: string, dateIST: string): 'dry' | 'not_dry' | 'maybe' {
+export function getStatus(
+  stateSlug: string,
+  dateIST: string,
+  entries: DryDayEntry[]
+): 'dry' | 'not_dry' | 'maybe' | 'unavailable' {
   const state = getStateBySlug(stateSlug);
-  if (state?.prohibition === true) {
+  if (!state) {
+    return 'unavailable';
+  }
+  if (state.prohibition === true) {
     return 'dry';
   }
-  if (state?.prohibition === null) {
-    return 'maybe';
+  // An entirely unpopulated dataset must never read as "not dry".
+  if (entries.length === 0) {
+    return 'unavailable';
   }
 
-  const entries = data.entries.filter(
-    (e) => (e.state === stateSlug || e.state === 'all') && e.date === dateIST
-  );
+  const stateEntries = getStatewideEntriesOn(stateSlug, dateIST, entries);
 
-  if (entries.length === 0) {
+  if (stateEntries.length > 0) {
+    if (stateEntries.some((e) => e.status === 'confirmed')) {
+      return 'dry';
+    }
+    if (stateEntries.some((e) => e.status === 'reported')) {
+      return 'maybe';
+    }
+    // pending-only: must not be presented as verified
+    return 'unavailable';
+  }
+
+  // No applicable statewide entries for this date.
+  if (state.prohibition === false) {
     return 'not_dry';
   }
-
-  if (entries.some((e) => e.status === 'confirmed')) {
-    return 'dry';
-  }
-
-  return 'maybe';
+  // prohibition unknown (null): absence of entries is not proof of "not dry"
+  return 'unavailable';
 }
 
 /**
- * Get active entries for a specific state on a date
+ * Get active statewide entries for a specific state on a date
+ * (excludes local-only restrictions from statewide answers)
  */
-export function getEntriesForStateOnDate(stateSlug: string, dateIST: string): DryDayEntry[] {
-  return data.entries.filter(
-    (e) => (e.state === stateSlug || e.state === 'all') && e.date === dateIST
-  );
+export function getEntriesForStateOnDate(
+  stateSlug: string,
+  dateIST: string,
+  entries: DryDayEntry[]
+): DryDayEntry[] {
+  return getStatewideEntriesOn(stateSlug, dateIST, entries);
 }
 
 /**
  * Get the nationwide answer for today/tomorrow
  */
-export function getNationwideStatus(dateIST: string): {
-  status: 'dry' | 'not_dry' | 'maybe';
-  label: 'Yes' | 'No' | 'Maybe';
+export function getNationwideStatus(
+  dateIST: string,
+  entries: DryDayEntry[]
+): {
+  status: 'dry' | 'not_dry' | 'maybe' | 'unavailable';
+  label: 'Yes' | 'No' | 'Maybe' | 'Status not verified';
   dryCount: number;
   totalStates: number;
 } {
-  const nonProhibitionStates = data.states.filter((s) => !s.prohibition);
-  const dryStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST) === 'dry');
-  const maybeStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST) === 'maybe');
+  const source = entries;
+  const nonProhibitionStates = data.states.filter((s) => s.prohibition !== true);
+  const dryStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST, source) === 'dry');
+  const maybeStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST, source) === 'maybe');
+  const unavailableStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST, source) === 'unavailable');
 
-  const nationalHoliday = data.entries.find(
-    (e) => e.state === 'all' && e.date === dateIST && e.status === 'confirmed'
+  const nationalHoliday = source.find(
+    (e) => e.state === 'all' && e.date === dateIST && e.status === 'confirmed' && isStatewideApplicable(e)
   );
 
-  if (nationalHoliday || dryStates.length === nonProhibitionStates.length) {
+  if (nationalHoliday || (nonProhibitionStates.length > 0 && dryStates.length === nonProhibitionStates.length)) {
     return {
       status: 'dry',
       label: 'Yes',
@@ -277,6 +441,15 @@ export function getNationwideStatus(dateIST: string): {
     };
   }
 
+  if (unavailableStates.length > 0) {
+    return {
+      status: 'unavailable',
+      label: 'Status not verified',
+      dryCount: 0,
+      totalStates: data.states.length,
+    };
+  }
+
   return {
     status: 'not_dry',
     label: 'No',
@@ -286,18 +459,22 @@ export function getNationwideStatus(dateIST: string): {
 }
 
 /**
- * Returns states that are dry (or maybe) on dateIST
+ * Returns states with an applicable statewide dry-day record (or prohibition)
+ * on dateIST. Local-only restrictions do not appear as statewide dry days.
  */
-export function getDryStatesOn(dateIST: string): {
+export function getDryStatesOn(
+  dateIST: string,
+  entries: DryDayEntry[]
+): {
   state: StateInfo;
   entry?: DryDayEntry;
-  status: 'dry' | 'maybe';
+  status: 'dry' | 'maybe' | 'unavailable';
   isProhibition?: boolean;
 }[] {
   const result: {
     state: StateInfo;
     entry?: DryDayEntry;
-    status: 'dry' | 'maybe';
+    status: 'dry' | 'maybe' | 'unavailable';
     isProhibition?: boolean;
   }[] = [];
 
@@ -311,29 +488,21 @@ export function getDryStatesOn(dateIST: string): {
       continue;
     }
 
-    if (state.prohibition === null) {
-      result.push({
-        state,
-        status: 'maybe',
-        isProhibition: false,
-      });
-      continue;
-    }
-
-    const stateEntries = data.entries.filter(
-      (e) => (e.state === state.slug || e.state === 'all') && e.date === dateIST
-    );
+    const stateEntries = getStatewideEntriesOn(state.slug, dateIST, entries);
 
     if (stateEntries.length > 0) {
       const confirmed = stateEntries.find((e) => e.status === 'confirmed');
-      const entry = confirmed || stateEntries[0];
+      const reported = stateEntries.find((e) => e.status === 'reported');
+      const entry = confirmed || reported || stateEntries[0];
+      const hasPendingOnly = stateEntries.every((e) => e.status === 'pending');
       result.push({
         state,
         entry,
-        status: confirmed ? 'dry' : 'maybe',
+        status: confirmed ? 'dry' : reported ? 'maybe' : hasPendingOnly ? 'unavailable' : 'maybe',
         isProhibition: false,
       });
     }
+    // States with no applicable statewide record are omitted (not listed as open or dry)
   }
 
   return result;
@@ -341,11 +510,19 @@ export function getDryStatesOn(dateIST: string): {
 
 /**
  * Get next dry days for a state or nationwide ('all') within a given window
+ * from the caller-supplied dataset.
+ * Local entries are included for display but never affect getStatus.
  */
-export function getNextDryDays(stateSlug: string, fromDateIST: string, days: number): DryDayEntry[] {
+export function getNextDryDays(
+  stateSlug: string,
+  fromDateIST: string,
+  days: number,
+  entries: DryDayEntry[]
+): DryDayEntry[] {
   const endDate = getDateFromOffsetIST(days, fromDateIST);
+  const source = entries;
 
-  const matched = data.entries.filter((e) => {
+  const matched = source.filter((e) => {
     const isStateMatch = stateSlug === 'all' || e.state === stateSlug || e.state === 'all';
     return isStateMatch && e.date >= fromDateIST && e.date <= endDate;
   });
@@ -356,7 +533,11 @@ export function getNextDryDays(stateSlug: string, fromDateIST: string, days: num
 /**
  * Group upcoming dry days across India for next N days by date
  */
-export function getUpcomingDryDaysGrouped(fromDateIST: string, days: number = 28): {
+export function getUpcomingDryDaysGrouped(
+  fromDateIST: string,
+  days: number,
+  entries: DryDayEntry[]
+): {
   date: string;
   slug: string;
   displayDate: string;
@@ -364,10 +545,10 @@ export function getUpcomingDryDaysGrouped(fromDateIST: string, days: number = 28
   statesCount: number;
   isNational: boolean;
 }[] {
-  const entries = getNextDryDays('all', fromDateIST, days);
+  const groupedSource = getNextDryDays('all', fromDateIST, days, entries);
   const map = new Map<string, DryDayEntry[]>();
 
-  for (const entry of entries) {
+  for (const entry of groupedSource) {
     const existing = map.get(entry.date) || [];
     existing.push(entry);
     map.set(entry.date, existing);
@@ -460,8 +641,8 @@ const TOMORROW_MAYBE_VARIANTS = [
  * All variants are strictly under 6 words with light Hindi/Hinglish flavor.
  */
 export function getDeterministicSecondaryLine(
-  todayStatus: 'dry' | 'not_dry' | 'maybe',
-  tomorrowStatus: 'dry' | 'not_dry' | 'maybe',
+  todayStatus: 'dry' | 'not_dry' | 'maybe' | 'unavailable',
+  tomorrowStatus: 'dry' | 'not_dry' | 'maybe' | 'unavailable',
   dateStr: string
 ): string {
   const hash = dateStr.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -482,6 +663,8 @@ export function getDeterministicSecondaryLine(
     } else {
       return "(Status uncertain today: check gazette)";
     }
+  } else if (todayStatus === 'unavailable') {
+    return "(Status unavailable: no verified data for this state and date)";
   } else {
     // Today is not dry
     if (tomorrowStatus === 'dry') {
