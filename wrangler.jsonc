@@ -1,5 +1,6 @@
 {
-  "name": "drycheck",
+  "main": ".open-next/worker.js",
+  "name": "drycheckindia",
   "compatibility_date": "2025-10-20",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
