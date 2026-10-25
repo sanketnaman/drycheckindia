@@ -74,7 +74,7 @@ describe('configuration gate (behaviour preserved)', () => {
     expect(response.status).toBe(503);
     expect(response.headers.get('location')).toBeNull();
     const body = (await response.json()) as { error: string };
-    expect(body.error).toContain('not configured');
+    expect(body.error).toBe('Supabase is not configured for this deployment.');
     expect(mockCreateServerClient).not.toHaveBeenCalled();
   });
 
