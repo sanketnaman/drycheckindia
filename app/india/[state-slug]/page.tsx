@@ -21,6 +21,7 @@ import {
   type PublicStatus,
 } from '@/lib/dryday';
 import { getPublicDataset } from '@/lib/public-drydays';
+import { getPublishedGuidesByState } from '@/lib/guides';
 import {
   Calendar,
   ExternalLink,
@@ -30,7 +31,8 @@ import {
   MapPin,
   HelpCircle as QuestionIcon,
   CheckCircle,
-  Clock
+  Clock,
+  BookOpen
 } from 'lucide-react';
 
 export const revalidate = 3600;
@@ -93,6 +95,8 @@ export default async function StatePage({ params }: Props) {
   if (!state) {
     notFound();
   }
+
+  const publishedGuides = getPublishedGuidesByState(state.slug);
 
   const dataset = await getPublicDataset();
   const entries = dataset.entries;
@@ -521,8 +525,75 @@ export default async function StatePage({ params }: Props) {
             <p className="text-neutral-400 text-xs">
               National holidays (26 January, 15 August, and 2 October) are mandatory pan-India dry days. In addition, 48-hour dry curfews are enforced prior to election voting in designated constituencies.
             </p>
+            {state.slug === 'kerala' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed legal analysis of election-related alcohol closures in Kerala, read our verified guide:{' '}
+                <Link
+                  href="/guides/kerala-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Learn more about Kerala&apos;s 2026 election dry-day order, including the official dates and restrictions
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </section>
+
+        {/* State Regulatory Guides Section */}
+        {publishedGuides.length > 0 && (
+          <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800 mb-3">
+              <div>
+                <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-amber-400" />
+                  <span>Official Regulatory &amp; Election Guides &bull; {state.name}</span>
+                </h2>
+                <p className="text-xs text-neutral-400 mt-0.5">
+                  In-depth legal breakdown of government orders, polling restrictions, and excise policies for {state.name}.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              {publishedGuides.map((guide) => (
+                <div
+                  key={guide.slug}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border border-neutral-800/80 bg-neutral-950 hover:border-amber-500/50 transition-colors gap-3"
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        Official Gazette Analysis
+                      </span>
+                      {guide.isHistorical && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-900 text-neutral-400 border border-neutral-800">
+                          Historical Order
+                        </span>
+                      )}
+                    </div>
+                    <Link
+                      href={`/guides/${guide.slug}`}
+                      className="text-xs sm:text-sm font-semibold text-white hover:text-amber-400 transition-colors block"
+                    >
+                      {guide.title}
+                    </Link>
+                    <p className="text-xs text-neutral-400 leading-relaxed">
+                      Learn more about {state.name}&apos;s 2026 election dry-day order, including the official dates and restrictions.
+                    </p>
+                  </div>
+                  <Link
+                    href={`/guides/${guide.slug}`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 hover:underline shrink-0 min-h-[44px]"
+                  >
+                    <span>Read Guide</span>
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* FAQs Section */}
         <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">

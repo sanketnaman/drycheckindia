@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllStates, dateToSlug, getTodayIST } from '@/lib/dryday';
 import { getPublicEntries } from '@/lib/public-drydays';
+import { getPublishedGuides } from '@/lib/guides';
 
 const SITE_URL = 'https://drycheck.in';
 
@@ -19,6 +20,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: todayIso,
       changeFrequency: 'hourly',
       priority: 1.0,
+    },
+    {
+      url: `${SITE_URL}/guides`,
+      lastModified: todayIso,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${SITE_URL}/about`,
@@ -45,6 +52,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
   ];
+
+  // Published State & UT Guides
+  const publishedGuides = getPublishedGuides();
+  const guideRoutes: MetadataRoute.Sitemap = publishedGuides.map((guide) => {
+    let guideLastMod = todayIso;
+    const parsed = Date.parse(guide.lastUpdatedDate);
+    if (!Number.isNaN(parsed)) {
+      guideLastMod = new Date(parsed).toISOString();
+    }
+    return {
+      url: `${SITE_URL}/guides/${guide.slug}`,
+      lastModified: guideLastMod,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    };
+  });
 
   // State routes (all 36 states and union territories)
   // Use state's lastVerified timestamp if valid, fallback to today's start of day
@@ -91,5 +114,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   );
 
-  return [...staticRoutes, ...stateRoutes, ...dateRoutes];
+  return [...staticRoutes, ...guideRoutes, ...stateRoutes, ...dateRoutes];
 }

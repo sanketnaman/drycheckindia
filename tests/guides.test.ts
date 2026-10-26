@@ -1,0 +1,160 @@
+import { describe, test, expect } from 'vitest';
+import {
+  getAllGuides,
+  getPublishedGuides,
+  getGuideBySlug,
+  getPublishedGuideBySlug,
+  getPublishedGuidesByState,
+  getGuideStateSummary,
+  GUIDES,
+} from '@/lib/guides';
+import { getStateBySlug } from '@/lib/dryday';
+import sitemap from '@/app/sitemap';
+
+describe('Guides Registry & Data Model', () => {
+  test('GUIDES registry is defined and contains published Kerala guide', () => {
+    const all = getAllGuides();
+    expect(all.length).toBeGreaterThanOrEqual(1);
+
+    const keralaGuide = all.find((g) => g.slug === 'kerala-dry-days-2026');
+    expect(keralaGuide).toBeDefined();
+    expect(keralaGuide?.status).toBe('published');
+    expect(keralaGuide?.stateSlug).toBe('kerala');
+  });
+
+  test('every guide in registry has valid metadata and schema fields', () => {
+    const all = getAllGuides();
+    for (const guide of all) {
+      // URL slug format
+      expect(guide.slug).toMatch(/^[a-z0-9-]+$/);
+
+      // Titles and meta
+      expect(guide.title.length).toBeGreaterThan(15);
+      expect(guide.h1Title.length).toBeGreaterThan(15);
+      expect(guide.seoTitle.length).toBeGreaterThan(20);
+      expect(guide.metaDescription.length).toBeGreaterThan(50);
+      expect(guide.excerpt.length).toBeGreaterThan(50);
+
+      // State reference validation
+      const state = getStateBySlug(guide.stateSlug);
+      expect(state).toBeDefined();
+      expect(state?.slug).toBe(guide.stateSlug);
+
+      // Dates
+      expect(guide.publishedDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(guide.lastUpdatedDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(guide.lastReviewedDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+
+      // Keywords
+      expect(guide.primaryKeywords.length).toBeGreaterThanOrEqual(1);
+      expect(guide.secondaryKeywords.length).toBeGreaterThanOrEqual(1);
+
+      // Reading time
+      expect(guide.readingTimeMinutes).toBeGreaterThan(0);
+
+      // Verified sources
+      expect(guide.sources.length).toBeGreaterThanOrEqual(1);
+      for (const src of guide.sources) {
+        expect(src.title.length).toBeGreaterThan(5);
+        expect(src.organization.length).toBeGreaterThan(3);
+        expect(src.url).toMatch(/^https:\/\//);
+        expect(src.claimSupported.length).toBeGreaterThan(10);
+      }
+
+      // FAQs
+      expect(guide.faqs.length).toBeGreaterThanOrEqual(5);
+      for (const faq of guide.faqs) {
+        expect(faq.question.length).toBeGreaterThan(10);
+        expect(faq.answer.length).toBeGreaterThan(20);
+      }
+    }
+  });
+
+  test('getPublishedGuides returns only published guides', () => {
+    const published = getPublishedGuides();
+    for (const g of published) {
+      expect(g.status).toBe('published');
+    }
+  });
+
+  test('getPublishedGuideBySlug returns the guide if published, undefined otherwise', () => {
+    const guide = getPublishedGuideBySlug('kerala-dry-days-2026');
+    expect(guide).toBeDefined();
+    expect(guide?.title).toContain('Kerala Dry Days 2026');
+
+    expect(getPublishedGuideBySlug('non-existent-slug')).toBeUndefined();
+  });
+
+  test('getPublishedGuidesByState filters correctly', () => {
+    const keralaGuides = getPublishedGuidesByState('kerala');
+    expect(keralaGuides.length).toBe(1);
+    expect(keralaGuides[0].slug).toBe('kerala-dry-days-2026');
+
+    const biharGuides = getPublishedGuidesByState('bihar');
+    expect(biharGuides).toEqual([]);
+  });
+
+  test('getGuideStateSummary reports correct summary for published states', () => {
+    const summary = getGuideStateSummary();
+    const kerala = summary.find((s) => s.stateSlug === 'kerala');
+    expect(kerala).toBeDefined();
+    expect(kerala?.stateName).toBe('Kerala');
+    expect(kerala?.guideCount).toBe(1);
+  });
+});
+
+describe('Kerala Guide 2026 - Official Facts & Source Verification', () => {
+  const kerala = getPublishedGuideBySlug('kerala-dry-days-2026');
+
+  test('kerala guide has verified order metadata matching official government order', () => {
+    expect(kerala).toBeDefined();
+    const meta = kerala?.orderMetadata;
+    expect(meta).toBeDefined();
+
+    expect(meta?.orderNumber).toBe('G.O.(Rt)No.332/2026/TAXES');
+    expect(meta?.department).toBe('Taxes (A) Department');
+    expect(meta?.issuingAuthority).toContain('Government of Kerala');
+    expect(meta?.signatory).toBe('K R Jyothilal, Additional Chief Secretary');
+    expect(meta?.dateOfOrder).toContain('19 March 2026');
+    expect(meta?.statutoryBasis).toContain('Section 135C of the Representation of the People Act, 1951');
+    expect(meta?.pollingDate).toContain('09 April 2026');
+    expect(meta?.countingDate).toContain('04 May 2026');
+    expect(meta?.sourcePdfUrl).toBe(
+      'https://www.ceo.kerala.gov.in/ceokerala/pdf/govt_orders/legislative-assembly-2026/government-orders/go-dry-day.pdf'
+    );
+  });
+
+  test('kerala guide is flagged as historical with explanatory note', () => {
+    expect(kerala?.isHistorical).toBe(true);
+    expect(kerala?.historicalPeriodNote).toBeDefined();
+    expect(kerala?.historicalPeriodNote).toContain('Historical election notification documentation');
+  });
+
+  test('kerala guide primary official source link matches Chief Electoral Officer Kerala PDF', () => {
+    const officialPdfSource = kerala?.sources.find((s) =>
+      s.url.includes('ceo.kerala.gov.in/ceokerala/pdf/govt_orders/legislative-assembly-2026/government-orders/go-dry-day.pdf')
+    );
+    expect(officialPdfSource).toBeDefined();
+    expect(officialPdfSource?.documentNumber).toBe('G.O.(Rt)No.332/2026/TAXES');
+  });
+});
+
+describe('Sitemap Integration', () => {
+  test('sitemap contains /guides and /guides/kerala-dry-days-2026', async () => {
+    const map = await sitemap();
+    const urls = map.map((entry) => entry.url);
+
+    expect(urls).toContain('https://drycheck.in/guides');
+    expect(urls).toContain('https://drycheck.in/guides/kerala-dry-days-2026');
+
+    // Confirm existing routes still exist
+    expect(urls).toContain('https://drycheck.in');
+    expect(urls).toContain('https://drycheck.in/about');
+    expect(urls).toContain('https://drycheck.in/india/kerala');
+    expect(urls).toContain('https://drycheck.in/india/delhi');
+
+    // Confirm no duplicates
+    const uniqueUrls = new Set(urls);
+    expect(uniqueUrls.size).toBe(urls.length);
+  });
+});

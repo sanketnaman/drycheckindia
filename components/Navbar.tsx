@@ -132,14 +132,23 @@ export default function Navbar() {
             </div>
 
             {/* Quick Navigation Footer */}
-            <div className="mt-3 pt-3 border-t border-neutral-800 flex justify-between items-center text-xs text-neutral-400">
-              <Link
-                href="/about"
-                onClick={() => setIsSearchOpen(false)}
-                className="text-neutral-300 hover:text-white min-h-[44px] flex items-center"
-              >
-                About &amp; Excise Info
-              </Link>
+            <div className="mt-3 pt-3 border-t border-neutral-800 flex flex-wrap justify-between items-center text-xs text-neutral-400 gap-2">
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/guides"
+                  onClick={() => setIsSearchOpen(false)}
+                  className="text-neutral-300 hover:text-white min-h-[44px] flex items-center font-medium"
+                >
+                  State Guides
+                </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setIsSearchOpen(false)}
+                  className="text-neutral-300 hover:text-white min-h-[44px] flex items-center"
+                >
+                  About &amp; Excise Info
+                </Link>
+              </div>
               <button
                 onClick={() => {
                   setIsSearchOpen(false);

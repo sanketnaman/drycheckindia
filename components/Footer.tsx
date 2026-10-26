@@ -39,6 +39,9 @@ export default function Footer() {
             <Link href="/" className="hover:text-white transition-colors min-h-[44px] flex items-center">
               Home
             </Link>
+            <Link href="/guides" className="hover:text-white transition-colors min-h-[44px] flex items-center">
+              State Guides
+            </Link>
             <Link href="/about" className="hover:text-white transition-colors min-h-[44px] flex items-center">
               About &amp; Excise Info
             </Link>
@@ -54,12 +57,12 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-1.5 text-neutral-400 text-center">
-              <span>Coverage: Partial</span>
+            <span>Coverage: Partial</span>
             <span>&bull;</span>
-              <span>DryCheck India &bull; Asia/Kolkata (IST)</span>
-              <span>&bull;</span>
-              <span>&copy; 2026</span>
-            </div>
+            <span>DryCheck India &bull; Asia/Kolkata (IST)</span>
+            <span>&bull;</span>
+            <span>&copy; 2026</span>
+          </div>
         </div>
       </div>
     </footer>
