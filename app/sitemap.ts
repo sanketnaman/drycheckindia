@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllStates, dateToSlug } from '@/lib/dryday';
+import { getAllStates, dateToSlug, getTodayIST } from '@/lib/dryday';
 import { getPublicEntries } from '@/lib/public-drydays';
 
 const SITE_URL = 'https://drycheck.in';
@@ -9,64 +9,87 @@ const SITE_URL = 'https://drycheck.in';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const currentDate = new Date().toISOString();
+  const todayIST = getTodayIST();
+  const todayIso = new Date(`${todayIST}T00:00:00.000Z`).toISOString();
 
-  // Static routes
+  // Static routes with stable, authentic last revision dates
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: currentDate,
+      lastModified: todayIso,
       changeFrequency: 'hourly',
       priority: 1.0,
     },
     {
       url: `${SITE_URL}/about`,
-      lastModified: currentDate,
+      lastModified: '2026-10-26T00:00:00.000Z',
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/contact`,
-      lastModified: currentDate,
+      lastModified: '2026-10-26T00:00:00.000Z',
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/privacy-policy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.4,
+      lastModified: '2026-10-26T00:00:00.000Z',
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
     {
       url: `${SITE_URL}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.4,
+      lastModified: '2026-10-26T00:00:00.000Z',
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
   ];
 
   // State routes (all 36 states and union territories)
+  // Use state's lastVerified timestamp if valid, fallback to today's start of day
   const states = getAllStates();
-  const stateRoutes: MetadataRoute.Sitemap = states.map((state) => ({
-    url: `${SITE_URL}/india/${state.slug}`,
-    lastModified: currentDate,
-    changeFrequency: 'daily',
-    priority: 0.9,
-  }));
+  const stateRoutes: MetadataRoute.Sitemap = states.map((state) => {
+    let stateLastMod = todayIso;
+    if (state.lastVerified) {
+      const parsed = Date.parse(state.lastVerified);
+      if (!Number.isNaN(parsed)) {
+        stateLastMod = new Date(parsed).toISOString();
+      }
+    }
+    return {
+      url: `${SITE_URL}/india/${state.slug}`,
+      lastModified: stateLastMod,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    };
+  });
 
   // Unique Date routes
   const entries = await getPublicEntries();
-  const dateSet = new Set<string>();
+  const dateMap = new Map<string, string>();
   for (const entry of entries) {
-    dateSet.add(dateToSlug(entry.date));
+    const slug = dateToSlug(entry.date);
+    if (!dateMap.has(slug)) {
+      dateMap.set(slug, entry.date);
+    }
   }
 
-  const dateRoutes: MetadataRoute.Sitemap = Array.from(dateSet).map((dateSlug) => ({
-    url: `${SITE_URL}/dry-days/${dateSlug}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }));
+  const dateRoutes: MetadataRoute.Sitemap = Array.from(dateMap.entries()).map(
+    ([dateSlug, dryDate]) => {
+      let dateLastMod = todayIso;
+      const parsed = Date.parse(dryDate);
+      if (!Number.isNaN(parsed)) {
+        dateLastMod = new Date(parsed).toISOString();
+      }
+      return {
+        url: `${SITE_URL}/dry-days/${dateSlug}`,
+        lastModified: dateLastMod,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      };
+    }
+  );
 
   return [...staticRoutes, ...stateRoutes, ...dateRoutes];
 }
