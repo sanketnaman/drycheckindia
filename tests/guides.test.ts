@@ -90,6 +90,10 @@ describe('Guides Registry & Data Model', () => {
     expect(keralaGuides.length).toBe(1);
     expect(keralaGuides[0].slug).toBe('kerala-dry-days-2026');
 
+    const upGuides = getPublishedGuidesByState('uttar-pradesh');
+    expect(upGuides.length).toBe(1);
+    expect(upGuides[0].slug).toBe('uttar-pradesh-dry-days-2026');
+
     const biharGuides = getPublishedGuidesByState('bihar');
     expect(biharGuides).toEqual([]);
   });
@@ -100,6 +104,47 @@ describe('Guides Registry & Data Model', () => {
     expect(kerala).toBeDefined();
     expect(kerala?.stateName).toBe('Kerala');
     expect(kerala?.guideCount).toBe(1);
+
+    const up = summary.find((s) => s.stateSlug === 'uttar-pradesh');
+    expect(up).toBeDefined();
+    expect(up?.stateName).toBe('Uttar Pradesh');
+    expect(up?.guideCount).toBe(1);
+  });
+});
+
+describe('Uttar Pradesh Guide 2026 - Rules & Timings Verification', () => {
+  const up = getPublishedGuideBySlug('uttar-pradesh-dry-days-2026');
+
+  test('UP guide is defined and has valid stateSlug and keywords', () => {
+    expect(up).toBeDefined();
+    expect(up?.stateSlug).toBe('uttar-pradesh');
+    expect(up?.stateName).toBe('Uttar Pradesh');
+    expect(up?.region).toBe('North');
+    expect(up?.isHistorical).toBe(false);
+
+    expect(up?.primaryKeywords).toContain('up dry day 2026');
+    expect(up?.primaryKeywords).toContain('dry day today in UP');
+    expect(up?.primaryKeywords).toContain('today dry day in uttar pradesh');
+    expect(up?.primaryKeywords).toContain('dry day in up tomorrow');
+    expect(up?.primaryKeywords).toContain('kya aaj up me dry day hai');
+  });
+
+  test('UP guide includes verified sources including Kaanoon UP Excise link', () => {
+    expect(up).toBeDefined();
+    const kaanoonSource = up?.sources.find((s) => s.url.includes('kaanoon.com/157781/uttar-pradesh-excise-law-and-rules'));
+    expect(kaanoonSource).toBeDefined();
+
+    const upExciseSource = up?.sources.find((s) => s.url.includes('upexcise.gov.in'));
+    expect(upExciseSource).toBeDefined();
+  });
+
+  test('UP guide FAQs cover required intent queries and keywords', () => {
+    expect(up).toBeDefined();
+    const questions = up?.faqs.map((f) => f.question.toLowerCase()) || [];
+    expect(questions.some((q) => q.includes('kya aaj up me dry day hai'))).toBe(true);
+    expect(questions.some((q) => q.includes('is tomorrow is dry day in up'))).toBe(true);
+    expect(questions.some((q) => q.includes('operating timings'))).toBe(true);
+    expect(questions.some((q) => q.includes('delhi or haryana'))).toBe(true);
   });
 });
 
@@ -146,6 +191,7 @@ describe('Sitemap Integration', () => {
 
     expect(urls).toContain('https://drycheck.in/guides');
     expect(urls).toContain('https://drycheck.in/guides/kerala-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/uttar-pradesh-dry-days-2026');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');

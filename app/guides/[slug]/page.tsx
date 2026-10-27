@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPublishedGuides, getPublishedGuideBySlug } from '@/lib/guides';
 import KeralaGuideArticle from '@/components/guides/KeralaGuideArticle';
+import UPGuideArticle from '@/components/guides/UPGuideArticle';
 import JsonLd from '@/components/JsonLd';
 import AdSlot from '@/components/AdSlot';
 
@@ -148,6 +149,8 @@ export default async function GuideDetailPage({ params }: Props) {
       {/* Render the detailed article */}
       {guide.slug === 'kerala-dry-days-2026' ? (
         <KeralaGuideArticle guide={guide} />
+      ) : guide.slug === 'uttar-pradesh-dry-days-2026' ? (
+        <UPGuideArticle guide={guide} />
       ) : (
         <div className="mx-auto w-full max-w-4xl px-4 py-8">
           <h1 className="text-2xl font-bold text-white">{guide.title}</h1>

@@ -537,6 +537,18 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'uttar-pradesh' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on upcoming festival closures, shop operating hours, and interstate limits, read our verified guide:{' '}
+                <Link
+                  href="/guides/uttar-pradesh-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Uttar Pradesh Dry Days 2026: Upcoming Dates, Rules &amp; Liquor Timings
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </section>
 

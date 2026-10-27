@@ -158,38 +158,43 @@ export default function GuidesIndexPage() {
 
           {/* Currently published state cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {stateSummary.map((state) => (
-              <div
-                key={state.stateSlug}
-                className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/70 space-y-2"
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-white text-sm">
-                    {state.stateName}
-                  </h3>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    {state.guideCount} {state.guideCount === 1 ? 'Guide' : 'Guides'}
-                  </span>
+            {stateSummary.map((state) => {
+              const stateGuide = publishedGuides.find((g) => g.stateSlug === state.stateSlug);
+              const guideHref = stateGuide ? `/guides/${stateGuide.slug}` : '/guides';
+
+              return (
+                <div
+                  key={state.stateSlug}
+                  className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/70 space-y-2"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-white text-sm">
+                      {state.stateName}
+                    </h3>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      {state.guideCount} {state.guideCount === 1 ? 'Guide' : 'Guides'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-400">
+                    {state.region} India &bull; State regulatory &amp; excise rules
+                  </p>
+                  <div className="pt-2 flex items-center justify-between text-xs">
+                    <Link
+                      href={`/india/${state.stateSlug}`}
+                      className="text-neutral-400 hover:text-white transition-colors"
+                    >
+                      State Tracker &rarr;
+                    </Link>
+                    <Link
+                      href={guideHref}
+                      className="text-amber-400 hover:underline font-medium"
+                    >
+                      Read Guide &rarr;
+                    </Link>
+                  </div>
                 </div>
-                <p className="text-xs text-neutral-400">
-                  {state.region} India &bull; Assembly election order &amp; excise rules
-                </p>
-                <div className="pt-2 flex items-center justify-between text-xs">
-                  <Link
-                    href={`/india/${state.stateSlug}`}
-                    className="text-neutral-400 hover:text-white transition-colors"
-                  >
-                    State Tracker &rarr;
-                  </Link>
-                  <Link
-                    href={`/guides/kerala-dry-days-2026`}
-                    className="text-amber-400 hover:underline font-medium"
-                  >
-                    Read Guide &rarr;
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Empty State / Roadmap for Other States */}
