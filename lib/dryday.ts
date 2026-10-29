@@ -400,7 +400,15 @@ export function getStatus(
     return 'maybe';
   }
 
-  // Default: when dataset is present and no dry day is reported or confirmed for this date
+  // A state without verified entries must never return "not_dry"
+  const hasVerifiedEntries = entries.some(
+    (e) => (e.state === stateSlug || e.state === 'all') && e.status === 'confirmed'
+  );
+  if (!hasVerifiedEntries) {
+    return 'unavailable';
+  }
+
+  // Verified state with no dry day entry on this date
   return 'not_dry';
 }
 
@@ -578,7 +586,7 @@ export function getNationwideStatus(
     };
   }
 
-  if (unavailableStates.length === nonProhibitionStates.length && nonProhibitionStates.length > 0) {
+  if (unavailableStates.length > 0) {
     return {
       status: 'unavailable',
       label: 'Status not verified',
