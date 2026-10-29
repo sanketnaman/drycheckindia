@@ -33,16 +33,7 @@ interface Props {
 
 const SITE_URL = 'https://drycheck.in';
 
-export async function generateStaticParams() {
-  const entries = await getPublicEntries();
-  const dateSet = new Set<string>();
-  for (const entry of entries) {
-    dateSet.add(dateToSlug(entry.date));
-  }
-  return Array.from(dateSet).map((dateSlug) => ({
-    date: dateSlug,
-  }));
-}
+// Dynamic rendering at request time ensures accurate IST date computation without static freezing
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { date: rawSlug } = await params;
@@ -54,9 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const formatted = formatDateDisplay(dateIST, { showDayOfWeek: true });
-  const title = `Dry Days on ${formatted} Across India | DryCheck India`;
-  const description = `Complete list of Indian states and union territories observing a dry day on ${formatted}. Official excise rules, festival closures, and store timings.`;
+  const title = 'Dry Days Across India | DryCheck India';
+  const description = 'Check which Indian states and union territories observe dry days under official excise rules, festival closures, and store timings.';
   const canonicalUrl = `${SITE_URL}/dry-days/${rawSlug}`;
 
   return {
@@ -108,6 +98,10 @@ export default async function DatePage({ params }: Props) {
     (e) => e.state === 'all' || e.type === 'national'
   );
 
+  const hasVerifiedCircular = allEntriesOnDate.some(
+    (e) => e.status === 'confirmed' && Boolean(e.sourceUrl && e.sourceUrl.trim().length > 0)
+  );
+
   const primaryReason =
     allEntriesOnDate[0]?.reason || (isNational ? 'National Observance' : 'Regional Observance');
 
@@ -145,7 +139,7 @@ export default async function DatePage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 3,
-        name: formattedDate,
+        name: 'Dry Days Across India',
         item: `${SITE_URL}/dry-days/${rawSlug}`,
       },
     ],
@@ -218,7 +212,9 @@ export default async function DatePage({ params }: Props) {
               ? 'Database se jawab nahi mila — thodi der baad dobara try karein'
               : datasetEmpty
               ? 'No published entries in the database yet'
-              : `${primaryReason} &bull; Verified against state excise circulars`}
+              : hasVerifiedCircular
+              ? `${primaryReason} &bull; Verified against state excise circulars`
+              : `${primaryReason} &bull; State and regional calendar listing`}
           </p>
         </div>
 

@@ -9,6 +9,7 @@ interface HeroAnswerProps {
   headline?: string;
   /** Primary answer copy — a short word ("Always") or a full sentence. */
   answer: string;
+  englishAnswer?: string;
   statusType: 'dry' | 'not_dry' | 'maybe' | 'unavailable';
   secondaryLine: string;
   todayDateIST: string;
@@ -22,6 +23,7 @@ interface HeroAnswerProps {
 export default function HeroAnswer({
   headline = 'Is today a dry day?',
   answer,
+  englishAnswer,
   statusType,
   secondaryLine,
   todayDateIST,
@@ -107,7 +109,7 @@ export default function HeroAnswer({
         className={`w-full max-w-sm sm:max-w-md my-1.5 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} p-4 sm:p-5 transition-all`}
       >
         <div className="flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex flex-col items-center justify-center gap-1.5">
             <span
               className={`font-black tracking-tight select-none text-balance ${
                 isShortAnswer
@@ -117,6 +119,11 @@ export default function HeroAnswer({
             >
               {answer}
             </span>
+            {englishAnswer && (
+              <span className="text-xs sm:text-sm md:text-base font-semibold text-neutral-300 tracking-normal">
+                ({englishAnswer})
+              </span>
+            )}
           </div>
 
           <div

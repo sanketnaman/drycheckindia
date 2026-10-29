@@ -2,95 +2,69 @@
 
 > **"Aaj sookha hai ya nahi, ek nazar mein."**
 
-A fast, mobile-first, and production-ready Next.js application that tells visitors instantly whether today (and tomorrow) is a dry day across Indian states and union territories, with real-time Indian Standard Time (Asia/Kolkata) calculations, authentic gazette-backed data, and a witty, culturally grounded tone.
+A fast, mobile-first, and production-ready Next.js application that tells visitors instantly whether today (and tomorrow) is a dry day across Indian states and union territories, with real-time Indian Standard Time (Asia/Kolkata) calculations, authentic gazette-backed data, and a culturally grounded tone.
 
 ---
 
 ## 🚀 Key Features
 
 - **Strict Asia/Kolkata (IST) Timezone:** All "today" and "tomorrow" queries evaluate dynamically in `Asia/Kolkata (UTC+5:30)` with hourly ISR (`revalidate = 3600`) ensuring proper midnight rollover regardless of where the server is hosted.
-- **Mobile-First UX (Above-the-Fold at 360x640):** The primary question (*"Is today a dry day?"*), big answer (*"Yes"*, *"No"*, or *"Maybe"* >= 96px), and secondary witty line (>= 20px) are engineered to be 100% visible on a 360x640 mobile screen without scrolling. Top date ("20 October, Tuesday") and menu buttons feature accessible min-44px tap targets.
+- **Mobile-First UX (Above-the-Fold at 360x640):** The primary question (*"Is today a dry day?"*), big answer (*"Yes"*, *"No"*, or *"Maybe"* >= 96px), and secondary line (>= 20px) are engineered to be 100% visible on a 360x640 mobile screen without scrolling. Top date and menu buttons feature accessible min-44px tap targets.
 - **Instant Searchable State Input:** Typing substrings on mobile (e.g., `"bih"` immediately yields Bihar) enables fast navigation without wading through long dropdowns.
 - **Authentic Sourced Data (No Invented Facts):**
   - All 36 Indian states and union territories covered with individual slugs matching `/india/[state-slug]`.
-  - Gazette-backed sources for confirmed entries; pending entries clearly display as **"Maybe"** with note *"Official confirmation awaited."*
-  - Display of `"Last verified: [date]"` per state.
-  - Internal links to 5 nearby/popular states on each state page.
-  - Full awareness of statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep).
-- **Deterministic Witty Copy:**
-  - 8+ fresh variants under 6 words with light Hinglish flavor for `(And so is tomorrow)`, `(But tomorrow is)`, and `(Tomorrow's a maybe)`.
-  - 6 fresh, punchy, original footer quips selected deterministically by date.
-- **Date Routes (`/dry-days/[date]`):** Deep-linking for specific dates (e.g., `/dry-days/2-october-2026`) listing all states observing restrictions on that date.
+  - Gazette-backed sources for confirmed entries; pending/unverified entries clearly display as **"Maybe"** or **"Status not verified"**.
+  - Total statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) correctly identified 365 days a year.
+- **Date Routes (`/dry-days/[date]`):** Deep-linking for specific dates (e.g., `/dry-days/26-january-2026`) listing all states observing restrictions on that date.
+- **In-Depth Guides Section (`/guides`):** State-specific editorial guides with gazette citations, excise rules, timings, and FAQs.
 - **Advanced SEO & Rich Snippets:**
   - Canonical URL `https://drycheck.in` on every page with unique titles, meta descriptions, OpenGraph, and Twitter Cards.
   - Schema.org structured data: `WebSite` on home, `FAQPage` on state pages, `BreadcrumbList` on state and date routes.
-  - Dynamic `/sitemap.ts` and `/robots.ts`.
+  - Dynamic `/sitemap.ts` and crawler directives in `/robots.ts`.
 - **Compliant Ad Placeholders:** `<AdSlot id="..." />` component dormant by default and safely toggled via `NEXT_PUBLIC_ADS_ENABLED="true"`. Zero alcohol affiliate or promotional links.
 
 ---
 
-## 📂 File Tree
+## 📊 Data Sources & Architecture
 
-```text
-├── .env.example                          # Canonical environment variables
-├── .eslintrc.json                        # ESLint rules
-├── .gitignore
-├── README.md                             # Documentation & setup guide
-├── app/
-│   ├── layout.tsx                        # Root layout, metadataBase (https://drycheck.in)
-│   ├── globals.css                       # Global dark styling & custom scrollbars
-│   ├── page.tsx                          # Homepage with big answer, today/tomorrow lists & directory
-│   ├── sitemap.ts                        # Dynamic sitemap (states, dates, static pages)
-│   ├── robots.ts                         # Robots.txt crawler directives
-│   ├── about/
-│   │   └── page.tsx                      # Excise regulations, constitutional context & FAQ
-│   ├── contact/
-│   │   └── page.tsx                      # Gazette tip/correction submission form
-│   ├── privacy-policy/
-│   │   └── page.tsx                      # Strict zero-tracking privacy policy
-│   ├── terms/
-│   │   └── page.tsx                      # Regulatory disclaimers and terms of service
-│   ├── india/
-│   │   └── [state-slug]/
-│   │       └── page.tsx                  # State page with 30-day list, 12-month accordion & nearby links
-│   └── dry-days/
-│       └── [date]/
-│           └── page.tsx                  # Date-specific page listing all affected states
-├── components/
-│   ├── Navbar.tsx                        # Header with DryCheck India branding & searchable state modal
-│   ├── Footer.tsx                        # Daily deterministic verse, regulatory disclaimer & links
-│   ├── HeroAnswer.tsx                    # Above-the-fold high-contrast status banner (>=96px text)
-│   ├── DryStateList.tsx                  # "Dry today in" & "Dry tomorrow in" state cards
-│   ├── UpcomingDryDays.tsx               # 4-week upcoming calendar grouped by date
-│   ├── StateDirectory.tsx                # Searchable input and regional filter chips
-│   ├── StateCalendar.tsx                 # 12-month collapsible month-by-month calendar
-│   ├── AdSlot.tsx                        # Safe ad slot placeholder (env flag toggled)
-│   └── JsonLd.tsx                        # Schema.org structured data renderer
-├── data/
-│   └── dry-days.json                     # Verified database of 36 states, nearby links & gazette records
-├── hooks/
-│   └── use-mobile.ts                     # Responsive view hook using useSyncExternalStore
-├── lib/
-│   ├── dryday.ts                         # Core logic, IST calculations, deterministic witty copy
-│   └── utils.ts                          # Tailwind class variance utility
-├── metadata.json                         # Project metadata
-├── next.config.ts                        # Next.js 15 App router configuration
-├── package.json
-└── tsconfig.json
-```
+DryCheck India uses a hybrid data architecture combining live database management with static reference metadata:
+
+### 1. Supabase PostgreSQL (Live Runtime Source of Truth)
+- **Dynamic Dry-Day Records:** Live public entries are fetched at request time from the `dry_days` table in Supabase via `lib/public-drydays.ts`.
+- **Publication & Verification Gate:** The public read layer queries only rows with `is_published = true` and `verification_status IN ('confirmed', 'reported')`. Unpublished drafts never reach visitors.
+- **Fail-Safe Integrity:** When Supabase is unconfigured or a network fetch fails, pages render an explicit data-unavailable state rather than falling back to stale bundled records or inventing answers.
+- **Admin Management:** Authenticated administrators manage entries, verification statuses, source URLs, and public notices through the protected `/admin` portal.
+
+### 2. Bundled JSON Metadata
+- **`data/dry-days.json`:** Contains canonical reference data for all 36 Indian states and union territories (`slug`, `name`, `region`, `prohibition` flag, `lastVerified` audit date, and `nearby` state connections).
+- **`data/guides.json`:** Editorial guides with in-depth legal analyses, gazette citations, historical order breakdowns, and state FAQs.
+
+---
+
+## 🔐 Environment Variables
+
+| Variable | Description | Scope |
+| :--- | :--- | :--- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical production site URL (`https://drycheck.in`) | Public / Client |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL (`https://<project-ref>.supabase.co`) | Public / Client |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase publishable/anon key | Public / Client |
+| `NEXT_PUBLIC_ADS_ENABLED` | Optional flag (`"true"` / `"false"`) to toggle ad slot placeholders | Public / Client |
+
+> **Note on Admin Authentication:**  
+> Admin routes (`/admin/*`) require `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. In addition, authorized admin accounts must have an entry in the Supabase `admin_users` table with their `user_id`. Unauthenticated users are redirected to `/admin/login`, and non-admin authenticated users receive a forbidden response.
 
 ---
 
 ## 🛠️ Local Development & Setup
 
 ### Prerequisites
-- Node.js 18+ (Node 20+ recommended)
+- Node.js 20+
 - npm or pnpm
 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/drycheck-india.git
+   git clone https://github.com/sanketnaman/drycheckindia.git
    cd drycheck-india
    ```
 
@@ -103,7 +77,7 @@ A fast, mobile-first, and production-ready Next.js application that tells visito
    ```bash
    cp .env.example .env.local
    ```
-   Set `NEXT_PUBLIC_SITE_URL="https://drycheck.in"` and optionally `NEXT_PUBLIC_ADS_ENABLED="true"` for ad preview.
+   Configure `NEXT_PUBLIC_SITE_URL="https://drycheck.in"`, `NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
 
 4. Start development server:
    ```bash
@@ -111,51 +85,32 @@ A fast, mobile-first, and production-ready Next.js application that tells visito
    ```
    Open [http://localhost:3000](http://localhost:3000).
 
-5. Test production build:
+5. Test production build & lint:
    ```bash
+   npm run lint
+   npm test
    npm run build
-   npm run start
    ```
 
 ---
 
-## 📝 How to Add or Update a Dry Day Entry
+## 🚢 Deployment (Cloudflare Workers via OpenNext)
 
-All dry day entries are stored in `/data/dry-days.json`. No external database is needed.
+The project is configured for Cloudflare Workers using `@opennextjs/cloudflare` and `wrangler.jsonc`.
 
-To add an upcoming dry day (such as a festival, election notification, or state observance), add an entry to the `"entries"` array in `/data/dry-days.json`:
+- Build command: `npm run build`
+- OpenNext preview: `npm run preview`
+- Manual deploy: `npm run deploy`
 
-```json
-{
-  "state": "delhi",
-  "date": "2026-10-25",
-  "type": "festival",
-  "reason": "Dussehra (Vijayadashami)",
-  "status": "confirmed",
-  "sourceUrl": "https://excise.delhigovt.nic.in"
-}
-```
-
-If an entry is tentative or the official circular is pending, set:
-- `"status": "pending"`
-- `"sourceUrl": ""`
-
-DryCheck India will automatically render this as **"Maybe"** with note *"Official confirmation awaited."*
-
----
-
-## 🚢 Deploying to Vercel
-
-1. Push your code to GitHub.
-2. Sign in to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Import the repository.
-4. Set Environment Variables:
-   - `NEXT_PUBLIC_SITE_URL`: `https://drycheck.in`
-   - `APP_URL`: `https://drycheck.in`
-5. Click **Deploy**.
+### Cloudflare Redirect Rules (Recommended)
+To handle HTTP to HTTPS and non-www domain canonicalization at Cloudflare edge:
+1. **Always Use HTTPS:** Enabled under SSL/TLS edge certificates.
+2. **Redirect www to root:** Create a Single Redirect Rule in the Cloudflare dashboard:
+   - When incoming request matches hostname `www.drycheck.in`
+   - Redirect to `https://drycheck.in` with status code 301 (Permanent Redirect), preserving path and query string.
 
 ---
 
 ## ⚖️ Legal & Regulatory Disclaimer
 
-Information is compiled from official government notifications, state gazettes, and election commission orders and may change. Please verify with your local district magistrate or state excise department before making plans. DryCheck India does not sell, market, or promote alcohol.
+Information is compiled from official government notifications, state gazettes, and election commission orders and may change. DryCheck India does not sell, market, or promote alcohol.

@@ -45,12 +45,7 @@ interface Props {
 
 const SITE_URL = 'https://drycheck.in';
 
-export async function generateStaticParams() {
-  const states = getAllStates();
-  return states.map((s) => ({
-    'state-slug': s.slug,
-  }));
-}
+// Dynamic rendering at request time ensures accurate IST date computation without static freezing
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { 'state-slug': slug } = await params;
@@ -62,9 +57,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const currentYear = new Date().getFullYear();
-  const title = `Is Today a Dry Day in ${state.name}? Dry Day Calendar ${currentYear} | DryCheck India`;
-  const description = `Find out if today or tomorrow is a dry day in ${state.name} (${state.region} India). Complete ${currentYear} excise calendar, festival closures, and election restrictions.`;
+  const title = `Is Today a Dry Day in ${state.name}? | DryCheck India`;
+  const description = `Find out if today or tomorrow is a dry day in ${state.name} (${state.region} India). Complete state excise calendar, festival closures, and election restrictions.`;
   const canonicalUrl = `${SITE_URL}/india/${state.slug}`;
 
   return {
@@ -143,6 +137,10 @@ export default async function StatePage({ params }: Props) {
     (e) => e.state === state.slug || e.state === 'all'
   );
 
+  const hasVerifiedSource = allEntries.some(
+    (e) => e.status === 'confirmed' && Boolean(e.sourceUrl && e.sourceUrl.trim().length > 0)
+  );
+
   const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: true });
   const formattedTomorrow = formatDateDisplay(tomorrowIST, { showDayOfWeek: true });
 
@@ -195,7 +193,7 @@ export default async function StatePage({ params }: Props) {
           ? `Today has a reported dry day signal in ${state.name}. Official confirmation awaited.`
           : todayStatus === 'unavailable'
           ? `Today's dry-day status in ${state.name} could not be retrieved from the database right now.`
-          : `No, today (${formattedToday}) is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
+          : `No, today is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
         },
       },
       {
@@ -211,7 +209,7 @@ export default async function StatePage({ params }: Props) {
           ? `Tomorrow's dry status is reported but not yet officially confirmed in ${state.name}.`
           : tomorrowStatus === 'unavailable'
           ? `Tomorrow's dry-day status in ${state.name} could not be retrieved from the database right now.`
-          : `No, tomorrow (${formattedTomorrow}) is not scheduled as a dry day in ${state.name}.`,
+          : `No, tomorrow is not scheduled as a dry day in ${state.name}.`,
         },
       },
       {
@@ -517,9 +515,13 @@ export default async function StatePage({ params }: Props) {
               <p>
                 {state.name} is under statutory alcohol prohibition. The possession, sale, transport, and consumption of liquor is prohibited by law.
               </p>
+            ) : hasVerifiedSource ? (
+              <p>
+                In {state.name}, dry days and sale restrictions are notified by state excise authorities. On notified dates, licensed retail liquor shops and commercial establishments remain closed in accordance with official orders.
+              </p>
             ) : (
               <p>
-                In {state.name}, dry days are governed by the State Excise Commissioner. On scheduled dry days, all licensed IMFL and country liquor retail vends, bars, and clubs are mandated closed.
+                In {state.name}, alcohol sale regulations and holiday closures are subject to state and local administration orders. Operating hours and restrictions vary based on official notifications.
               </p>
             )}
             <p className="text-neutral-400 text-xs">
@@ -591,7 +593,7 @@ export default async function StatePage({ params }: Props) {
                       {guide.title}
                     </Link>
                     <p className="text-xs text-neutral-400 leading-relaxed">
-                      Learn more about {state.name}&apos;s 2026 election dry-day order, including the official dates and restrictions.
+                      {guide.excerpt || guide.metaDescription}
                     </p>
                   </div>
                   <Link

@@ -3,6 +3,7 @@ import {
   getAllEntries,
   getStatus,
   getStatusHeadline,
+  getStatusEnglish,
   getNationwideStatus,
   getDryStatesOn,
   getNextDryDays,
@@ -139,10 +140,9 @@ describe('getStatus — no entry means the default open status', () => {
     expect(getStatus('kerala', '2026-12-31', ARCHIVE)).toBe('not_dry');
   });
 
-  test('empty dataset returns not_dry for every non-prohibition state', () => {
-    // A successful fetch of zero rows is the default open answer — a FAILED
-    // fetch never reaches getStatus (pages handle it via getPublicDataset).
-    expect(getStatus('delhi', '2026-06-15', [])).toBe('not_dry');
+  test('empty dataset returns unavailable for non-prohibition states', () => {
+    // Unverified data or empty dataset must return unavailable or maybe, never not_dry
+    expect(getStatus('delhi', '2026-06-15', [])).toBe('unavailable');
   });
 
   test('empty dataset still returns dry for statutory prohibition states', () => {
@@ -182,6 +182,34 @@ describe('getStatusHeadline — required public copy', () => {
     expect(getStatusHeadline('unavailable', TODAY, TODAY)).toBe(
       'Abhi status check nahi ho pa raha hai.'
     );
+  });
+
+  test('regional headlines for Tamil Nadu, Karnataka, Maharashtra, Kerala, and Andhra Pradesh', () => {
+    // Tamil Nadu
+    expect(getStatusHeadline('not_dry', TODAY, TODAY, 'tamil-nadu')).toBe('Illai, Wine Shop moodappadavillai');
+    expect(getStatusHeadline('dry', TODAY, TODAY, 'tamil-nadu')).toBe('Aam, Wine Shop moodappattullathu');
+
+    // Karnataka
+    expect(getStatusHeadline('not_dry', TODAY, TODAY, 'karnataka')).toBe('illa, Wine Shop mucchilla');
+    expect(getStatusHeadline('dry', TODAY, TODAY, 'karnataka')).toBe('Houdu, Wine Shop mucchalaagide');
+
+    // Maharashtra
+    expect(getStatusHeadline('not_dry', TODAY, TODAY, 'maharashtra')).toBe('Nahi, Wine Shop band nahiye');
+    expect(getStatusHeadline('dry', TODAY, TODAY, 'maharashtra')).toBe('Hoy, Wine Shop band aahe');
+
+    // Kerala
+    expect(getStatusHeadline('not_dry', TODAY, TODAY, 'kerala')).toBe('Illa, Wine Shop adachittilla');
+    expect(getStatusHeadline('dry', TODAY, TODAY, 'kerala')).toBe('Athe, Wine Shop adachirikkunnu');
+
+    // Andhra Pradesh
+    expect(getStatusHeadline('not_dry', TODAY, TODAY, 'andhra-pradesh')).toBe('Ledu, Wine Shop moosiledu');
+    expect(getStatusHeadline('dry', TODAY, TODAY, 'andhra-pradesh')).toBe('Avunu, Wine Shop moosiveyabadindi');
+  });
+
+  test('getStatusEnglish returns accurate English translations', () => {
+    expect(getStatusEnglish('not_dry')).toBe('No, Wine Shops are open');
+    expect(getStatusEnglish('dry')).toBe('Yes, Wine Shops are closed');
+    expect(getStatusEnglish('not_dry', true)).toBe('Total alcohol prohibition in effect');
   });
 });
 
@@ -247,10 +275,10 @@ describe('getNationwideStatus', () => {
     expect(result.maybeCount).toBe(1);
   });
 
-  test('empty dataset yields the default open answer', () => {
+  test('empty dataset yields unavailable status', () => {
     const result = getNationwideStatus('2026-06-15', []);
-    expect(result.status).toBe('not_dry');
-    expect(result.label).toBe('No');
+    expect(result.status).toBe('unavailable');
+    expect(result.label).toBe('Status not verified');
   });
 });
 

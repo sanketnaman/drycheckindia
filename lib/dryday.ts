@@ -384,6 +384,11 @@ export function getStatus(
     return 'dry';
   }
 
+  // If the dataset is empty, unverified data must never return not_dry
+  if (!entries || entries.length === 0) {
+    return 'unavailable';
+  }
+
   const eligible = getStatewideEntriesOn(stateSlug, dateIST, entries).filter((e) =>
     PUBLICLY_ELIGIBLE_STATUSES.has(e.status)
   );
@@ -395,7 +400,15 @@ export function getStatus(
     return 'maybe';
   }
 
-  // Default: no admin-created public record for this state and date.
+  // A state without verified entries must never return "not_dry"
+  const hasVerifiedEntries = entries.some(
+    (e) => (e.state === stateSlug || e.state === 'all') && e.status === 'confirmed'
+  );
+  if (!hasVerifiedEntries) {
+    return 'unavailable';
+  }
+
+  // Verified state with no dry day entry on this date
   return 'not_dry';
 }
 
@@ -405,11 +418,52 @@ export function getStatus(
  * IST, otherwise the neutral "is din" wording so no other date is called
  * "today".
  */
+interface StateHeadlineCopy {
+  dry: string;
+  not_dry: string;
+}
+
+export const REGIONAL_HEADLINES: Record<string, StateHeadlineCopy> = {
+  'tamil-nadu': {
+    dry: 'Aam, Wine Shop moodappattullathu',
+    not_dry: 'Illai, Wine Shop moodappadavillai',
+  },
+  'karnataka': {
+    dry: 'Houdu, Wine Shop mucchalaagide',
+    not_dry: 'illa, Wine Shop mucchilla',
+  },
+  'maharashtra': {
+    dry: 'Hoy, Wine Shop band aahe',
+    not_dry: 'Nahi, Wine Shop band nahiye',
+  },
+  'kerala': {
+    dry: 'Athe, Wine Shop adachirikkunnu',
+    not_dry: 'Illa, Wine Shop adachittilla',
+  },
+  'andhra-pradesh': {
+    dry: 'Avunu, Wine Shop moosiveyabadindi',
+    not_dry: 'Ledu, Wine Shop moosiledu',
+  },
+  'telangana': {
+    dry: 'Avunu, Wine Shop moosiveyabadindi',
+    not_dry: 'Ledu, Wine Shop moosiledu',
+  },
+};
+
 export function getStatusHeadline(
   status: PublicStatus,
   dateIST: string,
-  todayIST: string = getTodayIST()
+  todayIST: string = getTodayIST(),
+  stateSlug?: string
 ): string {
+  if (stateSlug && REGIONAL_HEADLINES[stateSlug]) {
+    const regional = REGIONAL_HEADLINES[stateSlug];
+    if (status === 'dry') return regional.dry;
+    if (status === 'not_dry') return regional.not_dry;
+    if (status === 'maybe') return 'Pata nahi, confirm nahi hai.';
+    if (status === 'unavailable') return 'Abhi status check nahi ho pa raha hai.';
+  }
+
   switch (status) {
     case 'dry':
       return dateIST === todayIST
@@ -421,6 +475,25 @@ export function getStatusHeadline(
       return 'Abhi status check nahi ho pa raha hai.';
     default:
       return 'Nahi, theka band nahi hai.';
+  }
+}
+
+export function getStatusEnglish(
+  status: PublicStatus,
+  isProhibition?: boolean
+): string {
+  if (isProhibition) {
+    return 'Total alcohol prohibition in effect';
+  }
+  switch (status) {
+    case 'dry':
+      return 'Yes, Wine Shops are closed';
+    case 'not_dry':
+      return 'No, Wine Shops are open';
+    case 'maybe':
+      return 'Status unconfirmed (Official circular awaited)';
+    case 'unavailable':
+      return 'Status currently unavailable';
   }
 }
 

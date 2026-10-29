@@ -36,11 +36,11 @@ export default function Navbar() {
             <Link
               href="/"
               className="flex items-center gap-2 min-h-[44px] min-w-[44px] py-1 text-left group"
-              aria-label="DRY CHECK India home"
+              aria-label="DryCheck India home"
             >
               <Image
                 src="/logo-header.png"
-                alt="DRY CHECK India"
+                alt="DryCheck India"
                 width={300}
                 height={100}
                 className="h-10 sm:h-12 w-auto object-contain"
