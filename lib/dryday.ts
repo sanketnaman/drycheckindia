@@ -400,15 +400,7 @@ export function getStatus(
     return 'maybe';
   }
 
-  // A state without verified entries must never return "not_dry"
-  const hasVerifiedEntries = entries.some(
-    (e) => (e.state === stateSlug || e.state === 'all') && e.status === 'confirmed'
-  );
-  if (!hasVerifiedEntries) {
-    return 'unavailable';
-  }
-
-  // Verified state with no dry day entry on this date
+  // Default: when dataset is present and no dry day is reported or confirmed for this date
   return 'not_dry';
 }
 
@@ -453,11 +445,22 @@ export const REGIONAL_HEADLINES: Record<string, StateHeadlineCopy> = {
 export function getStatusHeadline(
   status: PublicStatus,
   dateIST: string,
-  todayIST: string = getTodayIST(),
+  todayISTOrStateSlug?: string,
   stateSlug?: string
 ): string {
-  if (stateSlug && REGIONAL_HEADLINES[stateSlug]) {
-    const regional = REGIONAL_HEADLINES[stateSlug];
+  let todayIST = getTodayIST();
+  let slug = stateSlug;
+
+  if (todayISTOrStateSlug) {
+    if (todayISTOrStateSlug.includes('-') && /^\d{4}-\d{2}-\d{2}$/.test(todayISTOrStateSlug)) {
+      todayIST = todayISTOrStateSlug;
+    } else {
+      slug = todayISTOrStateSlug;
+    }
+  }
+
+  if (slug && REGIONAL_HEADLINES[slug]) {
+    const regional = REGIONAL_HEADLINES[slug];
     if (status === 'dry') return regional.dry;
     if (status === 'not_dry') return regional.not_dry;
     if (status === 'maybe') return 'Pata nahi, confirm nahi hai.';
@@ -536,6 +539,16 @@ export function getNationwideStatus(
   totalStates: number;
 } {
   const source = entries;
+  if (!source || source.length === 0) {
+    return {
+      status: 'unavailable',
+      label: 'Status not verified',
+      dryCount: 0,
+      maybeCount: 0,
+      totalStates: data.states.length,
+    };
+  }
+
   const nonProhibitionStates = data.states.filter((s) => s.prohibition !== true);
   const dryStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST, source) === 'dry');
   const maybeStates = nonProhibitionStates.filter((s) => getStatus(s.slug, dateIST, source) === 'maybe');
@@ -565,7 +578,7 @@ export function getNationwideStatus(
     };
   }
 
-  if (unavailableStates.length > 0) {
+  if (unavailableStates.length === nonProhibitionStates.length && nonProhibitionStates.length > 0) {
     return {
       status: 'unavailable',
       label: 'Status not verified',

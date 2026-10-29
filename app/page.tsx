@@ -15,6 +15,7 @@ import {
   getDryStatesOn,
   getUpcomingDryDaysGrouped,
   getStatusHeadline,
+  getStatusEnglish,
   formatDateDisplay,
   SITE_URL,
   DATA_UNAVAILABLE_SECONDARY,
@@ -126,6 +127,7 @@ export default async function HomePage() {
         <HeroAnswer
           headline="Is today a dry day?"
           answer={heroAnswer}
+          englishAnswer={getStatusEnglish(heroStatus)}
           statusType={heroStatus}
           secondaryLine={secondaryLine}
           todayDateIST={todayIST}

@@ -187,6 +187,8 @@ describe('getStatusHeadline — required public copy', () => {
   test('regional headlines for Tamil Nadu, Karnataka, Maharashtra, Kerala, and Andhra Pradesh', () => {
     // Tamil Nadu
     expect(getStatusHeadline('not_dry', TODAY, TODAY, 'tamil-nadu')).toBe('Illai, Wine Shop moodappadavillai');
+    expect(getStatusHeadline('not_dry', TODAY, 'tamil-nadu')).toBe('Illai, Wine Shop moodappadavillai');
+    expect(getStatusHeadline('not_dry', TODAY, 'tamil-nadu')).toBe('Illai, Wine Shop moodappadavillai');
     expect(getStatusHeadline('dry', TODAY, TODAY, 'tamil-nadu')).toBe('Aam, Wine Shop moodappattullathu');
 
     // Karnataka

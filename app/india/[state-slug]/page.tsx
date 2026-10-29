@@ -111,7 +111,7 @@ export default async function StatePage({ params }: Props) {
   // Primary hero answer: the required status sentences; statutory prohibition
   // keeps its own standing presentation ("Always" + the legal note).
   const heroAnswer =
-    state.prohibition === true ? 'Always' : getStatusHeadline(todayStatus, todayIST);
+    state.prohibition === true ? 'Always' : getStatusHeadline(todayStatus, todayIST, todayIST, state.slug);
 
   // Short badge label for the Today comparison card.
   const todayBadge =
