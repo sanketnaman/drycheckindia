@@ -11,6 +11,7 @@ import {
   getNationwideStatus,
   getStatusHeadline,
   getTodayIST,
+  getStateBySlug,
   DATA_UNAVAILABLE_SECONDARY,
   DATA_UNAVAILABLE_LIST_MESSAGE,
 } from '@/lib/dryday';
@@ -21,6 +22,7 @@ import {
   ExternalLink,
   AlertTriangle,
   ArrowLeft,
+  MapPin,
   HelpCircle as QuestionIcon,
 } from 'lucide-react';
 
@@ -133,6 +135,22 @@ export default async function DatePage({ params }: Props) {
     ? getStatusHeadline('maybe', dateIST)
     : null;
 
+  const popularStateSlugs = [
+    'delhi',
+    'uttar-pradesh',
+    'maharashtra',
+    'karnataka',
+    'rajasthan',
+    'west-bengal',
+    'punjab',
+    'telangana',
+    'tamil-nadu',
+    'kerala',
+  ];
+  const popularStates = popularStateSlugs
+    .map((s) => getStateBySlug(s))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -212,6 +230,20 @@ export default async function DatePage({ params }: Props) {
           text: dryItems.length > 0
             ? `States with dry day restrictions on ${formattedDate} include: ${dryItems.map((s) => s.state.name).join(', ')}.`
             : `No regional dry days are scheduled on ${formattedDate}, though statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) enforce permanent closure.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Kya ${formattedDate} ko India me theka ya wine shop khuli hai? (Theka status today)`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: dataUnavailable
+            ? `Abhi ${formattedDate} ke liye server se status prapt nahi ho pa raha hai.`
+            : isNational
+            ? `Nahi, ${formattedDate} ko ${primaryReason} ke uplakshya me poore desh me official dry day hai, sabhi theke aur wine shops poori tarah band rahenge.`
+            : eventDryDays.length > 0
+            ? `${formattedDate} ko ${eventDryDays.map((s) => s.state.name).join(', ')} me theke band rahenge. Baki non-prohibition states me theke apne nirdharit samay par khule rahenge.`
+            : `Haan, ${formattedDate} ko koi all-India dry day nahi hai. Sabhi non-prohibition states me wine shops aur theke normal timings par khule rahenge.`,
         },
       },
     ],
@@ -404,6 +436,52 @@ export default async function DatePage({ params }: Props) {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Check Specific State Trackers for this Date */}
+        <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+          <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+            <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-amber-400" />
+              <span>Check State Trackers &amp; Theka Status</span>
+            </h2>
+            <Link
+              href="/#state-directory"
+              className="text-xs text-amber-400 hover:underline"
+            >
+              All 36 States &rarr;
+            </Link>
+          </div>
+          <p className="mt-2.5 text-xs text-neutral-300 leading-relaxed">
+            Need local timings, retail theka open/closed status, or municipal orders for your city on {formattedDate}? Select your state tracker:
+          </p>
+          <div className="mt-3 grid grid-cols-2 sm:grid-cols-5 gap-2">
+            {popularStates.map((st) => (
+              <Link
+                key={st.slug}
+                href={`/india/${st.slug}`}
+                className="p-2.5 rounded-xl border border-neutral-800 bg-neutral-950/80 hover:border-amber-500/40 hover:bg-neutral-800/40 transition-colors text-center block"
+              >
+                <span className="text-xs font-semibold text-white block truncate">
+                  {st.name}
+                </span>
+                <span className="text-[10px] text-amber-400/90 font-mono mt-0.5 block">
+                  View Tracker &rarr;
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Quick link to November 2026 Calendar */}
+          <div className="mt-4 pt-3 border-t border-neutral-800/60 text-xs text-neutral-400 flex flex-wrap items-center justify-between gap-2">
+            <span>Planning ahead for Diwali, Chhath Puja, or Guru Nanak Jayanti?</span>
+            <Link
+              href="/guides/november-dry-days-2026"
+              className="text-amber-400 hover:text-white font-medium underline"
+            >
+              November 2026 Dry Days All-India Calendar &rarr;
+            </Link>
+          </div>
         </section>
 
         {/* Frequently Asked Questions */}

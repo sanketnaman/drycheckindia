@@ -270,6 +270,38 @@ export default async function StatePage({ params }: Props) {
           text: `You can check real-time updates on DryCheck India, or consult notifications published on the ${state.name} State Excise Department portal and official gazette.`,
         },
       },
+      {
+        '@type': 'Question',
+        name: `Kya aaj ${state.name} me theka ya wine shop khula hai? (Is wine shop open today?)`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `Nahi, ${state.name} ek statutory prohibition (sharab-bandi) state hai. Yahan theke aur wine shops hamesha band rehte hain.`
+            : todayStatus === 'dry'
+            ? `Nahi, aaj (${formattedToday}) ${state.name} me official dry day hone ke karan sabhi retail theke aur wine shops poori tarah band hain.`
+            : todayStatus === 'maybe'
+            ? `Aaj ${state.name} me theke khule hone ya band hone ki official pushti hona baki hai.`
+            : todayStatus === 'unavailable'
+            ? `Theka status ki jankari abhi server se uplabdh nahi ho pa rahi hai.`
+            : `Haan, aaj (${formattedToday}) ${state.name} me koi dry day nahi hai. Sabhi licensed theke aur wine shops apne nirdharit samay (${timingInfo.retailHours}) par khule hain.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Kya kal ${state.name} me dry day hai ya theka band rahega?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `${state.name} me complete prohibition lagu hai.`
+            : tomorrowStatus === 'dry'
+            ? `Haan, kal (${formattedTomorrow}) ${state.name} me official dry day hai aur sabhi retail theke band rahenge.`
+            : tomorrowStatus === 'maybe'
+            ? `Kal ke dry day status ki official pushti hona baki hai.`
+            : tomorrowStatus === 'unavailable'
+            ? `Kal ka status abhi uplabdh nahi hai.`
+            : `Nahi, kal (${formattedTomorrow}) ${state.name} me koi dry day schedule nahi hai. Sabhi retail wine shops regular timings par khule rahenge.`,
+        },
+      },
     ],
   };
 
