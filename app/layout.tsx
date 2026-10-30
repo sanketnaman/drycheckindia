@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PublicNoticeBar from '@/components/PublicNoticeBar';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import BuyMeACoffee from '@/components/BuyMeACoffee';
 import PageTracker from '@/components/PageTracker';
 import { getPublishedNotices } from '@/lib/public-drydays';
 
@@ -113,6 +114,7 @@ export default async function RootLayout({
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
         <GoogleAnalytics />
+        <BuyMeACoffee />
         <Suspense fallback={null}>
           <PageTracker />
         </Suspense>

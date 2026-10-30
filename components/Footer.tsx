@@ -54,6 +54,14 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-white transition-colors min-h-[44px] flex items-center">
               Terms of Use
             </Link>
+            <a
+              href="https://www.buymeacoffee.com/drycheck"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 hover:text-amber-300 transition-colors font-medium min-h-[36px]"
+            >
+              <span>☕ Buy me a coffee</span>
+            </a>
           </div>
 
           <div className="flex items-center gap-1.5 text-neutral-400 text-center">
