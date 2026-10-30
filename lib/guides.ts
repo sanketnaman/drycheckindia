@@ -319,6 +319,187 @@ export const GUIDES: Guide[] = [
     ],
     relatedStateSlug: 'uttar-pradesh',
   },
+  {
+    slug: 'delhi-dry-days-2026',
+    title: 'Delhi Dry Days 2026: Official Calendar, Theka Timings & NCR (Gurugram/Noida) Rules',
+    h1Title: 'Delhi Dry Days 2026: Official Calendar, Theka Timings & NCR (Gurugram/Noida) Rules',
+    seoTitle: 'Delhi Dry Days 2026: Full Calendar, Liquor Timings & NCR Rules | DryCheck India',
+    metaDescription:
+      'Complete Delhi dry days 2026 calendar & excise department rules. Check festival closures, 10 AM–10 PM retail theka timings, and Gurugram/Noida border transit limits.',
+    stateSlug: 'delhi',
+    stateName: 'Delhi',
+    region: 'North',
+    excerpt:
+      'Official guide to Delhi dry days in 2026, covering standing excise gazette closures (Republic Day, Independence Day, Gandhi Jayanti, Diwali, Guru Nanak Jayanti), government vend hours (10 AM–10 PM), Gurugram/Noida cross-border transit rules, and legal drinking age 21.',
+    primaryKeywords: [
+      'delhi dry days 2026',
+      'dry day in delhi tomorrow',
+      'is today a dry day in delhi',
+      'is tomorrow dry day in delhi',
+      'delhi theka timing today',
+      'is wine shop open in gurugram today',
+    ],
+    secondaryKeywords: [
+      'dry day delhi 2026 list',
+      'delhi excise rules 2026',
+      'gurgaon wine shop dry day',
+      'noida dry day rules',
+      'delhi liquor possession limit',
+      'can i bring liquor from gurgaon to delhi',
+      'dry day in new delhi',
+      'dry day in south delhi',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 9,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Department of Excise, Entertainment and Luxury Tax, Government of NCT of Delhi',
+        organization: 'Excise Department, Government of NCT of Delhi',
+        url: 'https://excise.delhi.gov.in/notifications',
+        claimSupported:
+          'Authoritative statutory dry day notifications, annual holiday gazette lists, L-1/L-2 retail vend licensing guidelines, and operating timings across the National Capital Territory of Delhi.',
+      },
+      {
+        title: 'Delhi Excise Act, 2009 (Delhi Act 07 of 2010)',
+        organization: 'Government of NCT of Delhi / Legislative Department',
+        url: 'https://delhi.gov.in',
+        documentNumber: 'Act No. 07 of 2010',
+        claimSupported:
+          'Statutory framework establishing statutory legal drinking age (21 years), personal possession allowances (up to 9 litres of IMFL and 18 litres of beer/wine), and Section 33 penalties for unlawful interstate transport from Haryana/UP without permit.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is tomorrow a dry day in Delhi?',
+        answer:
+          'To verify if tomorrow is a dry day in Delhi, check our real-time IST tracker at https://drycheck.in/india/delhi. Standard mandatory gazetted dry days in Delhi include 26 January (Republic Day), 15 August (Independence Day), 2 October (Gandhi Jayanti), Diwali, and Guru Nanak Jayanti, alongside election notification closures.',
+      },
+      {
+        question: 'What are the normal theka and wine shop timings in Delhi?',
+        answer:
+          'Licensed retail liquor vends operated by Delhi government corporations (DTTDC, DSIIDC, DCCWS, and DSCSC) operate strictly from 10:00 AM to 10:00 PM throughout the week, except on declared statutory dry days.',
+      },
+      {
+        question: 'Are bars and restaurants open in Delhi on dry days?',
+        answer:
+          'On gazetted dry days, sale and service of alcohol is strictly prohibited in standalone bars, clubs, and dining restaurants (L-17/L-18 licenses). However, licensed bars located within luxury star-rated hotels (such as 4-star and 5-star properties holding valid excise permits) are occasionally permitted to serve in-house resident guests depending on specific excise orders.',
+      },
+      {
+        question: 'Can I legally bring alcohol from Gurugram (Haryana) into Delhi on a dry day?',
+        answer:
+          'No. Under Section 33 of the Delhi Excise Act, 2009, transporting liquor purchased in another state (including Gurugram or Faridabad in Haryana) into Delhi without an excise transit permit is strictly illegal, regardless of whether it is a dry day. Violators face confiscation of liquor, vehicle seizure, and hefty fines or imprisonment.',
+      },
+      {
+        question: 'What is the legal drinking age in Delhi?',
+        answer:
+          'The statutory legal drinking age in the National Capital Territory of Delhi is 21 years. Retail vends and licensed bars are legally prohibited from selling or serving alcohol to any individual below 21 years of age.',
+      },
+      {
+        question: 'Which areas and localities of Delhi NCR are covered under these rules?',
+        answer:
+          'Delhi excise rules apply uniformly across all districts of the National Capital Territory, including New Delhi, South Delhi, North Delhi, West Delhi, East Delhi, Connaught Place, Saket, Hauz Khas, Dwarka, Rohini, and Karol Bagh. Neighboring NCR cities such as Gurugram and Faridabad follow Haryana excise rules, while Noida and Ghaziabad follow Uttar Pradesh excise regulations.',
+      },
+    ],
+    relatedStateSlug: 'delhi',
+  },
+  {
+    slug: 'maharashtra-dry-days-2026',
+    title: 'Maharashtra Dry Days 2026: Mumbai & Pune Calendar, Local Bans & Festival Rules',
+    h1Title: 'Maharashtra Dry Days 2026: Mumbai & Pune Calendar, Local Bans & Festival Rules',
+    seoTitle: 'Maharashtra Dry Days 2026: Mumbai Calendar, Timings & Rules | DryCheck India',
+    metaDescription:
+      'Official Maharashtra dry days 2026 calendar. Check Mumbai & Pune festival closures (Kartiki Ekadashi, Ganpati Visarjan), dry districts (Wardha, Gadchiroli), and bar timings.',
+    stateSlug: 'maharashtra',
+    stateName: 'Maharashtra',
+    region: 'West',
+    excerpt:
+      'Comprehensive guide to Maharashtra dry days in 2026, detailing Mumbai & Pune retail timings (10 AM–10:30 PM), major religious closures (Kartiki Ekadashi on 5 Nov, Ashadi Ekadashi, Ganpati Visarjan), total prohibition in Wardha & Gadchiroli districts, and Bombay Prohibition Act rules.',
+    primaryKeywords: [
+      'maharashtra dry days 2026',
+      'tomorrow is dry day in maharashtra',
+      'dry day in maharashtra tomorrow',
+      'is tomorrow dry day in maharashtra',
+      'dry day in mumbai',
+      'dry day in pune',
+    ],
+    secondaryKeywords: [
+      'maharashtra dry day list 2026',
+      'next dry day in maharashtra',
+      'kartiki ekadashi dry day 2026',
+      'ganpati visarjan dry day mumbai',
+      'is today dry day in amravati maharashtra',
+      'today is dry day in chandrapur',
+      'is tomorrow a dry day in nashik',
+      'mumbai wine shop timings',
+      'wardha dry district',
+      'gadchiroli liquor ban',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 10,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'State Excise Department, Government of Maharashtra - Standing Dry Day Orders',
+        organization: 'State Excise Department, Government of Maharashtra',
+        url: 'https://stateexcise.maharashtra.gov.in',
+        claimSupported:
+          'Official calendar of gazetted dry days in Maharashtra, including Ashadi Ekadashi, Kartiki Ekadashi, Ganpati Visarjan, and FL-I/FL-II liquor license operating frameworks.',
+      },
+      {
+        title: 'Maharashtra Prohibition Act, 1949 (Bombay Act XXV of 1949)',
+        organization: 'Law and Judiciary Department, Government of Maharashtra',
+        url: 'https://bombayhighcourt.nic.in',
+        documentNumber: 'Bombay Act XXV of 1949',
+        claimSupported:
+          'Statutory foundation governing alcohol possession permits, legal drinking age (21 for mild beer/wine, 25 for hard spirits), and district-level total statutory prohibition in Wardha and Gadchiroli.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is tomorrow a dry day in Maharashtra (Mumbai/Pune)?',
+        answer:
+          'To check if tomorrow is a dry day across Mumbai, Pune, Nagpur, or anywhere in Maharashtra, visit DryCheck India\'s live tracker at https://drycheck.in/india/maharashtra. Key recurring dry days include 26 January, 1 May (Maharashtra Day), 15 August, 2 October, Ashadi Ekadashi, Kartiki Ekadashi, and Anant Chaturdashi (Ganpati Visarjan).',
+      },
+      {
+        question: 'Why is Kartiki Ekadashi (5 November 2026) a dry day in Maharashtra?',
+        answer:
+          'Kartiki Ekadashi marks the conclusion of the holy Pandharpur Wari pilgrimage dedicated to Lord Vitthal. The Government of Maharashtra and State Excise Department mandate a statewide dry day on this auspicious date, closing all retail wine shops, beer bars, and permit rooms across all revenue districts.',
+      },
+      {
+        question: 'Are wine shops and bars open on Ganpati Visarjan in Mumbai and Pune?',
+        answer:
+          'No. Anant Chaturdashi (the final day of Ganesh Visarjan) is an official mandatory 24-hour dry day throughout Maharashtra. In cities like Mumbai, Pune, Thane, and Nashik, all licensed retail stores and permit rooms remain closed during immersion processions to maintain public order.',
+      },
+      {
+        question: 'What are the standard liquor store and bar operating hours in Maharashtra?',
+        answer:
+          'In major urban areas like Mumbai, Pune, Thane, and Navi Mumbai, licensed retail wine shops (FL-BR-II) generally operate from 10:00 AM to 10:30 PM (country liquor vends close by 10:00 PM). Licensed permit rooms and bars operate from 11:00 AM to 1:30 AM, subject to municipal corporation permissions.',
+      },
+      {
+        question: 'Which districts in Maharashtra enforce total statutory prohibition?',
+        answer:
+          'Wardha and Gadchiroli districts in Maharashtra are under complete statutory prohibition. Alcohol cannot be sold, purchased, transported, or possessed anywhere in Wardha (the historic home of Mahatma Gandhi\'s Sevagram and Acharya Vinoba Bhave\'s ashram) or Gadchiroli. In Chandrapur, prohibition was previously enacted in 2015 but lifted in 2021 by the state cabinet.',
+      },
+      {
+        question: 'What is the legal drinking age in Maharashtra and is a permit required?',
+        answer:
+          'Under the Maharashtra Prohibition Act, the minimum legal drinking age is 21 years for mild beer and wine, and 25 years for hard spirits (IMFL/country liquor). Technically, consumers are required to hold a personal liquor permit issued by the State Excise Department for purchasing and possessing alcohol.',
+      },
+      {
+        question: 'Which major cities in Maharashtra are covered under these excise rules?',
+        answer:
+          'Statewide excise rules and gazetted dry days apply uniformly across Mumbai, Pune, Nagpur, Nashik, Thane, Kalyan-Dombivli, Navi Mumbai, Chhatrapati Sambhajinagar, Amravati, Kolhapur, and Solapur.',
+      },
+    ],
+    relatedStateSlug: 'maharashtra',
+  },
 ];
 
 /**

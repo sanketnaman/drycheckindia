@@ -94,6 +94,14 @@ describe('Guides Registry & Data Model', () => {
     expect(upGuides.length).toBe(1);
     expect(upGuides[0].slug).toBe('uttar-pradesh-dry-days-2026');
 
+    const delhiGuides = getPublishedGuidesByState('delhi');
+    expect(delhiGuides.length).toBe(1);
+    expect(delhiGuides[0].slug).toBe('delhi-dry-days-2026');
+
+    const mhGuides = getPublishedGuidesByState('maharashtra');
+    expect(mhGuides.length).toBe(1);
+    expect(mhGuides[0].slug).toBe('maharashtra-dry-days-2026');
+
     const biharGuides = getPublishedGuidesByState('bihar');
     expect(biharGuides).toEqual([]);
   });
@@ -192,6 +200,8 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides');
     expect(urls).toContain('https://drycheck.in/guides/kerala-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/uttar-pradesh-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/delhi-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/maharashtra-dry-days-2026');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');

@@ -641,6 +641,30 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'delhi' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on standing gazette dry days, 10 PM government vend timings, and Gurugram/Noida border transit limits, read our verified guide:{' '}
+                <Link
+                  href="/guides/delhi-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Delhi Dry Days 2026: Official Calendar, Theka Timings &amp; NCR Rules
+                </Link>
+                .
+              </p>
+            )}
+            {state.slug === 'maharashtra' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed Mumbai and Pune festival closures, Kartiki Ekadashi, and Wardha/Gadchiroli prohibition rules, read our verified guide:{' '}
+                <Link
+                  href="/guides/maharashtra-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Maharashtra Dry Days 2026: Mumbai &amp; Pune Calendar, Local Bans &amp; Rules
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </section>
 
