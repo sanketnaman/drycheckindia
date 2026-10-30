@@ -773,6 +773,104 @@ export const GUIDES: Guide[] = [
     ],
     relatedStateSlug: 'gujarat',
   },
+  {
+    slug: 'november-dry-days-2026',
+    title: 'November Dry Days 2026: Official All-India Calendar, Festival Dates & City Rules',
+    h1Title: 'November Dry Days 2026: Official All-India Calendar, Festival Dates & City Rules',
+    seoTitle: 'November Dry Days 2026: Complete All-India Calendar & Festival Dates | DryCheck India',
+    metaDescription:
+      'Complete official calendar for November dry days 2026 in India. Check confirmed wine shop closures for Diwali (8 Nov), Guru Nanak Jayanti (24 Nov), Kartiki Ekadashi (20 Nov), and city rules.',
+    stateSlug: 'delhi',
+    stateName: 'National & All-India',
+    region: 'North',
+    excerpt:
+      'An exhaustive month-ahead calendar and excise breakdown for November 2026 dry days across India. Details nationwide closures for Diwali (8 Nov) and Guru Nanak Jayanti (24 Nov), state-specific dry days in Karnataka (1 Nov Rajyotsava), Kerala (1 Nov BEVCO), Maharashtra (20 Nov Kartiki Ekadashi), and Chhath Puja riverfront regulations.',
+    primaryKeywords: [
+      'dry days in november 2026',
+      'dry day in november 2026',
+      'november dry day list 2026',
+      'diwali dry day 2026',
+      'guru nanak jayanti dry day 2026',
+      'upcoming dry days 2026',
+    ],
+    secondaryKeywords: [
+      'is nov 1 dry day in india',
+      'is diwali a dry day in delhi',
+      'is diwali dry day in mumbai',
+      'wine shop open on diwali',
+      'kartiki ekadashi 2026 dry day',
+      'theka timing november 2026',
+      'dry days in november',
+      'liquor shop closed in november 2026',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 10,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Delhi Excise Department - Gazetted Dry Days and Festival Schedule 2026',
+        organization: 'Department of Excise, Government of NCT of Delhi',
+        url: 'https://excise.delhi.gov.in/notifications',
+        claimSupported:
+          'Authoritative statutory dry-day notifications declaring complete retail liquor store, theka, and vend closures on Diwali (8 Nov 2026) and Guru Nanak Jayanti (24 Nov 2026).',
+      },
+      {
+        title: 'Maharashtra State Excise - Bombay Foreign Liquor & Dry Day Mandate',
+        organization: 'State Excise Department, Government of Maharashtra',
+        url: 'https://stateexcise.maharashtra.gov.in',
+        claimSupported:
+          'Official dry day orders enforcing 24-hour liquor bans on Diwali (8 Nov), Kartiki Ekadashi (20 Nov), and Guru Nanak Jayanti (24 Nov) across Mumbai, Pune, Nagpur, and Pandharpur.',
+      },
+      {
+        title: 'Uttar Pradesh Excise Department - Standing Annual Excise Calendar 2026',
+        organization: 'Department of Excise, Government of Uttar Pradesh',
+        url: 'https://upexcise.gov.in',
+        claimSupported:
+          'Statewide gazetted holiday schedule mandating closure of licensed country liquor, foreign liquor, and beer vends on Diwali (Deepavali) and Guru Nanak Dev Jayanti.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Which are the confirmed nationwide dry days in November 2026?',
+        answer:
+          'In November 2026, the primary nationwide gazetted dry days observed across almost all non-prohibition states (including Delhi, Maharashtra, Uttar Pradesh, Rajasthan, Punjab, and Karnataka) are Diwali / Lakshmi Puja on Sunday, 8 November 2026, and Guru Nanak Jayanti (Gurpurab / Kartik Purnima) on Tuesday, 24 November 2026. On these dates, all retail wine shops, thekas, and commercial liquor stores remain strictly closed.',
+      },
+      {
+        question: 'Are wine shops and thekas open on Diwali (8 November 2026)?',
+        answer:
+          'No, retail wine shops and thekas are completely closed on Diwali (Sunday, 8 November 2026) across Delhi, Uttar Pradesh, Maharashtra, Rajasthan, Karnataka, Haryana, and most other states under gazetted festival orders. In hotel bars and premium restaurants, alcohol service depends on specific state L-4/FL-3 license exemptions, but off-premise retail purchase is strictly prohibited.',
+      },
+      {
+        question: 'Is 1 November 2026 a dry day across India?',
+        answer:
+          'No, 1 November 2026 is not a nationwide dry day. However, it is observed as a dry day in specific states: in Kerala, government BEVCO and Consumerfed retail outlets are closed statewide under Rule 7A (1st of every month monthly dry day rule); in Karnataka, Kannada Rajyotsava is celebrated, during which local District Commissioners in Bengaluru, Mysuru, and sensitive zones frequently order dry days for public order.',
+      },
+      {
+        question: 'Is Guru Nanak Jayanti (24 November 2026) a dry day?',
+        answer:
+          'Yes, Guru Nanak Jayanti (also coinciding with Kartik Purnima and Dev Deepawali on Tuesday, 24 November 2026) is a gazetted statutory dry day across Delhi, Punjab, Chandigarh, Haryana, Uttar Pradesh, Maharashtra, Rajasthan, and several other states. Retail liquor shops remain closed for the full 24-hour cycle.',
+      },
+      {
+        question: 'Is Kartiki Ekadashi (20 November 2026) a dry day in Maharashtra?',
+        answer:
+          'Yes, Kartiki Ekadashi (Prabodhini Ekadashi, falling on Friday, 20 November 2026) is an official dry day in Maharashtra. It is observed with strict total closure in holy pilgrimage centres such as Pandharpur (Solapur district), and enforced across Mumbai, Pune, Nashik, and other districts per annual excise orders.',
+      },
+      {
+        question: 'Are liquor shops closed on Chhath Puja (15-16 November 2026)?',
+        answer:
+          'In Bihar, alcohol is permanently prohibited year-round under the 2016 Act. In Uttar Pradesh, Jharkhand, and Delhi, municipal authorities and district magistrates frequently order local dry zones or ban alcohol sales within 1 to 2 kilometres of notified Chhath ghats along the Ganga and Yamuna rivers on Sunday evening (Sandhya Arghya, 15 Nov) and Monday morning (Usha Arghya, 16 Nov).',
+      },
+      {
+        question: 'Can you buy alcohol from bars or clubs on dry days in November?',
+        answer:
+          'On major religious dry days like Diwali (8 Nov) and Guru Nanak Jayanti (24 Nov), standard commercial hotel bars, pubs, and clubs are required to halt alcohol service in most states. Only four-star and five-star classified hotels holding specialized international tourist licenses in select states may serve resident foreign guests in closed rooms.',
+      },
+    ],
+    relatedStateSlug: 'delhi',
+  },
 ];
 
 /**

@@ -95,8 +95,9 @@ describe('Guides Registry & Data Model', () => {
     expect(upGuides[0].slug).toBe('uttar-pradesh-dry-days-2026');
 
     const delhiGuides = getPublishedGuidesByState('delhi');
-    expect(delhiGuides.length).toBe(1);
-    expect(delhiGuides[0].slug).toBe('delhi-dry-days-2026');
+    expect(delhiGuides.length).toBe(2);
+    expect(delhiGuides.map((g) => g.slug)).toContain('delhi-dry-days-2026');
+    expect(delhiGuides.map((g) => g.slug)).toContain('november-dry-days-2026');
 
     const mhGuides = getPublishedGuidesByState('maharashtra');
     expect(mhGuides.length).toBe(1);
@@ -217,6 +218,7 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides/karnataka-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/rajasthan-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/dry-states-in-india-2026');
+    expect(urls).toContain('https://drycheck.in/guides/november-dry-days-2026');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');
@@ -250,5 +252,27 @@ describe('Dry States in India Guide 2026 - Prohibition & Open States Verificatio
     expect(questions.some((q) => q.includes('meghalaya'))).toBe(true);
     expect(questions.some((q) => q.includes('jharkhand'))).toBe(true);
     expect(questions.some((q) => q.includes('gujarat'))).toBe(true);
+  });
+});
+
+describe('November Dry Days Guide 2026 - Monthly Hub Verification', () => {
+  const guide = getPublishedGuideBySlug('november-dry-days-2026');
+
+  test('guide is defined and targets November festival queries', () => {
+    expect(guide).toBeDefined();
+    expect(guide?.slug).toBe('november-dry-days-2026');
+    expect(guide?.stateSlug).toBe('delhi');
+    expect(guide?.primaryKeywords).toContain('dry days in november 2026');
+    expect(guide?.primaryKeywords).toContain('dry day in november 2026');
+    expect(guide?.primaryKeywords).toContain('diwali dry day 2026');
+    expect(guide?.primaryKeywords).toContain('guru nanak jayanti dry day 2026');
+  });
+
+  test('guide FAQs answer key November queries', () => {
+    const questions = guide?.faqs.map((f) => f.question.toLowerCase()) || [];
+    expect(questions.some((q) => q.includes('diwali'))).toBe(true);
+    expect(questions.some((q) => q.includes('guru nanak jayanti'))).toBe(true);
+    expect(questions.some((q) => q.includes('kartiki ekadashi'))).toBe(true);
+    expect(questions.some((q) => q.includes('chhath puja'))).toBe(true);
   });
 });

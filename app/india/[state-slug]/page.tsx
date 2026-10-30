@@ -713,6 +713,16 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            <p className="text-xs text-neutral-400 pt-1 border-t border-neutral-800/60 mt-2">
+              Looking for upcoming festival dates? Check the official{' '}
+              <Link
+                href="/guides/november-dry-days-2026"
+                className="text-amber-400 underline font-medium hover:text-white"
+              >
+                November Dry Days 2026 All-India Calendar
+              </Link>{' '}
+              for confirmed Diwali (8 Nov) and Guru Nanak Jayanti (24 Nov) wine shop closures.
+            </p>
           </div>
         </section>
 
