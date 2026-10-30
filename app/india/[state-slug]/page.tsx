@@ -18,6 +18,8 @@ import {
   dateToSlug,
   DATA_UNAVAILABLE_SECONDARY,
   DATA_UNAVAILABLE_LIST_MESSAGE,
+  getStateMajorCities,
+  getStateExciseTimings,
   type PublicStatus,
 } from '@/lib/dryday';
 import { getPublicDataset } from '@/lib/public-drydays';
@@ -32,7 +34,9 @@ import {
   HelpCircle as QuestionIcon,
   CheckCircle,
   Clock,
-  BookOpen
+  BookOpen,
+  Store,
+  Beer,
 } from 'lucide-react';
 
 export const revalidate = 3600;
@@ -57,8 +61,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `Is Today a Dry Day in ${state.name}? | DryCheck India`;
-  const description = `Find out if today or tomorrow is a dry day in ${state.name} (${state.region} India). Complete state excise calendar, festival closures, and election restrictions.`;
+  const todayIST = getTodayIST();
+  const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: false, fullMonth: false });
+
+  const title = `Is Today Dry Day in ${state.name}? (${formattedToday}) - Wine Shop Status | DryCheck India`;
+  const description = `Check if today or tomorrow is a dry day in ${state.name} (${formattedToday}). Real-time wine shop & theka open/closed status, bar timings, and official 2026 excise calendar.`;
   const canonicalUrl = `${SITE_URL}/india/${state.slug}`;
 
   return {
@@ -137,6 +144,9 @@ export default async function StatePage({ params }: Props) {
     (e) => e.state === state.slug || e.state === 'all'
   );
 
+  const majorCities = getStateMajorCities(state.slug);
+  const timingInfo = getStateExciseTimings(state.slug);
+
   const hasVerifiedSource = allEntries.some(
     (e) => e.status === 'confirmed' && Boolean(e.sourceUrl && e.sourceUrl.trim().length > 0)
   );
@@ -185,15 +195,15 @@ export default async function StatePage({ params }: Props) {
         name: `Is today a dry day in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-        text: state.prohibition
-          ? `Yes, ${state.name} observes complete statewide statutory prohibition. Every day is a dry day.`
-          : todayStatus === 'dry'
-          ? `Yes, today (${formattedToday}) is a scheduled dry day in ${state.name} under official state excise department notifications.`
-          : todayStatus === 'maybe'
-          ? `Today has a reported dry day signal in ${state.name}. Official confirmation awaited.`
-          : todayStatus === 'unavailable'
-          ? `Today's dry-day status in ${state.name} could not be retrieved from the database right now.`
-          : `No, today is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
+          text: state.prohibition
+            ? `Yes, ${state.name} observes complete statewide statutory prohibition. Every day is a dry day.`
+            : todayStatus === 'dry'
+            ? `Yes, today (${formattedToday}) is a scheduled dry day in ${state.name} under official state excise department notifications.`
+            : todayStatus === 'maybe'
+            ? `Today has a reported dry day signal in ${state.name}. Official confirmation awaited.`
+            : todayStatus === 'unavailable'
+            ? `Today's dry-day status in ${state.name} could not be retrieved from the database right now.`
+            : `No, today is not a scheduled dry day in ${state.name}. Licensed retail vendors operate during normal trading hours.`,
         },
       },
       {
@@ -201,15 +211,47 @@ export default async function StatePage({ params }: Props) {
         name: `Is tomorrow a dry day in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-        text: state.prohibition
-          ? `Yes, because ${state.name} enforces permanent prohibition year-round.`
-          : tomorrowStatus === 'dry'
-          ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
-          : tomorrowStatus === 'maybe'
-          ? `Tomorrow's dry status is reported but not yet officially confirmed in ${state.name}.`
-          : tomorrowStatus === 'unavailable'
-          ? `Tomorrow's dry-day status in ${state.name} could not be retrieved from the database right now.`
-          : `No, tomorrow is not scheduled as a dry day in ${state.name}.`,
+          text: state.prohibition
+            ? `Yes, because ${state.name} enforces permanent prohibition year-round.`
+            : tomorrowStatus === 'dry'
+            ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
+            : tomorrowStatus === 'maybe'
+            ? `Tomorrow's dry status is reported but not yet officially confirmed in ${state.name}.`
+            : tomorrowStatus === 'unavailable'
+            ? `Tomorrow's dry-day status in ${state.name} could not be retrieved from the database right now.`
+            : `No, tomorrow is not scheduled as a dry day in ${state.name}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Are wine shops and thekas open today in ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `No, ${state.name} is a statutory prohibition state. Wine shops and thekas are permanently closed.`
+            : todayStatus === 'dry'
+            ? `No, all retail wine shops and thekas in ${state.name} are closed today (${formattedToday}) due to official dry day directives.`
+            : todayStatus === 'maybe'
+            ? `Wine shop status is pending official confirmation for today in ${state.name}.`
+            : todayStatus === 'unavailable'
+            ? `Wine shop operating status in ${state.name} is temporarily unavailable.`
+            : `Yes, licensed retail wine shops and thekas in ${state.name} are open today (${formattedToday}) during standard excise hours (typically 10:00 AM to 10:00 PM).`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Are bars and restaurants serving alcohol today in ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `No, serving or selling alcohol is illegal in ${state.name}.`
+            : todayStatus === 'dry'
+            ? `No, licensed bars, clubs, and hotel lounges in ${state.name} are strictly prohibited from serving alcohol on official dry days.`
+            : todayStatus === 'maybe'
+            ? `Bar service rules for today are pending official confirmation in ${state.name}.`
+            : todayStatus === 'unavailable'
+            ? `Bar operating status in ${state.name} is temporarily unavailable.`
+            : `Yes, licensed bars, clubs, and hotel lounges in ${state.name} are permitted to serve liquor today during standard licensed hours.`,
         },
       },
       {
@@ -341,6 +383,54 @@ export default async function StatePage({ params }: Props) {
             </p>
           </div>
         </div>
+
+        {/* Retail Theka & Bar Operating Hours Card */}
+        {!state.prohibition && (
+          <section className="my-4 rounded-xl border border-neutral-800 bg-neutral-900/60 p-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800/80">
+              <div className="flex items-center gap-2 text-sm font-bold text-white">
+                <Store className="h-4 w-4 text-amber-400" />
+                <span>Liquor Store &amp; Bar Operating Hours &bull; {state.name}</span>
+              </div>
+              <span
+                className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${
+                  todayStatus === 'dry'
+                    ? 'bg-rose-950/70 text-rose-300 border-rose-800/60'
+                    : 'bg-emerald-950/70 text-emerald-300 border-emerald-800/60'
+                }`}
+              >
+                {todayStatus === 'dry' ? 'Thekas Closed Today' : 'Thekas Open Today'}
+              </span>
+            </div>
+
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="p-3 rounded-lg bg-neutral-950/80 border border-neutral-800/80">
+                <span className="text-neutral-400 block text-[11px]">Retail Wine Shop / Theka Hours</span>
+                <span className="font-semibold text-white mt-1 block text-xs sm:text-sm">
+                  {timingInfo.retailHours}
+                </span>
+              </div>
+              <div className="p-3 rounded-lg bg-neutral-950/80 border border-neutral-800/80">
+                <span className="text-neutral-400 block text-[11px]">Bar &amp; Restaurant Timings</span>
+                <span className="font-semibold text-white mt-1 block text-xs sm:text-sm">
+                  {timingInfo.barHours}
+                </span>
+              </div>
+              <div className="p-3 rounded-lg bg-neutral-950/80 border border-neutral-800/80">
+                <span className="text-neutral-400 block text-[11px]">Statutory Legal Drinking Age</span>
+                <span className="font-semibold text-amber-400 mt-1 block text-xs sm:text-sm">
+                  {timingInfo.legalAge} Years Minimum
+                </span>
+              </div>
+            </div>
+
+            {timingInfo.notes && (
+              <p className="mt-2.5 text-[11px] text-neutral-400 italic">
+                * Note: {timingInfo.notes}
+              </p>
+            )}
+          </section>
+        )}
 
         {/* Next 30 Days List */}
         {!state.prohibition && (
@@ -553,6 +643,32 @@ export default async function StatePage({ params }: Props) {
             )}
           </div>
         </section>
+
+        {/* Major Cities & Districts Covered */}
+        {majorCities.length > 0 && (
+          <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+            <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 mb-2">
+              <MapPin className="h-4 w-4 text-amber-400" />
+              <span>Districts &amp; Major Cities Covered in {state.name}</span>
+            </h2>
+            <p className="text-xs text-neutral-300 mb-3 leading-relaxed">
+              Official dry-day notifications, festival closures, and operating hours in {state.name} apply across all municipal corporations, revenue districts, and urban centres, including:
+            </p>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {majorCities.map((city) => (
+                <span
+                  key={city}
+                  className="px-2.5 py-1 rounded-lg bg-neutral-950 border border-neutral-800 text-neutral-300 text-xs font-medium"
+                >
+                  {city}
+                </span>
+              ))}
+            </div>
+            <p className="text-[11px] text-neutral-400">
+              Whether you are searching if wine shops or thekas are open today in {majorCities.slice(0, 3).join(', ')}, or other towns, the legal status displayed on DryCheck is verified under {state.name} State Excise Department circulars.
+            </p>
+          </section>
+        )}
 
         {/* State Regulatory Guides Section */}
         {publishedGuides.length > 0 && (

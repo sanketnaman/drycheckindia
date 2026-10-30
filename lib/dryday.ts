@@ -890,3 +890,127 @@ export function getDeterministicFooterQuip(dateStr: string): { rhyme: string[]; 
 
   return quips[hash % quips.length];
 }
+
+export const STATE_MAJOR_CITIES: Record<string, string[]> = {
+  'uttar-pradesh': ['Lucknow', 'Noida', 'Greater Noida', 'Ghaziabad', 'Kanpur', 'Varanasi', 'Agra', 'Prayagraj', 'Meerut', 'Bareilly', 'Aligarh', 'Gorakhpur', 'Mathura', 'Ayodhya'],
+  'maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Thane', 'Chhatrapati Sambhajinagar', 'Amravati', 'Solapur', 'Kalyan', 'Dombivli', 'Navi Mumbai', 'Kolhapur', 'Chandrapur'],
+  'delhi': ['New Delhi', 'South Delhi', 'Connaught Place', 'Dwarka', 'Rohini', 'Saket', 'Karol Bagh', 'Lajpat Nagar', 'Mayur Vihar', 'Chandni Chowk'],
+  'rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Bikaner', 'Ajmer', 'Mount Abu', 'Alwar', 'Bhilwara', 'Bharatpur'],
+  'karnataka': ['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi', 'Dharwad', 'Belagavi', 'Ballari', 'Vijayapura', 'Kalaburagi'],
+  'tamil-nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Erode', 'Vellore'],
+  'kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur', 'Kollam', 'Alappuzha', 'Palakkad', 'Kannur', 'Kottayam'],
+  'haryana': ['Gurugram', 'Faridabad', 'Panipat', 'Ambala', 'Karnal', 'Panchkula', 'Sonipat', 'Rohtak', 'Hisar'],
+  'west-bengal': ['Kolkata', 'Howrah', 'Siliguri', 'Durgapur', 'Asansol', 'Kharagpur', 'Darjeeling', 'Bardhaman'],
+  'telangana': ['Hyderabad', 'Secunderabad', 'Warangal', 'Nizamabad', 'Khammam', 'Karimnagar'],
+  'andhra-pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Tirupati', 'Nellore', 'Kurnool', 'Rajahmundry'],
+  'punjab': ['Amritsar', 'Ludhiana', 'Jalandhar', 'Patiala', 'Bathinda', 'Mohali', 'Pathankot'],
+  'madhya-pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain', 'Sagar', 'Rewa'],
+  'chhattisgarh': ['Raipur', 'Bhilai', 'Bilaspur', 'Korba', 'Durg', 'Rajnandgaon'],
+  'jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Deoghar', 'Hazaribagh'],
+  'odisha': ['Bhubaneswar', 'Cuttack', 'Rourkela', 'Puri', 'Sambalpur', 'Berhampur'],
+  'uttarakhand': ['Dehradun', 'Haridwar', 'Rishikesh', 'Haldwani', 'Roorkee', 'Nainital', 'Mussoorie'],
+  'himachal-pradesh': ['Shimla', 'Dharamshala', 'Manali', 'Mandi', 'Solan', 'Kullu', 'Baddi'],
+  'goa': ['Panaji', 'Margao', 'Vasco da Gama', 'Mapusa', 'Calangute', 'Candolim', 'Ponda'],
+  'puducherry': ['Pondicherry City', 'Karaikal', 'Mahe', 'Yanam'],
+  'chandigarh': ['Chandigarh Sector 17', 'Sector 22', 'Sector 35', 'Manimajra'],
+  'dadra-and-nagar-haveli-and-daman-and-diu': ['Daman', 'Diu', 'Silvassa'],
+  'jammu-and-kashmir': ['Srinagar', 'Jammu', 'Anantnag', 'Baramulla', 'Kathua', 'Udhampur'],
+  'ladakh': ['Leh', 'Kargil'],
+  'assam': ['Guwahati', 'Silchar', 'Dibrugarh', 'Jorhat', 'Nagaon', 'Tinsukia'],
+  'sikkim': ['Gangtok', 'Namchi', 'Geyzing', 'Mangan'],
+  'meghalaya': ['Shillong', 'Tura', 'Jowai', 'Cherrapunji'],
+  'tripura': ['Agartala', 'Udaipur', 'Dharmanagar'],
+  'manipur': ['Imphal', 'Churachandpur', 'Thoubal'],
+  'arunachal-pradesh': ['Itanagar', 'Naharlagun', 'Pasighat', 'Tawang'],
+  'andaman-and-nicobar-islands': ['Port Blair', 'Havelock Island', 'Neil Island'],
+  'bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur', 'Purnia'],
+  'gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Gandhinagar', 'GIFT City'],
+  'nagaland': ['Kohima', 'Dimapur', 'Mokokchung'],
+  'mizoram': ['Aizawl', 'Lunglei', 'Champhai'],
+  'lakshadweep': ['Kavaratti', 'Agatti', 'Andrott', 'Bangaram Island'],
+};
+
+export interface StateTimingInfo {
+  retailHours: string;
+  barHours: string;
+  legalAge: number;
+  notes?: string;
+}
+
+export const STATE_EXCISE_TIMINGS: Record<string, StateTimingInfo> = {
+  'uttar-pradesh': {
+    retailHours: '10:00 AM – 10:00 PM',
+    barHours: '10:00 AM – 1:00 AM (Star hotels up to 4:00 AM)',
+    legalAge: 21,
+    notes: 'Alcohol transport into UP from Delhi or Haryana is strictly prohibited without special transit permit.',
+  },
+  'delhi': {
+    retailHours: '10:00 AM – 10:00 PM',
+    barHours: '11:00 AM – 1:00 AM (Select luxury venues up to 3:00 AM)',
+    legalAge: 21,
+    notes: 'Retail sales managed by Delhi government corporations (DTTDC, DSIIDC, DCCWS, DSCSC).',
+  },
+  'maharashtra': {
+    retailHours: '10:00 AM – 10:30 PM (Country liquor 10 AM – 10 PM)',
+    barHours: '11:00 AM – 1:30 AM (Varies by municipal corporation permit)',
+    legalAge: 25,
+    notes: 'FL-I/FL-II permits required under Bombay Prohibition Act. Wardha and Gadchiroli are total dry districts.',
+  },
+  'karnataka': {
+    retailHours: '10:00 AM – 10:30 PM (CL-2 retail outlets)',
+    barHours: '10:00 AM – 11:30 PM (Clubs and pubs up to 1:00 AM on weekends)',
+    legalAge: 21,
+    notes: 'Excise governed under Karnataka Excise Act, 1965.',
+  },
+  'tamil-nadu': {
+    retailHours: '12:00 PM (Noon) – 10:00 PM (TASMAC outlets)',
+    barHours: '11:00 AM – 11:00 PM (FL-3 hotel bars)',
+    legalAge: 21,
+    notes: 'All retail liquor sales exclusively monopolized by state-run TASMAC.',
+  },
+  'kerala': {
+    retailHours: '10:00 AM – 9:00 PM (BEVCO & Consumerfed stores)',
+    barHours: '11:00 AM – 11:00 PM (FL-3 bars)',
+    legalAge: 23,
+    notes: '1st of every month is a compulsory dry day statewide under Foreign Liquor Rule 7A.',
+  },
+  'rajasthan': {
+    retailHours: '10:00 AM – 8:00 PM (Strict early closure)',
+    barHours: '11:00 AM – 11:00 PM (Heritage hotel bars up to 12:00 AM)',
+    legalAge: 21,
+    notes: 'Retail wine shops close strictly at 8:00 PM under Rajasthan Excise Department rules.',
+  },
+  'haryana': {
+    retailHours: '8:00 AM – 12:00 Midnight (Select Gurugram zones have 24-hour retail permits)',
+    barHours: '9:00 AM – 1:00 AM (Gurugram cyber hubs extend to 3:00 AM or 24/7 with special fee)',
+    legalAge: 21,
+    notes: 'Haryana allows extended operating hours and microbreweries in Gurugram and Faridabad.',
+  },
+  'west-bengal': {
+    retailHours: '12:00 PM (Noon) – 10:00 PM',
+    barHours: '12:00 PM – 12:00 Midnight',
+    legalAge: 21,
+    notes: 'Excise regulated by West Bengal State Beverages Corporation (BEVCO).',
+  },
+  'goa': {
+    retailHours: '9:00 AM – 11:00 PM',
+    barHours: '9:00 AM – 1:00 AM (Select coastal bars up to 4:00 AM)',
+    legalAge: 18,
+    notes: 'Goa enforces among the lowest excise duties in India with legal drinking age 18.',
+  },
+};
+
+export function getStateMajorCities(stateSlug: string): string[] {
+  return STATE_MAJOR_CITIES[stateSlug] || [];
+}
+
+export function getStateExciseTimings(stateSlug: string): StateTimingInfo {
+  return (
+    STATE_EXCISE_TIMINGS[stateSlug] || {
+      retailHours: '10:00 AM – 10:00 PM',
+      barHours: '11:00 AM – 11:00 PM',
+      legalAge: 21,
+      notes: 'Standard state excise regulations and municipal operating limits apply.',
+    }
+  );
+}

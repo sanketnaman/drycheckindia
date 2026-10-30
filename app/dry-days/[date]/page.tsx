@@ -21,6 +21,7 @@ import {
   ExternalLink,
   AlertTriangle,
   ArrowLeft,
+  HelpCircle as QuestionIcon,
 } from 'lucide-react';
 
 export const revalidate = 3600;
@@ -45,8 +46,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = 'Dry Days Across India | DryCheck India';
-  const description = 'Check which Indian states and union territories observe dry days under official excise rules, festival closures, and store timings.';
+  const formattedDate = formatDateDisplay(dateIST, { showDayOfWeek: true });
+  const dataset = await getPublicDataset();
+  const entries = dataset.entries;
+  const allEntriesOnDate = entries.filter((e) => e.date === dateIST);
+  const primaryReason = allEntriesOnDate[0]?.reason;
+
+  const title = primaryReason
+    ? `Dry Day on ${formattedDate} (${primaryReason})? State List & Shop Status | DryCheck India`
+    : `Is ${formattedDate} a Dry Day in India? State List & Shop Status | DryCheck India`;
+
+  const description = primaryReason
+    ? `Find out if ${formattedDate} is a dry day in India for ${primaryReason}. State-wise liquor shop and theka status, bar timings, and official excise rules.`
+    : `Check if ${formattedDate} is a dry day across Indian states. Complete state-wise list, retail liquor shop status, bar timings, and official excise notifications.`;
+
   const canonicalUrl = `${SITE_URL}/dry-days/${rawSlug}`;
 
   return {
@@ -145,9 +158,69 @@ export default async function DatePage({ params }: Props) {
     ],
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Is ${formattedDate} a dry day in India?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: dataUnavailable
+            ? `The real-time status for ${formattedDate} could not be retrieved from the database right now. Please check back shortly.`
+            : isNational
+            ? `Yes, ${formattedDate} is a nationwide dry day across India in observance of ${primaryReason}. All retail liquor shops, thekas, and commercial bars remain closed.`
+            : eventDryDays.length > 0
+            ? `${formattedDate} is a dry day in ${eventDryDays.length} state(s) including ${eventDryDays.slice(0, 3).map((s) => s.state.name).join(', ')}${eventDryDays.length > 3 ? ' and others' : ''} for ${primaryReason}. States under total statutory prohibition (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) are also closed.`
+            : `No nationwide dry day is scheduled for ${formattedDate}. Licensed liquor retail shops and bars operate normally across non-prohibition states.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Are wine shops and thekas open or closed on ${formattedDate}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: dataUnavailable
+            ? `Shop operating status for ${formattedDate} is temporarily unavailable.`
+            : isNational
+            ? `All retail wine shops and thekas are mandated closed throughout India on ${formattedDate} for ${primaryReason}.`
+            : eventDryDays.length > 0
+            ? `Wine shops are closed on ${formattedDate} in states observing ${primaryReason} (${eventDryDays.map((s) => s.state.name).join(', ')}). In other states, retail stores operate during standard excise hours.`
+            : `Yes, retail wine shops and thekas operate under regular state excise hours on ${formattedDate} across non-prohibition states.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Are bars and restaurants serving alcohol on ${formattedDate}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: dataUnavailable
+            ? `Bar service status for ${formattedDate} is temporarily unavailable.`
+            : isNational
+            ? `No, bar licenses (FL-2/FL-3), pubs, clubs, and star hotels are strictly prohibited from serving alcohol on ${formattedDate} across India.`
+            : eventDryDays.length > 0
+            ? `Bars and clubs are closed in observing states (${eventDryDays.map((s) => s.state.name).join(', ')}). In other states, bars operate during normal permitted hours.`
+            : `Yes, licensed bars, clubs, and hotel restaurants are permitted to serve liquor on ${formattedDate} in non-prohibition states.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Which Indian states have a dry day on ${formattedDate}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: dryItems.length > 0
+            ? `States with dry day restrictions on ${formattedDate} include: ${dryItems.map((s) => s.state.name).join(', ')}.`
+            : `No regional dry days are scheduled on ${formattedDate}, though statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) enforce permanent closure.`,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
 
       <div className="mx-auto w-full max-w-4xl px-3 sm:px-6 pt-1 pb-16">
         {/* Breadcrumb Navigation */}
@@ -331,6 +404,31 @@ export default async function DatePage({ params }: Props) {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Frequently Asked Questions */}
+        <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 mb-3">
+            <QuestionIcon className="h-4 w-4 text-amber-400" />
+            <span>Frequently Asked Questions &bull; {formattedDate}</span>
+          </h2>
+
+          <div className="space-y-2.5">
+            {faqSchema.mainEntity.map((faq, index) => (
+              <div
+                key={index}
+                className="rounded-xl border border-neutral-800/80 bg-neutral-950/70 p-3.5"
+              >
+                <h3 className="text-xs sm:text-sm font-semibold text-neutral-100 flex items-center gap-2">
+                  <span className="text-amber-400 font-mono">Q.</span>
+                  {faq.name}
+                </h3>
+                <p className="mt-1.5 text-xs text-neutral-300 leading-relaxed pl-5">
+                  {faq.acceptedAnswer.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Back navigation */}

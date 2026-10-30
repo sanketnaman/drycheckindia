@@ -82,9 +82,9 @@ export const GUIDES: Guide[] = [
     slug: 'kerala-dry-days-2026',
     title: 'Kerala Dry Days 2026: Official Dates, Election Restrictions and Rules',
     h1Title: 'Kerala Dry Days 2026: Official Dates, Election Restrictions and Rules',
-    seoTitle: 'Kerala Dry Days 2026: Official Dates, Election Order & Rules | DryCheck India',
+    seoTitle: 'Kerala Dry Days 2026: Official Dates, BEVCO Monthly Closures & Rules | DryCheck India',
     metaDescription:
-      'Detailed legal analysis of Kerala Government Order G.O.(Rt)No.332/2026/TAXES for the 2026 Assembly election. Verified polling and counting dry dates, RPA Section 135C restrictions, and how to verify current status.',
+      'Official Kerala dry day dates for 2026, 1st of every month BEVCO closures under Foreign Liquor Rule 7A, Assembly election gazette restrictions, and store operating hours.',
     stateSlug: 'kerala',
     stateName: 'Kerala',
     region: 'South',
