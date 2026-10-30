@@ -670,6 +670,109 @@ export const GUIDES: Guide[] = [
     ],
     relatedStateSlug: 'rajasthan',
   },
+  {
+    slug: 'dry-states-in-india-2026',
+    title: 'Dry States in India 2026: Complete List of Prohibition States vs Open States',
+    h1Title: 'Dry States in India 2026: Complete List of Prohibition States vs Open States',
+    seoTitle: 'Dry States in India 2026: Complete Legal List & Rules | DryCheck India',
+    metaDescription:
+      'Complete legal list of dry states in India 2026. Learn about 5 total prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep), holy town bans, and open states.',
+    stateSlug: 'gujarat',
+    stateName: 'Gujarat',
+    region: 'West',
+    excerpt:
+      'An exhaustive legal breakdown of alcohol prohibition in India under Article 47. Discover the 5 total dry states and union territories (Gujarat, Bihar, Nagaland, Mizoram, Lakshadweep), partial town bans in Uttarakhand (Haridwar, Rishikesh), tourist permit exemptions, and states debunked (Sikkim, Meghalaya, Jharkhand).',
+    primaryKeywords: [
+      'dry states in india',
+      'indian dry state list',
+      'is sikkim a dry state',
+      'is uttarakhand a dry state',
+      'is meghalaya a dry state',
+      'is jharkhand dry state',
+    ],
+    secondaryKeywords: [
+      'dry state in india list 2026',
+      'is andaman a dry state',
+      'is pondicherry a dry state',
+      'gujarat alcohol permit rules',
+      'bihar liquor ban penalty',
+      'is haridwar a dry city',
+      'nagaland total prohibition act',
+      'article 47 indian constitution alcohol',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 10,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Article 47, Directive Principles of State Policy - Constitution of India',
+        organization: 'Ministry of Law and Justice, Government of India',
+        url: 'https://legislative.gov.in',
+        claimSupported:
+          'Constitutional directive establishing that the State shall endeavor to bring about prohibition of the consumption except for medicinal purposes of intoxicating drinks and of drugs which are injurious to health.',
+      },
+      {
+        title: 'Gujarat Prohibition Act, 1949 (Bombay Act XXV of 1949 as adapted to Gujarat)',
+        organization: 'Prohibition & Excise Department, Government of Gujarat',
+        url: 'https://kaanoon.com',
+        claimSupported:
+          'Statutory mandate governing statewide alcohol prohibition in Gujarat, legal visitor and tourist permit issuance frameworks, and GIFT City financial tech hub exceptions.',
+      },
+      {
+        title: 'Bihar Prohibition and Excise Act, 2016',
+        organization: 'Prohibition, Excise and Registration Department, Government of Bihar',
+        url: 'https://state.bihar.gov.in',
+        claimSupported:
+          'Statewide total prohibition statute enacted in April 2016 banning manufacture, bottling, distribution, transportation, accumulation, possession, purchase, sale or consumption of intoxicants across Bihar with strict criminal penalties.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Which states in India are currently complete dry states?',
+        answer:
+          'In India, 4 states and 1 union territory enforce complete statutory alcohol prohibition: Gujarat (since 1960), Bihar (enacted in 2016), Nagaland (enacted under NLTP Act 1989), Mizoram (Mizoram Liquor Prohibition Act 2019), and Lakshadweep (enforced throughout the archipelago except on uninhabited resort island Bangaram). In these territories, retail liquor sale is permanently banned 365 days a year.',
+      },
+      {
+        question: 'Is Uttarakhand a dry state?',
+        answer:
+          'No, Uttarakhand is not a dry state. Alcohol is legally sold across the majority of Uttarakhand under state excise licensing. However, complete local prohibition is strictly enforced in notified sacred municipal zones and pilgrim corridors, specifically within the municipal limits of Haridwar, Rishikesh, Devprayag, and within a 5 km perimeter of Char Dham temples (Badrinath, Kedarnath, Gangotri, Yamunotri).',
+      },
+      {
+        question: 'Is Sikkim a dry state?',
+        answer:
+          'No, Sikkim is definitely not a dry state. Alcohol is completely legal and widely available throughout Sikkim. In fact, Sikkim has a celebrated brewing and distilling tradition, producing famous organic liqueurs, local millet beers (Tongba), and branded spirits across Gangtok and other districts.',
+      },
+      {
+        question: 'Is Meghalaya a dry state?',
+        answer:
+          'No, Meghalaya is not a dry state. Alcohol is openly sold through licensed retail stores, bars, and resorts across Shillong and all districts. Meghalaya has vibrant nightlife, craft breweries, and tourist hospitality hubs.',
+      },
+      {
+        question: 'Is Jharkhand a dry state?',
+        answer:
+          'No, Jharkhand is not a dry state. While neighboring Bihar enforces strict prohibition, Jharkhand operates government-supervised retail liquor stores across Ranchi, Jamshedpur, Dhanbad, and all districts under the Jharkhand Excise Policy.',
+      },
+      {
+        question: 'Is Andaman and Nicobar a dry state?',
+        answer:
+          'No, Andaman and Nicobar Islands are not under prohibition. Licensed retail liquor shops and hotel bars operate normally in Port Blair, Havelock Island (Swaraj Dweep), and Neil Island (Shaheed Dweep). Retail stores observe standard union territory excise dry days and restricted timings.',
+      },
+      {
+        question: 'Is Pondicherry (Puducherry) a dry state?',
+        answer:
+          'No, Puducherry is not a dry state. On the contrary, Puducherry is famous as a popular tourist weekend destination from Tamil Nadu and Karnataka due to its significantly lower excise duties and thriving cafe and bar culture.',
+      },
+      {
+        question: 'Can domestic or international tourists drink alcohol in Gujarat?',
+        answer:
+          'Yes. While Gujarat residents cannot purchase liquor without special health permits, non-resident Indian visitors and foreign tourists can legally obtain a Tourist Liquor Permit online via the official Gujarat Excise portal or at authorized permit hotels upon presenting valid travel documents (such as airline/train boarding passes and residence proof outside Gujarat). Additionally, GIFT City in Gandhinagar features licensed dining areas allowing service to authorized employees and official guests.',
+      },
+    ],
+    relatedStateSlug: 'gujarat',
+  },
 ];
 
 /**

@@ -689,6 +689,30 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'gujarat' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For complete legal details on Gujarat visitor liquor permits, GIFT City dining rules, and national prohibition laws, read our comprehensive guide:{' '}
+                <Link
+                  href="/guides/dry-states-in-india-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Dry States in India 2026: Complete List of Prohibition States vs Open States
+                </Link>
+                .
+              </p>
+            )}
+            {state.slug === 'bihar' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For official statutory context on Bihar&apos;s 2016 total prohibition act, interstate transit penalties, and the national dry states list, read our comprehensive guide:{' '}
+                <Link
+                  href="/guides/dry-states-in-india-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Dry States in India 2026: Complete List of Prohibition States vs Open States
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </section>
 

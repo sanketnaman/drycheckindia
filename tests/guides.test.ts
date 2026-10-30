@@ -110,6 +110,10 @@ describe('Guides Registry & Data Model', () => {
     expect(rajasthanGuides.length).toBe(1);
     expect(rajasthanGuides[0].slug).toBe('rajasthan-dry-days-2026');
 
+    const gujaratGuides = getPublishedGuidesByState('gujarat');
+    expect(gujaratGuides.length).toBe(1);
+    expect(gujaratGuides[0].slug).toBe('dry-states-in-india-2026');
+
     const biharGuides = getPublishedGuidesByState('bihar');
     expect(biharGuides).toEqual([]);
   });
@@ -212,6 +216,7 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides/maharashtra-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/karnataka-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/rajasthan-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/dry-states-in-india-2026');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');
@@ -222,5 +227,28 @@ describe('Sitemap Integration', () => {
     // Confirm no duplicates
     const uniqueUrls = new Set(urls);
     expect(uniqueUrls.size).toBe(urls.length);
+  });
+});
+
+describe('Dry States in India Guide 2026 - Prohibition & Open States Verification', () => {
+  const guide = getPublishedGuideBySlug('dry-states-in-india-2026');
+
+  test('guide is defined and targets prohibition queries', () => {
+    expect(guide).toBeDefined();
+    expect(guide?.slug).toBe('dry-states-in-india-2026');
+    expect(guide?.stateSlug).toBe('gujarat');
+    expect(guide?.primaryKeywords).toContain('is sikkim a dry state');
+    expect(guide?.primaryKeywords).toContain('is uttarakhand a dry state');
+    expect(guide?.primaryKeywords).toContain('is meghalaya a dry state');
+    expect(guide?.primaryKeywords).toContain('is jharkhand dry state');
+  });
+
+  test('guide FAQs answer key user search queries', () => {
+    const questions = guide?.faqs.map((f) => f.question.toLowerCase()) || [];
+    expect(questions.some((q) => q.includes('uttarakhand'))).toBe(true);
+    expect(questions.some((q) => q.includes('sikkim'))).toBe(true);
+    expect(questions.some((q) => q.includes('meghalaya'))).toBe(true);
+    expect(questions.some((q) => q.includes('jharkhand'))).toBe(true);
+    expect(questions.some((q) => q.includes('gujarat'))).toBe(true);
   });
 });

@@ -7,6 +7,7 @@ import DelhiGuideArticle from '@/components/guides/DelhiGuideArticle';
 import MaharashtraGuideArticle from '@/components/guides/MaharashtraGuideArticle';
 import KarnatakaGuideArticle from '@/components/guides/KarnatakaGuideArticle';
 import RajasthanGuideArticle from '@/components/guides/RajasthanGuideArticle';
+import DryStatesGuideArticle from '@/components/guides/DryStatesGuideArticle';
 import JsonLd from '@/components/JsonLd';
 import AdSlot from '@/components/AdSlot';
 
@@ -163,6 +164,8 @@ export default async function GuideDetailPage({ params }: Props) {
         <KarnatakaGuideArticle guide={guide} />
       ) : guide.slug === 'rajasthan-dry-days-2026' ? (
         <RajasthanGuideArticle guide={guide} />
+      ) : guide.slug === 'dry-states-in-india-2026' ? (
+        <DryStatesGuideArticle guide={guide} />
       ) : (
         <div className="mx-auto w-full max-w-4xl px-4 py-8">
           <h1 className="text-2xl font-bold text-white">{guide.title}</h1>
