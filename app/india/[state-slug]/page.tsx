@@ -665,6 +665,30 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'karnataka' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on Kannada Rajyotsava (1 Nov), Bengaluru pub timings, and CL-2 retail hours, read our verified guide:{' '}
+                <Link
+                  href="/guides/karnataka-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Karnataka Dry Days 2026: Kannada Rajyotsava (1 Nov), Bengaluru Timings &amp; Rules
+                </Link>
+                .
+              </p>
+            )}
+            {state.slug === 'rajasthan' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on the strict 8 PM wine shop curfew, Jaipur/Jodhpur dates, and Mount Abu tourist limits, read our verified guide:{' '}
+                <Link
+                  href="/guides/rajasthan-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Rajasthan Dry Days 2026: Official Dates, 8 PM Theka Rules &amp; City List
+                </Link>
+                .
+              </p>
+            )}
           </div>
         </section>
 

@@ -500,6 +500,176 @@ export const GUIDES: Guide[] = [
     ],
     relatedStateSlug: 'maharashtra',
   },
+  {
+    slug: 'karnataka-dry-days-2026',
+    title: 'Karnataka Dry Days 2026: Kannada Rajyotsava (1 Nov), Bengaluru Timings & Rules',
+    h1Title: 'Karnataka Dry Days 2026: Kannada Rajyotsava (1 Nov), Bengaluru Timings & Rules',
+    seoTitle: 'Karnataka Dry Days 2026: 1 Nov Rajyotsava, Timings & Rules | DryCheck India',
+    metaDescription:
+      'Official Karnataka dry days 2026 calendar. Check Kannada Rajyotsava (1 Nov) closure rules, Bengaluru pub timings, CL-2 retail hours, and Hubballi/Mysuru excise orders.',
+    stateSlug: 'karnataka',
+    stateName: 'Karnataka',
+    region: 'South',
+    excerpt:
+      'Complete legal guide to Karnataka dry days in 2026, featuring Kannada Rajyotsava (1 November) holiday closure rules, Bengaluru pub & microbrewery timings, CL-2 retail theka hours (10 AM–10:30 PM), Hubballi-Dharwad city coverage, and legal drinking age 21.',
+    primaryKeywords: [
+      'karnataka dry days 2026',
+      'is nov 1 dry day in karnataka',
+      'is 1st november dry day in karnataka',
+      'dry day in karnataka 2026',
+      'bengaluru dry days 2026',
+      'is today dry day in hubli',
+    ],
+    secondaryKeywords: [
+      'dry day in dharwad',
+      'bangalore pub timings today',
+      'karnataka excise rules 2026',
+      'mysore wine shop timings',
+      'cl-2 retail timings karnataka',
+      'kannada rajyotsava dry day',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 9,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Karnataka State Excise Department - Rules and Licensing Framework',
+        organization: 'Excise Department, Government of Karnataka',
+        url: 'https://stateexcise.karnataka.gov.in',
+        claimSupported:
+          'Authoritative statutory dry-day notifications, standing gazetted holiday schedules, CL-2 retail vend licensing rules, and operational timings across Karnataka.',
+      },
+      {
+        title: 'Karnataka Excise Act, 1965 (Karnataka Act 21 of 1966)',
+        organization: 'Department of Parliamentary Affairs & Legislation, Government of Karnataka',
+        url: 'https://dpal.karnataka.gov.in',
+        documentNumber: 'Act No. 21 of 1966',
+        claimSupported:
+          'Statutory framework establishing retail license categories (CL-2, CL-4, CL-9), minimum legal drinking age (21 years), and District Commissioner powers to order dry days for public order.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 1 November (Kannada Rajyotsava) a dry day in Karnataka?',
+        answer:
+          'Kannada Rajyotsava (Karnataka Formation Day) is observed as a major state holiday on 1 November. While not a permanent statutory dry day under statewide rules, local District Commissioners and Police Commissioners frequently mandate alcohol closures in Bengaluru, Mysuru, and sensitive urban areas during state formation celebrations, rallies, and processions. Check DryCheck India\'s real-time tracker for the latest district orders.',
+      },
+      {
+        question: 'What are the normal retail wine shop and theka timings in Karnataka?',
+        answer:
+          'Licensed CL-2 retail liquor stores across Karnataka (including Bengaluru, Mysuru, and Hubballi-Dharwad) operate from 10:00 AM to 10:30 PM. Outside of these hours, retail sale of alcohol is strictly prohibited under Karnataka Excise Rules.',
+      },
+      {
+        question: 'What are the pub, club, and microbrewery timings in Bengaluru?',
+        answer:
+          'In Bengaluru, licensed pubs, clubs, and microbreweries (CL-9, CL-4 licenses) operate from 10:00 AM to 11:30 PM on weekdays, with weekend extensions permitting operation up to 1:00 AM in designated commercial zones with local police commissionerate clearances.',
+      },
+      {
+        question: 'What are the mandatory annual dry days in Karnataka?',
+        answer:
+          'Standard statewide mandatory dry days in Karnataka include Republic Day (26 January), Independence Day (15 August), and Mahatma Gandhi Jayanti (2 October), alongside Mahavir Jayanti, Valmiki Jayanti, and election polling/counting windows notified by the Election Commission.',
+      },
+      {
+        question: 'What is the minimum legal drinking age in Karnataka?',
+        answer:
+          'The minimum legal drinking age in Karnataka is 21 years under the Karnataka Excise (General Conditions of Licences) Rules. Establishments are legally prohibited from selling or serving alcohol to individuals under 21.',
+      },
+      {
+        question: 'Which major cities in Karnataka are covered under these excise rules?',
+        answer:
+          'Karnataka excise rules and holiday closures apply uniformly across Bengaluru (Bangalore), Mysuru (Mysore), Mangaluru (Mangalore), Hubballi, Dharwad, Belagavi, Ballari, Kalaburagi, and Udupi.',
+      },
+    ],
+    relatedStateSlug: 'karnataka',
+  },
+  {
+    slug: 'rajasthan-dry-days-2026',
+    title: 'Rajasthan Dry Days 2026: Official Dates, 8 PM Theka Rules & City List',
+    h1Title: 'Rajasthan Dry Days 2026: Official Dates, 8 PM Theka Rules & City List',
+    seoTitle: 'Rajasthan Dry Days 2026: Full Calendar, 8 PM Theka Rules | DryCheck India',
+    metaDescription:
+      'Official Rajasthan dry days 2026 calendar & excise rules. Check Jaipur, Jodhpur, Udaipur closures, strict 8 PM wine shop closing timings, and Mount Abu tourist limits.',
+    stateSlug: 'rajasthan',
+    stateName: 'Rajasthan',
+    region: 'North',
+    excerpt:
+      'Authoritative guide to Rajasthan dry days in 2026, detailing the strict statewide 8:00 PM wine shop closing rule, annual gazetted festival closures (Mahavir Jayanti, Dussehra, Diwali), city-specific rules for Jaipur, Jodhpur, Udaipur, and Mount Abu tourist zones.',
+    primaryKeywords: [
+      'dry day in rajasthan',
+      'rajasthan dry day list 2026',
+      'is today dry day in rajasthan',
+      'dry day in rajasthan today',
+      'today is dry day in rajasthan',
+      'is today dry day in jodhpur',
+    ],
+    secondaryKeywords: [
+      'is today dry day in udaipur',
+      'dry day in jaipur',
+      'rajasthan wine shop timing',
+      'mount abu dry day rules',
+      'rajasthan theka 8 pm rule',
+      'jodhpur liquor shops today',
+    ],
+    publishedDate: '2026-10-30',
+    lastUpdatedDate: '2026-10-30',
+    lastReviewedDate: '2026-10-30',
+    readingTimeMinutes: 9,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Rajasthan Excise Department - Notifications and Standing Orders',
+        organization: 'Excise Department, Government of Rajasthan',
+        url: 'https://rajexcise.gov.in',
+        claimSupported:
+          'Official calendar of annual gazetted dry days in Rajasthan, 8:00 PM mandatory retail shop closing rules, and licensing guidelines for retail shops and hotel bars.',
+      },
+      {
+        title: 'Rajasthan Excise Act, 1950 (Act No. II of 1950)',
+        organization: 'Law Department, Government of Rajasthan',
+        url: 'https://kaanoon.com',
+        documentNumber: 'Act No. 02 of 1950',
+        claimSupported:
+          'Statutory foundation establishing legal drinking age (21 years), personal possession limits (12 bottles of IMFL/beer), and district-level dry day declaration powers of District Collectors.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why do wine shops and thekas close strictly at 8:00 PM in Rajasthan?',
+        answer:
+          'Since 2008, the Government of Rajasthan enforces a strict statewide 8:00 PM curfew for all retail liquor thekas (Indian Made Foreign Liquor and country liquor shops) across all cities including Jaipur, Jodhpur, and Udaipur. Dukaans must pull down shutters at 8:00 PM sharp to reduce late-night alcohol-related public nuisance.',
+      },
+      {
+        question: 'Is today or tomorrow a dry day in Rajasthan (Jaipur, Jodhpur, Udaipur)?',
+        answer:
+          'To verify today\'s or tomorrow\'s live status in Rajasthan, check DryCheck India\'s real-time tracker at https://drycheck.in/india/rajasthan. Major recurring dry days include 26 January, 30 January (Shaheed Diwas), Mahavir Jayanti, Independence Day (15 August), Gandhi Jayanti (2 October), Dussehra, and Diwali.',
+      },
+      {
+        question: 'Is Mount Abu a dry state or dry town in Rajasthan?',
+        answer:
+          'No, Mount Abu is not a dry town. Licensed liquor shops and hotel bars operate under standard Rajasthan Excise Department rules (wine shops close at 8:00 PM). However, open consumption of alcohol near sacred spots like Nakki Lake or within the wildlife sanctuary perimeter is strictly prohibited by local administration.',
+      },
+      {
+        question: 'Are bars open in heritage hotels and resorts in Rajasthan?',
+        answer:
+          'Yes, licensed heritage hotels, luxury resorts, and standalone restaurants holding valid bar permits in Jaipur, Jodhpur, Udaipur, and Kota are permitted to serve liquor to dining guests until 11:00 PM (or 12:00 Midnight for special heritage permits). On statutory dry days, however, bar service is strictly closed.',
+      },
+      {
+        question: 'What is the legal drinking age in Rajasthan?',
+        answer:
+          'The minimum legal drinking age in Rajasthan is 21 years. Retail vendors and hotel bars are prohibited from selling alcohol to any person below the age of 21.',
+      },
+      {
+        question: 'Which cities in Rajasthan are covered under state excise dry-day orders?',
+        answer:
+          'Excise orders apply uniformly across Jaipur, Jodhpur, Udaipur, Kota, Bikaner, Ajmer, Mount Abu, Alwar, Bhilwara, Pushkar, and Bharatpur.',
+      },
+    ],
+    relatedStateSlug: 'rajasthan',
+  },
 ];
 
 /**
