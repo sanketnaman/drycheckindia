@@ -105,8 +105,8 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
               Need Live Today/Tomorrow Status in Rajasthan?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Agar aap check karna chahte hain ki <strong className="text-white">is today dry day in rajasthan</strong> ya fir{' '}
-              <strong className="text-white">today wine shop open or not in rajasthan</strong>, hamara real-time tracker sabhi zilon ke liye live status track karta hai:{' '}
+              If you need to verify whether <strong className="text-white">&ldquo;is today dry day in rajasthan&rdquo;</strong> or confirm whether{' '}
+              <strong className="text-white">&ldquo;today wine shop open or not in rajasthan&rdquo;</strong>, our real-time tracker evaluates active excise orders for all districts in Indian Standard Time (IST):{' '}
               <Link href="/india/rajasthan" className="underline font-semibold text-white hover:text-amber-300">
                 Check Live Rajasthan Dry Day Today Tracker &rarr;
               </Link>
@@ -128,12 +128,13 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>1. Introduction: Is Today a Dry Day in Rajasthan?</span>
           </h2>
           <p>
-            Rajasthan me alcohol manufacturing, sale, aur theka licensing ko <strong className="text-white">Rajasthan Excise Department</strong> regulate
-            karta hai under the <strong className="text-neutral-100">Rajasthan Excise Act, 1950</strong>.
+            In Rajasthan, alcohol manufacture, distribution, and retail theka licensing are administered by the{' '}
+            <strong className="text-white">Rajasthan Excise Department</strong> under the statutory authority of the{' '}
+            <strong className="text-neutral-100">Rajasthan Excise Act, 1950</strong>.
           </p>
           <p>
-            Chahe aap Jaipur (Pink City), Jodhpur (Blue City), Udaipur (City of Lakes), Kota, Bikaner, ya Mount Abu me hon,
-            statewide gazette dry-day circulars aur retail operating rules sabhi shops par barabar apply hote hain.
+            Whether you are visiting Jaipur (the Pink City), Jodhpur (the Blue City), Udaipur (the City of Lakes), Kota, Bikaner, or Mount Abu,
+            statewide gazetted dry-day circulars and retail operational mandates apply uniformly across all commercial licenses.
           </p>
         </section>
 
@@ -145,15 +146,14 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
           </h2>
           <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-950/20 space-y-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400">
-              Why Retail Wine Shops Close Early in Rajasthan:
+              Why Retail Wine Shops Close Early Across Rajasthan:
             </h3>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Bharat ke adhiktam rajyon me theke raat 10:00 PM ya 10:30 PM tak khulte hain, lekin Rajasthan me saal 2008 se ek strict policy lagu hai:
-              <strong className="text-white"> Sabhi retail theke (IMFL aur Desi sharab) theek raat 8:00 baje band ho jaate hain.</strong>
+              While retail liquor stores in most Indian states operate until 10:00 PM or 10:30 PM, Rajasthan enforces a unique statewide policy introduced in 2008:
+              <strong className="text-white"> All retail liquor stores (selling IMFL and country liquor) must shutter their operations strictly at 8:00 PM.</strong>
             </p>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Raat 8:00 PM ke baad retail store se alcohol bechna illegal hai aur dukaandar ka licence cancel ho sakta hai. Agar aap Jaipur, Jodhpur ya Udaipur me
-              liquor purchase karna chahte hain, to shaam 8 baje se pehle theke pahunchna zaroori hai.
+              Selling or dispensing alcoholic beverages after 8:00 PM is illegal and leads to immediate retail license cancellation. Anyone planning to purchase liquor in Jaipur, Jodhpur, or Udaipur must ensure they arrive before the 8:00 PM evening deadline.
             </p>
           </div>
         </section>
@@ -266,7 +266,7 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>4. Cities Covered: Jaipur, Jodhpur, Udaipur, Kota &amp; Beyond</span>
           </h2>
           <p>
-            Rajasthan ke excise niyam rajya ke sabhi pramukh shahron me barabar enforce hote hain:
+            Rajasthan state excise regulations and dry-day mandates apply uniformly across all major cities and districts:
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -293,7 +293,7 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             ))}
           </div>
           <p className="text-xs text-neutral-400 pt-1">
-            Chahe aap <strong className="text-neutral-200">is today dry day in jodhpur</strong> check karein ya <strong className="text-neutral-200">dry day in udaipur</strong>, status same gazette circular ke tahat operate hota hai.
+            Whether checking <strong className="text-neutral-200">&ldquo;is today dry day in jodhpur&rdquo;</strong> or searching <strong className="text-neutral-200">&ldquo;dry day in udaipur&rdquo;</strong>, all municipal regions follow identical statewide gazette notifications.
           </p>
         </section>
 
@@ -304,12 +304,11 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>5. Tourist &amp; Sacred Towns: Mount Abu &amp; Pushkar Rules</span>
           </h2>
           <p>
-            Bohot se tourists ko lagta hai ki Mount Abu ek dry city hai, lekin ye sach nahi hai. Mount Abu me licensed wine shops khulti hain,
-            lekin wahan bhi 8:00 PM closing niyam lagu hota hai. Iske alawa:
+            Many tourists mistakenly assume Mount Abu is under total alcohol prohibition. Licensed retail stores do operate in Mount Abu, subject to the statewide 8:00 PM closing rule. In addition:
           </p>
           <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-300">
-            <li><strong className="text-white">Nakki Lake &amp; Sunset Point:</strong> Public areas me alcohol pina strictly prohibited hai. Pakde jane par heavy fine aur police case hota hai.</li>
-            <li><strong className="text-white">Pushkar Holy Town:</strong> Pushkar me sacred Brahma Mandir aur Sarovar ke 500-metre radius me non-veg aur alcohol fully banned hai.</li>
+            <li><strong className="text-white">Nakki Lake &amp; Sunset Point:</strong> Consuming alcohol in public tourist spaces is strictly banned. Violations trigger police detainment and significant administrative fines.</li>
+            <li><strong className="text-white">Pushkar Holy Town:</strong> In consideration of the spiritual sanctity of the Brahma Temple and the holy lake, alcohol and non-vegetarian food are strictly prohibited within designated central pilgrim zones.</li>
           </ul>
         </section>
 
@@ -320,9 +319,7 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>6. Heritage Hotel Bar Timings vs Retail Theka Timings</span>
           </h2>
           <p>
-            Jabki retail theke raat 8:00 PM par band ho jaate hain, licensed heritage hotels, 4-star/5-star resorts, aur restaurant bars
-            ko dining guests ke liye alcohol serve karne ki anumati <strong className="text-white font-mono">11:00 PM ya 12:00 Midnight</strong> tak hoti hai.
-            Lekin official dry day ke din hotel bars bhi poori tarah band rehte hain.
+            While retail liquor stores shutter at 8:00 PM, licensed heritage hotels, 4-star/5-star luxury resorts, and approved hotel dining lounges are authorized to serve resident guests and dining patrons until <strong className="text-white font-mono">11:00 PM or 12:00 Midnight</strong>. However, on official gazetted dry days, hotel bars must also suspend alcohol service completely.
           </p>
         </section>
 
@@ -333,8 +330,8 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>7. Minimum Legal Drinking Age (21) &amp; Possession Limits</span>
           </h2>
           <p>
-            Rajasthan me minimum legal drinking age <strong className="text-white font-mono">21 years</strong> hai.
-            Personal consumption ke liye ek vyakti bina permit ke maximum 12 bottles (750ml IMFL/beer) possess kar sakta hai.
+            The statutory minimum legal drinking age in Rajasthan is <strong className="text-white font-mono">21 years</strong>.
+            For personal consumption, an individual without a specialized commercial excise permit may possess up to 12 standard bottles (750ml IMFL or beer).
           </p>
         </section>
 
@@ -345,7 +342,7 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             <span>8. How to Check Real-Time Rajasthan Dry-Day Status</span>
           </h2>
           <p>
-            Aap ek click me check kar sakte hain ki aaj ya kal Rajasthan me dry day hai ya nahi:{' '}
+            You can verify today&apos;s or tomorrow&apos;s legal alcohol status for Rajasthan with a single click:{' '}
             <Link href="/india/rajasthan" className="text-amber-400 font-semibold underline hover:text-white">
               Check Rajasthan Live Status &rarr;
             </Link>

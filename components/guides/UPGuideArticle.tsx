@@ -10,14 +10,11 @@ import {
   FileText,
   AlertTriangle,
   Scale,
-  MapPin,
   HelpCircle,
   CheckCircle,
   Building2,
   Beer,
   BookOpen,
-  ArrowRight,
-  ShieldCheck,
   AlertOctagon,
 } from 'lucide-react';
 
@@ -109,9 +106,8 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               Looking for Today&apos;s or Tomorrow&apos;s Live Status in UP?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Agar aap jan&apos;na chahte hain ki <strong className="text-white">kya aaj UP me dry day hai</strong> ya{' '}
-              <strong className="text-white">tomorrow is dry day in UP</strong>, to hamare real-time tracker par instant status dekhein.
-              Hamara engine Uttar Pradesh ke sabhi 75 zilon ke liye current IST status track karta hai:{' '}
+              If you need to verify whether <strong className="text-white">&ldquo;kya aaj UP me dry day hai&rdquo;</strong> or confirm{' '}
+              <strong className="text-white">&ldquo;tomorrow is dry day in UP&rdquo;</strong>, our real-time tracker provides instant status across all 75 Uttar Pradesh districts in Indian Standard Time (IST):{' '}
               <Link href="/india/uttar-pradesh" className="underline font-semibold text-white hover:text-amber-300">
                 Check Live Dry Day Today in UP &rarr;
               </Link>
@@ -133,24 +129,20 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>1. Introduction: Is Today a Dry Day in UP?</span>
           </h2>
           <p>
-            Har mahine lakho log Google par search karte hain ki <strong className="text-white">kya aaj UP me dry day hai</strong>, ya phir{' '}
-            <strong className="text-white">dry day in up today</strong> ki official situation kya hai. Uttar Pradesh, jo aabadi ke hisaab se
-            Bharat ka sabse bada rajya hai, wahan liquor sale aur excise policies ko{' '}
-            <strong className="text-white">Uttar Pradesh Excise Department</strong> regulate karta hai.
+            Every month, hundreds of thousands of residents search queries like <strong className="text-white">&ldquo;kya aaj UP me dry day hai&rdquo;</strong> or check the official status of{' '}
+            <strong className="text-white">&ldquo;dry day in up today&rdquo;</strong>. In Uttar Pradesh—India&apos;s most populous state—alcohol vending, wholesale manufacturing, and retail licensing are governed by the{' '}
+            <strong className="text-white">Uttar Pradesh Excise Department</strong> under the statutory provisions of the{' '}
+            <strong className="text-neutral-100">Uttar Pradesh Excise Act, 1910</strong>.
           </p>
           <p>
-            Chahe aap Lucknow, Noida, Ghaziabad, Kanpur, Varanasi ya Agra me rehte hon, alcohol licensing aur store closure ke niyam pure state
-            me uniformly lagu hote hain. Agar aap plan kar rahe hain ki <strong className="text-white">dry day today in UP</strong> hai ya
-            nahi, ya fir <strong className="text-white">today dry day in uttar pradesh</strong> confirm karna chahte hain, to is guide me aapko{' '}
-            <strong className="text-white">UP dry day 2026</strong> ke sabhi upcoming dates, normal dukaan ke khulne aur band hone ke timings,
-            aur important legal limits ki poori jankari milegi.
+            Whether you reside in Lucknow, Noida, Ghaziabad, Kanpur, Varanasi, or Agra, alcohol licensing rules and mandatory shop closure mandates apply uniformly across the state. If you are planning around whether <strong className="text-white">&ldquo;dry day today in UP&rdquo;</strong> is in effect, or searching <strong className="text-white">&ldquo;today dry day in uttar pradesh&rdquo;</strong>, this guide provides the complete <strong className="text-white">UP dry day 2026</strong> calendar, official theka opening and closing hours, and key legal possession limits.
           </p>
           <p>
-            Agar aapko turant confirm karna ho ki <strong className="text-white">is tomorrow is dry day in up</strong>, to aap hamare real-time{' '}
+            To immediately check whether <strong className="text-white">&ldquo;is tomorrow is dry day in up&rdquo;</strong>, visit our real-time{' '}
             <Link href="/india/uttar-pradesh" className="text-amber-400 font-semibold underline hover:text-white">
               Uttar Pradesh Dry Day Tracker
             </Link>{' '}
-            par visit karke aaj aur kal ka live legal status check kar sakte hain.
+            for live legal status.
           </p>
         </section>
 
@@ -161,8 +153,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>2. Upcoming UP Dry Days: 8 Nov (Diwali) &amp; 24 Nov 2026</span>
           </h2>
           <p>
-            November 2026 ke calendar me Uttar Pradesh ke andar do bade festival closures scheduled hain, jin par sabhi retail theke, model shops,
-            aur licensed bars poori tarah band rahenge:
+            The November 2026 calendar features two major statewide festival closures across Uttar Pradesh during which all retail thekas, model shops, and licensed bars remain completely closed:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -214,10 +205,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 8 November 2026 &bull; Diwali Dry Day
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Diwali ke pawan parva par Uttar Pradesh Excise Department poore state me liquor sale par roak lagata hai. Is din sabhi
-                desi, videshi (IMFL), beer theke, aur hotel-restaurant bars raat 12:00 baje se agle din subah tak band rehte hain. Agar aap
-                wonder kar rahe hain ki <strong className="text-white">dry day in up tomorrow</strong> hoga ya nahi, to Diwali ke din alcohol
-                purchase bilkul sambhav nahi hoga.
+                On the sacred occasion of Diwali, the Uttar Pradesh Excise Department mandates a complete prohibition on liquor sales statewide. All retail thekas, IMFL shops, beer vends, and commercial hotel/restaurant bars remain shut for 24 hours. If consumers check whether <strong className="text-white">&ldquo;dry day in up tomorrow&rdquo;</strong> on Diwali eve, alcohol retail purchases will not be permitted anywhere in the state.
               </p>
             </div>
 
@@ -227,9 +215,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 24 November 2026 &bull; Guru Nanak Jayanti / Shaheedi Diwas
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Prakash Parv (Guru Nanak Dev Ji Jayanti) aur Sri Guru Tegh Bahadur Ji Shaheedi Diwas ke samman me Uttar Pradesh sarkar ne
-                24 November ko statewide dry day ghoshit kiya hai. Is din kisi bhi commercial establishment par liquor serve karna ya bechna
-                kanoonan jurm hai.
+                In observance of Prakash Parv (Guru Nanak Dev Ji Jayanti) and Sri Guru Tegh Bahadur Ji Shaheedi Diwas, the Government of Uttar Pradesh enforces a statewide dry day on 24 November. Serving or selling alcohol at any commercial retail vend or bar on this date is a legal violation.
               </p>
             </div>
           </div>
@@ -242,7 +228,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>3. Elections &amp; DM Administration-Ordered Dry Days</span>
           </h2>
           <p>
-            Festival dry days ke alawa, Uttar Pradesh me do mukhya sthitiyon me achanak ya gazetted dry days declare kiye jaate hain:
+            Beyond statutory festival closures, sudden or localized dry days in Uttar Pradesh are declared under two primary administrative frameworks:
           </p>
 
           <div className="space-y-3">
@@ -252,10 +238,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 <span>Elections and Counting Days (48-Hour Curfew)</span>
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Representation of the People Act, 1951 ke <strong className="text-white">Section 135C</strong> ke tahat, kisi bhi
-                Lok Sabha, Vidhan Sabha (Assembly), ya Legislative Council (MLC) chunav ke polling area me voting khatam hone ke theek{' '}
-                <strong className="text-white">48 ghante pehle se dry curfew</strong> lagu ho jata hai. Iske alawa, vote counting day par
-                bhi shanti-vyavastha banaye rakhne ke liye poora din dry day rehta hai.
+                Under <strong className="text-white">Section 135C of the Representation of the People Act, 1951</strong>, a statutory dry curfew takes effect in the designated constituency <strong className="text-white">48 hours prior to the conclusion of voting</strong> for any Lok Sabha, Vidhan Sabha (State Assembly), or Legislative Council (MLC) election. In addition, an automatic 24-hour dry day is enforced across counting centres on vote-counting day to maintain public tranquility.
               </p>
             </div>
 
@@ -265,14 +248,12 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 <span>District Collector / District Magistrate (DM) Powers</span>
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Uttar Pradesh Excise Rules ke tahat, har zile ke <strong className="text-white">District Magistrate (DM)</strong> aur
-                Licensing Authorities ke paas vishesh adhikaar hota hai ki wo law-and-order (kanoon-vyavastha) maintain karne ke liye kisi bhi
-                vishesh din ya ilaqe me dry day declare kar sakte hain. For example:
+                Under Uttar Pradesh Excise Rules, each district&apos;s <strong className="text-white">District Magistrate (DM)</strong> and Licensing Authority possess delegated statutory powers to order temporary closures of retail liquor vends to preserve law and order. Examples include:
               </p>
               <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-400 mt-1">
-                <li>Bade dharmik juluse (jaise Kanwar Yatra, Muharram tazia processions, ya Ram Navami shobhayatra).</li>
-                <li>Zila panchayat ya local municipal body elections ke dauran.</li>
-                <li>Kisi bhi sensitive communal ya security situation ke samay local theke band karwane ke aadesh.</li>
+                <li>Major religious yatras and processions (such as the annual Kanwar Yatra, Muharram processions, or Ram Navami shobhayatras).</li>
+                <li>Zila panchayat or local municipal body elections.</li>
+                <li>Preventative local closures during sensitive communal or security situations.</li>
               </ul>
             </div>
           </div>
@@ -285,8 +266,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>4. Normal Operating Timings in UP (Shops, Bars &amp; Star Hotels)</span>
           </h2>
           <p>
-            Jab rajya me koi dry day nahi hota, tab Uttar Pradesh Excise Department dwara nirdharit strict trading hours lagu hote hain.
-            Kisi bhi theke ya bar ko tay samay se pehle kholna ya baad me chalana illegal hai:
+            When no dry day is in effect, strict trading hours regulated by the Uttar Pradesh Excise Department apply. Operating a retail vend or bar outside permissible hours constitutes an illegal act:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -323,12 +303,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
           </div>
 
           <p className="text-xs text-neutral-400">
-            Agar aap kisi normal din pe purchase kar rahe hain, to dhyan rahe ki 10:00 PM ke baad UP ke sabhi retail theke band ho jaate hain.
-            Aise me agar aapko kal ki sthiti janni hai to hamare platform par{' '}
-            <Link href="/india/uttar-pradesh" className="text-amber-400 underline hover:text-white">
-              tomorrow is dry day in up
-            </Link>{' '}
-            status verify kar lena behtar rehta hai.
+            On normal days, keep in mind that all retail liquor shops in UP close promptly at 10:00 PM. Consumers often mistake standard night closures for dry days; checking <Link href="/india/uttar-pradesh" className="text-amber-400 underline hover:text-white">tomorrow is dry day in up</Link> on our live tracker helps verify active status.
           </p>
         </section>
 
@@ -339,7 +314,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>5. Legal Drinking Age &amp; Individual Possession Limits in UP</span>
           </h2>
           <p>
-            Uttar Pradesh me sharab khareedne, rakhne aur peene se jude kanoon behad sakht hain:
+            Regulations governing alcohol purchase, possession, and consumption in Uttar Pradesh are strictly enforced:
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -351,9 +326,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 Legal Drinking Age: 21 Years
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Uttar Pradesh Excise Act ke mutabiq, rajya me sharab khareedne aur consume karne ki kanuni umar{' '}
-                <strong className="text-white">21 saal</strong> hai. 21 saal se kam umar ke kisi bhi vyakti ko sharab bechna ya serve
-                karna dandaney jurm hai.
+                Under the Uttar Pradesh Excise Act, the statutory minimum legal drinking age is <strong className="text-white">21 years</strong>. Selling or serving alcohol to any individual below 21 is a punishable offence.
               </p>
             </div>
 
@@ -365,8 +338,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 Personal Possession Limits
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Bina kisi vishesh &ldquo;Personal Home Bar License&rdquo; ke, ek aam nagrik apne paas ya ghar par adhiktam nimnlikhit matra me hi
-                alcohol rakh sakta hai:
+                Without a specialized &ldquo;Personal Home Bar License&rdquo; issued by the excise commissionerate, an individual citizen may possess only up to the following maximum quantities:
               </p>
               <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-200">
                 <li><strong className="text-white">1.5 Litres:</strong> Indian-Made Foreign Liquor (IMFL / Spirits).</li>
@@ -377,9 +349,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
           </div>
 
           <div className="p-3.5 rounded-xl border border-neutral-800 bg-neutral-950/60 text-xs text-neutral-400">
-            <strong className="text-neutral-200">Legal Note:</strong> In limits se zyada quantity bina UP Excise license ke rakhna ya
-            transport karna Uttar Pradesh Excise Act, 1910 ke tahat non-bailable offence ban sakta hai, jisme bhari jurmana aur jail ki saza
-            dono shamil hain.
+            <strong className="text-neutral-200">Legal Note:</strong> Possessing or transporting quantities exceeding these limits without an official UP Excise license is classified as a non-bailable offence under the Uttar Pradesh Excise Act, 1910, carrying heavy fines and imprisonment.
           </div>
         </section>
 
@@ -395,24 +365,21 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               <AlertTriangle className="h-5 w-5 text-rose-400 shrink-0 mt-0.5" />
               <div className="space-y-1.5 text-xs sm:text-sm">
                 <h3 className="text-sm sm:text-base font-bold text-rose-300">
-                  Strict Legal Warning: Bringing Alcohol from Other States is Illegal
+                  Strict Legal Warning: Bringing Alcohol from Other States into UP is Strictly Illegal
                 </h3>
                 <p className="leading-relaxed text-rose-200/90">
-                  Bahut se log Delhi ya Haryana se saste daamo me sharab khareedkar Noida, Ghaziabad ya UP ke kisi aur ziley me le aane ki
-                  koshish karte hain. <strong className="text-white">Dhyan rahe: Delhi, Haryana ya kisi bhi doosre state se ek bhi sealed bottle
-                  UP me lana poori tarah illegal hai!</strong>
+                  Many consumers attempt to buy alcohol at lower prices in Delhi or Haryana and transport it into Noida, Ghaziabad, or other UP districts. <strong className="text-white">Transporting even a single sealed bottle of liquor from Delhi, Haryana, or any other state into Uttar Pradesh is strictly illegal!</strong>
                 </p>
                 <p className="leading-relaxed text-rose-200/90">
-                  Chahe wo Delhi Airport ka duty-free ho ya Gurgaon ka theka, jab tak bottle par{' '}
-                  <strong className="text-white">&ldquo;For Sale in Uttar Pradesh Only&rdquo;</strong> ka excise hologram nahi hota, tab tak
-                  use UP me enter karwana contraband (tashkari) mana jata hai.
+                  Unless an alcohol bottle carries the official state excise hologram stating{' '}
+                  <strong className="text-white">&ldquo;For Sale in Uttar Pradesh Only&rdquo;</strong>, bringing it across state borders into UP is classified as contraband trafficking.
                 </p>
               </div>
             </div>
 
             <div className="border-t border-rose-800/60 pt-3 text-xs text-rose-300/80 space-y-1">
               <p>
-                <strong className="text-rose-200">Legal Authority:</strong> As established under the Uttar Pradesh Excise Law and Rules{' '}
+                <strong className="text-rose-200">Legal Authority:</strong> Under the Uttar Pradesh Excise Law and Rules{' '}
                 (see{' '}
                 <a
                   href="https://www.kaanoon.com/157781/uttar-pradesh-excise-law-and-rules"
@@ -423,11 +390,10 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                   <span>Kaanoon UP Excise Reference</span>
                   <ExternalLink className="h-3 w-3" />
                 </a>
-                ), out-of-state liquor ko UP me carry karne par gaadi zapt (impound) ho sakti hai aur arrest kiya ja sakta hai.
+                ), transporting out-of-state liquor into UP triggers immediate vehicle impoundment and arrest.
               </p>
               <p>
-                Noida DND Flyway, Kalindi Kunj, Chilla Border, Anand Vihar aur Haryana-UP checkposts par Excise department aur Police regular
-                checking chalati hai.
+                The Excise Department and local police maintain active surveillance checkpoints at the Noida DND Flyway, Kalindi Kunj, Chilla Border, Anand Vihar, and Haryana-UP transit points.
               </p>
             </div>
           </div>
@@ -440,8 +406,8 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>7. How to Check If Today or Tomorrow is Dry Day in UP</span>
           </h2>
           <p>
-            Agar aapko ye verify karna hai ki <strong className="text-white">kya aaj up me dry day hai</strong> ya fir{' '}
-            <strong className="text-white">dry day in up tomorrow</strong> scheduled hai, to in 4 aasan steps ko follow karein:
+            To verify whether <strong className="text-white">&ldquo;kya aaj up me dry day hai&rdquo;</strong> or check whether{' '}
+            <strong className="text-white">&ldquo;dry day in up tomorrow&rdquo;</strong> is scheduled, follow these 4 straightforward steps:
           </p>
 
           <div className="space-y-3">
@@ -451,14 +417,13 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               </span>
               <div>
                 <h3 className="font-bold text-white text-xs sm:text-sm">
-                  DryCheck India ke UP Tracker par Live Status Dekhein
+                  Consult DryCheck India&apos;s Live UP Tracker
                 </h3>
                 <p className="text-xs text-neutral-300 mt-0.5 leading-relaxed">
-                  Sabse pehle hamare official{' '}
+                  Visit our official{' '}
                   <Link href="/india/uttar-pradesh" className="text-amber-400 font-semibold underline hover:text-white">
                     Uttar Pradesh State Tracker
-                  </Link>{' '}
-                  par jayein. Ye tool aapko instant headline ke saath batata hai ki aaj theke khule hain ya dry day hai, bina kisi guessing ke.
+                  </Link>. Our platform delivers an instant verdict on whether retail thekas are open today without guesswork.
                 </p>
               </div>
             </div>
@@ -469,11 +434,10 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               </span>
               <div>
                 <h3 className="font-bold text-white text-xs sm:text-sm">
-                  Upcoming State Festivals Check Karein
+                  Check Upcoming State Gazetted Observances
                 </h3>
                 <p className="text-xs text-neutral-300 mt-0.5 leading-relaxed">
-                  Notice karein ki kya agle 24-48 ghante me koi gazetted national ya regional holiday (jaise 8 November Diwali ya 24 November
-                  Guru Nanak Jayanti) to nahi hai. Aise dino par pure Uttar Pradesh me dry day rehta hai.
+                  Verify whether a gazetted national or state holiday (such as 8 November Diwali or 24 November Guru Nanak Jayanti) falls within the next 24 to 48 hours. On these dates, dry days are enforced across all 75 districts.
                 </p>
               </div>
             </div>
@@ -484,11 +448,10 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               </span>
               <div>
                 <h3 className="font-bold text-white text-xs sm:text-sm">
-                  Local District Magistrate (DM) Orders Verify Karein
+                  Verify Local District Magistrate (DM) Directives
                 </h3>
                 <p className="text-xs text-neutral-300 mt-0.5 leading-relaxed">
-                  Agar aapke zile me MLC elections, municipal polls, ya koi vishesh dharmik yatra ho rahi hai, to local Collectorate notification
-                  check karein kyunki DM ke paas local dry day declare karne ka adhikaar hota hai.
+                  If your district is hosting MLC elections, municipal polls, or significant religious processions, verify localized Collectorate orders, as DMs possess the statutory power to mandate district-specific closures.
                 </p>
               </div>
             </div>
@@ -499,11 +462,10 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               </span>
               <div>
                 <h3 className="font-bold text-white text-xs sm:text-sm">
-                  Shop Operating Hours Ka Dhyan Rakhein
+                  Account for Routine Operating Hours
                 </h3>
                 <p className="text-xs text-neutral-300 mt-0.5 leading-relaxed">
-                  Normal dino par subah 10:00 AM se raat 10:00 PM tak retail stores khule rehte hain. Raat 10 baje ke baad retail sale band
-                  ho jaati hai, jise log aksar galti se dry day samajh lete hain.
+                  On regular days, retail stores operate from 10:00 AM to 10:00 PM. Retail sales conclude at 10:00 PM, which consumers occasionally mistake for an unannounced dry day.
                 </p>
               </div>
             </div>
@@ -517,7 +479,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>8. Related UP State Information &amp; Real-Time Trackers</span>
           </h2>
           <p>
-            Explore related state resources, neighbor state rules, and nationwide excise policies on DryCheck India:
+            Explore related state resources, neighboring state regulations, and nationwide excise policies on DryCheck India:
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -574,9 +536,6 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <HelpCircle className="h-5 w-5 text-amber-400" />
             <span>9. Frequently Asked Questions (FAQs)</span>
           </h2>
-          <p className="text-xs text-neutral-400">
-            Aamtaur par users dwara puche jaane wale sabse mukhya sawal aur unke official jawab:
-          </p>
 
           <div className="space-y-3">
             {guide.faqs.map((faq, idx) => (
@@ -599,10 +558,9 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
         </section>
 
         {/* Section 10: Official Sources & Citations */}
-        <section id="official-sources" className="space-y-4">
-          <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
-            <FileText className="h-5 w-5 text-amber-400" />
-            <span>10. Official Citations &amp; Regulatory Disclaimer</span>
+        <section id="official-sources" className="space-y-4 border-t border-neutral-800 pt-6">
+          <h2 className="text-sm font-bold text-neutral-300 uppercase tracking-wider">
+            10. Official Citations &amp; Regulatory Disclaimer
           </h2>
           <p>
             In accordance with DryCheck India&apos;s editorial standards, all dates, timings, and legal limits cited in this guide

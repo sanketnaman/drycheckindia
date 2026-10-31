@@ -104,8 +104,8 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
               Looking for Today&apos;s or Tomorrow&apos;s Live Status in Karnataka?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Agar aap check karna chahte hain ki <strong className="text-white">is nov 1 dry day in karnataka</strong> ya fir{' '}
-              <strong className="text-white">bengaluru dry day today</strong>, hamara live tracker Karnataka ke sabhi 31 zilon ke liye current status verify karta hai:{' '}
+              If you need to quickly verify <strong className="text-white">&ldquo;is nov 1 dry day in karnataka&rdquo;</strong> or check{' '}
+              <strong className="text-white">&ldquo;bengaluru dry day today&rdquo;</strong>, our real-time tracking engine verifies live status for all 31 Karnataka districts in Indian Standard Time (IST):{' '}
               <Link href="/india/karnataka" className="underline font-semibold text-white hover:text-amber-300">
                 Check Live Karnataka Dry Day Today Tracker &rarr;
               </Link>
@@ -127,13 +127,13 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
             <span>1. Introduction: Is Today a Dry Day in Karnataka?</span>
           </h2>
           <p>
-            Karnataka me alcohol retail licensing, theke aur microbreweries ko{' '}
-            <strong className="text-white">Karnataka State Excise Department</strong> regulate karta hai under the{' '}
+            In Karnataka, retail liquor licensing, retail outlets (thekas), and microbreweries are administered by the{' '}
+            <strong className="text-white">Karnataka State Excise Department</strong> under the statutory provisions of the{' '}
             <strong className="text-neutral-100">Karnataka Excise Act, 1965</strong>.
           </p>
           <p>
-            Chahe aap Bengaluru (India ki pub capital), Mysuru, Mangaluru, Hubballi-Dharwad ya Belagavi me hon,
-            statewide dry-day orders aur retail licensing rules sabhi CL-2 shops aur CL-9 pubs par apply hote hain.
+            Whether you are located in Bengaluru (celebrated as India&apos;s pub capital), Mysuru, Mangaluru, Hubballi-Dharwad, or Belagavi,
+            statewide gazetted dry-day notifications and licensing rules apply across all CL-2 retail wine stores and CL-9 pub establishments.
           </p>
         </section>
 
@@ -144,24 +144,24 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
             <span>2. Kannada Rajyotsava (1 Nov 2026): Is Alcohol Banned in Karnataka?</span>
           </h2>
           <p>
-            Har saal 1st November ko Karnataka Formation Day (Kannada Rajyotsava) ke avasar par lakho log Google par search karte hain ki{' '}
-            <strong className="text-white">is nov 1 dry day in karnataka</strong>.
+            Every year on 1st November, marking Karnataka Formation Day (Kannada Rajyotsava), thousands of citizens search whether{' '}
+            <strong className="text-white">&ldquo;is nov 1 dry day in karnataka&rdquo;</strong> or if liquor stores will remain operational.
           </p>
           <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/80 space-y-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400">
               The Official 1 November Rule in Karnataka:
             </h3>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              1 November poore rajya me ek gazetted state public holiday hai. Statewide standing excise policy me Rajyotsava permanent calendar dry day ke roop me listed nahi hai, lekin{' '}
-              <strong className="text-white">Bengaluru Police Commissionerate aur District Deputy Commissioners</strong> ke paas public order banaye rakhne ke statutory powers hote hain.
-              Bohot se saalon me Rajyotsava morning flag-hoisting aur grand state rallies ke dauran major municipal areas me retail thekas ko dopahar 2 PM ya poore din ke liye band rakhne ke local circulars issue kiye jaate hain.
+              1 November is observed as a gazetted state public holiday across Karnataka. Under standard statewide standing excise regulations, Kannada Rajyotsava is not classified as an automatic, permanent calendar dry day. However, the{' '}
+              <strong className="text-white">Bengaluru City Police Commissionerate and District Deputy Commissioners</strong> hold statutory powers under the Karnataka Excise Act and CrPC to preserve public order.
+              During major state formation rallies, government processions, and flag-hoisting gatherings, district authorities frequently issue localized circulars mandating retail thekas and bars to close until 2:00 PM or for the full calendar day in high-density urban areas.
             </p>
             <p className="text-xs text-neutral-400">
-              Isliye 1 November ke exact timings ke liye hamesha{' '}
+              For confirmed real-time timings on 1 November, always refer to our{' '}
               <Link href="/india/karnataka" className="text-amber-400 underline font-medium hover:text-white">
                 Live Karnataka Tracker
               </Link>{' '}
-              par confirm karein.
+              for localized district notifications.
             </p>
           </div>
         </section>
@@ -270,7 +270,7 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
                 <span>CL-2 Retail Liquor Stores (MRP Outlets)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">10:00 AM se 10:30 PM tak</strong>. Karnataka me retail wine stores (CL-2) raat 10:30 PM tak khule rehte hain.
+                <strong className="text-white font-mono">10:00 AM to 10:30 PM</strong>. In Karnataka, licensed retail liquor shops (CL-2) operate until 10:30 PM. Selling or dispensing alcohol past 10:30 PM is strictly prohibited under Karnataka Excise Rules.
               </p>
             </div>
 
@@ -280,7 +280,7 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
                 <span>Bengaluru Pubs, Bars &amp; Microbreweries (CL-9 / CL-4)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">10:00 AM se 11:30 PM (Weekdays) / 1:00 AM (Weekends)</strong>. Indiranagar, Koramangala, MG Road aur Whitefield ke licensed establishments weekend par 1:00 AM tak serve karte hain.
+                <strong className="text-white font-mono">10:00 AM to 11:30 PM (Weekdays) / 1:00 AM (Weekends)</strong>. Licensed establishments in Indiranagar, Koramangala, MG Road, and Whitefield serve until 11:30 PM on weekdays, with weekend extensions permitting service up to 1:00 AM with local police clearances.
               </p>
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
             <span>5. Major Karnataka Cities: Bengaluru, Mysuru, Hubli &amp; Beyond</span>
           </h2>
           <p>
-            Karnataka state excise notifications rajya ke sabhi bade shahron me lagoo hoti hain:
+            Karnataka state excise notifications apply across all municipal corporations and administrative districts in the state:
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -326,8 +326,8 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
             <span>6. Minimum Legal Drinking Age (21) &amp; Possession Limits</span>
           </h2>
           <p>
-            Karnataka me minimum legal drinking age <strong className="text-white font-mono">21 years</strong> hai.
-            Personal consumption ke liye ek vyakti bina excise permit ke maximum 18.2 litres beer ya 4.6 litres IMFL possess kar sakta hai.
+            The minimum legal drinking age in Karnataka is <strong className="text-white font-mono">21 years</strong> under the Karnataka Excise (General Conditions of Licences) Rules.
+            For personal consumption, an individual without a special excise permit is legally permitted to transport or store up to 18.2 litres of beer or 4.6 litres of Indian Made Foreign Liquor (IMFL).
           </p>
         </section>
 
@@ -338,7 +338,7 @@ export default function KarnatakaGuideArticle({ guide }: KarnatakaGuideArticlePr
             <span>7. How to Check Real-Time Karnataka Dry-Day Status</span>
           </h2>
           <p>
-            Aap ek click me jaan sakte hain ki aaj ya kal Karnataka me dry day hai ya nahi:{' '}
+            You can verify today&apos;s and tomorrow&apos;s real-time dry-day status for Karnataka with one click:{' '}
             <Link href="/india/karnataka" className="text-amber-400 font-semibold underline hover:text-white">
               Check Karnataka Live Status &rarr;
             </Link>

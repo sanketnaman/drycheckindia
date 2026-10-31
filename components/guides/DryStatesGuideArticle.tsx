@@ -9,13 +9,10 @@ import {
   ShieldAlert,
   AlertTriangle,
   Scale,
-  MapPin,
   HelpCircle,
   CheckCircle,
   Building2,
   BookOpen,
-  ArrowRight,
-  ShieldCheck,
   Globe2,
 } from 'lucide-react';
 
@@ -31,9 +28,8 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
     { id: 'uttarakhand-sacred-ban', label: '4. Sacred Town Bans: Is Uttarakhand a Dry State?' },
     { id: 'myth-busting', label: '5. Myth Busting: Are Sikkim, Meghalaya & Jharkhand Dry States?' },
     { id: 'penalties-transit', label: '6. Interstate Smuggling Penalties & Border Checkposts' },
-    { id: 'all-india-comparison', label: '7. All-India Comparison Table: Prohibition vs Open States' },
-    { id: 'faqs', label: '8. Frequently Asked Questions (FAQs)' },
-    { id: 'official-sources', label: '9. Official Citations & Regulatory References' },
+    { id: 'faqs', label: '7. Frequently Asked Questions (FAQs)' },
+    { id: 'official-sources', label: '8. Official Citations & Regulatory References' },
   ];
 
   return (
@@ -129,14 +125,10 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
             <span>1. Constitutional Basis: Article 47 &amp; Alcohol Laws in India</span>
           </h2>
           <p>
-            Bharat ke samvidhaan (Constitution of India) ke <strong className="text-white">Article 47</strong> (Directive Principles of State Policy)
-            me spasht roop se ullekh hai ki rajya sarkar ko public health sudharne ke liye{' '}
-            <strong className="text-neutral-100">&quot;intoxicating drinks aur hanikarak nasheeli vastuon ke sewan par roak (prohibition) lagane ka prayas karna chahiye&quot;</strong>.
+            Under the Constitution of India, <strong className="text-white">Article 47</strong> (Directive Principles of State Policy) explicitly establishes that the State shall endeavor to bring about prohibition of the consumption, except for medicinal purposes, of intoxicating drinks and of drugs which are injurious to health.
           </p>
           <p>
-            Kyunki Constitution ke Seventh Schedule me <strong className="text-white">Alcohol ek State Subject (Entry 8, State List)</strong> hai,
-            isliye har rajya sarkar ke paas poorn adhikaar hota hai ki wo apne rajya me sharab par poorn pratibandh (total prohibition) lagaye,
-            ya phir excise duty aur taxes ke zariye ise regulate kare.
+            Pursuant to the Seventh Schedule to the Constitution of India, <strong className="text-white">Alcohol is a State Subject (Entry 8, List II &ndash; State List)</strong>. As a result, each individual state legislature exercises plenary constitutional authority either to enact complete statutory alcohol prohibition within its borders or to generate public revenue through state excise taxation and licensed commercial retail distribution.
           </p>
         </section>
 
@@ -147,8 +139,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
             <span>2. The 5 Complete Statutory Prohibition States &amp; UTs in India</span>
           </h2>
           <p>
-            Vartamaan me Bharat ke <strong className="text-white">4 rajyon aur 1 kendrashasit pradesh (Union Territory)</strong> me 365 din
-            sharab ki bikri, khareed aur consumption par statutory ban hai:
+            Currently, <strong className="text-white">4 Indian states and 1 Union Territory</strong> enforce complete, 365-day statutory prohibition on the sale, purchase, and consumption of alcoholic beverages:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -210,18 +201,17 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
             <span>3. Gujarat Tourist Permits &amp; GIFT City Exceptions</span>
           </h2>
           <p>
-            Gujarat Bharat ka ekmatra aisa prohibition state hai jahan bahar se aane wale domestic tourists aur international travellers ko
-            legal roop se alcohol purchase aur consume karne ki vyavastha di gayi hai:
+            Gujarat is the sole prohibition state in India that provides a formal statutory mechanism allowing domestic tourists and international visitors to legally purchase and consume alcohol:
           </p>
           <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/80 space-y-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400">
-              How Visitors Can Get a Legal Tourist Liquor Permit in Gujarat:
+              How Visitors Can Obtain a Legal Tourist Liquor Permit in Gujarat:
             </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs text-neutral-300">
-              <li><strong className="text-white">Online Application:</strong> Gujarat State Excise portal (<code className="text-amber-300">eps.gpe.gujarat.gov.in</code>) par jakar visitor permit ke liye apply kar sakte hain.</li>
-              <li><strong className="text-white">Required Proofs:</strong> Valid identity proof, ticket/boarding pass proving travel into Gujarat, aur residential address proof showing residence outside Gujarat.</li>
-              <li><strong className="text-white">Permit Hotels:</strong> Ahmedabad, Surat, Vadodara, Rajkot aur Gandhinagar ke authorized 4-star aur 5-star hotels me designated liquor shops se permit holder alcohol purchase kar sakta hai.</li>
-              <li><strong className="text-white">GIFT City Exemption:</strong> Gandhinagar me GIFT City financial tech corridor me authorized international business employees aur official guests ke liye licensed wine and dine areas me alcohol serve karne ki vishesh chhoot di gayi hai.</li>
+              <li><strong className="text-white">Online Application:</strong> Travelers can apply directly on the Gujarat State Excise portal (<code className="text-amber-300">eps.gpe.gujarat.gov.in</code>) for an official visitor permit.</li>
+              <li><strong className="text-white">Required Documentation:</strong> Valid government identity proof, travel tickets or boarding passes confirming arrival into Gujarat, and proof of primary residence outside the State of Gujarat.</li>
+              <li><strong className="text-white">Authorized Permit Outlets:</strong> Approved permit holders may purchase designated rations from authorized liquor counters situated inside certified 4-star and 5-star hotels in Ahmedabad, Surat, Vadodara, Rajkot, and Gandhinagar.</li>
+              <li><strong className="text-white">GIFT City Exemption:</strong> In Gandhinagar&apos;s GIFT City financial hub, authorized international business executives and official visitors are permitted to consume alcohol in designated licensed dining and lounge facilities.</li>
             </ul>
           </div>
         </section>
@@ -237,19 +227,18 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
               The Real Truth About Uttarakhand Alcohol Laws:
             </h3>
             <p className="text-xs text-neutral-200 leading-relaxed">
-              Google par bohot log search karte hain ki <strong className="text-white">is uttarakhand a dry state</strong> ya{' '}
-              <strong className="text-white">uttarakhand is dry state or not</strong>.
+              Online travelers frequently search whether <strong className="text-white">&ldquo;is uttarakhand a dry state&rdquo;</strong> or ask{' '}
+              <strong className="text-white">&ldquo;uttarakhand is dry state or not&rdquo;</strong>.
             </p>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              <strong className="text-amber-300">Uttarakhand poora dry state nahi hai.</strong> Dehradun, Mussoorie, Nainital, Haldwani,
-              Roorkee aur zyadatar tourist locations par licensed retail wine shops, theke aur hotel bars open rehte hain.
+              <strong className="text-amber-300">Uttarakhand is NOT a complete dry state.</strong> Licensed retail wine stores, thekas, and hotel dining bars operate routinely across major cities including Dehradun, Mussoorie, Nainital, Haldwani, and Roorkee.
             </p>
             <p className="text-xs text-neutral-300 leading-relaxed">
-              Lekin Pavitra Teerth Kshetro me complete ban enforce hai:
+              However, complete statutory alcohol bans are enforced in sacred spiritual zones:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-300">
-              <li><strong className="text-white">Haridwar &amp; Rishikesh:</strong> Municipal limits aur Ganga ghats ke 5 km ke radius me alcohol aur meat ki bikri poori tarah pratibandhit hai.</li>
-              <li><strong className="text-white">Char Dham Corridors:</strong> Badrinath, Kedarnath, Gangotri, Yamunotri mandir parishar ke aas-paas liquor shops strictly banned hain.</li>
+              <li><strong className="text-white">Haridwar &amp; Rishikesh:</strong> The sale and public possession of alcohol and meat are strictly prohibited within municipal areas and along the sacred ghats of the River Ganga.</li>
+              <li><strong className="text-white">Char Dham Corridors:</strong> Liquor sales are strictly banned around the revered temple complexes of Badrinath, Kedarnath, Gangotri, and Yamunotri.</li>
             </ul>
           </div>
         </section>
@@ -261,7 +250,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
             <span>5. Myth Busting: Are Sikkim, Meghalaya, Jharkhand &amp; Andaman Dry States?</span>
           </h2>
           <p>
-            Aamtaur par travelers me kai rajyon ko lekar galatfahmiyan hoti hain. Yahan official fact-check hai:
+            Travelers frequently encounter misconceptions regarding alcohol availability across other Indian jurisdictions. Here is the verified legal reality:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -271,8 +260,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
                 <span>Is Sikkim a Dry State? NO</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                Sikkim me sharab poori tarah legal hai. Sikkim me kai famous distilleries hain aur local traditional drink jaise Tongba (millet beer)
-                bhi prachalit hai. Gangtok aur baki sabhi zilon me wine shops open rehte hain.
+                Alcohol is entirely legal in Sikkim. The state is home to prominent commercial breweries and distilleries, and traditional beverages such as Tongba (millet beer) are culturally established. Licensed stores operate regularly in Gangtok and across the state.
               </p>
             </div>
 
@@ -282,7 +270,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
                 <span>Is Meghalaya a Dry State? NO</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                Meghalaya me koi sharabbandi nahi hai. Shillong me vibrant cafe culture, microbreweries aur licensed bars operate karte hain.
+                Meghalaya enforces no alcohol prohibition. Shillong features an active cafe culture, microbreweries, and licensed hospitality bars.
               </p>
             </div>
 
@@ -292,8 +280,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
                 <span>Is Jharkhand a Dry State? NO</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                Padosi rajya Bihar me ban hone ke bawajood, Jharkhand me sarkar dwara supervised retail liquor theke Ranchi, Jamshedpur, Dhanbad
-                aur sabhi zilon me niyamit roop se khulte hain.
+                Despite sharing a border with Bihar, Jharkhand permits government-regulated retail liquor vends to operate regularly in Ranchi, Jamshedpur, Dhanbad, and all administrative districts.
               </p>
             </div>
 
@@ -303,8 +290,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
                 <span>Is Pondicherry (Puducherry) a Dry State? NO</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                Puducherry me alcohol par desh ke sabse kam excise taxes me se ek hain. Yeh French colony apne cheap liquor, beach cafes aur bars
-                ke liye mashhoor hai.
+                Puducherry maintains some of the lowest alcohol excise taxes in India. The union territory is famous for its coastal French Quarter cafes, beach lounges, and bars.
               </p>
             </div>
           </div>
@@ -321,11 +307,11 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
               Important Transit Warning for Bihar &amp; Gujarat Travelers:
             </h3>
             <p className="text-xs leading-relaxed">
-              Agar aap flight, train ya car se Bihar ya Gujarat travel kar rahe hain, to bhulkar bhi bag me alcohol na rakhein.
+              If traveling by air, railway, or private automobile into Bihar or Gujarat, do NOT carry any alcoholic beverages in your luggage.
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs">
-              <li><strong className="text-white">Bihar:</strong> Border checkposts aur railway stations par breathalyzers aur dog squads se checking hoti hai. Alcohol consumption ya possession par seedha arrest aur non-bailable FIR ho sakti hai.</li>
-              <li><strong className="text-white">Gujarat:</strong> Bina permit alcohol le jaana Section 65 aur 66 ke tahat criminal offence hai. Gaadi seize aur arrest ho sakti hai.</li>
+              <li><strong className="text-white">Bihar:</strong> Inter-state checkposts and railway stations deploy breathalyzers and trained canine inspection squads. Alcohol possession or consumption triggers immediate arrest and non-bailable FIR registration.</li>
+              <li><strong className="text-white">Gujarat:</strong> Transporting liquor without an authorized state transport permit is a criminal offence under Sections 65 and 66 of the Gujarat Prohibition Act, leading to vehicle confiscation and arrest.</li>
             </ul>
           </div>
         </section>

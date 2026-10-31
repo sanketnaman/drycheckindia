@@ -14,7 +14,6 @@ import {
   CheckCircle,
   Building2,
   BookOpen,
-  ArrowRight,
   Store,
   Beer,
 } from 'lucide-react';
@@ -107,8 +106,8 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
               Checking Live Status for Mumbai, Pune or Across Maharashtra?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Agar aap jan&apos;na chahte hain ki <strong className="text-white">tomorrow is dry day in maharashtra</strong> ya fir{' '}
-              <strong className="text-white">dry day in mumbai today</strong>, hamara real-time tracker sabhi 36 zilon ke liye instant status provide karta hai:{' '}
+              If you need to verify whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> or check{' '}
+              <strong className="text-white">&ldquo;dry day in mumbai today&rdquo;</strong>, our real-time engine monitors official gazette notifications across all 36 districts:{' '}
               <Link href="/india/maharashtra" className="underline font-semibold text-white hover:text-amber-300">
                 Check Live Maharashtra Dry Day Today Tracker &rarr;
               </Link>
@@ -130,18 +129,16 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>1. Introduction: Is Today or Tomorrow a Dry Day in Maharashtra?</span>
           </h2>
           <p>
-            Maharashtra me alcohol manufacturing, distribution, retail licensing, aur holiday closures ko{' '}
-            <strong className="text-white">State Excise Department, Government of Maharashtra</strong> regulate karta hai.
-            Ye niyam <strong className="text-neutral-100">Maharashtra Prohibition Act, 1949</strong> (pehle Bombay Prohibition Act) ke statutory framework par aadharit hain.
+            In Maharashtra, alcoholic beverage manufacturing, wholesale distribution, retail licensing, and statutory holiday closures are administered by the{' '}
+            <strong className="text-white">State Excise Department, Government of Maharashtra</strong>.
+            These regulations are rooted in the statutory framework of the <strong className="text-neutral-100">Maharashtra Prohibition Act, 1949</strong> (formerly the Bombay Prohibition Act).
           </p>
           <p>
-            Chahe aap Mumbai City, Mumbai Suburban, Pune, Nagpur, Nashik, Thane, Kalyan-Dombivli, Chhatrapati Sambhajinagar, ya Amravati me hon,
-            statewide dry-day circulars sabhi licensed retail wine shops (FL-BR-II) aur permit room bars par ek samaan roop se lagu hote hain.
+            Whether you reside in Mumbai City, Mumbai Suburban, Pune, Nagpur, Nashik, Thane, Kalyan-Dombivli, Chhatrapati Sambhajinagar, or Amravati,
+            statewide gazetted dry-day orders apply uniformly across all licensed retail wine shops (FL-BR-II) and permit rooms/bars (FL-III).
           </p>
           <p>
-            Agar aap plan kar rahe hain ki <strong className="text-white">dry day tomorrow in maharashtra</strong> hoga ya nahi, to is guide me aapko
-            pure saal 2026 ka official gazette calendar, Kartiki Ekadashi aur Ganpati Visarjan ke special closures, aur Wardha tatha Gadchiroli zilon ke
-            permanent liquor ban ki poori jankari milegi.
+            If you are planning around whether <strong className="text-white">&ldquo;dry day tomorrow in maharashtra&rdquo;</strong> will take effect, this guide provides the complete 2026 gazette calendar, key religious observances including Kartiki Ekadashi and Ganesh Visarjan, and the total statutory prohibition enforcement in Wardha and Gadchiroli districts.
           </p>
         </section>
 
@@ -152,7 +149,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>2. Complete Maharashtra 2026 Gazette Dry Days Calendar</span>
           </h2>
           <p>
-            Maharashtra Excise Department ke statutory schedule ke anusaar, nimnlikhit tareekhon par statewide dry day enforce kiya jaata hai:
+            Under the statutory notifications of the Maharashtra Excise Department, alcohol sales are strictly prohibited statewide on the following dates:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -300,13 +297,10 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>3. Upcoming Focus: Kartiki Ekadashi (5 November 2026)</span>
           </h2>
           <p>
-            Maharashtra me <strong className="text-white">5 November 2026</strong> ko Kartiki Ekadashi ke avasar par poore rajya me dry day
-            declared hai. Pandharpur me Vitthal Mandir me lakho warkari is din darshan karne pahunchte hain.
+            In Maharashtra, <strong className="text-white">5 November 2026</strong> marks a gazetted statewide dry day on the sacred observance of Kartiki Ekadashi. Hundreds of thousands of Warkari pilgrims assemble at the revered Vitthal-Rukmini Temple in Pandharpur.
           </p>
           <p>
-            Is din Mumbai, Pune, Thane, Solapur, aur sabhi revenue divisions me subah se raat tak retail shops aur bars poori tarah band rahenge.
-            Agar aap check kar rahe hain ki <strong className="text-white">tomorrow is dry day in maharashtra</strong> on November 4th/5th, to dhyan
-            rahein ki 5th November ko alcohol sales prohibited rahegi.
+            On this date, retail liquor shops and commercial bars across Mumbai, Pune, Thane, Solapur, and all regional revenue divisions remain completely closed for 24 hours. If you are checking whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> around early November, note that alcohol vending and service are strictly banned on 5 November.
           </p>
         </section>
 
@@ -317,7 +311,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>4. Total Prohibition Districts: Wardha &amp; Gadchiroli Explained</span>
           </h2>
           <p>
-            Maharashtra ke 36 zilon me se 2 zilon me <strong className="text-white">complete statutory prohibition</strong> 365 din lagu rehti hai:
+            Out of Maharashtra&apos;s 36 administrative districts, 2 districts enforce <strong className="text-white">complete statutory prohibition</strong> 365 days a year:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -327,8 +321,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
                 <span>Wardha District (Permanent Dry District)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                Mahatma Gandhi ke Sevagram Ashram aur Acharya Vinoba Bhave ke Pavnar Ashram ki aitihasik dharohar ke roop me Wardha me
-                1975 se sharab ki bikri, khareed aur consumption par poorn ban hai. Yahan koi theka ya bar operate nahi hota.
+                To honor the historical heritage of Mahatma Gandhi&apos;s Sevagram Ashram and Acharya Vinoba Bhave&apos;s Pavnar Ashram, a complete prohibition on the sale, purchase, and consumption of alcohol has been in force in Wardha since 1975. No commercial liquor stores or bars operate here.
               </p>
             </div>
 
@@ -338,15 +331,13 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
                 <span>Gadchiroli District (Tribal Welfare Ban)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                1992 se Gadchiroli me local tribal welfare, samajik suraksha aur naxal-prabhavit kshetro me public order banaye rakhne ke liye
-                total prohibition enforce hai. Yahan illegal alcohol supply par kadi sazayein hain.
+                Total statutory prohibition has been enforced in Gadchiroli since 1992 to support tribal community welfare, protect local socioeconomic health, and maintain public order. Stringent penal consequences apply to illicit liquor trafficking.
               </p>
             </div>
           </div>
 
           <p className="text-xs text-neutral-400 pt-1">
-            <strong>Note on Chandrapur:</strong> Chandrapur ziley me 2015 me sharabbandi lagayi gayi thi, lekin May 2021 me Maharashtra State
-            Cabinet ne ise lift kar diya tha. Isliye vartamaan me Chandrapur me licensed theke aur bars standard rajya excise rules ke tahat open rehte hain.
+            <strong>Note on Chandrapur:</strong> Complete prohibition was instituted in Chandrapur district in 2015 but subsequently revoked by the Maharashtra State Cabinet in May 2021. Licensed retail outlets and bars in Chandrapur currently operate under regular state excise regulations.
           </p>
         </section>
 
@@ -357,7 +348,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>5. Standard Timings: Retail Wine Shops vs Permit Rooms &amp; Bars</span>
           </h2>
           <p>
-            Maharashtra me dry days ke alawa normal days par dukaanon aur bars ke niyamit samay is prakaar hain:
+            Outside of notified dry days, standard legal operational hours across Maharashtra are governed as follows:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -367,8 +358,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
                 <span>Retail Wine Shops (FL-BR-II)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">10:00 AM se 10:30 PM tak</strong>. Mumbai, Pune, Thane, aur Navi Mumbai me IMFL
-                aur foreign liquor stores raat 10:30 baje tak open rehte hain (country liquor vends raat 10:00 baje close hote hain).
+                <strong className="text-white font-mono">10:00 AM to 10:30 PM</strong>. In Mumbai, Pune, Thane, and Navi Mumbai, licensed retail wine stores selling IMFL and imported spirits remain open until 10:30 PM (country liquor outlets close at 10:00 PM).
               </p>
             </div>
 
@@ -378,8 +368,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
                 <span>Permit Rooms, Bars &amp; Pubs (FL-III)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">11:00 AM se 1:30 AM tak</strong>. Municipal Corporation aur police commissionerate ke
-                permits ke anusaar commercial dining bars aur nightlife pubs der raat 1:30 AM tak liquor serve kar sakte hain.
+                <strong className="text-white font-mono">11:00 AM to 1:30 AM</strong>. Under standard municipal corporation and police commissionerate permissions, commercial dining establishments, permit rooms, and nightlife venues are permitted to serve liquor until 1:30 AM.
               </p>
             </div>
           </div>
@@ -388,11 +377,11 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
         {/* Section 6: Major Cities Covered */}
         <section id="cities-covered" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
-            <MapPin className="h-4 w-4 text-amber-400" />
+            <MapPin className="h-5 w-5 text-amber-400" />
             <span>6. Major Cities Covered: Mumbai, Pune, Nagpur, Nashik &amp; Beyond</span>
           </h2>
           <p>
-            Maharashtra ke official gazette orders rajya ke sabhi bade shahron aur revenue mandalon par lagu hote hain:
+            Maharashtra&apos;s official gazette orders and excise regulations apply across all municipal corporations and administrative districts:
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -419,8 +408,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             ))}
           </div>
           <p className="text-xs text-neutral-400 pt-1">
-            Chahe aap <strong className="text-neutral-200">dry day in mumbai</strong> search karein, ya <strong className="text-neutral-200">is tomorrow a dry day in nashik</strong>,
-            har sheher me state excise orders barabar enforce kiye jaate hain.
+            Whether consumers search for <strong className="text-neutral-200">&ldquo;dry day in mumbai&rdquo;</strong> or query <strong className="text-neutral-200">&ldquo;is tomorrow a dry day in nashik&rdquo;</strong>, state excise notifications are enforced uniformly across every municipality.
           </p>
         </section>
 
@@ -431,12 +419,12 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>7. Legal Drinking Age (21/25) &amp; Liquor Permit Rules</span>
           </h2>
           <p>
-            Maharashtra me alcohol consumption ke liye do alag-alag age tiers hain:
+            Maharashtra enforces a dual-tier legal drinking age structure:
           </p>
           <ul className="list-disc pl-5 space-y-1.5 text-xs text-neutral-300">
-            <li><strong className="text-white">Mild Beer &amp; Wine:</strong> Minimum legal drinking age <strong className="text-amber-400">21 years</strong> hai.</li>
-            <li><strong className="text-white">Hard Liquor / Spirits (Whisky, Rum, Vodka, Gin):</strong> Minimum legal drinking age <strong className="text-amber-400">25 years</strong> hai.</li>
-            <li><strong className="text-white">Liquor Permit:</strong> Maharashtra Prohibition Act ke tahat technical taur par sharab khareedne aur peene ke liye state excise permit hona anivarya hota hai, jo daily ya annual basis par permit rooms dwara issue kiya ja sakta hai.</li>
+            <li><strong className="text-white">Mild Beer &amp; Wine:</strong> Minimum legal drinking age is <strong className="text-amber-400">21 years</strong>.</li>
+            <li><strong className="text-white">Hard Liquor / Spirits (Whisky, Rum, Vodka, Gin):</strong> Minimum legal drinking age is <strong className="text-amber-400">25 years</strong>.</li>
+            <li><strong className="text-white">Liquor Permit Requirement:</strong> Under the Maharashtra Prohibition Act, individuals purchasing or consuming alcohol are technically required to hold a valid liquor consumption permit, obtainable digitally or through licensed permit rooms.</li>
           </ul>
         </section>
 
@@ -447,8 +435,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>8. How to Check Real-Time Maharashtra Status</span>
           </h2>
           <p>
-            Agar aapko turant confirm karna hai ki <strong className="text-white">tomorrow dry day in maharashtra</strong> hai ya nahi,
-            to hamare dedicated tracker par live status check karein:{' '}
+            To verify whether <strong className="text-white">&ldquo;tomorrow dry day in maharashtra&rdquo;</strong> or check today&apos;s real-time legal status, visit our dedicated tracker:{' '}
             <Link href="/india/maharashtra" className="text-amber-400 font-semibold underline hover:text-white">
               Check Maharashtra Live Status &rarr;
             </Link>

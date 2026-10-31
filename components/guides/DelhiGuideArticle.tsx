@@ -14,7 +14,6 @@ import {
   CheckCircle,
   Building2,
   BookOpen,
-  ArrowRight,
   Store,
   Beer,
 } from 'lucide-react';
@@ -106,9 +105,8 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
               Need Instant Status for Today or Tomorrow in Delhi?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Agar aap turant dekhna chahte hain ki <strong className="text-white">is today a dry day in delhi</strong> ya{' '}
-              <strong className="text-white">dry day in delhi tomorrow</strong>, hamara real-time IST engine Delhi ke sabhi 11 revenue districts
-              aur micro-markets ke liye live status track karta hai:{' '}
+              If you need to verify whether <strong className="text-white">&ldquo;is today a dry day in delhi&rdquo;</strong> or check{' '}
+              <strong className="text-white">&ldquo;dry day in delhi tomorrow&rdquo;</strong>, our real-time IST engine tracks live gazette status across all 11 revenue districts and micro-markets in Delhi:{' '}
               <Link href="/india/delhi" className="underline font-semibold text-white hover:text-amber-300">
                 Check Live Delhi Dry Day Today Tracker &rarr;
               </Link>
@@ -130,19 +128,18 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>1. Introduction: Is Today a Dry Day in Delhi?</span>
           </h2>
           <p>
-            Har din hazaro log Google par search karte hain ki <strong className="text-white">is today a dry day in delhi</strong> ya phir{' '}
-            <strong className="text-white">delhi theka timing today</strong> kya hain. National Capital Territory of Delhi (NCT) me alcohol
-            sales aur licensing ko <strong className="text-white">Department of Excise, Entertainment &amp; Luxury Tax</strong> govern karta hai.
+            Every day, thousands of consumers search online to find out whether <strong className="text-white">&ldquo;is today a dry day in delhi&rdquo;</strong> or what the current{' '}
+            <strong className="text-white">&ldquo;delhi theka timing today&rdquo;</strong> are. In the National Capital Territory of Delhi (NCT), alcoholic beverage sales, excise duties, and vend licensing are administered by the{' '}
+            <strong className="text-white">Department of Excise, Entertainment &amp; Luxury Tax, Government of NCT of Delhi</strong> under the statutory provisions of the{' '}
+            <strong className="text-neutral-100">Delhi Excise Act, 2009</strong>.
           </p>
           <p>
-            Delhi me liquor retail distribution 4 government corporations ke dwara run hota hai:{' '}
-            <strong className="text-neutral-100">DTTDC, DSIIDC, DCCWS, aur DSCSC</strong>. Chahe aap New Delhi, South Delhi, Connaught Place,
-            Dwarka, Rohini, Saket ya Lajpat Nagar me hon, statutory dry-day notifications sabhi government vends par barabar lagu hoti hain.
+            In Delhi, retail liquor distribution is managed exclusively through four state government corporations:{' '}
+            <strong className="text-neutral-100">DTTDC, DSIIDC, DCCWS, and DSCSC</strong>. Whether you are in New Delhi, South Delhi, Connaught Place,
+            Dwarka, Rohini, Saket, or Lajpat Nagar, statutory dry-day notifications apply uniformly across all government vends and commercial hospitality venues.
           </p>
           <p>
-            Agar aap confirm karna chahte hain ki <strong className="text-white">is tomorrow dry day in delhi</strong>, to is exhaustive guide
-            me aapko pure saal 2026 ka gazetted dry day calendar, theke ke khulne aur band hone ke exact ghante, aur Gurugram/Noida border transit ke
-            strict penal rules milenge.
+            If you need to confirm whether <strong className="text-white">&ldquo;is tomorrow dry day in delhi&rdquo;</strong>, this legal guide provides the complete 2026 gazetted dry-day calendar, retail store operational hours, and the strict border transit laws governing travel between Delhi, Gurugram (Haryana), and Noida (Uttar Pradesh).
           </p>
         </section>
 
@@ -153,8 +150,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>2. Official Delhi 2026 Gazette Dry Days Calendar</span>
           </h2>
           <p>
-            Delhi Excise Department har saal standing gazette circulars ke zariye mandatory dry days notify karta hai. In tareekhon par
-            sabhi retail theke, departmental liquor stores, aur commercial restaurant bars poori tarah band rehte hain:
+            The Delhi Excise Department notifies mandatory dry days through standing gazette orders each year. On these dates, all government retail vends (thekas), departmental liquor stores, and commercial restaurant bars remain strictly closed:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -269,8 +265,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>3. Normal Theka &amp; Bar Timings in Delhi</span>
           </h2>
           <p>
-            Delhi me liquor sale private shops ke dwara band kar di gayi hai. Ab sabhi vends Delhi sarkar ke corporations dwara run kiye jaate hain.
-            Inke niyamit operating timings is prakaar hain:
+            Private retail liquor stores are not permitted in Delhi; all vends are run by government corporations. Regular operating schedules are as follows:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,8 +275,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
                 <span>Retail Liquor Vends (Thekas)</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">10:00 AM se 10:00 PM tak</strong>. Delhi me 600 se adhik sarkari theke theek raat 10 baje
-                shutters band kar dete hain. Kisi bhi theke ko 10 PM ke baad alcohol bechne ki anumati nahi hai.
+                <strong className="text-white font-mono">10:00 AM to 10:00 PM</strong>. Delhi&apos;s 600+ government vends shut down operations strictly at 10:00 PM. Vending or distributing alcohol past 10:00 PM is strictly prohibited under Delhi excise law.
               </p>
             </div>
 
@@ -291,8 +285,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
                 <span>Licensed Bars, Pubs &amp; Hotel Lounges</span>
               </h3>
               <p className="text-xs text-neutral-300">
-                <strong className="text-white font-mono">11:00 AM se 1:00 AM tak</strong> (L-17/L-18 licenses). Five-star aur luxury hotel
-                bars special excise extension ke saath raat 3:00 AM tak operational reh sakte hain.
+                <strong className="text-white font-mono">11:00 AM to 1:00 AM</strong> (L-17/L-18 licenses). Five-star and luxury hotel establishments with specialized excise endorsements may operate until 3:00 AM.
               </p>
             </div>
           </div>
@@ -310,16 +303,15 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
               <AlertTriangle className="h-5 w-5 text-rose-400 shrink-0 mt-0.5" />
               <div className="space-y-2 text-xs sm:text-sm">
                 <h3 className="text-sm sm:text-base font-bold text-rose-300">
-                  CRITICAL LEGAL WARNING: Bringing Alcohol from Haryana/UP into Delhi is Illegal
+                  CRITICAL LEGAL WARNING: Bringing Alcohol from Haryana or UP into Delhi is Illegal
                 </h3>
                 <p className="leading-relaxed text-rose-200/90">
-                  Bohot se log dry day par Delhi se Gurugram (Gurgaon) ya Noida jaakar liquor khareedne ki sochte hain.
-                  Lekin dhyan rahe: <strong className="text-white">Delhi Excise Act 2009 ki Section 33</strong> ke tahat Haryana ya UP se
-                  kisi bhi matra me bina Delhi excise permit ke alcohol Delhi border cross karwana ek sangheen apraadh (cognizable offence) hai.
+                  During dry days in Delhi, residents frequently contemplate crossing into Gurugram (Haryana) or Noida (Uttar Pradesh) to procure liquor.
+                  However, under <strong className="text-white">Section 33 of the Delhi Excise Act, 2009</strong>, transporting alcohol across state lines into Delhi without a specific Delhi excise permit is a cognizable criminal offence.
                 </p>
                 <ul className="list-disc pl-5 space-y-1 text-xs text-rose-200">
-                  <li>Border checkposts (Sirhaul, Aya Nagar, DND, Kalindi Kunj) par excise police active checking karti hai.</li>
-                  <li>Pakde jane par poori liquor zabt, gaadi seize, aur <strong className="text-white">up to 3 saal ki jail ya ₹1 lakh tak ka jurmana</strong> ho sakta hai.</li>
+                  <li>Border checkpoints (Sirhaul border, Aya Nagar, DND Flyway, Kalindi Kunj) feature active excise surveillance and vehicle inspections.</li>
+                  <li>Offenders face immediate confiscation of liquor, vehicle impoundment, and <strong className="text-white">penalties of up to 3 years imprisonment or fines up to ₹1,00,000</strong>.</li>
                 </ul>
               </div>
             </div>
@@ -333,7 +325,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>5. Delhi NCR Micro-Markets &amp; Localities Covered</span>
           </h2>
           <p>
-            Delhi ke official dry day gazette orders poore National Capital Territory ke sabhi 11 zilon aur commercial hubs par uniformly apply hote hain:
+            Delhi&apos;s official dry day notifications and excise regulations apply uniformly across all 11 revenue districts and commercial centres:
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -360,7 +352,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             ))}
           </div>
           <p className="text-xs text-neutral-400 pt-1">
-            In sabhi kshetron me vends aur bars dry day timings aur standard 10 PM closures ko strictly follow karte hain.
+            Retail vends and hospitality establishments across all these zones adhere strictly to gazetted dry-day closures and the 10:00 PM operational cutoff.
           </p>
         </section>
 
@@ -371,8 +363,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>6. Legal Drinking Age (21) &amp; Personal Possession Limits</span>
           </h2>
           <p>
-            Delhi me statutory legal drinking age <strong className="text-white">21 years</strong> hai. Kisi bhi dukaan ya bar ko 21 saal se
-            chhoti umra ke vyakti ko sharab bechna ya serve karna kanoonan dandniya hai.
+            The statutory legal drinking age in Delhi is <strong className="text-white">21 years</strong>. Selling or serving alcohol to any individual under 21 is a punishable offence under Delhi excise law.
           </p>
           <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/70 space-y-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400">
@@ -393,8 +384,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>7. How to Check If Tomorrow is Dry Day in Delhi</span>
           </h2>
           <p>
-            Agar aap aane wale kal ka status confirm karna chahte hain, to DryCheck India par live real-time tracker available hai.
-            Aap ek click me jaan sakte hain ki aaj theke khule hain ya kal band rahenge:{' '}
+            To verify whether retail liquor vends and commercial bars are open today or will remain closed tomorrow, consult our real-time tracker:{' '}
             <Link href="/india/delhi" className="text-amber-400 font-semibold underline hover:text-white">
               Check Delhi Real-Time Status &rarr;
             </Link>
