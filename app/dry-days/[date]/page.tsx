@@ -44,25 +44,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!dateIST) {
     return {
-      title: 'Date Not Found | DryCheck India',
+      title: 'Date Not Found',
     };
   }
 
   const formattedDate = formatDateDisplay(dateIST, { showDayOfWeek: true });
+  const dateWithoutWeekday = formatDateDisplay(dateIST, { showDayOfWeek: false, fullMonth: true });
   const dataset = await getPublicDataset();
   const entries = dataset.entries;
   const allEntriesOnDate = entries.filter((e) => e.date === dateIST);
   const primaryReason = allEntriesOnDate[0]?.reason;
 
-  const title = primaryReason
-    ? `Dry Day on ${formattedDate} (${primaryReason})? State List & Shop Status | DryCheck India`
-    : `Is ${formattedDate} a Dry Day in India? State List & Shop Status | DryCheck India`;
+  let title = primaryReason
+    ? `${dateWithoutWeekday}: Dry Day in India? ${primaryReason}`
+    : `Is ${dateWithoutWeekday} a Dry Day in India? State List`;
+
+  if (title.length > 55) {
+    const compactDate = formatDateDisplay(dateIST, { showDayOfWeek: false, fullMonth: false });
+    title = primaryReason
+      ? `${compactDate}: Dry Day in India? ${primaryReason}`
+      : `Is ${compactDate} a Dry Day in India? State List`;
+  }
 
   const description = primaryReason
     ? `Find out if ${formattedDate} is a dry day in India for ${primaryReason}. State-wise liquor shop and theka status, bar timings, and official excise rules.`
     : `Check if ${formattedDate} is a dry day across Indian states. Complete state-wise list, retail liquor shop status, bar timings, and official excise notifications.`;
 
   const canonicalUrl = `${SITE_URL}/dry-days/${rawSlug}`;
+  const fullTitle = `${title} | DryCheck India`;
 
   return {
     title,
@@ -71,7 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: canonicalUrl,
       type: 'article',
@@ -79,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
     },
   };

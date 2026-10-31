@@ -82,7 +82,7 @@ export const GUIDES: Guide[] = [
     slug: 'kerala-dry-days-2026',
     title: 'Kerala Dry Days 2026: Official Dates, Election Restrictions and Rules',
     h1Title: 'Kerala Dry Days 2026: Official Dates, Election Restrictions and Rules',
-    seoTitle: 'Kerala Dry Days 2026: Official Dates, BEVCO Monthly Closures & Rules | DryCheck India',
+    seoTitle: 'Kerala Dry Days 2026: Dates, 1st-of-Month Rule',
     metaDescription:
       'Official Kerala dry day dates for 2026, 1st of every month BEVCO closures under Foreign Liquor Rule 7A, Assembly election gazette restrictions, and store operating hours.',
     stateSlug: 'kerala',
@@ -218,7 +218,7 @@ export const GUIDES: Guide[] = [
     slug: 'uttar-pradesh-dry-days-2026',
     title: 'Uttar Pradesh Dry Days 2026: Upcoming Dates, Rules & Liquor Timings',
     h1Title: 'Uttar Pradesh Dry Days 2026: Upcoming Dates, Rules & Liquor Timings',
-    seoTitle: 'UP Dry Day 2026: Upcoming Dates, Rules & Liquor Timings | DryCheck India',
+    seoTitle: 'UP Dry Days 2026: Dates, Rules & Theka Timings',
     metaDescription:
       'Official UP dry day 2026 calendar & excise rules. Check if today or tomorrow is a dry day in UP, upcoming Diwali (8 Nov) & Guru Nanak Jayanti (24 Nov) closures.',
     stateSlug: 'uttar-pradesh',
@@ -323,7 +323,7 @@ export const GUIDES: Guide[] = [
     slug: 'delhi-dry-days-2026',
     title: 'Delhi Dry Days 2026: Official Calendar, Theka Timings & NCR (Gurugram/Noida) Rules',
     h1Title: 'Delhi Dry Days 2026: Official Calendar, Theka Timings & NCR (Gurugram/Noida) Rules',
-    seoTitle: 'Delhi Dry Days 2026: Full Calendar, Liquor Timings & NCR Rules | DryCheck India',
+    seoTitle: 'Delhi Dry Days 2026: Calendar & Theka Timings',
     metaDescription:
       'Complete Delhi dry days 2026 calendar & excise department rules. Check festival closures, 10 AM–10 PM retail theka timings, and Gurugram/Noida border transit limits.',
     stateSlug: 'delhi',
@@ -410,7 +410,7 @@ export const GUIDES: Guide[] = [
     slug: 'maharashtra-dry-days-2026',
     title: 'Maharashtra Dry Days 2026: Mumbai & Pune Calendar, Local Bans & Festival Rules',
     h1Title: 'Maharashtra Dry Days 2026: Mumbai & Pune Calendar, Local Bans & Festival Rules',
-    seoTitle: 'Maharashtra Dry Days 2026: Mumbai Calendar, Timings & Rules | DryCheck India',
+    seoTitle: 'Maharashtra Dry Days 2026: Dates, Rules & Timings',
     metaDescription:
       'Official Maharashtra dry days 2026 calendar. Check Mumbai & Pune festival closures (Kartiki Ekadashi, Ganpati Visarjan), dry districts (Wardha, Gadchiroli), and bar timings.',
     stateSlug: 'maharashtra',
@@ -504,7 +504,7 @@ export const GUIDES: Guide[] = [
     slug: 'karnataka-dry-days-2026',
     title: 'Karnataka Dry Days 2026: Kannada Rajyotsava (1 Nov), Bengaluru Timings & Rules',
     h1Title: 'Karnataka Dry Days 2026: Kannada Rajyotsava (1 Nov), Bengaluru Timings & Rules',
-    seoTitle: 'Karnataka Dry Days 2026: 1 Nov Rajyotsava, Timings & Rules | DryCheck India',
+    seoTitle: 'Karnataka Dry Days 2026: Dates, Rules & Theka Timings',
     metaDescription:
       'Official Karnataka dry days 2026 calendar. Check Kannada Rajyotsava (1 Nov) closure rules, Bengaluru pub timings, CL-2 retail hours, and Hubballi/Mysuru excise orders.',
     stateSlug: 'karnataka',
@@ -589,7 +589,7 @@ export const GUIDES: Guide[] = [
     slug: 'rajasthan-dry-days-2026',
     title: 'Rajasthan Dry Days 2026: Official Dates, 8 PM Theka Rules & City List',
     h1Title: 'Rajasthan Dry Days 2026: Official Dates, 8 PM Theka Rules & City List',
-    seoTitle: 'Rajasthan Dry Days 2026: Full Calendar, 8 PM Theka Rules | DryCheck India',
+    seoTitle: 'Rajasthan Dry Days 2026: Dates & 8 PM Theka Rules',
     metaDescription:
       'Official Rajasthan dry days 2026 calendar & excise rules. Check Jaipur, Jodhpur, Udaipur closures, strict 8 PM wine shop closing timings, and Mount Abu tourist limits.',
     stateSlug: 'rajasthan',
@@ -674,7 +674,7 @@ export const GUIDES: Guide[] = [
     slug: 'dry-states-in-india-2026',
     title: 'Dry States in India 2026: Complete List of Prohibition States vs Open States',
     h1Title: 'Dry States in India 2026: Complete List of Prohibition States vs Open States',
-    seoTitle: 'Dry States in India 2026: Complete Legal List & Rules | DryCheck India',
+    seoTitle: 'Dry States in India 2026: Prohibition List & Rules',
     metaDescription:
       'Complete legal list of dry states in India 2026. Learn about 5 total prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep), holy town bans, and open states.',
     stateSlug: 'gujarat',
@@ -777,7 +777,7 @@ export const GUIDES: Guide[] = [
     slug: 'november-dry-days-2026',
     title: 'November Dry Days 2026: Official All-India Calendar, Festival Dates & City Rules',
     h1Title: 'November Dry Days 2026: Official All-India Calendar, Festival Dates & City Rules',
-    seoTitle: 'November Dry Days 2026: Complete All-India Calendar & Festival Dates | DryCheck India',
+    seoTitle: 'Dry Days in November 2026: All-India Calendar',
     metaDescription:
       'Complete official calendar for November dry days 2026 in India. Check confirmed wine shop closures for Diwali (8 Nov), Guru Nanak Jayanti (24 Nov), Kartiki Ekadashi (20 Nov), and city rules.',
     stateSlug: 'delhi',

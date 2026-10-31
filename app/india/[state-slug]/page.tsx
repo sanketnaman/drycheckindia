@@ -20,6 +20,9 @@ import {
   DATA_UNAVAILABLE_LIST_MESSAGE,
   getStateMajorCities,
   getStateExciseTimings,
+  getStatePageTitle,
+  getStateDescription,
+  STATE_H1_ALIASES,
   type PublicStatus,
 } from '@/lib/dryday';
 import { getPublicDataset } from '@/lib/public-drydays';
@@ -57,16 +60,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!state) {
     return {
-      title: 'State Not Found | DryCheck India',
+      title: 'State Not Found',
     };
   }
 
   const todayIST = getTodayIST();
-  const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: false, fullMonth: false });
-
-  const title = `Is Today Dry Day in ${state.name}? (${formattedToday}) - Wine Shop Status | DryCheck India`;
-  const description = `Check if today or tomorrow is a dry day in ${state.name} (${formattedToday}). Real-time wine shop & theka open/closed status, bar timings, and official 2026 excise calendar.`;
+  const title = getStatePageTitle(state.slug, state.name, todayIST);
+  const description = getStateDescription(state.name, state.slug);
   const canonicalUrl = `${SITE_URL}/india/${state.slug}`;
+  const fullTitle = `${title} | DryCheck India`;
 
   return {
     title,
@@ -75,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: canonicalUrl,
       type: 'article',
@@ -83,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
     },
   };
@@ -328,7 +330,7 @@ export default async function StatePage({ params }: Props) {
 
         {/* Hero Section with clear H1 */}
         <HeroAnswer
-          headline={`Is today a dry day in ${state.name}?`}
+          headline={`Is today a dry day in ${state.name}${STATE_H1_ALIASES[state.slug] || ''}?`}
           answer={heroAnswer}
           statusType={todayStatus}
           secondaryLine={secondaryLine}

@@ -4,7 +4,7 @@ import Link from 'next/link';
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | DryCheck India',
+  title: 'Privacy Policy',
   description:
     'Privacy Policy for DryCheck India. Details on cookie usage, Google Analytics, Google AdSense advertising disclosures, and user rights.',
   alternates: {

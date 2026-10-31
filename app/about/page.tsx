@@ -5,14 +5,14 @@ import { Wine, ShieldAlert, BookOpen, Clock, Scale } from 'lucide-react';
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'About DryCheck India | Indian Excise Law & Dry Day Guide',
+  title: 'About & How We Verify Dry Days',
   description:
     'Learn how dry days are declared in India, what laws govern liquor sale restrictions, and why DryCheck India provides independent, real-time IST updates.',
   alternates: {
     canonical: `${SITE_URL}/about`,
   },
   openGraph: {
-    title: 'About DryCheck India | Indian Excise Law & Dry Day Guide',
+    title: 'About & How We Verify Dry Days | DryCheck India',
     description:
       'Learn how dry days are declared in India, what laws govern liquor sale restrictions, and why DryCheck India provides independent, real-time IST updates.',
     url: `${SITE_URL}/about`,

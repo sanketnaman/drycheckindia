@@ -9,7 +9,7 @@ import { BookOpen, ChevronRight, Scale, ShieldCheck, MapPin, Sparkles } from 'lu
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'State Dry Day Guides & Legal Reference | DryCheck India',
+  title: 'State Dry Day Guides & Legal Reference',
   description:
     'Authoritative, verified legal and regulatory guides on dry days, election alcohol restrictions, and state excise policies across India.',
   alternates: {

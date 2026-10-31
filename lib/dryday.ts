@@ -1014,3 +1014,75 @@ export function getStateExciseTimings(stateSlug: string): StateTimingInfo {
     }
   );
 }
+
+export const STATE_TITLE_ALIASES: Record<string, string> = {
+  'uttar-pradesh': 'UP',
+  'madhya-pradesh': 'MP',
+  'tamil-nadu': 'Tamil Nadu',          // keep spaced form; add "Tamilnadu" only in description
+  'puducherry': 'Puducherry (Pondicherry)',
+  'jammu-and-kashmir': 'J&K',
+  'andhra-pradesh': 'Andhra Pradesh',
+  'west-bengal': 'West Bengal',
+  'dadra-and-nagar-haveli-and-daman-and-diu': 'Daman & Diu',
+  'andaman-and-nicobar-islands': 'Andaman & Nicobar',
+  'himachal-pradesh': 'Himachal',
+  'arunachal-pradesh': 'Arunachal',
+  'chhattisgarh': 'Chhattisgarh',
+};
+
+export function getTitleStateName(slug: string, fallbackName: string): string {
+  return STATE_TITLE_ALIASES[slug] ?? fallbackName;
+}
+
+export const STATE_H1_ALIASES: Record<string, string> = {
+  'uttar-pradesh': ' (UP)',
+  'madhya-pradesh': ' (MP)',
+  'puducherry': ' (Pondicherry)',
+  'jammu-and-kashmir': ' (J&K)',
+  'andaman-and-nicobar-islands': ' (Andaman & Nicobar)',
+  'himachal-pradesh': ' (Himachal)',
+  'arunachal-pradesh': ' (Arunachal)',
+};
+
+export const STATE_DESCRIPTION_ALIASES: Record<string, string> = {
+  'uttar-pradesh': ' (UP)',
+  'madhya-pradesh': ' (MP)',
+  'tamil-nadu': ' (Tamilnadu)',
+  'puducherry': ' (Pondicherry)',
+  'jammu-and-kashmir': ' (J&K)',
+  'andaman-and-nicobar-islands': ' (Andaman & Nicobar)',
+};
+
+export function formatDayMonthDisplay(dateStr: string): string {
+  const parts = dateStr.split('-').map(Number);
+  if (parts.length !== 3) return dateStr;
+  const m = parts[1];
+  const d = parts[2];
+  const monthStr = MONTH_NAMES_SHORT[m - 1] || '';
+  return `${d} ${monthStr}`;
+}
+
+export function getStatePageTitle(slug: string, stateName: string, dateStr: string): string {
+  const short = getTitleStateName(slug, stateName);
+  const dMon = formatDayMonthDisplay(dateStr);
+  let title = `Is Today a Dry Day in ${short}? Theka Status, ${dMon}`;
+  if (title.length > 55) {
+    title = `Is Today a Dry Day in ${short}? ${dMon}`;
+  }
+  if (title.length > 55) {
+    title = `Is Today a Dry Day in ${short}?`;
+  }
+  return title;
+}
+
+export function getStateDescription(stateName: string, stateSlug: string): string {
+  const alias = STATE_DESCRIPTION_ALIASES[stateSlug] || '';
+  let desc = `Is today a dry day in ${stateName}${alias}? Live status for today and tomorrow, wine shop / theka and bar open or closed, plus the 2026 dry day list.`;
+  if (desc.length > 155) {
+    desc = `Is today a dry day in ${stateName}? Live status for today and tomorrow, wine shop / theka and bar open or closed, plus the 2026 dry day list.`;
+  }
+  if (desc.length > 155) {
+    desc = `Is today a dry day in ${stateName}? Live status, wine shop / theka and bar open or closed, plus the 2026 dry day list.`;
+  }
+  return desc;
+}

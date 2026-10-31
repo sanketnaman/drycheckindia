@@ -27,14 +27,14 @@ import { getPublicDataset } from '@/lib/public-drydays';
 export const revalidate = 3600; // Hourly ISR for accurate midnight IST rollover
 
 export const metadata: Metadata = {
-  title: 'Is Today a Dry Day in India? | DryCheck India',
+  title: { absolute: 'Is Today a Dry Day in India? State-wise Check | DryCheck India' },
   description:
     'Aaj sookha hai ya nahi, ek nazar mein. Check whether today or tomorrow is a dry day across Indian states and UTs with real-time excise notifications.',
   alternates: {
     canonical: 'https://drycheck.in',
   },
   openGraph: {
-    title: 'Is Today a Dry Day in India? | DryCheck India',
+    title: 'Is Today a Dry Day in India? State-wise Check | DryCheck India',
     description:
       'Real-time check for alcohol store openings, dry dates, and excise directives in all 36 Indian states and union territories.',
     url: 'https://drycheck.in',
@@ -48,6 +48,12 @@ export const metadata: Metadata = {
         alt: 'DryCheck India',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Is Today a Dry Day in India? State-wise Check | DryCheck India',
+    description:
+      'Real-time check for alcohol store openings, dry dates, and excise directives in all 36 Indian states and union territories.',
   },
 };
 

@@ -35,11 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!guide) {
     return {
-      title: 'Guide Not Found | DryCheck India',
+      title: 'Guide Not Found',
     };
   }
 
   const canonicalUrl = `${SITE_URL}/guides/${guide.slug}`;
+  const fullTitle = `${guide.seoTitle} | DryCheck India`;
 
   return {
     title: guide.seoTitle,
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: guide.seoTitle,
+      title: fullTitle,
       description: guide.metaDescription,
       url: canonicalUrl,
       type: 'article',
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: guide.seoTitle,
+      title: fullTitle,
       description: guide.metaDescription,
     },
   };

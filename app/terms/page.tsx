@@ -5,13 +5,13 @@ import { ShieldAlert } from 'lucide-react';
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use & Regulatory Disclaimer | DryCheck India',
+  title: 'Terms of Use & Disclaimer',
   description: 'Terms of service and excise legal disclaimers for DryCheck India.',
   alternates: {
     canonical: `${SITE_URL}/terms`,
   },
   openGraph: {
-    title: 'Terms of Use & Regulatory Disclaimer | DryCheck India',
+    title: 'Terms of Use & Disclaimer | DryCheck India',
     siteName: 'DryCheck India',
     url: `${SITE_URL}/terms`,
   },

@@ -5,14 +5,14 @@ import { Mail } from 'lucide-react';
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'Contact DryCheck India | Support & Corrections',
+  title: 'Contact & Corrections',
   description:
     'Reach out to DryCheck India support for questions about dry-day dates, state-specific restrictions, corrections, or technical issues.',
   alternates: {
     canonical: `${SITE_URL}/contact`,
   },
   openGraph: {
-    title: 'Contact DryCheck India | Support & Corrections',
+    title: 'Contact & Corrections | DryCheck India',
     description:
       'Contact our support team for dry-day verification, corrections, or technical help.',
     url: `${SITE_URL}/contact`,
