@@ -417,7 +417,7 @@ export const GUIDES: Guide[] = [
     stateName: 'Maharashtra',
     region: 'West',
     excerpt:
-      'Comprehensive guide to Maharashtra dry days in 2026, detailing Mumbai & Pune retail timings (10 AM–10:30 PM), major religious closures (Kartiki Ekadashi on 5 Nov, Ashadi Ekadashi, Ganpati Visarjan), total prohibition in Wardha & Gadchiroli districts, and Bombay Prohibition Act rules.',
+      'Comprehensive guide to Maharashtra dry days in 2026, detailing Mumbai & Pune retail timings (10 AM–10:30 PM), major religious closures (Kartiki Ekadashi on 20 Nov, Ashadi Ekadashi, Ganpati Visarjan), total prohibition in Wardha & Gadchiroli districts, and Bombay Prohibition Act rules.',
     primaryKeywords: [
       'maharashtra dry days 2026',
       'tomorrow is dry day in maharashtra',
@@ -468,7 +468,7 @@ export const GUIDES: Guide[] = [
           'To check if tomorrow is a dry day across Mumbai, Pune, Nagpur, or anywhere in Maharashtra, visit DryCheck India\'s live tracker at https://drycheck.in/india/maharashtra. Key recurring dry days include 26 January, 1 May (Maharashtra Day), 15 August, 2 October, Ashadi Ekadashi, Kartiki Ekadashi, and Anant Chaturdashi (Ganpati Visarjan).',
       },
       {
-        question: 'Why is Kartiki Ekadashi (5 November 2026) a dry day in Maharashtra?',
+        question: 'Why is Kartiki Ekadashi (20 November 2026) a dry day in Maharashtra?',
         answer:
           'Kartiki Ekadashi marks the conclusion of the holy Pandharpur Wari pilgrimage dedicated to Lord Vitthal. The Government of Maharashtra and State Excise Department mandate a statewide dry day on this auspicious date, closing all retail wine shops, beer bars, and permit rooms across all revenue districts.',
       },

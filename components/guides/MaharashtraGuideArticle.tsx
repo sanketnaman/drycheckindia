@@ -26,7 +26,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
   const tocItems = [
     { id: 'introduction', label: '1. Introduction: Is Today or Tomorrow a Dry Day in Maharashtra?' },
     { id: 'gazette-calendar', label: '2. Complete Maharashtra 2026 Gazette Dry Days Calendar' },
-    { id: 'kartiki-ekadashi', label: '3. Upcoming Focus: Kartiki Ekadashi (5 Nov 2026)' },
+    { id: 'kartiki-ekadashi', label: '3. Upcoming Focus: Kartiki Ekadashi (20 Nov 2026)' },
     { id: 'prohibition-districts', label: '4. Total Prohibition Districts: Wardha & Gadchiroli' },
     { id: 'operating-hours', label: '5. Standard Timings: Retail Wine Shops vs Permit Rooms & Bars' },
     { id: 'cities-covered', label: '6. Major Cities Covered: Mumbai, Pune, Nagpur, Nashik & Beyond' },
@@ -264,8 +264,8 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
                   </td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-mono font-bold text-amber-300">05 November 2026</td>
-                  <td className="p-3 text-neutral-300">Thursday</td>
+                  <td className="p-3 font-mono font-bold text-amber-300">20 November 2026</td>
+                  <td className="p-3 text-neutral-300">Friday</td>
                   <td className="p-3 text-neutral-200"><strong className="text-white">Kartiki Ekadashi</strong></td>
                   <td className="p-3 text-neutral-300">Statewide Maharashtra</td>
                   <td className="p-3">
@@ -294,13 +294,13 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
         <section id="kartiki-ekadashi" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <Calendar className="h-5 w-5 text-amber-400" />
-            <span>3. Upcoming Focus: Kartiki Ekadashi (5 November 2026)</span>
+            <span>3. Upcoming Focus: Kartiki Ekadashi (20 November 2026)</span>
           </h2>
           <p>
-            In Maharashtra, <strong className="text-white">5 November 2026</strong> marks a gazetted statewide dry day on the sacred observance of Kartiki Ekadashi. Hundreds of thousands of Warkari pilgrims assemble at the revered Vitthal-Rukmini Temple in Pandharpur.
+            In Maharashtra, <strong className="text-white">20 November 2026</strong> marks a gazetted statewide dry day on the sacred observance of Kartiki Ekadashi. Hundreds of thousands of Warkari pilgrims assemble at the revered Vitthal-Rukmini Temple in Pandharpur.
           </p>
           <p>
-            On this date, retail liquor shops and commercial bars across Mumbai, Pune, Thane, Solapur, and all regional revenue divisions remain completely closed for 24 hours. If you are checking whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> around early November, note that alcohol vending and service are strictly banned on 5 November.
+            On this date, retail liquor shops and commercial bars across Mumbai, Pune, Thane, Solapur, and all regional revenue divisions remain completely closed for 24 hours. If you are checking whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> around late November, note that alcohol vending and service are strictly banned on 20 November.
           </p>
         </section>
 
