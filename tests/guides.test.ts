@@ -219,6 +219,7 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides/rajasthan-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/dry-states-in-india-2026');
     expect(urls).toContain('https://drycheck.in/guides/november-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/diwali-2026-dry-day');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');
@@ -274,5 +275,27 @@ describe('November Dry Days Guide 2026 - Monthly Hub Verification', () => {
     expect(questions.some((q) => q.includes('guru nanak jayanti'))).toBe(true);
     expect(questions.some((q) => q.includes('kartiki ekadashi'))).toBe(true);
     expect(questions.some((q) => q.includes('chhath puja'))).toBe(true);
+  });
+});
+
+describe('Diwali 2026 Dry Day Guide - State-wise Rules Verification', () => {
+  const guide = getPublishedGuideBySlug('diwali-2026-dry-day');
+
+  test('guide is defined and targets Diwali queries', () => {
+    expect(guide).toBeDefined();
+    expect(guide?.slug).toBe('diwali-2026-dry-day');
+    expect(guide?.h1Title).toBe('Is Diwali 2026 a Dry Day?');
+    expect(guide?.seoTitle).toBe('Is Diwali 2026 a Dry Day? State-wise Rules (8 Nov)');
+    expect(guide?.primaryKeywords).toContain('is diwali 2026 a dry day');
+    expect(guide?.primaryKeywords).toContain('diwali dry day 2026');
+    expect(guide?.primaryKeywords).toContain('kya diwali pe sharab milegi');
+  });
+
+  test('guide FAQs cover required query questions', () => {
+    const questions = guide?.faqs.map((f) => f.question.toLowerCase()) || [];
+    expect(questions.some((q) => q.includes('pan-india'))).toBe(true);
+    expect(questions.some((q) => q.includes('delhi mein diwali'))).toBe(true);
+    expect(questions.some((q) => q.includes('bar aur wine shops'))).toBe(true);
+    expect(questions.some((q) => q.includes('rule kaise verify karein'))).toBe(true);
   });
 });

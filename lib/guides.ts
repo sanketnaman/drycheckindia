@@ -871,6 +871,103 @@ export const GUIDES: Guide[] = [
     ],
     relatedStateSlug: 'delhi',
   },
+  {
+    slug: 'diwali-2026-dry-day',
+    title: 'Is Diwali 2026 a Dry Day? State-wise Rules (8 Nov)',
+    h1Title: 'Is Diwali 2026 a Dry Day?',
+    seoTitle: 'Is Diwali 2026 a Dry Day? State-wise Rules (8 Nov)',
+    metaDescription:
+      'Diwali 2026 (8 Nov) pe liquor shops ka state-wise rule. Delhi NCR, UP, Maharashtra aur baaki states ka status ek jagah.',
+    stateSlug: 'haryana',
+    stateName: 'Delhi NCR & All India',
+    region: 'North / All-India',
+    excerpt:
+      'Complete legal guide to Diwali 2026 (8 November) dry day rules across India. Check 24-hour retail closures in Delhi NCR and UP, verify Maharashtra and Karnataka status, and explore the full state-by-state table.',
+    primaryKeywords: [
+      'is diwali 2026 a dry day',
+      'diwali dry day 2026',
+      'kya diwali pe sharab milegi',
+      'delhi ncr diwali dry day',
+      'diwali wine shop open or closed',
+    ],
+    secondaryKeywords: [
+      'diwali theka timing today',
+      'up dry day diwali 2026',
+      'maharashtra diwali liquor rules',
+      'is 8 november 2026 dry day',
+      'dry days in november 2026',
+    ],
+    publishedDate: '2026-11-03',
+    lastUpdatedDate: '2026-11-03',
+    lastReviewedDate: '2026-11-03',
+    readingTimeMinutes: 7,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Department of Excise, Entertainment & Luxury Tax, Government of NCT of Delhi - Gazette Dry Day Orders',
+        organization: 'Department of Excise, Entertainment & Luxury Tax, Delhi',
+        url: 'https://excise.delhigovt.nic.in',
+        claimSupported:
+          'Authoritative statutory dry-day notifications declaring 24-hour mandatory liquor sale closures across all retail stores and commercial bars in NCT Delhi on Diwali (Deepawali).',
+      },
+      {
+        title: 'Uttar Pradesh Excise Department - Standing Gazetted Holiday & Dry Day Circulars',
+        organization: 'Uttar Pradesh Excise Department',
+        url: 'https://upexcise.gov.in',
+        claimSupported:
+          'Official calendar of mandatory dry days mandating complete closure of country liquor, foreign liquor (IMFL), beer thekas, and hotel/restaurant bars across all 75 UP districts on Diwali.',
+      },
+      {
+        title: 'Rajasthan State Excise Department - Annual Gazetted Dry Days Schedule',
+        organization: 'Excise Department, Government of Rajasthan',
+        url: 'https://rajexcise.gov.in',
+        claimSupported:
+          'Statewide gazetted festival closure notification mandating complete 24-hour shutdown of licensed liquor vends across all districts on Diwali.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is Diwali pan-India dry day hai? (Is Diwali a nationwide dry day across India?)',
+        answer:
+          'No. There is no central pan-India alcohol prohibition on Diwali. In India, liquor licensing and dry-day declarations are strictly State Subjects under Entry 8 of the Seventh Schedule to the Constitution. States such as Delhi NCR, Uttar Pradesh, and Rajasthan declare a mandatory 24-hour dry day, whereas other states like Maharashtra, Tamil Nadu, and West Bengal permit normal retail operations unless localized directives are issued.',
+      },
+      {
+        question: 'Delhi mein Diwali pe sharab milegi? (Can you buy alcohol in Delhi on Diwali?)',
+        answer:
+          'No. In the National Capital Territory of Delhi, all 600+ government-run retail thekas (managed by DTTDC, DSIIDC, DCCWS, and DSCSC) and commercial bars are completely closed on Diwali (8 November 2026) under official gazetted orders. Transporting liquor from Haryana or UP into Delhi is strictly illegal under Section 33 of the Delhi Excise Act, 2009.',
+      },
+      {
+        question: 'Diwali pe bar aur wine shops band rehte hain? (Are bars and wine shops closed on Diwali?)',
+        answer:
+          'In states where Diwali is a gazetted dry day (such as Delhi NCR and Uttar Pradesh), all retail wine stores, model shops, beer vends, and commercial dining bars remain strictly closed for 24 hours. In states where Diwali is not a notified gazetted dry day, licensed outlets and hospitality venues operate during their normal permitted trading hours.',
+      },
+      {
+        question: 'Rule kaise verify karein? (How to verify the real-time dry day rule for your state?)',
+        answer:
+          'You can verify today\'s and tomorrow\'s active legal status in real-time on DryCheck India\'s state-specific trackers (e.g., https://drycheck.in/india/delhi, https://drycheck.in/india/uttar-pradesh, or https://drycheck.in/india/maharashtra), or consult official circulars published by your State Excise Department.',
+      },
+      {
+        question: 'Dry day ki list kahan milegi? (Where can you find the complete dry day list?)',
+        answer:
+          'The complete verified calendar of state-by-state dry days, festival closures, and election restrictions is available on DryCheck India\'s Guides Hub (https://drycheck.in/guides) and the interactive 36 States & UTs Directory on our homepage.',
+      },
+      {
+        question: 'Diwali ke baad aur kab dry day hai? (When is the next dry day after Diwali 2026?)',
+        answer:
+          'Following Diwali (8 November), upcoming dry days in November 2026 include Kartiki Ekadashi on Friday, 20 November 2026 (a statewide mandatory dry day across Maharashtra) and Guru Nanak Jayanti / Kartik Purnima on Tuesday, 24 November 2026 (a mandatory dry day across Delhi, UP, Maharashtra, Rajasthan, and other states).',
+      },
+    ],
+    relatedStateSlug: 'delhi',
+    relatedGuideSlugs: [
+      'delhi-dry-days-2026',
+      'uttar-pradesh-dry-days-2026',
+      'november-dry-days-2026',
+      'maharashtra-dry-days-2026',
+      'karnataka-dry-days-2026',
+      'kerala-dry-days-2026',
+    ],
+  },
 ];
 
 /**
