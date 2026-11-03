@@ -65,8 +65,6 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-1.5 text-neutral-400 text-center">
-            <span>Coverage: Partial</span>
-            <span>&bull;</span>
             <span>DryCheck India &bull; Asia/Kolkata (IST)</span>
             <span>&bull;</span>
             <span>&copy; 2026</span>

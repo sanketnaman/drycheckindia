@@ -40,7 +40,7 @@ export default function UpcomingDryDays({
           {dataUnavailable
             ? 'Data unavailable'
             : datasetEmpty
-            ? 'Awaiting published data'
+            ? 'No dry days listed for this period yet'
             : `Showing ${groups.length} dates`}
         </span>
       </div>

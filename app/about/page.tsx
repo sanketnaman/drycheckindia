@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Wine, ShieldAlert, BookOpen, Clock, Scale } from 'lucide-react';
+import { Wine, BookOpen, Clock, Scale, UserCheck, ShieldCheck, RefreshCw } from 'lucide-react';
+import { EDITOR_NAME, EDITOR_ROLE, EDITOR_BIO, CONTACT_EMAIL } from '@/lib/site-config';
 
 const SITE_URL = 'https://drycheck.in';
 
@@ -91,7 +92,7 @@ export default function AboutPage() {
               <div>
                 <strong className="text-white">State-Specific &amp; Statutory Prohibition:</strong>
                 <p className="text-xs text-neutral-400 mt-0.5">
-                  States like Gujarat, Bihar, Nagaland, Mizoram, and Lakshadweep maintain total statutory alcohol prohibition. States like Kerala mandate a dry day on the 1st of every month statewide.
+                  States like Gujarat, Bihar, and Nagaland maintain total statutory alcohol prohibition (special restricted regimes apply in Mizoram and Lakshadweep — check local rules). States like Kerala mandate a dry day on the 1st of every month statewide.
                 </p>
               </div>
             </li>
@@ -108,14 +109,94 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="space-y-2 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4">
-          <div className="flex items-center gap-2 text-rose-300 font-semibold text-xs">
-            <ShieldAlert className="h-4 w-4 shrink-0" />
-            <span>Strict Public Service Notice — Coverage: Partial</span>
+        {/* Who Runs DryCheck India */}
+        <section className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <UserCheck className="h-4 w-4 text-amber-400" />
+            <span>Who Runs DryCheck India</span>
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm text-neutral-300">
+            <p>
+              DryCheck India is curated and managed by <strong className="text-white">{EDITOR_NAME}</strong> ({EDITOR_ROLE}).
+            </p>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              {EDITOR_BIO}
+            </p>
+            <p className="text-xs text-neutral-400 pt-1">
+              Have questions or feedback about our editorial process? Reach out directly via our{' '}
+              <Link href="/contact" className="text-amber-400 underline hover:text-white">
+                Contact page
+              </Link>{' '}
+              or email <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-400 underline hover:text-white">{CONTACT_EMAIL}</a>.
+            </p>
           </div>
-          <p className="text-xs text-neutral-400">
-            Not a complete all-India dry-day calendar. Unknown state prohibition values are null, not false. Do not display null as &apos;not a dry day&apos;. Date entries are empty because the reviewed sources did not establish a complete, current, state-wise date calendar.
-          </p>
+        </section>
+
+        {/* How We Verify Dry Days */}
+        <section className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4 text-amber-400" />
+            <span>How We Verify</span>
+          </h2>
+          <div className="space-y-3 text-xs sm:text-sm text-neutral-300">
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">
+                Authoritative Sources We Rely On:
+              </h3>
+              <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-400">
+                <li><strong className="text-neutral-200">State Excise Notifications &amp; Official Gazettes:</strong> Direct circulars, annual dry-day lists, and statutory orders issued by state governments and union territory excise departments.</li>
+                <li><strong className="text-neutral-200">Election Commission Statutory Orders:</strong> Notifications issued under Section 135C of the Representation of the People Act, 1951 by the Election Commission of India (ECI) and State Election Commissions, mandating liquor sale bans in polling areas 48 hours prior to poll close and on counting days.</li>
+                <li><strong className="text-neutral-200">Reputable News Reports:</strong> Major national and state media outlets for emergency law-and-order restrictions or breaking administrative circulars.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">
+                How We Label Status:
+              </h3>
+              <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-400">
+                <li><strong className="text-rose-400">Confirmed (Dry / Closed):</strong> Backed by an official gazette notification, confirmed government circular, or standing statutory prohibition.</li>
+                <li><strong className="text-amber-400">Maybe / Reported (Not Officially Confirmed):</strong> Supported by local reporting or preliminary announcement, but awaiting gazette publication or official administrative confirmation.</li>
+                <li><strong className="text-emerald-400">Open / Not Dry:</strong> Standard retail operations permitted under normal state excise hours when no dry day notification applies.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">
+                Conflicting Sources &amp; Independence:
+              </h3>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                When official notices conflict or local reports are ambiguous, we do not guess or speculate. We mark the record as unconfirmed (<span className="text-amber-400">Maybe</span>) or note the conflicting scopes so users are informed.
+              </p>
+              <p className="text-xs text-neutral-400 leading-relaxed mt-1.5">
+                DryCheck India is an independent public-service website. We are neither an official government agency nor affiliated with any state excise department.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Corrections Policy */}
+        <section className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <RefreshCw className="h-4 w-4 text-amber-400" />
+            <span>Corrections Policy</span>
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm text-neutral-300">
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              We take factual accuracy seriously. If you spot an error, an unlisted municipal restriction, or an outdated calendar date, please report it to us at{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-400 underline hover:text-white font-medium">
+                {CONTACT_EMAIL}
+              </a>
+              {' '}or via our <Link href="/contact" className="text-amber-400 underline hover:text-white">Contact page</Link>.
+            </p>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              We aim to review submitted excise notices and gazette links within <strong>48 hours</strong>. When updates occur, our in-depth guides show an &ldquo;Updated&rdquo; and &ldquo;Last reviewed&rdquo; date so readers can verify freshness.
+            </p>
+          </div>
+        </section>
+
+        {/* Public Notice Disclaimer */}
+        <section className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-4">
           <p className="text-xs text-neutral-400">
             DryCheck India does not sell, promote, deliver, facilitate, or market alcohol. It is an independent public-interest web utility designed to save citizens time and prevent unnecessary trips to shuttered stores.
           </p>

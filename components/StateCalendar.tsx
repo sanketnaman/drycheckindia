@@ -155,11 +155,7 @@ export default function StateCalendar({
                                     <span>Source</span>
                                     <ExternalLink className="h-3 w-3" />
                                   </a>
-                                ) : (
-                                  <span className="text-neutral-500 text-[11px]">
-                                    Source: Pending gazette
-                                  </span>
-                                )}
+                                ) : null}
                                 <Link
                                   href={`/dry-days/${dateSlug}`}
                                   className="text-neutral-400 hover:text-white transition-colors min-h-[36px] flex items-center"

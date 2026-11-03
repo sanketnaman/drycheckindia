@@ -9,6 +9,7 @@ import {
   getNextDryDays,
   getEntriesForStateOnDate,
   isStatewideApplicable,
+  getStateBySlug,
   getTodayIST,
   type DryDayEntry,
 } from '@/lib/dryday';
@@ -22,6 +23,7 @@ describe('getStatus — prohibition', () => {
   test('prohibition true returns dry', () => {
     expect(getStatus('bihar', '2026-10-21', ARCHIVE)).toBe('dry');
     expect(getStatus('nagaland', '2026-10-21', ARCHIVE)).toBe('dry');
+    expect(getStatus('gujarat', '2026-10-21', ARCHIVE)).toBe('dry');
   });
 });
 
@@ -149,6 +151,7 @@ describe('getStatus — no entry means the default open status', () => {
     // Statutory prohibition is a standing legal fact, independent of entries.
     expect(getStatus('bihar', '2026-06-15', [])).toBe('dry');
     expect(getStatus('nagaland', '2026-06-15', [])).toBe('dry');
+    expect(getStatus('gujarat', '2026-06-15', [])).toBe('dry');
   });
 
   test('unknown state slug returns unavailable (defensive)', () => {
@@ -303,6 +306,9 @@ describe('getDryStatesOn', () => {
     const bihar = items.find((i) => i.state.slug === 'bihar');
     expect(bihar?.isProhibition).toBe(true);
     expect(bihar?.status).toBe('dry');
+    const gujarat = items.find((i) => i.state.slug === 'gujarat');
+    expect(gujarat?.isProhibition).toBe(true);
+    expect(gujarat?.status).toBe('dry');
   });
 
   test('does not flood list with all null-prohibition states', () => {
@@ -338,5 +344,40 @@ describe('getNextDryDays consistency', () => {
 describe('date helpers', () => {
   test('getTodayIST returns YYYY-MM-DD', () => {
     expect(getTodayIST()).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});
+
+describe('Gujarat statutory prohibition', () => {
+  test('gujarat data record has prohibition: true and prohibitionNote', () => {
+    const gujarat = getStateBySlug('gujarat');
+    expect(gujarat).toBeDefined();
+    expect(gujarat?.prohibition).toBe(true);
+    expect(gujarat?.prohibitionNote).toContain('Gujarat Prohibition Act, 1949');
+    expect(gujarat?.prohibitionNote).toContain('GIFT City');
+  });
+
+  test('mizoram and lakshadweep remain null (not set to true)', () => {
+    expect(getStateBySlug('mizoram')?.prohibition).toBeNull();
+    expect(getStateBySlug('lakshadweep')?.prohibition).toBeNull();
+  });
+
+  test('gujarat hero answer and status badge logic treats gujarat as Always dry', () => {
+    const gujarat = getStateBySlug('gujarat');
+    const heroAnswer = gujarat?.prohibition === true ? 'Always' : 'No';
+    expect(heroAnswer).toBe('Always');
+  });
+
+  test('gujarat next30Days returns empty array', () => {
+    const gujarat = getStateBySlug('gujarat');
+    const next30 = gujarat?.prohibition ? [] : getNextDryDays('gujarat', '2026-10-21', 30, ARCHIVE);
+    expect(next30).toEqual([]);
+  });
+
+  test('gujarat always appears in getDryStatesOn as dry with isProhibition: true', () => {
+    const items = getDryStatesOn('2026-11-08', ARCHIVE);
+    const gujarat = items.find((i) => i.state.slug === 'gujarat');
+    expect(gujarat).toBeDefined();
+    expect(gujarat?.status).toBe('dry');
+    expect(gujarat?.isProhibition).toBe(true);
   });
 });

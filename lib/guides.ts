@@ -676,12 +676,12 @@ export const GUIDES: Guide[] = [
     h1Title: 'Dry States in India 2026: Complete List of Prohibition States vs Open States',
     seoTitle: 'Dry States in India 2026: Prohibition List & Rules',
     metaDescription:
-      'Complete legal list of dry states in India 2026. Learn about 5 total prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep), holy town bans, and open states.',
+      'Complete legal list of dry states in India 2026. Total prohibition in Bihar, Gujarat & Nagaland, restricted regimes in Mizoram & Lakshadweep, and open states.',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     region: 'West',
     excerpt:
-      'An exhaustive legal breakdown of alcohol prohibition in India under Article 47. Discover the 5 total dry states and union territories (Gujarat, Bihar, Nagaland, Mizoram, Lakshadweep), partial town bans in Uttarakhand (Haridwar, Rishikesh), tourist permit exemptions, and states debunked (Sikkim, Meghalaya, Jharkhand).',
+      'An exhaustive legal breakdown of alcohol prohibition in India under Article 47. Discover total prohibition states (Gujarat, Bihar, Nagaland), special restricted regimes (Mizoram, Lakshadweep), partial town bans in Uttarakhand (Haridwar, Rishikesh), tourist permit exemptions, and states debunked (Sikkim, Meghalaya, Jharkhand).',
     primaryKeywords: [
       'dry states in india',
       'indian dry state list',
@@ -733,7 +733,7 @@ export const GUIDES: Guide[] = [
       {
         question: 'Which states in India are currently complete dry states?',
         answer:
-          'In India, 4 states and 1 union territory enforce complete statutory alcohol prohibition: Gujarat (since 1960), Bihar (enacted in 2016), Nagaland (enacted under NLTP Act 1989), Mizoram (Mizoram Liquor Prohibition Act 2019), and Lakshadweep (enforced throughout the archipelago except on uninhabited resort island Bangaram). In these territories, retail liquor sale is permanently banned 365 days a year.',
+          'In India, 3 states enforce complete statutory alcohol prohibition: Gujarat (since 1960), Bihar (enacted in 2016), and Nagaland (enacted under NLTP Act 1989). Special restricted regimes apply in Mizoram and Lakshadweep (check local rules). In total-prohibition states, retail liquor sale is permanently banned 365 days a year.',
       },
       {
         question: 'Is Uttarakhand a dry state?',

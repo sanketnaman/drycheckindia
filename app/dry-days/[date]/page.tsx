@@ -199,7 +199,7 @@ export default async function DatePage({ params }: Props) {
             : isNational
             ? `Yes, ${formattedDate} is a nationwide dry day across India in observance of ${primaryReason}. All retail liquor shops, thekas, and commercial bars remain closed.`
             : eventDryDays.length > 0
-            ? `${formattedDate} is a dry day in ${eventDryDays.length} state(s) including ${eventDryDays.slice(0, 3).map((s) => s.state.name).join(', ')}${eventDryDays.length > 3 ? ' and others' : ''} for ${primaryReason}. States under total statutory prohibition (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) are also closed.`
+            ? `${formattedDate} is a dry day in ${eventDryDays.length} state(s) including ${eventDryDays.slice(0, 3).map((s) => s.state.name).join(', ')}${eventDryDays.length > 3 ? ' and others' : ''} for ${primaryReason}. States under total statutory prohibition (Bihar, Gujarat, Nagaland) are also closed; special restricted regimes apply in Mizoram and Lakshadweep.`
             : `No nationwide dry day is scheduled for ${formattedDate}. Licensed liquor retail shops and bars operate normally across non-prohibition states.`,
         },
       },
@@ -238,7 +238,7 @@ export default async function DatePage({ params }: Props) {
           '@type': 'Answer',
           text: dryItems.length > 0
             ? `States with dry day restrictions on ${formattedDate} include: ${dryItems.map((s) => s.state.name).join(', ')}.`
-            : `No regional dry days are scheduled on ${formattedDate}, though statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) enforce permanent closure.`,
+            : `No regional dry days are scheduled on ${formattedDate}, though statutory prohibition states (Bihar, Gujarat, Nagaland) enforce permanent closure; special restricted regimes apply in Mizoram and Lakshadweep.`,
         },
       },
       {
@@ -404,11 +404,7 @@ export default async function DatePage({ params }: Props) {
                           <span>Gazette</span>
                           <ExternalLink className="h-3 w-3" />
                         </a>
-                      ) : (
-                        <span className="text-[10px] text-neutral-500 shrink-0">
-                          Gazette pending
-                        </span>
-                      )}
+                      ) : null}
                     </div>
                   </div>
                 );

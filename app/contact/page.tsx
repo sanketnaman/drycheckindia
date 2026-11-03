@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import { CONTACT_EMAIL } from '@/lib/site-config';
 
 const SITE_URL = 'https://drycheck.in';
 
@@ -51,23 +52,23 @@ export default function ContactPage() {
               Official Support Email
             </span>
             <a
-              href="mailto:support@drycheck.in"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg px-3 py-1.5 transition-colors min-h-[36px] focus:outline-none focus:ring-2 focus:ring-amber-500/50"
             >
               <Mail className="h-3.5 w-3.5" />
-              <span>support@drycheck.in</span>
+              <span>{CONTACT_EMAIL}</span>
             </a>
           </div>
 
           <a
-            href="mailto:support@drycheck.in"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="block text-sm font-semibold text-white hover:text-amber-400 transition-colors underline underline-offset-2 decoration-amber-500/40 hover:decoration-amber-400"
           >
-            support@drycheck.in
+            {CONTACT_EMAIL}
           </a>
 
-          <p className="text-xs text-neutral-500">
-            For accurate information, please mention the state and date relevant to your query.
+          <p className="text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/80 pt-3">
+            <strong className="text-neutral-200">Submitting a correction?</strong> Please include the <strong>state</strong>, the <strong>relevant date</strong>, and a <strong>link to or copy of the official excise notification or government order</strong> so our editorial team can verify and update the record promptly.
           </p>
         </div>
       </div>

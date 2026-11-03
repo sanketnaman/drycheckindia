@@ -342,14 +342,16 @@ export default async function StatePage({ params }: Props) {
         />
 
         {/* Last Verified Badge */}
-        <div className="my-3 flex items-center justify-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
-            <Clock className="h-3 w-3 text-amber-400" />
-            <span>
-              Last verified: <strong className="text-neutral-200">{state.lastVerified ? state.lastVerified : 'Not verified yet'}</strong> (IST)
-            </span>
+        {state.lastVerified && (
+          <div className="my-3 flex items-center justify-center">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-400">
+              <Clock className="h-3 w-3 text-amber-400" />
+              <span>
+                Last verified: <strong className="text-neutral-200">{state.lastVerified}</strong> (IST)
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Today & Tomorrow Quick Comparison Cards */}
         <div className="my-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -483,7 +485,7 @@ export default async function StatePage({ params }: Props) {
                 {dataUnavailable
                   ? 'Data unavailable'
                   : datasetEmpty
-                  ? 'Awaiting published data'
+                  ? 'No dry days listed for this period yet'
                   : `${next30Days.length} ${next30Days.length === 1 ? 'date' : 'dates'}`}
               </span>
             </div>
@@ -552,11 +554,7 @@ export default async function StatePage({ params }: Props) {
                             <span>Source</span>
                             <ExternalLink className="h-3 w-3" />
                           </a>
-                        ) : (
-                          <span className="text-neutral-500 text-[11px] px-2">
-                            Source: Pending gazette
-                          </span>
-                        )}
+                        ) : null}
                         {entry.sourceNote && (
                           <span className="text-[10px] text-neutral-500 mt-1 block">
                             {entry.sourceNote}

@@ -146,16 +146,19 @@
       "slug": "gujarat",
       "name": "Gujarat",
       "region": "West",
-      "prohibition": null,
-      "verificationStatus": "not_verified",
-      "lastVerified": null,
+      "prohibition": true,
+      "verificationStatus": "verified_source",
+      "lastVerified": "2026-10-20",
       "nearby": [
         "maharashtra",
         "rajasthan",
         "madhya-pradesh",
         "dadra-and-nagar-haveli-and-daman-and-diu",
         "delhi"
-      ]
+      ],
+      "prohibitionNote": "Total statutory prohibition enforced under the Gujarat Prohibition Act, 1949, subject to statutory exceptions including permits for out-of-state visitors and tourists, and designated GIFT City zones.",
+      "sourceUrl": "https://eps.gpe.gujarat.gov.in",
+      "sourceTitle": "Prohibition & Excise Department, Government of Gujarat"
     },
     {
       "slug": "haryana",
@@ -305,7 +308,8 @@
         "tripura",
         "nagaland",
         "meghalaya"
-      ]
+      ],
+      "//": "TODO(verify): Mizoram liquor regime has exceptions and has changed over time; verify manually before setting prohibition flag"
     },
     {
       "slug": "nagaland",
@@ -578,7 +582,8 @@
         "goa",
         "tamil-nadu",
         "puducherry"
-      ]
+      ],
+      "//": "TODO(verify): Lakshadweep prohibition regime has resort exceptions (e.g. Bangaram); verify manually before setting prohibition flag"
     },
     {
       "slug": "puducherry",

@@ -23,7 +23,7 @@ interface DryStatesGuideArticleProps {
 export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticleProps) {
   const tocItems = [
     { id: 'constitutional-basis', label: '1. Constitutional Basis: Article 47 & Alcohol Laws in India' },
-    { id: 'five-dry-states', label: '2. The 5 Complete Statutory Prohibition States & UTs' },
+    { id: 'five-dry-states', label: '2. Complete Statutory Prohibition States & Restricted Regimes' },
     { id: 'gujarat-permits', label: '3. Gujarat Tourist Permits & GIFT City Exceptions' },
     { id: 'uttarakhand-sacred-ban', label: '4. Sacred Town Bans: Is Uttarakhand a Dry State?' },
     { id: 'myth-busting', label: '5. Myth Busting: Are Sikkim, Meghalaya & Jharkhand Dry States?' },
@@ -136,10 +136,10 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
         <section id="five-dry-states" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <ShieldAlert className="h-5 w-5 text-amber-400" />
-            <span>2. The 5 Complete Statutory Prohibition States &amp; UTs in India</span>
+            <span>2. Complete Statutory Prohibition States &amp; Restricted Regimes in India</span>
           </h2>
           <p>
-            Currently, <strong className="text-white">4 Indian states and 1 Union Territory</strong> enforce complete, 365-day statutory prohibition on the sale, purchase, and consumption of alcoholic beverages:
+            Currently, <strong className="text-white">3 Indian states</strong> enforce complete, 365-day statutory prohibition on the sale, purchase, and consumption of alcoholic beverages, while <strong className="text-white">Mizoram and Lakshadweep</strong> maintain special restricted regimes (check local rules):
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-950/70">
@@ -178,15 +178,15 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
                 <tr>
                   <td className="p-3 font-mono font-bold text-amber-300">Mizoram</td>
                   <td className="p-3 text-neutral-300">2019</td>
-                  <td className="p-3 text-neutral-200"><strong className="text-white">Mizoram Liquor Prohibition Act, 2019</strong></td>
-                  <td className="p-3 text-neutral-300">Defence personnel quotas only</td>
+                  <td className="p-3 text-neutral-200"><strong className="text-white">Mizoram Liquor Prohibition Act, 2019</strong> (Special restricted regime)</td>
+                  <td className="p-3 text-neutral-300">Defence personnel quotas; check local notifications</td>
                   <td className="p-3 text-rose-300">Fines and imprisonment</td>
                 </tr>
                 <tr>
                   <td className="p-3 font-mono font-bold text-amber-300">Lakshadweep</td>
                   <td className="p-3 text-neutral-300">Permanent</td>
-                  <td className="p-3 text-neutral-200"><strong className="text-white">Lakshadweep Prohibition Regulation</strong></td>
-                  <td className="p-3 text-neutral-300">Bangaram Island (uninhabited tourist resort only)</td>
+                  <td className="p-3 text-neutral-200"><strong className="text-white">Lakshadweep Prohibition Regulation</strong> (Special restricted regime)</td>
+                  <td className="p-3 text-neutral-300">Bangaram Island (uninhabited tourist resort only); check local rules</td>
                   <td className="p-3 text-rose-300">Seizure of vessel and arrest</td>
                 </tr>
               </tbody>

@@ -52,7 +52,7 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">3. Statutory Prohibition Compliance</h2>
           <p>
-            Users are required to obey all prevailing laws of their jurisdiction. In states enforcing total statutory prohibition (such as Gujarat, Bihar, Nagaland, Mizoram, and Lakshadweep), the possession and consumption of alcohol without legal exemption is a punishable criminal offense.
+            Users are required to obey all prevailing laws of their jurisdiction. In states enforcing total statutory prohibition (such as Gujarat, Bihar, and Nagaland; special restricted regimes apply in Mizoram and Lakshadweep — check local rules), the possession and consumption of alcohol without legal exemption is a punishable criminal offense.
           </p>
         </section>
 

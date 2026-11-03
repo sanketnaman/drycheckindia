@@ -71,6 +71,7 @@ if (data.nationalDryDays) {
   for (const national of data.nationalDryDays) {
     for (const state of data.states) {
       // Skip prohibition states (already dry all year)
+      // TODO(verify): Mizoram and Lakshadweep regimes have exceptions or have changed over time and will be verified manually before setting prohibition flag.
       if (state.prohibition === true) continue;
 
       // Skip if state already has an entry for this date

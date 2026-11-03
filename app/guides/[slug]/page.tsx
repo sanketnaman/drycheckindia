@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { getPublishedGuides, getPublishedGuideBySlug } from '@/lib/guides';
+import { EDITOR_NAME } from '@/lib/site-config';
 import KeralaGuideArticle from '@/components/guides/KeralaGuideArticle';
 import UPGuideArticle from '@/components/guides/UPGuideArticle';
 import DelhiGuideArticle from '@/components/guides/DelhiGuideArticle';
@@ -116,9 +118,9 @@ export default async function GuideDetailPage({ params }: Props) {
     datePublished: `${guide.publishedDate}T08:00:00+05:30`,
     dateModified: `${guide.lastUpdatedDate}T12:00:00+05:30`,
     author: {
-      '@type': 'Organization',
-      name: 'DryCheck India Editorial Team',
-      url: SITE_URL,
+      '@type': 'Person',
+      name: EDITOR_NAME,
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       '@type': 'Organization',
@@ -153,6 +155,18 @@ export default async function GuideDetailPage({ params }: Props) {
       <JsonLd data={faqSchema} />
 
       <AdSlot id={`guide-top-${guide.slug}`} />
+
+      {/* Editorial Attribution */}
+      <div className="mx-auto w-full max-w-4xl px-3 sm:px-6 pt-2 text-xs text-neutral-400">
+        <Link
+          href="/about"
+          className="inline-flex items-center gap-1.5 hover:text-amber-400 transition-colors"
+        >
+          <span>Written by <strong className="text-neutral-300 font-medium">{EDITOR_NAME}</strong></span>
+          <span className="text-neutral-600">&middot;</span>
+          <span>Last reviewed {guide.lastReviewedDate}</span>
+        </Link>
+      </div>
 
       {/* Render the detailed article */}
       {guide.slug === 'kerala-dry-days-2026' ? (

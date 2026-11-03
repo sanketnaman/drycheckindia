@@ -51,7 +51,7 @@ export default function DryStateList({
             {dataUnavailable
               ? 'Data unavailable'
               : datasetEmpty
-              ? 'Awaiting published data'
+              ? 'No dry days listed for this period yet'
               : `${eventDryDays.length} ${eventDryDays.length === 1 ? 'state' : 'states'} on schedule`}
           </span>
         </div>

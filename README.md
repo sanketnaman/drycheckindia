@@ -14,7 +14,7 @@ A fast, mobile-first, and production-ready Next.js application that tells visito
 - **Authentic Sourced Data (No Invented Facts):**
   - All 36 Indian states and union territories covered with individual slugs matching `/india/[state-slug]`.
   - Gazette-backed sources for confirmed entries; pending/unverified entries clearly display as **"Maybe"** or **"Status not verified"**.
-  - Total statutory prohibition states (Bihar, Gujarat, Nagaland, Mizoram, Lakshadweep) correctly identified 365 days a year.
+  - Total statutory prohibition states (Bihar, Gujarat, Nagaland) and special restricted regimes (Mizoram, Lakshadweep) correctly identified.
 - **Date Routes (`/dry-days/[date]`):** Deep-linking for specific dates (e.g., `/dry-days/26-january-2026`) listing all states observing restrictions on that date.
 - **In-Depth Guides Section (`/guides`):** State-specific editorial guides with gazette citations, excise rules, timings, and FAQs.
 - **Advanced SEO & Rich Snippets:**
