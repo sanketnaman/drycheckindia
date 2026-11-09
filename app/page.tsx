@@ -111,11 +111,6 @@ export default async function HomePage() {
     url: 'https://drycheck.in',
     description:
       'Aaj sookha hai ya nahi, ek nazar mein. Instant check for dry days today and tomorrow across all 36 Indian states and union territories.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://drycheck.in/india/{search_term_string}',
-      'query-input': 'required name=search_term_string',
-    },
   };
 
   return (

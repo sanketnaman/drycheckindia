@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import HeroAnswer from '@/components/HeroAnswer';
 import StateCalendar from '@/components/StateCalendar';
@@ -56,6 +56,9 @@ const SITE_URL = 'https://drycheck.in';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { 'state-slug': slug } = await params;
+  if (slug.includes('search_term_string') || slug.startsWith('{')) {
+    redirect('/');
+  }
   const state = getStateBySlug(slug);
 
   if (!state) {
@@ -93,6 +96,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StatePage({ params }: Props) {
   const { 'state-slug': slug } = await params;
+  if (slug.includes('search_term_string') || slug.startsWith('{')) {
+    redirect('/');
+  }
   const state = getStateBySlug(slug);
 
   if (!state) {
