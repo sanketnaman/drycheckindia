@@ -108,6 +108,7 @@ export default async function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'DryCheck India',
+    alternateName: ['DryCheck India', 'DryCheck'],
     url: 'https://drycheck.in',
     description:
       'Aaj sookha hai ya nahi, ek nazar mein. Instant check for dry days today and tomorrow across all 36 Indian states and union territories.',

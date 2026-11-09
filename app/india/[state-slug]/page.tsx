@@ -751,6 +751,18 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'west-bengal' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on Kolkata retail shop timings, Durga Puja/Bijoya Dashami closures, and December/Christmas party rules, read our verified guide:{' '}
+                <Link
+                  href="/guides/west-bengal-dry-days-2026"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  West Bengal Dry Days 2026: Official Calendar, Kolkata Rules &amp; December Guidelines
+                </Link>
+                .
+              </p>
+            )}
             <p className="text-xs text-neutral-400 pt-1 border-t border-neutral-800/60 mt-2">
               Looking for upcoming festival dates? Check the official{' '}
               <Link

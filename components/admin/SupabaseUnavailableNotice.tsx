@@ -11,7 +11,7 @@ import { SUPABASE_UNAVAILABLE_MESSAGE } from '@/lib/supabase/config';
 export default function SupabaseUnavailableNotice({
   detail,
   backHref = '/',
-  backLabel = '← Back to drycheck.in',
+  backLabel = '← Back to DryCheck India',
 }: {
   /** Operator-facing hint. Must not contain configuration values. */
   detail?: string;

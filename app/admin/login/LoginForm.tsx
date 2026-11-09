@@ -124,7 +124,7 @@ export default function LoginForm({ forbidden }: LoginFormProps) {
 
       <p className="mt-5 text-center text-xs text-neutral-500">
         <Link href="/" className="text-amber-400 hover:underline">
-          ← Back to drycheck.in
+          ← Back to DryCheck India
         </Link>
       </p>
     </div>

@@ -968,6 +968,117 @@ export const GUIDES: Guide[] = [
       'kerala-dry-days-2026',
     ],
   },
+  {
+    slug: 'west-bengal-dry-days-2026',
+    title: 'West Bengal Dry Days 2026: Official Dates, Kolkata Rules & December Guidelines',
+    h1Title: 'West Bengal Dry Days 2026: Official Dates, Kolkata Rules & December Guidelines',
+    seoTitle: 'West Bengal Dry Days 2026: Dates, Rules & Kolkata Timings',
+    metaDescription:
+      'Official West Bengal dry days calendar 2026. Kolkata wine shop & bar timings, December/Christmas party rules, BEVCO regulations, and Bijoya Dashami dry dates.',
+    stateSlug: 'west-bengal',
+    stateName: 'West Bengal',
+    region: 'East',
+    excerpt:
+      'Complete legal guide to West Bengal alcohol laws and dry days in 2026. Discover mandatory state gazette dry dates, Kolkata retail shop and late-night bar timings, December and Christmas operating rules, BEVCO regulations, and Bihar border transit warnings.',
+    primaryKeywords: [
+      'west bengal dry days 2026',
+      'dry day in west bengal 2026',
+      'kolkata dry days 2026',
+      'dry day in kolkata',
+      'dry day in west bengal december',
+      'is christmas dry day in kolkata',
+      'is 31 december dry day in west bengal',
+      'kya aaj west bengal me dry day hai',
+    ],
+    secondaryKeywords: [
+      'west bengal wine shop timings',
+      'kolkata bar timings december',
+      'bevco west bengal rules',
+      'durga puja dry day west bengal',
+      'bijoya dashami dry day kolkata',
+      'west bengal legal drinking age',
+      'alcohol transport west bengal to bihar',
+      'west bengal excise act 1909',
+    ],
+    publishedDate: '2026-11-09',
+    lastUpdatedDate: '2026-11-09',
+    lastReviewedDate: '2026-11-09',
+    readingTimeMinutes: 10,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Directorate of Excise - Official Gazette & Dry Day Orders',
+        organization: 'Department of Finance, Government of West Bengal',
+        url: 'https://excise.wb.gov.in',
+        claimSupported:
+          'Authoritative statutory dry-day notifications declaring mandatory closures for retail Foreign Liquor (FL) off-shops, Country Spirit (CS) outlets, and commercial on-shops across West Bengal.',
+      },
+      {
+        title: 'West Bengal State Beverages Corporation Limited (WBSBCL / BEVCO)',
+        organization: 'Government of West Bengal Public Enterprise',
+        url: 'https://bevco.wb.gov.in',
+        claimSupported:
+          'Regulatory framework governing centralized alcoholic beverage warehousing, retail vend distribution, and pricing guidelines across all revenue districts of West Bengal.',
+      },
+      {
+        title: 'The Bengal Excise Act, 1909 (Bengal Act V of 1909)',
+        organization: 'West Bengal Legislative Assembly / Ministry of Law',
+        url: 'https://wbexcise.gov.in',
+        claimSupported:
+          'Statutory legal framework prescribing legal drinking age (21 years per Section 51), individual possession quotas (9L Foreign Liquor), licensing categories (Off-Shop vs On-Shop), and penalty provisions.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is today a dry day in West Bengal / Kolkata?',
+        answer:
+          'To check today\'s real-time legal status in Kolkata, Howrah, Siliguri, or anywhere in West Bengal, consult our live IST tracker at https://drycheck.in/india/west-bengal. Standard mandatory statutory dry days in West Bengal are among the lowest in India, limited to Republic Day (26 January), Independence Day (15 August), Mahatma Gandhi Jayanti (2 October), Muharram, and Bijoya Dashami (idol immersion hours).',
+      },
+      {
+        question: 'Is Christmas (25 December) a dry day in West Bengal?',
+        answer:
+          'No, Christmas (25 December) is NOT a dry day in West Bengal or Kolkata. Retail wine shops (FL off-shops) operate regular excise hours from 12:00 PM to 10:00 PM. In Kolkata, dining establishments, clubs, and pubs around Park Street, Salt Lake, and New Town often enjoy special extended night operating hours sanctioned by the Excise Department.',
+      },
+      {
+        question: 'Is New Year\'s Eve (31 December) a dry day in Kolkata?',
+        answer:
+          'No, New Year\'s Eve (31 December) and New Year\'s Day (1 January) are strictly regular trading days in West Bengal. Bars, lounges, clubs, and star hotels in Kolkata operate throughout the evening with late-closing permits (often permitted until 1:00 AM, 2:00 AM, or 4:00 AM under special festive license extensions).',
+      },
+      {
+        question: 'Are wine shops and thekas open during Durga Puja in West Bengal?',
+        answer:
+          'Yes, retail wine shops and bars remain completely open throughout the peak days of Durga Puja (Maha Saptami, Maha Ashtami, and Maha Navami) across Kolkata and West Bengal. The only dry restriction is notified on Bijoya Dashami (Dussehra), where liquor sales are prohibited either from 4:00 PM onwards or for the designated idol immersion window under local police commissionerate circulars.',
+      },
+      {
+        question: 'What are the normal liquor shop and bar timings in West Bengal?',
+        answer:
+          'Under West Bengal Excise rules, retail "FL Off" stores and country spirit vends generally operate from 12:00 PM (Noon) to 10:00 PM (extended to 10:30 PM in select Kolkata Municipal Corporation areas). Licensed "On-shops" (bars, pubs, restaurants) serve liquor from 12:00 PM (Noon) to 12:00 Midnight, with late-closing luxury hotel bars permitted until 2:00 AM or later.',
+      },
+      {
+        question: 'What is the legal drinking age in West Bengal?',
+        answer:
+          'The minimum legal drinking age in West Bengal is 21 years under Section 51 of the West Bengal Excise Act, 1909. Retailers and bars are legally forbidden from selling or serving alcohol to individuals under 21 years of age.',
+      },
+      {
+        question: 'What is the maximum legal alcohol possession limit in West Bengal?',
+        answer:
+          'Under West Bengal Excise rules, an adult individual without a special commercial transport permit may legally possess up to 12 quart bottles (9 Litres) of Foreign Liquor (IMFL or imported spirits), up to 12 bottles (7.8 Litres) of Beer, and up to 4 bottles of Country Spirit for private consumption.',
+      },
+      {
+        question: 'Can I carry alcohol from West Bengal into neighboring Bihar?',
+        answer:
+          'No. Transporting alcohol across the state border from West Bengal into Bihar (e.g., via Asansol, Barakar, Malda, or Siliguri border corridors) is a severe non-bailable criminal offence under the Bihar Prohibition and Excise Act, 2016. Highway checkposts and railway stations deploy canine squads and breathalyzers; unauthorized transport results in immediate arrest, heavy fines, and vehicle confiscation.',
+      },
+    ],
+    relatedStateSlug: 'west-bengal',
+    relatedGuideSlugs: [
+      'dry-states-in-india-2026',
+      'november-dry-days-2026',
+      'diwali-2026-dry-day',
+      'uttar-pradesh-dry-days-2026',
+    ],
+  },
 ];
 
 /**

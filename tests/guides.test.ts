@@ -111,6 +111,10 @@ describe('Guides Registry & Data Model', () => {
     expect(rajasthanGuides.length).toBe(1);
     expect(rajasthanGuides[0].slug).toBe('rajasthan-dry-days-2026');
 
+    const wbGuides = getPublishedGuidesByState('west-bengal');
+    expect(wbGuides.length).toBe(1);
+    expect(wbGuides[0].slug).toBe('west-bengal-dry-days-2026');
+
     const gujaratGuides = getPublishedGuidesByState('gujarat');
     expect(gujaratGuides.length).toBe(1);
     expect(gujaratGuides[0].slug).toBe('dry-states-in-india-2026');
@@ -220,6 +224,7 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides/dry-states-in-india-2026');
     expect(urls).toContain('https://drycheck.in/guides/november-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/diwali-2026-dry-day');
+    expect(urls).toContain('https://drycheck.in/guides/west-bengal-dry-days-2026');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');
@@ -297,5 +302,28 @@ describe('Diwali 2026 Dry Day Guide - State-wise Rules Verification', () => {
     expect(questions.some((q) => q.includes('delhi mein diwali'))).toBe(true);
     expect(questions.some((q) => q.includes('bar aur wine shops'))).toBe(true);
     expect(questions.some((q) => q.includes('rule kaise verify karein'))).toBe(true);
+  });
+});
+
+describe('West Bengal Guide 2026 - Rules, Kolkata Timings & December Spotlight', () => {
+  const guide = getPublishedGuideBySlug('west-bengal-dry-days-2026');
+
+  test('guide is defined and targets West Bengal and Kolkata queries', () => {
+    expect(guide).toBeDefined();
+    expect(guide?.slug).toBe('west-bengal-dry-days-2026');
+    expect(guide?.stateSlug).toBe('west-bengal');
+    expect(guide?.seoTitle).toBe('West Bengal Dry Days 2026: Dates, Rules & Kolkata Timings');
+    expect(guide?.primaryKeywords).toContain('dry day in west bengal 2026');
+    expect(guide?.primaryKeywords).toContain('kolkata dry days 2026');
+    expect(guide?.primaryKeywords).toContain('dry day in west bengal december');
+  });
+
+  test('guide FAQs cover December party dates, Durga Puja, timings and Bihar transit', () => {
+    const questions = guide?.faqs.map((f) => f.question.toLowerCase()) || [];
+    expect(questions.some((q) => q.includes('25 december') || q.includes('christmas'))).toBe(true);
+    expect(questions.some((q) => q.includes('31 december') || q.includes('new year'))).toBe(true);
+    expect(questions.some((q) => q.includes('durga puja'))).toBe(true);
+    expect(questions.some((q) => q.includes('timings'))).toBe(true);
+    expect(questions.some((q) => q.includes('bihar'))).toBe(true);
   });
 });

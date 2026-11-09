@@ -13,6 +13,10 @@ const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: 'DryCheck India',
+  appleWebApp: {
+    title: 'DryCheck India',
+  },
   title: {
     default: 'DryCheck India | Aaj sookha hai ya nahi, ek nazar mein',
     template: '%s | DryCheck India',
