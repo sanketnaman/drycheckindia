@@ -81,4 +81,17 @@ describe('Cloudflare deployment environment contract', () => {
     }
     expect(read('wrangler.jsonc')).not.toContain('SUPABASE_SERVICE_ROLE_KEY');
   });
+
+  test('workers.dev default domains are noindexed via next.config.mjs and public/_headers to prevent duplicate content', () => {
+    const nextConfig = read('next.config.mjs');
+    expect(nextConfig).toContain('drycheckindia.nick-sanket2007.workers.dev');
+    expect(nextConfig).toContain('workers');
+    expect(nextConfig).toContain('X-Robots-Tag');
+    expect(nextConfig).toContain('noindex, nofollow, noarchive');
+
+    const headersFile = read('public/_headers');
+    expect(headersFile).toContain('drycheckindia.nick-sanket2007.workers.dev');
+    expect(headersFile).toContain('*.workers.dev');
+    expect(headersFile).toContain('X-Robots-Tag: noindex, nofollow, noarchive');
+  });
 });

@@ -37,6 +37,36 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'drycheckindia.nick-sanket2007.workers.dev',
+          },
+        ],
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '(?<subdomain>.*\\.)?workers\\.dev',
+          },
+        ],
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive',
+          },
+        ],
+      },
+      {
+        source: '/:path*',
         headers: [
           {
             key: 'Strict-Transport-Security',

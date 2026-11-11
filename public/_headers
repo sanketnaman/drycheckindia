@@ -1,0 +1,7 @@
+# Cloudflare _headers file
+# Prevent search engine indexing on Cloudflare Workers preview / default domain
+https://drycheckindia.nick-sanket2007.workers.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+https://*.workers.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
