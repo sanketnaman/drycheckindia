@@ -106,10 +106,9 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
               Checking Live Status for Mumbai, Pune or Across Maharashtra?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              If you need to verify whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> or check{' '}
-              <strong className="text-white">&ldquo;dry day in mumbai today&rdquo;</strong>, our real-time engine monitors official gazette notifications across all 36 districts:{' '}
+              Need to check whether today or tomorrow is a dry day in Mumbai, Pune, or elsewhere in Maharashtra? Our real-time engine monitors official excise notifications across all 36 districts:{' '}
               <Link href="/india/maharashtra" className="underline font-semibold text-white hover:text-amber-300">
-                Check Live Maharashtra Dry Day Today Tracker &rarr;
+                Check Live Maharashtra Dry Day Tracker &rarr;
               </Link>
             </p>
           </div>
@@ -138,7 +137,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             statewide gazetted dry-day orders apply uniformly across all licensed retail wine shops (FL-BR-II) and permit rooms/bars (FL-III).
           </p>
           <p>
-            If you are planning around whether <strong className="text-white">&ldquo;dry day tomorrow in maharashtra&rdquo;</strong> will take effect, this guide provides the complete 2026 gazette calendar, key religious observances including Kartiki Ekadashi and Ganesh Visarjan, and the total statutory prohibition enforcement in Wardha and Gadchiroli districts.
+            Below is the complete 2026 Maharashtra gazetted dry-day calendar, covering key religious observances such as Kartiki Ekadashi and Ganesh Visarjan, alongside the permanent statutory prohibition enforced in Wardha and Gadchiroli districts.
           </p>
         </section>
 
@@ -300,7 +299,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             In Maharashtra, <strong className="text-white">20 November 2026</strong> marks a gazetted statewide dry day on the sacred observance of Kartiki Ekadashi. Hundreds of thousands of Warkari pilgrims assemble at the revered Vitthal-Rukmini Temple in Pandharpur.
           </p>
           <p>
-            On this date, retail liquor shops and commercial bars across Mumbai, Pune, Thane, Solapur, and all regional revenue divisions remain completely closed for 24 hours. If you are checking whether <strong className="text-white">&ldquo;tomorrow is dry day in maharashtra&rdquo;</strong> around late November, note that alcohol vending and service are strictly banned on 20 November.
+            On this date, retail liquor shops and commercial bars across Mumbai, Pune, Thane, Solapur, and all regional revenue divisions remain completely closed for 24 hours. Travelers and event planners around late November should note that alcohol vending and commercial bar service are prohibited throughout 20 November.
           </p>
         </section>
 
@@ -408,7 +407,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             ))}
           </div>
           <p className="text-xs text-neutral-400 pt-1">
-            Whether consumers search for <strong className="text-neutral-200">&ldquo;dry day in mumbai&rdquo;</strong> or query <strong className="text-neutral-200">&ldquo;is tomorrow a dry day in nashik&rdquo;</strong>, state excise notifications are enforced uniformly across every municipality.
+            Whether you are in Mumbai, Pune, Nagpur, or Nashik, state excise dry-day notifications are enforced uniformly across every municipality (except Wardha and Gadchiroli, which observe year-round prohibition).
           </p>
         </section>
 
@@ -435,7 +434,7 @@ export default function MaharashtraGuideArticle({ guide }: MaharashtraGuideArtic
             <span>8. How to Check Real-Time Maharashtra Status</span>
           </h2>
           <p>
-            To verify whether <strong className="text-white">&ldquo;tomorrow dry day in maharashtra&rdquo;</strong> or check today&apos;s real-time legal status, visit our dedicated tracker:{' '}
+            To verify today&apos;s or tomorrow&apos;s real-time legal status across Maharashtra, visit our dedicated tracker:{' '}
             <Link href="/india/maharashtra" className="text-amber-400 font-semibold underline hover:text-white">
               Check Maharashtra Live Status &rarr;
             </Link>

@@ -105,10 +105,9 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
               Need Instant Status for Today or Tomorrow in Delhi?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              If you need to verify whether <strong className="text-white">&ldquo;is today a dry day in delhi&rdquo;</strong> or check{' '}
-              <strong className="text-white">&ldquo;dry day in delhi tomorrow&rdquo;</strong>, our real-time IST engine tracks live gazette status across all 11 revenue districts and micro-markets in Delhi:{' '}
+              Need to check whether licensed liquor vends and bars are open or closed today or tomorrow in New Delhi? Our real-time IST engine tracks active excise orders across all 11 revenue districts and micro-markets in the capital:{' '}
               <Link href="/india/delhi" className="underline font-semibold text-white hover:text-amber-300">
-                Check Live Delhi Dry Day Today Tracker &rarr;
+                Check Live Delhi Dry Day Tracker &rarr;
               </Link>
             </p>
           </div>
@@ -128,8 +127,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             <span>1. Introduction: Is Today a Dry Day in Delhi?</span>
           </h2>
           <p>
-            Every day, thousands of consumers search online to find out whether <strong className="text-white">&ldquo;is today a dry day in delhi&rdquo;</strong> or what the current{' '}
-            <strong className="text-white">&ldquo;delhi theka timing today&rdquo;</strong> are. In the National Capital Territory of Delhi (NCT), alcoholic beverage sales, excise duties, and vend licensing are administered by the{' '}
+            Checking whether today is a dry day or confirming standard <strong className="text-white">Delhi theka timings</strong> requires tracking official government notifications rather than relying on informal holiday lists. In the National Capital Territory of Delhi (NCT), alcoholic beverage sales, excise duties, and vend licensing are administered by the{' '}
             <strong className="text-white">Department of Excise, Entertainment &amp; Luxury Tax, Government of NCT of Delhi</strong> under the statutory provisions of the{' '}
             <strong className="text-neutral-100">Delhi Excise Act, 2009</strong>.
           </p>
@@ -139,7 +137,7 @@ export default function DelhiGuideArticle({ guide }: DelhiGuideArticleProps) {
             Dwarka, Rohini, Saket, or Lajpat Nagar, statutory dry-day notifications apply uniformly across all government vends and commercial hospitality venues.
           </p>
           <p>
-            If you need to confirm whether <strong className="text-white">&ldquo;is tomorrow dry day in delhi&rdquo;</strong>, this legal guide provides the complete 2026 gazetted dry-day calendar, retail store operational hours, and the strict border transit laws governing travel between Delhi, Gurugram (Haryana), and Noida (Uttar Pradesh).
+            This legal guide covers the complete 2026 gazetted dry-day calendar for Delhi, government retail vend operational hours, and the strict excise transit laws governing travel between Delhi, Gurugram (Haryana), and Noida (Uttar Pradesh).
           </p>
         </section>
 

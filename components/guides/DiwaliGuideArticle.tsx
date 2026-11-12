@@ -225,7 +225,7 @@ export default function DiwaliGuideArticle({ guide }: DiwaliGuideArticleProps) {
           8 Nov 2026 (Diwali) ko poori country mein dry day nahi hai. Har state ka rule alag hai. In Delhi NCR and Uttar Pradesh, all retail liquor shops and commercial bars are completely closed for 24 hours under official gazetted orders. In states like Maharashtra, West Bengal, and Tamil Nadu, retail stores follow standard timings unless local district orders are issued.
         </p>
         <p className="mt-3 text-xs sm:text-sm text-neutral-300 leading-relaxed">
-          Many consumers search queries such as <strong className="text-white">&ldquo;kya Diwali pe sharab milegi?&rdquo;</strong> or <strong className="text-white">&ldquo;diwali wine shop open or closed&rdquo;</strong>. Because liquor regulation is an exclusive State Subject under India&apos;s Constitution, there is no uniform pan-India dry day mandate on Diwali.
+          Because liquor regulation is an exclusive State Subject under India&apos;s Constitution (Entry 8 of the State List), there is no uniform pan-India dry-day mandate on Diwali — retail closure rules depend entirely on your state&apos;s annual excise calendar.
         </p>
       </section>
 

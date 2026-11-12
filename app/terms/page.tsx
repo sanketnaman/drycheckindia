@@ -59,7 +59,27 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">4. Intellectual Property</h2>
           <p>
-            The software, deterministic rhyme algorithms, user interface designs, and curated data structures are the property of the project contributors.
+            The software, deterministic status calculation algorithms, user interface designs, editorial guides, and curated data structures are the property of DryCheck India and its contributors. Unauthorized scraping or automated commercial republication of compiled calendars without attribution is prohibited.
+          </p>
+        </section>
+
+        <section className="space-y-2">
+          <h2 className="text-base font-bold text-white">5. Advertising &amp; External Citations</h2>
+          <p>
+            DryCheck India is a free public utility supported by display advertising (such as Google AdSense) and voluntary reader support. External links to official state excise portals, Election Commission orders, and legal gazette PDFs are provided strictly for source verification; we do not control the availability or content of third-party government websites. For details on cookies and advertising preferences, see our{' '}
+            <Link href="/privacy-policy" className="text-amber-400 hover:underline">
+              Privacy Policy
+            </Link>.
+          </p>
+        </section>
+
+        <section className="space-y-2">
+          <h2 className="text-base font-bold text-white">6. Age Responsibility &amp; Corrections</h2>
+          <p>
+            All excise timing, holiday, and possession information published on this site is intended solely as legal awareness for adults meeting their state&apos;s statutory minimum legal drinking age (which varies between 18, 21, and 25 years across Indian states). If you notice an outdated notice or wish to submit a verified District Magistrate order, please reach out via our{' '}
+            <Link href="/contact" className="text-amber-400 hover:underline">
+              Contact page
+            </Link>.
           </p>
         </section>
 

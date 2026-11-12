@@ -23,6 +23,7 @@ import {
   AlertTriangle,
   ArrowLeft,
   MapPin,
+  Scale,
   HelpCircle as QuestionIcon,
 } from 'lucide-react';
 
@@ -492,6 +493,28 @@ export default async function DatePage({ params }: Props) {
             >
               November 2026 Dry Days All-India Calendar &rarr;
             </Link>
+          </div>
+        </section>
+
+        {/* Excise & Compliance Scope */}
+        <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5 space-y-3">
+          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
+            <Scale className="h-4 w-4 text-amber-400" />
+            <span>Excise &amp; Legal Scope on {formattedDate}</span>
+          </h2>
+          <div className="text-xs text-neutral-300 leading-relaxed space-y-2">
+            <p>
+              {dataUnavailable
+                ? `Dry-day directives across Indian states are governed by state-level excise acts under Entry 8 of List II of the Constitution of India. Once database connectivity resumes, this page lists exact closure notifications for ${formattedDate}.`
+                : isNational
+                ? `On ${formattedDate}, mandatory nationwide prohibition of liquor sales applies across all 36 states and union territories in observance of ${primaryReason}. Under standing central and state excise notifications, all licensed retail wine shops (thekas), bars, pubs, clubs, and hotel lounges must suspend alcohol service for the notified 24-hour calendar window (midnight to midnight in local state schedules).`
+                : eventDryDays.length > 0
+                ? `Because alcohol regulation falls under the State List (Entry 8, List II) of the Constitution of India, dry-day notifications on ${formattedDate} (${primaryReason}) apply specifically to ${eventDryDays.map((s) => s.state.name).join(', ')}. In open jurisdictions not listed above, retail wine shops and licensed commercial bars follow their standard state excise hours.`
+                : `No nationwide dry day is notified for ${formattedDate}. Outside permanent prohibition states (Bihar, Gujarat, and Nagaland, plus restricted permit regimes in Mizoram and Lakshadweep), licensed retail liquor shops, pubs, and restaurants operate during standard state excise timings unless a localized District Magistrate or Section 135C election order is issued.`}
+            </p>
+            <p className="text-neutral-400">
+              <strong className="text-neutral-200">Establishments Covered &amp; Local Overrides:</strong> Whenever a statutory dry day is in effect in an affected jurisdiction, closures cover government and private retail stores, beer/wine shops, FL-3/L-17 bars, and registered clubs. Additionally, District Collectors and Police Commissioners retain power under local excise acts and Section 135C of the Representation of the People Act, 1951 to declare short-notice localized dry zones during civic polls, processions, or law-and-order advisories.
+            </p>
           </div>
         </section>
 

@@ -23,16 +23,17 @@ interface RajasthanGuideArticleProps {
 
 export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticleProps) {
   const tocItems = [
-    { id: 'introduction', label: '1. Introduction: Is Today a Dry Day in Rajasthan?' },
+    { id: 'introduction', label: '1. Introduction & Statutory Framework' },
     { id: 'eight-pm-rule', label: '2. The Strict 8:00 PM Theka Closing Rule' },
     { id: 'gazette-calendar', label: '3. Official Rajasthan 2026 Gazette Dry Days Calendar' },
-    { id: 'cities-covered', label: '4. Cities Covered: Jaipur, Jodhpur, Udaipur, Kota & Beyond' },
-    { id: 'mount-abu-pushkar', label: '5. Tourist & Sacred Towns: Mount Abu & Pushkar Rules' },
-    { id: 'hotel-bar-timings', label: '6. Heritage Hotel Bar Timings vs Retail Theka Timings' },
-    { id: 'drinking-age', label: '7. Minimum Legal Drinking Age (21) & Possession Limits' },
-    { id: 'how-to-check', label: '8. How to Check Real-Time Rajasthan Dry-Day Status' },
-    { id: 'faqs', label: '9. Frequently Asked Questions (FAQs)' },
-    { id: 'official-sources', label: '10. Official Citations & Regulatory References' },
+    { id: 'election-border-rules', label: '4. Elections (Section 135C) & Interstate Border Enforcement' },
+    { id: 'cities-covered', label: '5. Cities Covered: Jaipur, Jodhpur, Udaipur, Kota & Beyond' },
+    { id: 'mount-abu-pushkar', label: '6. Tourist & Sacred Towns: Mount Abu & Pushkar Rules' },
+    { id: 'hotel-bar-timings', label: '7. Heritage Hotel Bar Timings vs Retail Theka Timings' },
+    { id: 'drinking-age', label: '8. Minimum Legal Drinking Age (21) & Possession Limits' },
+    { id: 'how-to-check', label: '9. How to Verify Real-Time Rajasthan Dry-Day Status' },
+    { id: 'faqs', label: '10. Frequently Asked Questions (FAQs)' },
+    { id: 'official-sources', label: '11. Official Citations & Regulatory References' },
   ];
 
   return (
@@ -105,10 +106,9 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
               Need Live Today/Tomorrow Status in Rajasthan?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              If you need to verify whether <strong className="text-white">&ldquo;is today dry day in rajasthan&rdquo;</strong> or confirm whether{' '}
-              <strong className="text-white">&ldquo;today wine shop open or not in rajasthan&rdquo;</strong>, our real-time tracker evaluates active excise orders for all districts in Indian Standard Time (IST):{' '}
+              Need to confirm whether licensed retail shops and bars are open or closed today in Rajasthan? Our real-time tracker evaluates active excise orders across all districts in Indian Standard Time (IST):{' '}
               <Link href="/india/rajasthan" className="underline font-semibold text-white hover:text-amber-300">
-                Check Live Rajasthan Dry Day Today Tracker &rarr;
+                Check Live Rajasthan Dry Day Tracker &rarr;
               </Link>
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
         <section id="introduction" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <Scale className="h-5 w-5 text-amber-400" />
-            <span>1. Introduction: Is Today a Dry Day in Rajasthan?</span>
+            <span>1. Introduction &amp; Statutory Framework</span>
           </h2>
           <p>
             In Rajasthan, alcohol manufacture, distribution, and retail theka licensing are administered by the{' '}
@@ -259,14 +259,28 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
           </div>
         </section>
 
-        {/* Section 4: Cities Covered */}
+        {/* Section 4: Election & Interstate Border Rules */}
+        <section id="election-border-rules" className="space-y-4">
+          <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
+            <ShieldAlert className="h-5 w-5 text-amber-400" />
+            <span>4. Elections (Section 135C) &amp; Interstate Border Enforcement</span>
+          </h2>
+          <p>
+            Beyond standing national and religious holidays, <strong className="text-white">Section 135C of the Representation of the People Act, 1951</strong> mandates a 48-hour dry window prior to the close of polling (and a full counting-day closure) during Lok Sabha, Rajasthan Vidhan Sabha, Municipal, and Panchayati Raj elections. Under the <strong className="text-white">Rajasthan Excise Act, 1950</strong>, District Collectors frequently extend this restriction up to an 8-kilometre or 3-kilometre belt along adjoining districts when neighbouring states (such as Haryana, Uttar Pradesh, or Madhya Pradesh) go to polls.
+          </p>
+          <p className="text-xs text-neutral-300">
+            <strong className="text-white">Important Gujarat &amp; Haryana Border Caution:</strong> Because Gujarat enforces total statutory prohibition, Rajasthan excise and Gujarat police run strict highway nakabandi along Abu Road, Udaipur–Shamlaji, and Banswara borders. Conversely, bringing lower-priced Haryana or Chandigarh liquor into Jaipur, Alwar, or Bikaner without a Rajasthan excise permit is an offence punishable with vehicle seizure and prosecution under Section 19/54 of the Rajasthan Excise Act.
+          </p>
+        </section>
+
+        {/* Section 5: Cities Covered */}
         <section id="cities-covered" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <MapPin className="h-5 w-5 text-amber-400" />
-            <span>4. Cities Covered: Jaipur, Jodhpur, Udaipur, Kota &amp; Beyond</span>
+            <span>5. Cities Covered: Jaipur, Jodhpur, Udaipur, Kota &amp; Beyond</span>
           </h2>
           <p>
-            Rajasthan state excise regulations and dry-day mandates apply uniformly across all major cities and districts:
+            Rajasthan state excise regulations and dry-day mandates apply uniformly across all major cities and 50 administrative districts:
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -293,15 +307,15 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
             ))}
           </div>
           <p className="text-xs text-neutral-400 pt-1">
-            Whether checking <strong className="text-neutral-200">&ldquo;is today dry day in jodhpur&rdquo;</strong> or searching <strong className="text-neutral-200">&ldquo;dry day in udaipur&rdquo;</strong>, all municipal regions follow identical statewide gazette notifications.
+            Whether you are in Jaipur, Jodhpur, Udaipur, or Kota, all municipal regions follow identical statewide gazette notifications and the uniform 8:00 PM retail vend closing curfew.
           </p>
         </section>
 
-        {/* Section 5: Mount Abu & Pushkar */}
+        {/* Section 6: Mount Abu & Pushkar */}
         <section id="mount-abu-pushkar" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <ShieldAlert className="h-5 w-5 text-amber-400" />
-            <span>5. Tourist &amp; Sacred Towns: Mount Abu &amp; Pushkar Rules</span>
+            <span>6. Tourist &amp; Sacred Towns: Mount Abu &amp; Pushkar Rules</span>
           </h2>
           <p>
             Many tourists mistakenly assume Mount Abu is under total alcohol prohibition. Licensed retail stores do operate in Mount Abu, subject to the statewide 8:00 PM closing rule. In addition:
@@ -312,48 +326,60 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
           </ul>
         </section>
 
-        {/* Section 6: Heritage Hotels vs Theka Timings */}
+        {/* Section 7: Heritage Hotels vs Theka Timings */}
         <section id="hotel-bar-timings" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <Beer className="h-5 w-5 text-amber-400" />
-            <span>6. Heritage Hotel Bar Timings vs Retail Theka Timings</span>
+            <span>7. Heritage Hotel Bar Timings vs Retail Theka Timings</span>
           </h2>
           <p>
             While retail liquor stores shutter at 8:00 PM, licensed heritage hotels, 4-star/5-star luxury resorts, and approved hotel dining lounges are authorized to serve resident guests and dining patrons until <strong className="text-white font-mono">11:00 PM or 12:00 Midnight</strong>. However, on official gazetted dry days, hotel bars must also suspend alcohol service completely.
           </p>
         </section>
 
-        {/* Section 7: Drinking Age */}
+        {/* Section 8: Drinking Age */}
         <section id="drinking-age" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <Building2 className="h-5 w-5 text-amber-400" />
-            <span>7. Minimum Legal Drinking Age (21) &amp; Possession Limits</span>
+            <span>8. Minimum Legal Drinking Age (21) &amp; Possession Limits</span>
           </h2>
           <p>
             The statutory minimum legal drinking age in Rajasthan is <strong className="text-white font-mono">21 years</strong>.
-            For personal consumption, an individual without a specialized commercial excise permit may possess up to 12 standard bottles (750ml IMFL or beer).
+            For personal consumption, an individual without a specialized commercial excise permit may possess up to 12 standard bottles (750ml IMFL or beer) of Rajasthan-duty-paid liquor—always keep the printed excise retail bill handy when traveling between districts.
           </p>
         </section>
 
-        {/* Section 8: How to Check */}
+        {/* Section 9: How to Check */}
         <section id="how-to-check" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <CheckCircle className="h-5 w-5 text-amber-400" />
-            <span>8. How to Check Real-Time Rajasthan Dry-Day Status</span>
+            <span>9. How to Verify Real-Time Rajasthan Dry-Day Status</span>
           </h2>
           <p>
-            You can verify today&apos;s or tomorrow&apos;s legal alcohol status for Rajasthan with a single click:{' '}
-            <Link href="/india/rajasthan" className="text-amber-400 font-semibold underline hover:text-white">
-              Check Rajasthan Live Status &rarr;
-            </Link>
+            Before planning destination weddings, desert safaris, or retail purchases in Rajasthan, verify compliance with three quick checks:
           </p>
+          <ol className="list-decimal pl-5 space-y-2 text-xs text-neutral-300">
+            <li>
+              <strong className="text-white">Check Today &amp; Tomorrow Live Status:</strong> Visit our{' '}
+              <Link href="/india/rajasthan" className="text-amber-400 font-semibold underline hover:text-white">
+                Live Rajasthan Dry Day Tracker &rarr;
+              </Link>{' '}
+              for date-specific status in Indian Standard Time (IST).
+            </li>
+            <li>
+              <strong className="text-white">Plan Retail Purchases Before 8:00 PM IST:</strong> Even on open days, composite liquor shops across Rajasthan legally lock shutters at 8:00 PM sharp—after 8:00 PM, only licensed hotel bars and restaurants remain open.
+            </li>
+            <li>
+              <strong className="text-white">Confirm Sacred Zone &amp; Border Rules:</strong> If hosting events near Pushkar, Nathdwara, or border towns adjoining Gujarat, confirm municipal perimeter restrictions directly with your venue or District Excise Office.
+            </li>
+          </ol>
         </section>
 
-        {/* Section 9: FAQs */}
+        {/* Section 10: FAQs */}
         <section id="faqs" className="space-y-4">
           <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-2">
             <HelpCircle className="h-5 w-5 text-amber-400" />
-            <span>9. Frequently Asked Questions (FAQs) &bull; Rajasthan</span>
+            <span>10. Frequently Asked Questions (FAQs) &bull; Rajasthan</span>
           </h2>
 
           <div className="space-y-3">
@@ -371,10 +397,10 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
           </div>
         </section>
 
-        {/* Section 10: Official Sources */}
+        {/* Section 11: Official Sources */}
         <section id="official-sources" className="space-y-4 border-t border-neutral-800 pt-6">
           <h2 className="text-sm font-bold text-neutral-300 uppercase tracking-wider">
-            10. Official Citations &amp; Regulatory References
+            11. Official Citations &amp; Regulatory References
           </h2>
           <ul className="space-y-2">
             {guide.sources.map((src, idx) => (
@@ -396,6 +422,9 @@ export default function RajasthanGuideArticle({ guide }: RajasthanGuideArticlePr
               </li>
             ))}
           </ul>
+          <p className="text-[11px] text-neutral-500 pt-2">
+            <strong className="text-neutral-300">Editorial Disclaimer:</strong> DryCheck India is an independent public-service reference platform and does not promote or facilitate alcohol sales. Festival timings, election border curfews, and dry-day declarations remain governed by the Rajasthan Excise Department and local District Collectors.
+          </p>
         </section>
 
       </div>

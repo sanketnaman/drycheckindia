@@ -106,10 +106,9 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
               Looking for Today&apos;s or Tomorrow&apos;s Live Status in UP?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              If you need to verify whether <strong className="text-white">&ldquo;kya aaj UP me dry day hai&rdquo;</strong> or confirm{' '}
-              <strong className="text-white">&ldquo;tomorrow is dry day in UP&rdquo;</strong>, our real-time tracker provides instant status across all 75 Uttar Pradesh districts in Indian Standard Time (IST):{' '}
+              Need to confirm whether retail liquor vends and bars are open today or tomorrow in Uttar Pradesh? Our real-time tracker evaluates official excise orders across all 75 UP districts in Indian Standard Time (IST):{' '}
               <Link href="/india/uttar-pradesh" className="underline font-semibold text-white hover:text-amber-300">
-                Check Live Dry Day Today in UP &rarr;
+                Check Live UP Dry Day Tracker &rarr;
               </Link>
             </p>
           </div>
@@ -129,20 +128,19 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>1. Introduction: Is Today a Dry Day in UP?</span>
           </h2>
           <p>
-            Every month, hundreds of thousands of residents search queries like <strong className="text-white">&ldquo;kya aaj UP me dry day hai&rdquo;</strong> or check the official status of{' '}
-            <strong className="text-white">&ldquo;dry day in up today&rdquo;</strong>. In Uttar Pradesh—India&apos;s most populous state—alcohol vending, wholesale manufacturing, and retail licensing are governed by the{' '}
+            In Uttar Pradesh—India&apos;s most populous state—alcohol vending, wholesale manufacturing, and retail licensing are governed by the{' '}
             <strong className="text-white">Uttar Pradesh Excise Department</strong> under the statutory provisions of the{' '}
             <strong className="text-neutral-100">Uttar Pradesh Excise Act, 1910</strong>.
           </p>
           <p>
-            Whether you reside in Lucknow, Noida, Ghaziabad, Kanpur, Varanasi, or Agra, alcohol licensing rules and mandatory shop closure mandates apply uniformly across the state. If you are planning around whether <strong className="text-white">&ldquo;dry day today in UP&rdquo;</strong> is in effect, or searching <strong className="text-white">&ldquo;today dry day in uttar pradesh&rdquo;</strong>, this guide provides the complete <strong className="text-white">UP dry day 2026</strong> calendar, official theka opening and closing hours, and key legal possession limits.
+            Whether you reside in Lucknow, Noida, Ghaziabad, Kanpur, Varanasi, or Agra, statewide holiday closure mandates apply uniformly across every district. Below is the complete <strong className="text-white">Uttar Pradesh 2026 dry-day calendar</strong>, official theka opening and closing hours, and personal possession limits.
           </p>
           <p>
-            To immediately check whether <strong className="text-white">&ldquo;is tomorrow is dry day in up&rdquo;</strong>, visit our real-time{' '}
+            For live date-specific verification of today or tomorrow&apos;s status, check our real-time{' '}
             <Link href="/india/uttar-pradesh" className="text-amber-400 font-semibold underline hover:text-white">
               Uttar Pradesh Dry Day Tracker
             </Link>{' '}
-            for live legal status.
+            updated in IST.
           </p>
         </section>
 
@@ -205,7 +203,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
                 8 November 2026 &bull; Diwali Dry Day
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                On the sacred occasion of Diwali, the Uttar Pradesh Excise Department mandates a complete prohibition on liquor sales statewide. All retail thekas, IMFL shops, beer vends, and commercial hotel/restaurant bars remain shut for 24 hours. If consumers check whether <strong className="text-white">&ldquo;dry day in up tomorrow&rdquo;</strong> on Diwali eve, alcohol retail purchases will not be permitted anywhere in the state.
+                On Diwali, the Uttar Pradesh Excise Department mandates a complete prohibition on liquor sales statewide. All retail thekas, IMFL shops, beer vends, and commercial hotel or restaurant bars remain shut for the full 24-hour calendar window across every district.
               </p>
             </div>
 
@@ -406,8 +404,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             <span>7. How to Check If Today or Tomorrow is Dry Day in UP</span>
           </h2>
           <p>
-            To verify whether <strong className="text-white">&ldquo;kya aaj up me dry day hai&rdquo;</strong> or check whether{' '}
-            <strong className="text-white">&ldquo;dry day in up tomorrow&rdquo;</strong> is scheduled, follow these 4 straightforward steps:
+            To verify whether a dry day or local DM restriction is active today or tomorrow anywhere in Uttar Pradesh, follow these 4 straightforward steps:
           </p>
 
           <div className="space-y-3">

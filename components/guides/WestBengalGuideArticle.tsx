@@ -107,9 +107,9 @@ export default function WestBengalGuideArticle({ guide }: WestBengalGuideArticle
               Looking for Today&apos;s or Tomorrow&apos;s Live Status in West Bengal?
             </h2>
             <p className="leading-relaxed text-amber-200/90">
-              Whether you are searching <strong className="text-white">&ldquo;kya aaj West Bengal me dry day hai&rdquo;</strong>, checking if Kolkata thekas are open right now, or confirming tomorrow&apos;s excise schedule, our real-time tracker provides instant verification across all 23 districts in Indian Standard Time (IST):{' '}
+              Need to confirm whether retail liquor vends in Kolkata or across West Bengal are open today or tomorrow? Our real-time tracker provides instant verification across all 23 districts in Indian Standard Time (IST):{' '}
               <Link href="/india/west-bengal" className="underline font-semibold text-white hover:text-amber-300">
-                Check Live Dry Day Today in West Bengal &rarr;
+                Check Live West Bengal Dry Day Tracker &rarr;
               </Link>
             </p>
           </div>
@@ -222,7 +222,7 @@ export default function WestBengalGuideArticle({ guide }: WestBengalGuideArticle
             <span>3. December, Christmas (25 Dec) &amp; New Year (31 Dec) Rules</span>
           </h2>
           <p>
-            With thousands of domestic tourists and international travelers visiting Kolkata, Darjeeling, and the Dooars during winter, one of the most frequent internet searches is whether <strong className="text-white">&ldquo;is december dry day in west bengal&rdquo;</strong> or <strong className="text-white">&ldquo;is 25 december dry day in kolkata&rdquo;</strong>.
+            With thousands of domestic tourists and international travelers visiting Kolkata, Darjeeling, and the Dooars during the winter festive season, travelers frequently verify whether December holidays such as Christmas Eve or Christmas Day carry state dry-day restrictions.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
