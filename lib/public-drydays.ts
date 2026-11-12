@@ -25,11 +25,33 @@
  *    client code could run a network request.
  *  - Error logs contain messages only — no URLs, no keys.
  */
+import { cache } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 import type { DryDayEntry } from '@/lib/dryday';
 import { getSupabaseConfigStatus } from '@/lib/supabase/config';
 import type { DryDayRow, NoticeRow, NoticeSeverity } from '@/lib/admin/types';
+
+/**
+ * Revalidate window (seconds) for Next.js Data Cache on public Supabase reads.
+ * Prevents Next.js 15's default `no-store` fetch behaviour from disabling ISR
+ * on dynamic routes (`/india/[state-slug]`, `/dry-days/[date]`).
+ */
+const PUBLIC_REVALIDATE_SECONDS = 1800;
+
+function createCachedFetch(): typeof fetch {
+  return (input, init) => {
+    const existingNext =
+      (init as (RequestInit & { next?: Record<string, unknown> }) | undefined)?.next ?? {};
+    return fetch(input, {
+      ...init,
+      next: {
+        ...existingNext,
+        revalidate: PUBLIC_REVALIDATE_SECONDS,
+      },
+    } as RequestInit);
+  };
+}
 
 const DRY_DAY_COLUMNS =
   'state,dry_date,type,reason,verification_status,source_url,source_note,locality';
@@ -126,8 +148,11 @@ export function isNoticeWindowActive(
  * Published, publicly-verified dry-day entries from Supabase.
  * Distinguishes a successful empty fetch (ok: true, entries: []) from a
  * failed one (ok: false) — a failed query must never read as "no entry".
+ *
+ * Wrapped in React `cache()` so `generateMetadata` and the page component
+ * share one fetch per request render.
  */
-export async function getPublicDataset(): Promise<PublicDataset> {
+export const getPublicDataset = cache(async function getPublicDataset(): Promise<PublicDataset> {
   if (typeof window !== 'undefined') return { ok: false, entries: [], reason: 'browser' };
 
   const config = getSupabaseConfigStatus();
@@ -142,6 +167,7 @@ export async function getPublicDataset(): Promise<PublicDataset> {
   try {
     const supabase = createClient(config.url, config.key, {
       auth: { persistSession: false, autoRefreshToken: false },
+      global: { fetch: createCachedFetch() },
     });
 
     const rows: DryDayEntry[] = [];
@@ -186,7 +212,7 @@ export async function getPublicDataset(): Promise<PublicDataset> {
     );
     return { ok: false, entries: [], reason: 'fetch_failed' };
   }
-}
+});
 
 /**
  * Convenience wrapper for callers that only need the rows (sitemap, static
@@ -204,7 +230,7 @@ export async function getPublicEntries(): Promise<DryDayEntry[]> {
  * Returns [] whenever the fetch fails or Supabase is unconfigured —
  * notices are optional banners; they must never break a page render.
  */
-export async function getPublishedNotices(): Promise<PublicNotice[]> {
+export const getPublishedNotices = cache(async function getPublishedNotices(): Promise<PublicNotice[]> {
   if (typeof window !== 'undefined') return [];
 
   const config = getSupabaseConfigStatus();
@@ -213,6 +239,7 @@ export async function getPublishedNotices(): Promise<PublicNotice[]> {
   try {
     const supabase = createClient(config.url, config.key, {
       auth: { persistSession: false, autoRefreshToken: false },
+      global: { fetch: createCachedFetch() },
     });
 
     const { data, error } = await supabase
@@ -235,4 +262,4 @@ export async function getPublishedNotices(): Promise<PublicNotice[]> {
     );
     return [];
   }
-}
+});

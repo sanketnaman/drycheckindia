@@ -26,7 +26,13 @@ import {
   HelpCircle as QuestionIcon,
 } from 'lucide-react';
 
-export const revalidate = 3600;
+export const revalidate = 1800;
+
+export async function generateStaticParams() {
+  const entries = await getPublicEntries();
+  const uniqueSlugs = Array.from(new Set(entries.map((e) => dateToSlug(e.date))));
+  return uniqueSlugs.map((date) => ({ date }));
+}
 
 interface Props {
   params: Promise<{
@@ -36,7 +42,7 @@ interface Props {
 
 const SITE_URL = 'https://drycheck.in';
 
-// Dynamic rendering at request time ensures accurate IST date computation without static freezing
+// 30-minute ISR pre-renders published dry-day dates and caches on-demand dates at the edge
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { date: rawSlug } = await params;
@@ -327,8 +333,8 @@ export default async function DatePage({ params }: Props) {
               : datasetEmpty
               ? 'No published entries in the database yet'
               : hasVerifiedCircular
-              ? `${primaryReason} &bull; Verified against state excise circulars`
-              : `${primaryReason} &bull; State and regional calendar listing`}
+              ? `${primaryReason} • Verified against state excise circulars`
+              : `${primaryReason} • State and regional calendar listing`}
           </p>
         </div>
 

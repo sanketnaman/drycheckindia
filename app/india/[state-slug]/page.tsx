@@ -42,7 +42,11 @@ import {
   Beer,
 } from 'lucide-react';
 
-export const revalidate = 3600;
+export const revalidate = 1800;
+
+export function generateStaticParams() {
+  return getAllStates().map((state) => ({ 'state-slug': state.slug }));
+}
 
 interface Props {
   params: Promise<{
@@ -52,7 +56,7 @@ interface Props {
 
 const SITE_URL = 'https://drycheck.in';
 
-// Dynamic rendering at request time ensures accurate IST date computation without static freezing
+// 30-minute ISR pre-renders all 36 states/UTs at the edge while keeping IST rollovers fresh
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { 'state-slug': slug } = await params;

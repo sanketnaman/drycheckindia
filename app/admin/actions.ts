@@ -114,6 +114,21 @@ async function requireAdminForAction(): Promise<AuthGuard> {
   return { ok: true, supabase, userId: authz.user.id };
 }
 
+function revalidatePublicDryDays() {
+  revalidatePath('/admin/dry-days');
+  revalidatePath('/admin');
+  revalidatePath('/');
+  revalidatePath('/india/[state-slug]', 'page');
+  revalidatePath('/dry-days/[date]', 'page');
+  revalidatePath('/sitemap.xml');
+}
+
+function revalidatePublicNotices() {
+  revalidatePath('/admin/notices');
+  revalidatePath('/admin');
+  revalidatePath('/', 'layout');
+}
+
 export async function saveDryDayAction(
   input: DryDayInput,
   id?: string
@@ -135,8 +150,7 @@ export async function saveDryDayAction(
 
   if (!result.ok) return result;
 
-  revalidatePath('/admin/dry-days');
-  revalidatePath('/admin');
+  revalidatePublicDryDays();
   return { ok: true, id: result.id };
 }
 
@@ -150,8 +164,7 @@ export async function deleteDryDayAction(id: string): Promise<ActionResult> {
   const result = await deleteDryDay(guard.supabase, id);
   if (!result.ok) return result;
 
-  revalidatePath('/admin/dry-days');
-  revalidatePath('/admin');
+  revalidatePublicDryDays();
   return { ok: true };
 }
 
@@ -171,8 +184,7 @@ export async function setDryDayPublishedAction(
   const result = await setDryDayPublished(guard.supabase, id, published);
   if (!result.ok) return result;
 
-  revalidatePath('/admin/dry-days');
-  revalidatePath('/admin');
+  revalidatePublicDryDays();
   return { ok: true };
 }
 
@@ -197,8 +209,7 @@ export async function setDryDayVerificationAction(
   const result = await setDryDayVerification(guard.supabase, id, status);
   if (!result.ok) return result;
 
-  revalidatePath('/admin/dry-days');
-  revalidatePath('/admin');
+  revalidatePublicDryDays();
   return { ok: true };
 }
 
@@ -220,8 +231,7 @@ export async function saveNoticeAction(input: NoticeInput, id?: string): Promise
 
   if (!result.ok) return result;
 
-  revalidatePath('/admin/notices');
-  revalidatePath('/admin');
+  revalidatePublicNotices();
   return { ok: true, id: result.id };
 }
 
@@ -235,8 +245,7 @@ export async function deleteNoticeAction(id: string): Promise<ActionResult> {
   const result = await deleteNotice(guard.supabase, id);
   if (!result.ok) return result;
 
-  revalidatePath('/admin/notices');
-  revalidatePath('/admin');
+  revalidatePublicNotices();
   return { ok: true };
 }
 
@@ -256,8 +265,7 @@ export async function setNoticePublishedAction(
   const result = await setNoticePublished(guard.supabase, id, published);
   if (!result.ok) return result;
 
-  revalidatePath('/admin/notices');
-  revalidatePath('/admin');
+  revalidatePublicNotices();
   return { ok: true };
 }
 
