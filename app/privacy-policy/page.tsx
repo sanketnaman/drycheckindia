@@ -14,6 +14,14 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | DryCheck India',
     siteName: 'DryCheck India',
     url: `${SITE_URL}/privacy-policy`,
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DryCheck India',
+      },
+    ],
   },
 };
 

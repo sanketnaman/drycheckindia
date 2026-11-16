@@ -27,6 +27,7 @@ import {
 } from '@/lib/dryday';
 import { getPublicDataset } from '@/lib/public-drydays';
 import { getPublishedGuidesByState } from '@/lib/guides';
+import { getStateExciseProfile } from '@/lib/state-excise-profiles';
 import {
   Calendar,
   ExternalLink,
@@ -89,6 +90,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonicalUrl,
       type: 'article',
       siteName: 'DryCheck India',
+      images: [
+        {
+          url: '/logo-desktop.png',
+          width: 450,
+          height: 150,
+          alt: 'DryCheck India',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -110,6 +119,7 @@ export default async function StatePage({ params }: Props) {
   }
 
   const publishedGuides = getPublishedGuidesByState(state.slug);
+  const exciseProfile = getStateExciseProfile(state.slug);
 
   const dataset = await getPublicDataset();
   const entries = dataset.entries;
@@ -638,22 +648,50 @@ export default async function StatePage({ params }: Props) {
 
         {/* State Excise Regulations Summary */}
         <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
-          <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 mb-3">
-            <Scale className="h-4 w-4 text-amber-400" />
-            <span>Excise Policy in {state.name}</span>
-          </h2>
-          <div className="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-            {state.prohibition ? (
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-neutral-800 mb-3 gap-2">
+            <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <Scale className="h-4 w-4 text-amber-400" />
+              <span>Excise Policy &amp; Legal Framework &bull; {state.name}</span>
+            </h2>
+            {exciseProfile && (
+              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 self-start sm:self-auto">
+                {exciseProfile.retailModel}
+              </span>
+            )}
+          </div>
+          <div className="text-xs sm:text-sm text-neutral-300 space-y-3 leading-relaxed">
+            {exciseProfile ? (
+              <>
+                <p>
+                  <strong className="text-white">Statutory Governance:</strong> {exciseProfile.statutorySummary}
+                </p>
+                <div className="p-3.5 rounded-xl bg-neutral-950/90 border border-neutral-800 space-y-2 text-xs">
+                  <div>
+                    <span className="text-amber-400 font-semibold block">Applicable Law / Governing Act:</span>
+                    <span className="text-neutral-200">{exciseProfile.actName}</span>
+                  </div>
+                  <div>
+                    <span className="text-amber-400 font-semibold block">State Excise Authority:</span>
+                    <span className="text-neutral-200">{exciseProfile.regulatoryAuthority}</span>
+                  </div>
+                </div>
+                <p>
+                  <strong className="text-white">Standing Closures &amp; Gazette Dates:</strong> {exciseProfile.standingDryDaysSummary}
+                </p>
+                <p className="text-neutral-400 text-xs">
+                  <strong className="text-neutral-300">Interstate Transit &amp; Possession Limits:</strong> {exciseProfile.transitAndPossessionRule}
+                </p>
+                <p className="text-[11px] text-neutral-500 italic border-t border-neutral-800/60 pt-2">
+                  <strong className="text-neutral-400 not-italic">Enforcement Notice:</strong> {exciseProfile.penaltiesNotice}
+                </p>
+              </>
+            ) : state.prohibition ? (
               <p>
                 {state.name} is under statutory alcohol prohibition. The possession, sale, transport, and consumption of liquor is prohibited by law.
               </p>
-            ) : hasVerifiedSource ? (
-              <p>
-                In {state.name}, dry days and sale restrictions are notified by state excise authorities. On notified dates, licensed retail liquor shops and commercial establishments remain closed in accordance with official orders.
-              </p>
             ) : (
               <p>
-                In {state.name}, alcohol sale regulations and holiday closures are subject to state and local administration orders. Operating hours and restrictions vary based on official notifications.
+                In {state.name}, dry days and sale restrictions are notified by state excise authorities. On notified dates, licensed retail liquor shops and commercial establishments remain closed in accordance with official orders.
               </p>
             )}
             <p className="text-neutral-400 text-xs">
@@ -763,6 +801,18 @@ export default async function StatePage({ params }: Props) {
                   className="text-amber-400 underline font-medium hover:text-white"
                 >
                   West Bengal Dry Days 2026: Official Calendar, Kolkata Rules &amp; December Guidelines
+                </Link>
+                .
+              </p>
+            )}
+            {(state.slug === 'punjab' || state.slug === 'haryana' || state.slug === 'chandigarh') && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on Guru Nanak Jayanti (24 Nov), Punjab Excise Act vends closure, and Chandigarh border rules, read our verified guide:{' '}
+                <Link
+                  href="/guides/guru-nanak-jayanti-2026-dry-day"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Guru Nanak Jayanti 2026 Dry Day: State Rules &amp; Liquor Vend Closures (24 Nov)
                 </Link>
                 .
               </p>

@@ -14,6 +14,14 @@ export const metadata: Metadata = {
     title: 'Terms of Use & Disclaimer | DryCheck India',
     siteName: 'DryCheck India',
     url: `${SITE_URL}/terms`,
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DryCheck India',
+      },
+    ],
   },
 };
 

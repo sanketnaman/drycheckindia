@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/guides`,
     siteName: 'DryCheck India',
     type: 'website',
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DryCheck India',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

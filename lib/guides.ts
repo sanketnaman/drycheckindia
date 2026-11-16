@@ -1079,6 +1079,549 @@ export const GUIDES: Guide[] = [
       'uttar-pradesh-dry-days-2026',
     ],
   },
+  {
+    slug: 'guru-nanak-jayanti-2026-dry-day',
+    title: 'Is Guru Nanak Jayanti 2026 a Dry Day? State-wise Rules (24 Nov)',
+    h1Title: 'Is Guru Nanak Jayanti 2026 a Dry Day in India? (24 November)',
+    seoTitle: 'Guru Nanak Jayanti 2026 Dry Day: State Rules',
+    metaDescription:
+      'Official rules for Guru Nanak Jayanti dry day on 24 November 2026. Check mandatory liquor shop closures across Delhi NCR, UP, Punjab, Haryana & Rajasthan.',
+    stateSlug: 'punjab',
+    stateName: 'Punjab',
+    region: 'North',
+    excerpt:
+      'Comprehensive legal guide to alcohol sale restrictions on Guru Nanak Jayanti (24 November 2026). Discover confirmed mandatory closures in Punjab, Delhi, Uttar Pradesh, Haryana, and Chandigarh, alongside open-state rules and liquor possession limits.',
+    primaryKeywords: [
+      'guru nanak jayanti dry day 2026',
+      'is 24 nov dry day',
+      'is guru nanak jayanti a dry day',
+      'guru nanak jayanti liquor shop open or closed',
+      'dry day in punjab on guru nanak jayanti',
+      'delhi dry day 24 november 2026',
+      'kya 24 november ko theka band hai',
+    ],
+    secondaryKeywords: [
+      'prakash parv dry day',
+      'guru tegh bahadur shaheedi diwas dry day',
+      'haryana wine shop timings 24 nov',
+      'up excise dry days november 2026',
+      'chandigarh dry day 24 november',
+      'punjab excise act 1914',
+    ],
+    publishedDate: '2026-11-16',
+    lastUpdatedDate: '2026-11-16',
+    lastReviewedDate: '2026-11-16',
+    readingTimeMinutes: 9,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Department of Excise and Taxation - Annual Policy & Dry Day Circulars',
+        organization: 'Government of Punjab',
+        url: 'https://excise.punjab.gov.in',
+        claimSupported:
+          'Mandatory statewide closure of all licensed retail liquor vends (L-2, L-14A), microbreweries, and commercial hotel bars on Guru Nanak Jayanti under the Punjab Excise Act, 1914.',
+      },
+      {
+        title: 'Department of Excise, Entertainment & Luxury Tax - Standing Order 2026',
+        organization: 'Government of NCT of Delhi',
+        url: 'https://excise.delhi.gov.in/notifications',
+        claimSupported:
+          'Standing annual gazetted dry-day order mandating 24-hour closure of all retail corporations (DTTDC, DSIIDC, DCCWS, DSCSC) and commercial hospitality licences on 24 November 2026.',
+      },
+      {
+        title: 'Uttar Pradesh Excise Department - Gazetted Calendar 2026',
+        organization: 'Government of Uttar Pradesh',
+        url: 'https://upexcise.gov.in',
+        claimSupported:
+          'Official statewide mandate closing all retail thekas, model shops, and bars across all 75 revenue districts on Guru Nanak Jayanti / Guru Tegh Bahadur Shaheedi Diwas.',
+      },
+      {
+        title: 'Excise & Taxation Department - UT Chandigarh Administration',
+        organization: 'Chandigarh Administration',
+        url: 'https://etdut.gov.in',
+        claimSupported:
+          'Statutory dry-day order enforcing total retail and on-premise alcohol closure across all sectors of Union Territory Chandigarh on 24 November.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 24 November 2026 (Guru Nanak Jayanti) a dry day in Delhi?',
+        answer:
+          'Yes, 24 November 2026 is an official gazetted dry day in Delhi. Under the Delhi Excise Act, 2009, all government retail liquor vends (operated by DTTDC, DSIIDC, DCCWS, and DSCSC) and hotel/restaurant bars remain completely closed for the full 24-hour calendar day.',
+      },
+      {
+        question: 'Are liquor shops and bars closed in Punjab on Guru Nanak Jayanti?',
+        answer:
+          'Yes, 24 November 2026 is a strictly enforced statewide dry day across all 23 districts of Punjab (including Amritsar, Ludhiana, Jalandhar, Patiala, and Mohali). All retail liquor vends, microbreweries, and commercial bars remain shut.',
+      },
+      {
+        question: 'Is 24 November a dry day in Uttar Pradesh (UP)?',
+        answer:
+          'Yes, the Government of Uttar Pradesh observes 24 November 2026 as a mandatory statewide dry day across all 75 districts (including Noida, Ghaziabad, Lucknow, Kanpur, and Varanasi). All retail thekas and bar lounges remain shut.',
+      },
+      {
+        question: 'Are wine shops and bars closed in Gurugram and Faridabad (Haryana)?',
+        answer:
+          'Yes, under Haryana Excise Department policy, Guru Nanak Jayanti is a gazetted dry day across Haryana. Retail liquor shops and commercial bars in Gurugram (including Cyber Hub and Sector 29) and Faridabad remain closed.',
+      },
+      {
+        question: 'Is 24 November a dry day in Mumbai and Maharashtra?',
+        answer:
+          'No, Guru Nanak Jayanti is generally not a standing statewide gazetted dry day in Maharashtra. Retail wine shops and permit rooms in Mumbai and Pune operate regular licensed hours, though local District Collectors may issue localized circulars in pilgrimage centers such as Nanded.',
+      },
+      {
+        question: 'Are alcohol shops open in Bangalore and Karnataka on 24 November?',
+        answer:
+          'Yes, retail liquor stores (CL-2) and pubs/microbreweries (CL-9) in Bengaluru and throughout Karnataka operate during standard licensed hours on 24 November, as Guru Nanak Jayanti is not classified as a statewide excise dry day under Karnataka rules.',
+      },
+      {
+        question: 'Can hotel guests order alcohol on 24 November in dry states?',
+        answer:
+          'In states enforcing a mandatory dry day (such as Punjab, Delhi, and UP), commercial bar counters in star hotels cannot serve alcohol. Room service for resident guests is strictly governed by local district magistrate circulars; public consumption remains prohibited.',
+      },
+      {
+        question: 'Can I consume alcohol at home on Guru Nanak Jayanti?',
+        answer:
+          'Yes, consuming legally purchased, duty-paid alcohol inside a private residence is not prohibited on dry days, provided it was acquired before the dry curfew and complies with state possession limits.',
+      },
+    ],
+    relatedStateSlug: 'punjab',
+    relatedGuideSlugs: [
+      'delhi-dry-days-2026',
+      'uttar-pradesh-dry-days-2026',
+      'november-dry-days-2026',
+      'rajasthan-dry-days-2026',
+    ],
+  },
+  {
+    slug: 'christmas-2026-dry-day',
+    title: 'Is Christmas 2026 a Dry Day in India? (25 December Rules)',
+    h1Title: 'Is Christmas 2026 a Dry Day in India? (25 December Rules)',
+    seoTitle: 'Christmas 2026 Dry Day: State Rules (25 Dec)',
+    metaDescription:
+      'Is 25 December 2026 a dry day in India? Official excise rules for Christmas liquor sales across Goa, Delhi NCR, Mumbai, Bengaluru, Kolkata & Rajasthan.',
+    stateSlug: 'goa',
+    stateName: 'Goa',
+    region: 'West',
+    excerpt:
+      'Comprehensive legal guide to alcohol sale regulations on Christmas Day (25 December 2026). Discover why Christmas is NOT a national gazetted dry day in India, check open theka timings in Goa, Delhi, Mumbai, Bengaluru, and Kolkata, and review temporary party license requirements.',
+    primaryKeywords: [
+      'christmas dry day 2026',
+      'is 25 december dry day',
+      'is christmas a dry day in india',
+      'christmas liquor shop open or closed',
+      'is christmas dry day in goa',
+      'mumbai dry day 25 december',
+      'delhi liquor shops open on christmas',
+    ],
+    secondaryKeywords: [
+      'christmas eve bar timings',
+      'kolkata park street christmas liquor rules',
+      'bangalore pub timings 25 dec',
+      'temporary party license fl-4',
+      'christmas holiday theka timings',
+    ],
+    publishedDate: '2026-11-16',
+    lastUpdatedDate: '2026-11-16',
+    lastReviewedDate: '2026-11-16',
+    readingTimeMinutes: 8,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Ministry of Home Affairs - National Public Holidays Calendar 2026',
+        organization: 'Government of India',
+        url: 'https://mha.gov.in',
+        claimSupported:
+          'Christmas is a central gazetted public holiday but is not designated as a mandatory statutory alcohol dry day under Central Government rules.',
+      },
+      {
+        title: 'Office of the Commissioner of Excise - Annual Gazetted Dry Days 2026',
+        organization: 'Government of Goa',
+        url: 'https://goaexcise.gov.in',
+        claimSupported:
+          'Confirmation that Christmas Day (25 December) is fully operational for retail wine shops, shacks, and commercial hospitality bars in Goa.',
+      },
+      {
+        title: 'Department of Excise, Entertainment & Luxury Tax - Standing Order 2026',
+        organization: 'Government of NCT of Delhi',
+        url: 'https://excise.delhi.gov.in',
+        claimSupported:
+          'Retail corporation vends and hospitality establishments operate under standard licensed operating schedules on 25 December.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is Christmas Day (25 December) a dry day in India?',
+        answer:
+          'No, Christmas is not a national gazetted dry day in India. Retail liquor shops (thekas), pubs, microbreweries, and hotel bars remain open across all major states including Goa, Maharashtra, Delhi NCR, Karnataka, and West Bengal.',
+      },
+      {
+        question: 'Are liquor shops and beach shacks open in Goa on Christmas?',
+        answer:
+          'Yes, 25 December is one of Goa’s busiest commercial days. Retail wine shops, licensed beach shacks, and nightclubs remain completely open under normal operating hours.',
+      },
+      {
+        question: 'Are wine shops and thekas open in Delhi and UP on 25 December?',
+        answer:
+          'Yes, government corporation retail stores in Delhi and private retail shops in Uttar Pradesh (Noida, Ghaziabad, Lucknow) operate standard retail hours (10:00 AM to 10:00 PM).',
+      },
+      {
+        question: 'Can restaurants and bars serve alcohol on Christmas Eve (24 Dec)?',
+        answer:
+          'Yes, Christmas Eve is completely open. Commercial venues and lounges frequently operate under extended festival night permissions granted by municipal and excise authorities.',
+      },
+      {
+        question: 'Do I need a special license for a private Christmas farmhouse party?',
+        answer:
+          'Yes, serving liquor at a hired banquet venue, farmhouse, or commercial terrace requires a one-day occasional license (such as L-49A in Delhi, FL-11 in UP, or FL-4 in Maharashtra).',
+      },
+      {
+        question: 'Are alcohol shops closed in Bangalore and Mumbai on Christmas?',
+        answer:
+          'No, retail shops (CL-2 in Karnataka, FL-II in Maharashtra) and bars operate normal licensed hours in both Bengaluru and Mumbai.',
+      },
+      {
+        question: 'Which Indian states remain dry on Christmas?',
+        answer:
+          'Only statutory total prohibition states—Bihar, Gujarat, Nagaland, and Mizoram—alongside the Lakshadweep archipelago remain dry, as alcohol is prohibited year-round in those jurisdictions.',
+      },
+      {
+        question: 'Can tourists buy alcohol on Christmas in Kolkata?',
+        answer:
+          'Yes, retail off-shops in Kolkata operate from 10:00 AM to 10:00 PM, while Park Street on-premise bars and restaurants operate late into the evening during Christmas carnival festivities.',
+      },
+    ],
+    relatedStateSlug: 'goa',
+    relatedGuideSlugs: [
+      'new-year-2027-dry-day',
+      'goa-dry-days-and-liquor-rules',
+      'delhi-dry-days-2026',
+      'maharashtra-dry-days-2026',
+    ],
+  },
+  {
+    slug: 'new-year-2027-dry-day',
+    title: 'Is New Year 2027 a Dry Day? 31 Dec & 1 Jan Rules in India',
+    h1Title: 'Is New Year 2027 a Dry Day? 31 Dec & 1 Jan Rules in India',
+    seoTitle: 'New Year 2027 Dry Day: 31 Dec & 1 Jan Rules',
+    metaDescription:
+      'Is 31 Dec or 1 Jan a dry day in India? Official excise rules for New Year 2027 liquor theka timings, party permits & extended bar hours across Delhi & Mumbai.',
+    stateSlug: 'maharashtra',
+    stateName: 'Maharashtra',
+    region: 'West',
+    excerpt:
+      'Authoritative guide to alcohol sales, extended bar curfews, and retail vend timings for New Year’s Eve (31 December 2026) and New Year’s Day (1 January 2027). Discover metro-by-metro operating hours, Kerala’s 1st-of-month BEVCO dry day exception, and traffic police breathalyzer laws.',
+    primaryKeywords: [
+      'new year dry day 2027',
+      'is 31 december dry day',
+      'is 1 january dry day',
+      'new year eve liquor shop timings',
+      'is 31st dec dry day in delhi',
+      'mumbai bar timings 31 december',
+      'is new year a dry day in india',
+    ],
+    secondaryKeywords: [
+      'kerala 1st of month dry day',
+      'delhi 31 dec theka timings',
+      'bangalore pub timings new year eve',
+      'motor vehicles act section 185 drink and drive',
+      'goa new year eve party hours',
+    ],
+    publishedDate: '2026-11-16',
+    lastUpdatedDate: '2026-11-16',
+    lastReviewedDate: '2026-11-16',
+    readingTimeMinutes: 8,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'State Excise Department - Annual Holiday & Notification Register',
+        organization: 'Government of Maharashtra',
+        url: 'https://stateexcise.maharashtra.gov.in',
+        claimSupported:
+          'Confirmation that 31 December and 1 January are commercial open days with specialized annual late-night hospitality extensions.',
+      },
+      {
+        title: 'Foreign Liquor Rules (Rule 7A Statutory 1st-of-Month Directive)',
+        organization: 'Kerala State Beverages Corporation (BEVCO)',
+        url: 'https://keralaexcise.gov.in',
+        claimSupported:
+          'Statutory mandate that 1 January is a compulsory statewide dry day across all BEVCO retail stores and commercial bars under Rule 7A.',
+      },
+      {
+        title: 'Delhi Traffic Police - New Year Traffic Management & Section 185 Protocol',
+        organization: 'Delhi Police',
+        url: 'https://delhitrafficpolice.nic.in',
+        claimSupported:
+          'Standard guidelines on Alcometer breathalyzer limits (30mg/100ml) and traffic nakas on 31 December.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 31 December (New Year’s Eve) a dry day anywhere in India?',
+        answer:
+          'No, 31 December is never a dry day in any open Indian state or Union Territory. Retail stores, restaurants, clubs, and microbreweries operate normal or extended hours.',
+      },
+      {
+        question: 'Is 1 January 2027 (New Year’s Day) a dry day?',
+        answer:
+          '1 January is an open day across almost all of India, except in Kerala where Rule 7A of the Foreign Liquor Rules mandates that the 1st of every calendar month is a mandatory dry day for BEVCO retail and private bars.',
+      },
+      {
+        question: 'What time do liquor thekas close on 31 December in Delhi and UP?',
+        answer:
+          'Retail government vends in Delhi and private wine shops in Uttar Pradesh close at standard retail hours (10:00 PM). Customers should buy supplies during daytime hours.',
+      },
+      {
+        question: 'Are bars open until 5:00 AM in Mumbai on New Year’s Eve?',
+        answer:
+          'Yes, the Maharashtra State Excise Department traditionally issues a special gazetted notification permitting FL-III restaurant and bar license holders to serve until 5:00 AM on the night of 31 December.',
+      },
+      {
+        question: 'Can you buy alcohol on 1 January in Kerala?',
+        answer:
+          'No, all retail BEVCO vends and private bars are completely shut in Kerala on 1 January under the standing monthly dry-day order. Retail operations resume on 2 January.',
+      },
+      {
+        question: 'What is the legal BAC limit for driving on New Year’s Eve?',
+        answer:
+          'Under Section 185 of the Motor Vehicles Act, driving with blood alcohol content (BAC) exceeding 30mg per 100ml is a punishable offense carrying an immediate ₹10,000 fine and driving license suspension.',
+      },
+      {
+        question: 'Do hotel bars in Bangalore stay open late on New Year’s Eve?',
+        answer:
+          'Yes, Bengaluru city police and excise authorities typically extend commercial pub operating hours until 1:00 AM or 2:00 AM across MG Road, Brigade Road, and Indiranagar.',
+      },
+      {
+        question: 'Are wine shops open in Goa on 31 December and 1 January?',
+        answer:
+          'Yes, both 31 December and 1 January are completely open commercial days across North and South Goa.',
+      },
+    ],
+    relatedStateSlug: 'maharashtra',
+    relatedGuideSlugs: [
+      'christmas-2026-dry-day',
+      'kerala-dry-days-2026',
+      'delhi-dry-days-2026',
+      'goa-dry-days-and-liquor-rules',
+    ],
+  },
+  {
+    slug: 'goa-dry-days-and-liquor-rules',
+    title: 'Goa Dry Days & Liquor Rules 2026: Permits & Transit Limits',
+    h1Title: 'Goa Dry Days & Liquor Rules 2026: Permits & Transit Limits',
+    seoTitle: 'Goa Dry Days 2026: Permits & Transit Rules',
+    metaDescription:
+      'Official Goa dry days list for 2026, 2-bottle tourist permit rules, Form 25 transit guidelines, flight baggage limits & border checkpost penalties.',
+    stateSlug: 'goa',
+    stateName: 'Goa',
+    region: 'West',
+    excerpt:
+      'Exhaustive guide to Goa’s standing dry days calendar, the mandatory 2-bottle liquor transit permit (Form 25), flight check-in baggage allowances under BCAS regulations, and severe border checkpost penalties along Maharashtra and Karnataka state lines.',
+    primaryKeywords: [
+      'goa dry days 2026',
+      'goa liquor permit',
+      'carrying alcohol from goa by flight',
+      'goa to mumbai liquor checkpost',
+      'how many bottles of alcohol allowed from goa',
+      'goa liquor transport permit form 25',
+      'patradevi checkpost liquor check',
+    ],
+    secondaryKeywords: [
+      'goa excise duty act 1964',
+      'carrying liquor on konkan railway',
+      'bcas flight alcohol limit domestic',
+      'dabolim airport liquor check-in limit',
+      'mopa airport alcohol carriage rules',
+    ],
+    publishedDate: '2026-11-16',
+    lastUpdatedDate: '2026-11-16',
+    lastReviewedDate: '2026-11-16',
+    readingTimeMinutes: 9,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Office of the Commissioner of Excise - Citizen Charter & Transport Rules',
+        organization: 'Government of Goa',
+        url: 'https://goaexcise.gov.in',
+        claimSupported:
+          'Provisions governing Form 25 liquor transit permits authorizing tourists to transport up to 2 bottles of IMFL/wine per permit outside Goa.',
+      },
+      {
+        title: 'Bureau of Civil Aviation Security (BCAS) - Carriage of Liquids & Alcohol',
+        organization: 'Ministry of Civil Aviation, Government of India',
+        url: 'https://bcasindia.gov.in',
+        claimSupported:
+          'Permitting up to 5 litres of alcoholic beverages (24%–70% ABV) in registered passenger check-in baggage on domestic flights.',
+      },
+      {
+        title: 'Maharashtra Prohibition Act, 1949 - Section 65 Border Enforcement Provisions',
+        organization: 'State Excise Department, Government of Maharashtra',
+        url: 'https://stateexcise.maharashtra.gov.in',
+        claimSupported:
+          'Statutory penalties and vehicle impoundment for transporting non-duty paid Goa liquor across Patradevi/Banda checkposts.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How many dry days does Goa have in a year?',
+        answer:
+          'Goa has only 3 standing gazetted dry days each year: Republic Day (26 January), Independence Day (15 August), and Gandhi Jayanti (2 October), alongside temporary election curfews.',
+      },
+      {
+        question: 'How many bottles of alcohol can I legally carry out of Goa?',
+        answer:
+          'Under Goa Excise rules, a tourist holding an official Form 25 permit can carry a maximum of 2 bottles (up to 750ml each) of IMFL, foreign liquor, or wine.',
+      },
+      {
+        question: 'How do I get a Goa liquor transport permit (Form 25)?',
+        answer:
+          'Any licensed retail wine shop in Goa can issue a Form 25 permit instantly at the billing counter upon presenting a valid government photo ID. The fee is approximately ₹20–₹25.',
+      },
+      {
+        question: 'Can I carry alcohol from Goa on a domestic flight?',
+        answer:
+          'Yes, in registered check-in baggage only. BCAS regulations permit up to 5 litres of alcoholic beverages (between 24% and 70% ABV) per passenger in secure commercial retail packaging.',
+      },
+      {
+        question: 'Can I carry alcohol in cabin hand baggage on flights leaving Goa?',
+        answer:
+          'No, airport security completely bans liquids exceeding 100ml in cabin baggage. All liquor bottles must be packed securely in checked luggage.',
+      },
+      {
+        question: 'Can I carry liquor from Goa on the train (Indian Railways)?',
+        answer:
+          'No, under Sections 164 and 165 of the Indian Railways Act, carrying alcohol in passenger train coaches is strictly prohibited and invites immediate RPF confiscation and fines.',
+      },
+      {
+        question: 'Does Maharashtra recognize the Goa Form 25 permit at checkposts?',
+        answer:
+          'Maharashtra excise checkposts (Patradevi/Banda) do not automatically exempt travellers from Maharashtra state duty. Carrying commercial quantities across state borders results in seizure and arrest under Section 65 of the Maharashtra Prohibition Act.',
+      },
+      {
+        question: 'Are liquor shops open in Goa on Christmas and New Year?',
+        answer:
+          'Yes, retail stores, beach shacks, and night lounges in North and South Goa are completely open on both Christmas (25 Dec) and New Year (31 Dec & 1 Jan).',
+      },
+    ],
+    relatedStateSlug: 'goa',
+    relatedGuideSlugs: [
+      'christmas-2026-dry-day',
+      'new-year-2027-dry-day',
+      'maharashtra-dry-days-2026',
+      'karnataka-dry-days-2026',
+    ],
+  },
+  {
+    slug: 'punjab-dry-days-and-liquor-timings',
+    title: 'Punjab Dry Days & Liquor Timings 2026: Theka Rules',
+    h1Title: 'Punjab Dry Days & Liquor Timings 2026: Theka Rules',
+    seoTitle: 'Punjab Dry Days 2026: Rules & Timings',
+    metaDescription:
+      'Official Punjab dry days 2026 list, theka operating hours (9 AM–11 PM), Punjab Excise Act 1914 rules, L-2 vends & Chandigarh border transit quotas.',
+    stateSlug: 'punjab',
+    stateName: 'Punjab',
+    region: 'North',
+    excerpt:
+      'Authoritative breakdown of Punjab’s retail liquor shop (theka) timings, L-2 and L-14A licenses under the Punjab Excise Act 1914, village panchayat prohibition powers under Section 26, standing religious dry days, and strict Chandigarh border smuggling penalties.',
+    primaryKeywords: [
+      'punjab dry days 2026',
+      'punjab theka timings',
+      'punjab excise act 1914',
+      'ludhiana liquor shop timings',
+      'amritsar wine shop open or closed',
+      'chandigarh liquor carry in punjab penalty',
+      'punjab legal drinking age',
+    ],
+    secondaryKeywords: [
+      'punjab l-2 retail vend license',
+      'section 26 punjab panchayati raj act',
+      'punjab dry day list 2026',
+      'shaheed bhagat singh martyrdom dry day',
+      'guru gobind singh jayanti dry day punjab',
+    ],
+    publishedDate: '2026-11-16',
+    lastUpdatedDate: '2026-11-16',
+    lastReviewedDate: '2026-11-16',
+    readingTimeMinutes: 8,
+    status: 'published',
+    isHistorical: false,
+    sources: [
+      {
+        title: 'Department of Excise and Taxation - Annual State Excise Policy & Timings',
+        organization: 'Government of Punjab',
+        url: 'https://excise.punjab.gov.in',
+        claimSupported:
+          'Statutory operating hours (9:00 AM to 11:00 PM) for L-2 and L-14A retail vends in municipal corporation areas.',
+      },
+      {
+        title: 'Punjab Excise Act, 1914 - Sections 29, 54 & 61 Enforcement Directives',
+        organization: 'Government of Punjab',
+        url: 'https://punjabrevenue.nic.in',
+        claimSupported:
+          'Legal drinking age of 25 years and criminal prosecution for unauthorized transport across Chandigarh borders.',
+      },
+      {
+        title: 'Department of Rural Development & Panchayats - Section 26 Resolution Registry',
+        organization: 'Government of Punjab',
+        url: 'https://pbrdp.gov.in',
+        claimSupported:
+          'Statutory powers of Gram Sabhas to pass resolutions banning retail liquor vends within village boundaries.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What are the official retail liquor shop (theka) timings in Punjab?',
+        answer:
+          'Under Punjab Excise Department rules, retail vends (L-2 for IMFL and L-14A for country liquor) in municipal corporations operate from 9:00 AM to 11:00 PM.',
+      },
+      {
+        question: 'What is the legal drinking age in Punjab?',
+        answer:
+          'Under Section 29 of the Punjab Excise Act, 1914, the statutory legal drinking age in Punjab is 25 years. Selling liquor to persons under 25 is an offense.',
+      },
+      {
+        question: 'Is Guru Nanak Jayanti a mandatory dry day in Punjab?',
+        answer:
+          'Yes, Guru Nanak Jayanti (Prakash Parv) is a full statewide dry day across Punjab. All retail vends, bars, and commercial hospitality counters are closed for 24 hours.',
+      },
+      {
+        question: 'Can I bring cheaper liquor from Chandigarh into Punjab?',
+        answer:
+          'No, bringing liquor marked “For Sale in Chandigarh Only” into Punjab without a valid excise transit permit violates Section 61 of the Punjab Excise Act and attracts arrest, fines, and vehicle impoundment.',
+      },
+      {
+        question: 'Can a village panchayat in Punjab ban liquor shops?',
+        answer:
+          'Yes, under Section 26 of the Punjab Panchayati Raj Act, 1994, a Gram Sabha can pass a resolution with a two-thirds majority before 30 September to prevent any liquor vend from opening in their village.',
+      },
+      {
+        question: 'Is Shaheed Bhagat Singh Martyrdom Day (23 March) a dry day in Punjab?',
+        answer:
+          'Yes, the Punjab Government frequently notifies 23 March as a gazetted dry day in homage to Shaheed Bhagat Singh, Rajguru, and Sukhdev.',
+      },
+      {
+        question: 'Are thekas open in Mohali on Sundays?',
+        answer:
+          'Yes, retail liquor stores in Mohali and across Punjab operate 7 days a week from 9:00 AM to 11:00 PM, closing only on gazetted dry days or election polling curfews.',
+      },
+      {
+        question: 'What are the personal possession limits for alcohol in Punjab?',
+        answer:
+          'An adult individual of legal age may possess up to two bottles of IMFL/imported spirits or one case of beer for bona fide domestic consumption with valid retail invoices.',
+      },
+    ],
+    relatedStateSlug: 'punjab',
+    relatedGuideSlugs: [
+      'guru-nanak-jayanti-2026-dry-day',
+      'delhi-dry-days-2026',
+      'rajasthan-dry-days-2026',
+      'november-dry-days-2026',
+    ],
+  },
 ];
 
 /**

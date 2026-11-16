@@ -13,6 +13,11 @@ import DryStatesGuideArticle from '@/components/guides/DryStatesGuideArticle';
 import NovemberGuideArticle from '@/components/guides/NovemberGuideArticle';
 import DiwaliGuideArticle from '@/components/guides/DiwaliGuideArticle';
 import WestBengalGuideArticle from '@/components/guides/WestBengalGuideArticle';
+import GuruNanakJayantiGuideArticle from '@/components/guides/GuruNanakJayantiGuideArticle';
+import ChristmasGuideArticle from '@/components/guides/ChristmasGuideArticle';
+import NewYearGuideArticle from '@/components/guides/NewYearGuideArticle';
+import GoaLiquorGuideArticle from '@/components/guides/GoaLiquorGuideArticle';
+import PunjabGuideArticle from '@/components/guides/PunjabGuideArticle';
 import JsonLd from '@/components/JsonLd';
 import AdSlot from '@/components/AdSlot';
 
@@ -60,6 +65,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'DryCheck India',
       publishedTime: `${guide.publishedDate}T08:00:00+05:30`,
       modifiedTime: `${guide.lastUpdatedDate}T12:00:00+05:30`,
+      images: [
+        {
+          url: '/logo-desktop.png',
+          width: 450,
+          height: 150,
+          alt: 'DryCheck India',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -190,6 +203,16 @@ export default async function GuideDetailPage({ params }: Props) {
         <DiwaliGuideArticle guide={guide} />
       ) : guide.slug === 'west-bengal-dry-days-2026' ? (
         <WestBengalGuideArticle guide={guide} />
+      ) : guide.slug === 'guru-nanak-jayanti-2026-dry-day' ? (
+        <GuruNanakJayantiGuideArticle guide={guide} />
+      ) : guide.slug === 'christmas-2026-dry-day' ? (
+        <ChristmasGuideArticle guide={guide} />
+      ) : guide.slug === 'new-year-2027-dry-day' ? (
+        <NewYearGuideArticle guide={guide} />
+      ) : guide.slug === 'goa-dry-days-and-liquor-rules' ? (
+        <GoaLiquorGuideArticle guide={guide} />
+      ) : guide.slug === 'punjab-dry-days-and-liquor-timings' ? (
+        <PunjabGuideArticle guide={guide} />
       ) : (
         <div className="mx-auto w-full max-w-4xl px-4 py-8">
           <h1 className="text-2xl font-bold text-white">{guide.title}</h1>

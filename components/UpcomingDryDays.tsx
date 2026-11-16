@@ -30,10 +30,10 @@ export default function UpcomingDryDays({
         <div>
           <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
             <CalendarDays className="h-5 w-5 text-amber-400" />
-            <span>Dry Days Ahead (Next 4 Weeks)</span>
+            <span>Upcoming Dry Days Across India</span>
           </h2>
           <p className="text-xs text-neutral-400 mt-0.5">
-            Upcoming festival, national, and election-related dry dates
+            Confirmed and reported festive, national, and gazetted dates ahead
           </p>
         </div>
         <span className="text-xs font-mono text-neutral-400">

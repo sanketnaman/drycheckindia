@@ -92,6 +92,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonicalUrl,
       type: 'article',
       siteName: 'DryCheck India',
+      images: [
+        {
+          url: '/logo-desktop.png',
+          width: 450,
+          height: 150,
+          alt: 'DryCheck India',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -166,6 +174,9 @@ export default async function DatePage({ params }: Props) {
   const popularStates = popularStateSlugs
     .map((s) => getStateBySlug(s))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+  // Unique dates across dataset for complete reciprocal interlinking (0 orphan pages)
+  const allUniqueDates = Array.from(new Set(entries.map((e) => e.date))).sort();
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -542,6 +553,43 @@ export default async function DatePage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {/* Other Gazetted & Festival Dates in 2026 */}
+        {allUniqueDates.length > 0 && (
+          <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-amber-400" />
+                <span>All 2026 Gazetted &amp; Festival Dry Dates</span>
+              </h2>
+              <Link href="/" className="text-xs text-amber-400 hover:underline">
+                Today Live Status &rarr;
+              </Link>
+            </div>
+            <p className="mt-2.5 text-xs text-neutral-300 leading-relaxed">
+              Check official state-wise wine shop, theka, and bar closure directives for other notified dates in 2026:
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {allUniqueDates.map((d) => {
+                const dSlug = dateToSlug(d);
+                const isCurrent = d === dateIST;
+                return (
+                  <Link
+                    key={d}
+                    href={`/dry-days/${dSlug}`}
+                    className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-colors min-h-[36px] inline-flex items-center ${
+                      isCurrent
+                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold'
+                        : 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:text-white'
+                    }`}
+                  >
+                    {formatDateDisplay(d, { showDayOfWeek: false, fullMonth: false })}
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Back navigation */}
         <div className="my-6 flex items-center justify-between text-xs text-neutral-400">

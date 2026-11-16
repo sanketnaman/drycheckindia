@@ -93,7 +93,7 @@ export default async function HomePage() {
   const dryStatesToday = getDryStatesOn(todayIST, entries);
   const dryStatesTomorrow = getDryStatesOn(tomorrowIST, entries);
 
-  const upcoming4Weeks = getUpcomingDryDaysGrouped(todayIST, 28, entries);
+  const upcoming4Weeks = getUpcomingDryDaysGrouped(todayIST, 90, entries);
 
   const formattedToday = formatDateDisplay(todayIST, { showDayOfWeek: true });
   const formattedTomorrow = formatDateDisplay(tomorrowIST, { showDayOfWeek: true });

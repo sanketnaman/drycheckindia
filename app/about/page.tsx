@@ -18,6 +18,14 @@ export const metadata: Metadata = {
       'Learn how dry days are declared in India, what laws govern liquor sale restrictions, and why DryCheck India provides independent, real-time IST updates.',
     url: `${SITE_URL}/about`,
     siteName: 'DryCheck India',
+    images: [
+      {
+        url: '/logo-desktop.png',
+        width: 450,
+        height: 150,
+        alt: 'DryCheck India',
+      },
+    ],
   },
 };
 

@@ -100,8 +100,9 @@ describe('Guides Registry & Data Model', () => {
     expect(delhiGuides.map((g) => g.slug)).toContain('november-dry-days-2026');
 
     const mhGuides = getPublishedGuidesByState('maharashtra');
-    expect(mhGuides.length).toBe(1);
-    expect(mhGuides[0].slug).toBe('maharashtra-dry-days-2026');
+    expect(mhGuides.length).toBe(2);
+    expect(mhGuides.map((g) => g.slug)).toContain('maharashtra-dry-days-2026');
+    expect(mhGuides.map((g) => g.slug)).toContain('new-year-2027-dry-day');
 
     const karnatakaGuides = getPublishedGuidesByState('karnataka');
     expect(karnatakaGuides.length).toBe(1);
@@ -118,6 +119,16 @@ describe('Guides Registry & Data Model', () => {
     const gujaratGuides = getPublishedGuidesByState('gujarat');
     expect(gujaratGuides.length).toBe(1);
     expect(gujaratGuides[0].slug).toBe('dry-states-in-india-2026');
+
+    const punjabGuides = getPublishedGuidesByState('punjab');
+    expect(punjabGuides.length).toBe(2);
+    expect(punjabGuides.map((g) => g.slug)).toContain('guru-nanak-jayanti-2026-dry-day');
+    expect(punjabGuides.map((g) => g.slug)).toContain('punjab-dry-days-and-liquor-timings');
+
+    const goaGuides = getPublishedGuidesByState('goa');
+    expect(goaGuides.length).toBe(2);
+    expect(goaGuides.map((g) => g.slug)).toContain('christmas-2026-dry-day');
+    expect(goaGuides.map((g) => g.slug)).toContain('goa-dry-days-and-liquor-rules');
 
     const biharGuides = getPublishedGuidesByState('bihar');
     expect(biharGuides).toEqual([]);
@@ -225,6 +236,11 @@ describe('Sitemap Integration', () => {
     expect(urls).toContain('https://drycheck.in/guides/november-dry-days-2026');
     expect(urls).toContain('https://drycheck.in/guides/diwali-2026-dry-day');
     expect(urls).toContain('https://drycheck.in/guides/west-bengal-dry-days-2026');
+    expect(urls).toContain('https://drycheck.in/guides/guru-nanak-jayanti-2026-dry-day');
+    expect(urls).toContain('https://drycheck.in/guides/christmas-2026-dry-day');
+    expect(urls).toContain('https://drycheck.in/guides/new-year-2027-dry-day');
+    expect(urls).toContain('https://drycheck.in/guides/goa-dry-days-and-liquor-rules');
+    expect(urls).toContain('https://drycheck.in/guides/punjab-dry-days-and-liquor-timings');
 
     // Confirm existing routes still exist
     expect(urls).toContain('https://drycheck.in');
