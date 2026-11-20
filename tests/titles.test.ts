@@ -66,6 +66,20 @@ describe('Page Title & Metadata Formatting', () => {
     expect(preBrand).toBe('Is 2 October 2026 a Dry Day in India? State List');
   });
 
+  test('date pages automatically apply noindex to past dates and index to future dates', async () => {
+    // 27 October 2026 is in the past
+    const pastMeta = await generateDateMetadata({
+      params: Promise.resolve({ date: '27-october-2026' }),
+    });
+    expect(pastMeta.robots).toEqual({ index: false, follow: true });
+
+    // 25 December 2026 is in the future
+    const futureMeta = await generateDateMetadata({
+      params: Promise.resolve({ date: '25-december-2026' }),
+    });
+    expect(futureMeta.robots).toEqual({ index: true, follow: true });
+  });
+
   test('all published guides have DryCheck India exactly once and pre-brand <= 60 chars', async () => {
     const publishedGuides = getPublishedGuides();
     expect(publishedGuides.length).toBeGreaterThanOrEqual(1);

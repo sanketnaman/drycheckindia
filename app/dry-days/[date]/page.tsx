@@ -79,6 +79,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonicalUrl = `${SITE_URL}/dry-days/${rawSlug}`;
   const fullTitle = `${title} | DryCheck India`;
+  const todayIST = getTodayIST();
+  const isPastDate = dateIST < todayIST;
 
   return {
     title,
@@ -86,6 +88,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: canonicalUrl,
     },
+    robots: isPastDate
+      ? {
+          index: false,
+          follow: true,
+        }
+      : {
+          index: true,
+          follow: true,
+        },
     openGraph: {
       title: fullTitle,
       description,
