@@ -41,6 +41,10 @@ import {
   BookOpen,
   Store,
   Beer,
+  Truck,
+  FileText,
+  Navigation,
+  ShieldAlert,
 } from 'lucide-react';
 
 export const revalidate = 1800;
@@ -312,6 +316,26 @@ export default async function StatePage({ params }: Props) {
           text: state.prohibition
             ? `Commercial liquor retail is prohibited in ${state.name}. No licensed private thekas, wine shops, or state corporations operate within the state.`
             : `Retail alcohol distribution in ${state.name} is structured as ${exciseProfile?.retailModel || 'licensed retail vends'}. ${exciseProfile?.statutorySummary || 'Licensed shops operate within regulated municipal trading hours.'}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Can you order alcohol online or get home delivery in ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `No, alcohol sales and home delivery are completely banned in ${state.name}. Any online platform claiming to deliver alcohol is fraudulent and unlawful.`
+            : `${exciseProfile?.onlineDeliveryPolicy || `Home delivery of alcohol is not authorized in ${state.name}. In-person physical purchase at licensed retail vends is legally required.`}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What are the rules for carrying alcohol across borders into ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `Carrying any quantity of alcohol into ${state.name} from other states is strictly illegal and results in immediate non-bailable arrest, heavy fines, and vehicle impoundment under state prohibition laws.`
+            : `${exciseProfile?.interstateTransitGuidance || `Interstate transit is strictly restricted to authorized domestic personal quotas with valid proof of duty paid.`}`,
         },
       },
       {
@@ -668,44 +692,140 @@ export default async function StatePage({ params }: Props) {
           </div>
         </section>
 
-        {/* State Excise Regulations Summary */}
-        <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-5">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-neutral-800 mb-3 gap-2">
-            <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-              <Scale className="h-4 w-4 text-amber-400" />
-              <span>Excise Policy &amp; Legal Framework &bull; {state.name}</span>
-            </h2>
+        {/* State Excise Regulations & Complete Legal Guide */}
+        <section className="my-6 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-neutral-800 mb-4 gap-2">
+            <div>
+              <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                <Scale className="h-5 w-5 text-amber-400" />
+                <span>Excise Policy &amp; Complete Legal Guide &bull; {state.name}</span>
+              </h2>
+              <p className="text-xs text-neutral-400 mt-1">
+                Statutory framework, licensing categories, border transit, and delivery rules verified under official state notifications.
+              </p>
+            </div>
             {exciseProfile && (
-              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 self-start sm:self-auto">
+              <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 self-start sm:self-auto font-medium">
                 {exciseProfile.retailModel}
               </span>
             )}
           </div>
-          <div className="text-xs sm:text-sm text-neutral-300 space-y-3 leading-relaxed">
+
+          <div className="text-xs sm:text-sm text-neutral-300 space-y-5 leading-relaxed">
             {exciseProfile ? (
               <>
-                <p>
-                  <strong className="text-white">Statutory Governance:</strong> {exciseProfile.statutorySummary}
-                </p>
-                <div className="p-3.5 rounded-xl bg-neutral-950/90 border border-neutral-800 space-y-2 text-xs">
+                {/* 1. Statutory Summary & Governance */}
+                <div>
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                    <FileText className="h-3.5 w-3.5" />
+                    <span>Statutory Governance &amp; Administration</span>
+                  </h3>
+                  <p>{exciseProfile.statutorySummary}</p>
+                  {exciseProfile.historyAndPolicy && (
+                    <p className="mt-2 text-neutral-400 text-xs">
+                      {exciseProfile.historyAndPolicy}
+                    </p>
+                  )}
+                </div>
+
+                {/* Authority & Legal Act Box */}
+                <div className="p-3.5 rounded-xl bg-neutral-950/90 border border-neutral-800 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div>
-                    <span className="text-amber-400 font-semibold block">Applicable Law / Governing Act:</span>
+                    <span className="text-amber-400 font-semibold block">Governing Act / Legislation:</span>
                     <span className="text-neutral-200">{exciseProfile.actName}</span>
                   </div>
                   <div>
-                    <span className="text-amber-400 font-semibold block">State Excise Authority:</span>
+                    <span className="text-amber-400 font-semibold block">Regulatory Authority:</span>
                     <span className="text-neutral-200">{exciseProfile.regulatoryAuthority}</span>
                   </div>
                 </div>
-                <p>
-                  <strong className="text-white">Standing Closures &amp; Gazette Dates:</strong> {exciseProfile.standingDryDaysSummary}
-                </p>
-                <p className="text-neutral-400 text-xs">
-                  <strong className="text-neutral-300">Interstate Transit &amp; Possession Limits:</strong> {exciseProfile.transitAndPossessionRule}
-                </p>
-                <p className="text-[11px] text-neutral-500 italic border-t border-neutral-800/60 pt-2">
-                  <strong className="text-neutral-400 not-italic">Enforcement Notice:</strong> {exciseProfile.penaltiesNotice}
-                </p>
+
+                {/* 2. Retail Distribution & License Categories */}
+                {exciseProfile.retailAndLicensingDetails && (
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                      <Store className="h-3.5 w-3.5" />
+                      <span>Retail Distribution &amp; Commercial Licensing</span>
+                    </h3>
+                    <p>{exciseProfile.retailAndLicensingDetails}</p>
+
+                    {exciseProfile.licenseCategories && exciseProfile.licenseCategories.length > 0 && (
+                      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {exciseProfile.licenseCategories.map((lic, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 rounded-xl bg-neutral-950/80 border border-neutral-800/80 space-y-1"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono text-[11px] font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
+                                {lic.code}
+                              </span>
+                              <span className="text-[11px] font-semibold text-neutral-200 truncate ml-2">
+                                {lic.name}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-neutral-400 leading-normal">
+                              {lic.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* 3. Interstate Transit, Airport Baggage & Check-Posts */}
+                <div>
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                    <Navigation className="h-3.5 w-3.5" />
+                    <span>Interstate Border Transit &amp; Traveler Baggage Rules</span>
+                  </h3>
+                  <p>{exciseProfile.interstateTransitGuidance}</p>
+                  <p className="mt-1.5 text-neutral-400 text-xs">
+                    <strong className="text-neutral-300">Domestic Quota Limit:</strong> {exciseProfile.transitAndPossessionRule}
+                  </p>
+                </div>
+
+                {/* 4. Online Delivery & E-Commerce Policy */}
+                <div>
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                    <Truck className="h-3.5 w-3.5" />
+                    <span>Online Liquor Delivery &amp; App Ordering Legality</span>
+                  </h3>
+                  <p>{exciseProfile.onlineDeliveryPolicy}</p>
+                </div>
+
+                {/* 5. District, Municipal & Sacred Pilgrimage Nuances */}
+                {exciseProfile.districtAndCityNuances && (
+                  <div>
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                      <MapPin className="h-3.5 w-3.5" />
+                      <span>District Nuances, Tourist Corridors &amp; Holy Town Zones</span>
+                    </h3>
+                    <p>{exciseProfile.districtAndCityNuances}</p>
+                  </div>
+                )}
+
+                {/* 6. Standing Gazette Closures & Election Curfews */}
+                <div>
+                  <h3 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1.5 flex items-center gap-1.5 font-semibold">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>Gazetted Dry Days &amp; Election Curfews</span>
+                  </h3>
+                  <p>{exciseProfile.standingDryDaysSummary}</p>
+                  <p className="mt-1.5 text-neutral-400 text-xs">
+                    National holidays (26 January, 15 August, and 2 October) are mandatory pan-India dry days. In addition, under Section 135C of the Representation of the People Act, 1951, a mandatory 48-hour dry curfew ending with the hour fixed for the conclusion of poll is enforced during legislative assembly and parliamentary elections across polling constituencies.
+                  </p>
+                </div>
+
+                {/* Penalties & Legal Disclaimer */}
+                <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-900/40 text-rose-200 text-xs flex items-start gap-2">
+                  <ShieldAlert className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-rose-300 block font-semibold mb-0.5">Enforcement &amp; Legal Compliance Notice:</strong>
+                    <span>{exciseProfile.penaltiesNotice}</span>
+                  </div>
+                </div>
               </>
             ) : state.prohibition ? (
               <p>

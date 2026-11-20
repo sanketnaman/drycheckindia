@@ -6,6 +6,12 @@
  * duplication and delivers authentic E-E-A-T legal value to users and crawlers.
  */
 
+export interface LicenseCategory {
+  code: string;
+  name: string;
+  description: string;
+}
+
 export interface StateExciseProfile {
   actName: string;
   regulatoryAuthority: string;
@@ -15,515 +21,1289 @@ export interface StateExciseProfile {
   standingDryDaysSummary: string;
   transitAndPossessionRule: string;
   penaltiesNotice: string;
+  historyAndPolicy: string;
+  retailAndLicensingDetails: string;
+  licenseCategories: LicenseCategory[];
+  interstateTransitGuidance: string;
+  onlineDeliveryPolicy: string;
+  districtAndCityNuances: string;
 }
 
 export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
-  'delhi': {
-    actName: 'Delhi Excise Act, 2009 & Delhi Excise Rules, 2010',
-    regulatoryAuthority: 'Department of Excise, Entertainment & Luxury Tax, Government of NCT of Delhi',
-    officialPortal: 'https://excise.delhi.gov.in',
-    retailModel: '100% State Corporation Retail (DTTDC, DSIIDC, DCCWS, DSCSC)',
-    statutorySummary:
-      'In the National Capital Territory of Delhi, the retail distribution of Indian Made Foreign Liquor (IMFL) and country liquor is exclusively managed by four state government undertakings: DTTDC, DSIIDC, DCCWS, and DSCSC. The legal drinking age in Delhi is statutorily set at 21 years under the Delhi Excise Act, 2009. Retail vends operate strictly between 10:00 AM and 10:00 PM, while standalone hotel and restaurant bars with L-16/L-17 licenses may serve liquor until 1:00 AM (or extended to 3:00 AM in designated hospitality hubs).',
-    standingDryDaysSummary:
-      'Delhi enforces mandatory 24-hour dry-day closures across all retail stores on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), alongside major religious observances including Eid-ul-Fitr, Eid-ul-Adha, Muharram, Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, and Dussehra. During municipal or legislative assembly elections, a 48-hour dry curfew ending with the conclusion of polling is strictly enforced.',
-    transitAndPossessionRule:
-      'Under Rule 20 of the Delhi Excise Rules, 2010, an individual may possess up to 9 litres of foreign liquor/wine/beer and 18 litres of beer or alcopop for domestic consumption. However, importing liquor across NCR borders (from Haryana or Uttar Pradesh) without paying Delhi excise duty is strictly capped at one sealed 750ml bottle per individual.',
-    penaltiesNotice:
-      'Possession beyond authorized quotas or unauthorized interstate bootlegging invites prosecution under Section 33 of the Delhi Excise Act, 2009, punishable with rigorous imprisonment of up to 3 years and heavy pecuniary fines.',
+  "delhi": {
+    "actName": "Delhi Excise Act, 2009 & Delhi Excise Rules, 2010",
+    "regulatoryAuthority": "Department of Excise, Entertainment & Luxury Tax, Government of NCT of Delhi",
+    "officialPortal": "https://excise.delhi.gov.in",
+    "retailModel": "100% State Corporation Retail (DTTDC, DSIIDC, DCCWS, DSCSC)",
+    "statutorySummary": "In the National Capital Territory of Delhi, retail liquor distribution is exclusively managed by four state government undertakings: DTTDC, DSIIDC, DCCWS, and DSCSC. The legal drinking age in Delhi is statutorily set at 21 years under the Delhi Excise Act, 2009. Retail vends operate strictly between 10:00 AM and 10:00 PM, while standalone hotel and restaurant bars holding L-16/L-17 licenses serve liquor until 1:00 AM (extended to 3:00 AM in designated hospitality hubs like Aerocity).",
+    "standingDryDaysSummary": "Delhi enforces mandatory 24-hour dry-day closures across all retail stores on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), alongside major religious observances including Eid-ul-Fitr, Eid-ul-Adha, Muharram, Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, and Dussehra. During municipal or legislative assembly elections, a 48-hour dry curfew ending with the conclusion of polling is strictly enforced.",
+    "transitAndPossessionRule": "Under Rule 20 of the Delhi Excise Rules, 2010, an individual may possess up to 9 litres of foreign liquor/wine and 18 litres of beer or alcopop for domestic consumption. However, importing liquor across NCR borders (from Haryana or Uttar Pradesh) without paying Delhi excise duty is strictly capped at one sealed 750ml bottle per individual.",
+    "penaltiesNotice": "Possession beyond authorized quotas or unauthorized interstate bootlegging invites prosecution under Section 33 of the Delhi Excise Act, 2009, punishable with rigorous imprisonment of up to 3 years and heavy pecuniary fines.",
+    "historyAndPolicy": "Delhi transitioned back to its legacy government-corporation retail regime in September 2022 following the rollback of the 2021-22 privatization policy. The current regulatory environment prioritizes strict revenue protection, regulated brand registration, standardized wholesale pricing, and state-controlled inventory dispatch via electronic excise portals.",
+    "retailAndLicensingDetails": "Over 600 government vends are strategically distributed across municipal zones. Each vend operates computerized POS billing with real-time barcode authentication to prevent counterfeit products. Retail margins are statutorily fixed, and all bottles must carry the high-security hologram issued by the Delhi Excise Commissionerate.",
+    "licenseCategories": [
+      {
+        "code": "L-1 / L-2",
+        "name": "Wholesale & Retail Government Vend",
+        "description": "Packaged liquor retail run exclusively by government undertakings (10:00 AM – 10:00 PM)."
+      },
+      {
+        "code": "L-16 / L-17",
+        "name": "Independent Restaurant & Hotel Bar",
+        "description": "Table service of Indian and imported liquor in certified commercial dining establishments (up to 1:00 AM / 3:00 AM)."
+      },
+      {
+        "code": "L-10",
+        "name": "Premium Retail Vend in Shopping Malls",
+        "description": "Air-conditioned walk-in shopping experience for premium spirits and imported wines."
+      },
+      {
+        "code": "P-10",
+        "name": "One-Day Event & Banquet Permit",
+        "description": "Temporary commercial liquor service license for weddings, farmhouses, and corporate parties."
+      }
+    ],
+    "interstateTransitGuidance": "Delhi Police and the Excise Flying Squad conduct random vehicle inspections along NCR border points (DND Flyway, Kalindi Kunj, Badarpur, Sirhaul border). Commuters entering Delhi from Haryana or UP are restricted to at most one sealed bottle (750ml) for personal consumption. Bulk carriage or commercial transit of Haryana-labeled bottles into Delhi constitutes an unbailable revenue offence.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is completely illegal in the NCT of Delhi. Although legal draft provisions for app-based delivery were proposed during policy revisions, no licenses have been operationalized. Food delivery aggregators (Zomato, Swiggy, Blinkit) are prohibited from delivering alcohol; online liquor vendors operating in Delhi are fraudulent.",
+    "districtAndCityNuances": "New Delhi Municipal Council (NDMC) and South Delhi zones (Connaught Place, Khan Market, Mehrauli, Aerocity) feature the highest density of L-16 restobars and extended night-time hospitality hours. In contrast, residential vends in East and North East Delhi face strict 10:00 PM shuttering with intense local community policing."
   },
-  'uttar-pradesh': {
-    actName: 'United Provinces Excise Act, 1910 (as amended for Uttar Pradesh)',
-    regulatoryAuthority: 'Uttar Pradesh Excise Department, Government of Uttar Pradesh',
-    officialPortal: 'https://upexcise.gov.in',
-    retailModel: 'Auctioned Private Retail Thekas & Premium Model Shops',
-    statutorySummary:
-      'Uttar Pradesh governs alcohol production, taxation, and distribution under the United Provinces Excise Act, 1910, overseen by the Excise Commissioner in Prayagraj. Retail licenses are allocated through an annual e-lottery/settlement system across 75 revenue districts. The standard retail operating window is strictly 10:00 AM to 10:00 PM. The minimum legal drinking age in Uttar Pradesh is 21 years.',
-    standingDryDaysSummary:
-      'Standing statewide dry days in UP include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Rama Navami, Mahavir Jayanti, Eid-ul-Fitr, Muharram, and Guru Nanak Jayanti. While Diwali day is historically an open commercial retail evening, individual district magistrates (DMs) possess discretionary authority under Section 59 to notify localized dry days during Kanwar Yatra routes, municipal polling, and local melas.',
-    transitAndPossessionRule:
-      'Bringing liquor purchased in Delhi or Haryana into Uttar Pradesh without a valid UP excise barcode is strictly restricted. The state excise enforcement wing permits at most one unsealed bottle per commuter for personal transit; bringing un-taxed commercial quantities from NCR borders violates state revenue laws.',
-    penaltiesNotice:
-      'Unlawful transport or possession of non-UP duty-paid liquor is prosecuted under Sections 60 and 63 of the UP Excise Act, carrying non-bailable arrest warrants, vehicle impoundment, and mandatory fines.',
+  "uttar-pradesh": {
+    "actName": "United Provinces Excise Act, 1910 (as amended for Uttar Pradesh)",
+    "regulatoryAuthority": "Uttar Pradesh Excise Department, Government of Uttar Pradesh",
+    "officialPortal": "https://upexcise.gov.in",
+    "retailModel": "Auctioned Private Retail Thekas & Premium Model Shops",
+    "statutorySummary": "Uttar Pradesh governs alcohol production, taxation, and distribution under the United Provinces Excise Act, 1910, overseen by the Excise Commissioner in Prayagraj. Retail licenses are allocated through an annual e-lottery/settlement system across 75 revenue districts. The standard retail operating window is strictly 10:00 AM to 10:00 PM. The minimum legal drinking age in Uttar Pradesh is 21 years.",
+    "standingDryDaysSummary": "Standing statewide dry days in UP include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Rama Navami, Mahavir Jayanti, Eid-ul-Fitr, Muharram, and Guru Nanak Jayanti. While Diwali day is historically an open commercial retail evening, individual district magistrates (DMs) possess discretionary authority under Section 59 to notify localized dry days during Kanwar Yatra routes, municipal polling, and local melas.",
+    "transitAndPossessionRule": "Bringing liquor purchased in Delhi or Haryana into Uttar Pradesh without a valid UP excise barcode is strictly restricted. The state excise enforcement wing permits at most one unsealed bottle per commuter for personal transit; bringing un-taxed commercial quantities from NCR borders violates state revenue laws.",
+    "penaltiesNotice": "Unlawful transport or possession of non-UP duty-paid liquor is prosecuted under Sections 60 and 63 of the UP Excise Act, carrying non-bailable arrest warrants, vehicle impoundment, and mandatory fines.",
+    "historyAndPolicy": "Uttar Pradesh has developed one of India’s most robust excise revenue frameworks, yielding over ₹45,000 crore annually. The state transitioned from manual tenders to transparent e-lottery allocations, establishing track-and-trace QR codes on every bottle from distillery to consumer.",
+    "retailAndLicensingDetails": "Retail vends in UP are categorized into Country Liquor (Desi Theka), Foreign Liquor (IMFL), Beer Shops, and Model Shops. Model shops feature air-conditioned interiors and attached consumption cabins (ahatas), providing organized off-street consumption options in urban centers.",
+    "licenseCategories": [
+      {
+        "code": "FL-4 / FL-5",
+        "name": "Retail Foreign Liquor & Beer Vend",
+        "description": "Packaged off-premise retail shops operating under strict 10:00 AM – 10:00 PM daily hours."
+      },
+      {
+        "code": "FL-7 / FL-7B",
+        "name": "Bar & Commercial Restaurant License",
+        "description": "Table service of spirits and draught beer inside certified dining and hotel establishments."
+      },
+      {
+        "code": "Model Shop",
+        "name": "Premium Walk-in Store with Ahata",
+        "description": "Upmarket retail stores offering packaged liquor along with an enclosed tasting cabin."
+      },
+      {
+        "code": "Occasional Permit",
+        "name": "One-Day Commercial Event License",
+        "description": "Mandatory single-day excise permit for hosting alcohol service at banquets and weddings."
+      }
+    ],
+    "interstateTransitGuidance": "Commuters crossing NCR borders (Noida, Greater Noida, Ghaziabad) from Delhi or Haryana are closely monitored at toll checkposts (Chilla, DND, Kalindi Kunj). Only one unsealed bottle per passenger is tolerated for genuine personal transit; transporting sealed cartons or bootlegged liquor from Haryana incurs immediate seizure, FIR registration, and impoundment of the vehicle.",
+    "onlineDeliveryPolicy": "Doorstep home delivery of liquor is prohibited across Uttar Pradesh. E-commerce food aggregators are not authorized to deliver alcohol; purchases must be made physically at licensed counters during authorized hours.",
+    "districtAndCityNuances": "Strict religious zoning is enforced: complete alcohol bans operate within the sacred perimeters of Ayodhya (Panchkosi and Chaudah Kosi parikrama rings), Mathura-Vrindavan (22 designated municipal wards), and the Kashi Vishwanath temple corridor in Varanasi. Commercial hubs like Noida and Lucknow enjoy model shop culture."
   },
-  'maharashtra': {
-    actName: 'Maharashtra Prohibition Act, 1949 (formerly Bombay Prohibition Act, 1949)',
-    regulatoryAuthority: 'State Excise Department (Rajya Utpadan Shulk), Government of Maharashtra',
-    officialPortal: 'https://stateexcise.maharashtra.gov.in',
-    retailModel: 'Licensed Private Retail (FL-II Wine Stores) & Supermarket Outlets',
-    statutorySummary:
-      'Maharashtra administers alcohol control under the landmark Maharashtra Prohibition Act, 1949. Uniquely under Section 11, the consumption of liquor legally requires a valid personal liquor permit issued by the State Excise Department (available online or daily at licensed premises). The legal drinking age is 21 for mild beer/wine and 25 for hard spirits. Two districts—Wardha (associated with Mahatma Gandhi) and Gadchiroli—are under permanent district-wide statutory prohibition.',
-    standingDryDaysSummary:
-      'Statewide mandatory dry days include Republic Day (26 Jan), Maharashtra Day (1 May), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Prohibition Week launch (8 Oct), and the martyrdom anniversary of Mahatma Gandhi (30 Jan). Major religious dry days include Ashadhi Ekadashi and Kartiki Ekadashi (with complete Pandharpur pilgrimage bans), Ganesh Visarjan (Anant Chaturdashi), Moharram, and Mahavir Jayanti.',
-    transitAndPossessionRule:
-      'Carrying liquor into Maharashtra from Daman, Goa, or Karnataka without a transit pass issued by the Maharashtra Commissioner of State Excise is unlawful. Standard domestic possession within Maharashtra is limited to 12 sealed bottles of spirits with valid consumer permits.',
-    penaltiesNotice:
-      'Illegal manufacture, possession, or transit is punishable under Section 65 of the Maharashtra Prohibition Act, 1949, with imprisonment of up to 5 years and vehicle confiscation.',
+  "maharashtra": {
+    "actName": "Maharashtra Prohibition Act, 1949 (formerly Bombay Prohibition Act, 1949)",
+    "regulatoryAuthority": "State Excise Department (Rajya Utpadan Shulk), Government of Maharashtra",
+    "officialPortal": "https://stateexcise.maharashtra.gov.in",
+    "retailModel": "Licensed Private Retail (FL-II Wine Stores) & Supermarket Outlets",
+    "statutorySummary": "Maharashtra administers alcohol control under the landmark Maharashtra Prohibition Act, 1949. Uniquely under Section 11, the consumption of liquor legally requires a valid personal liquor permit issued by the State Excise Department (available online or daily at licensed premises). The legal drinking age is 21 for mild beer/wine and 25 for hard spirits. Two districts—Wardha (associated with Mahatma Gandhi) and Gadchiroli—are under permanent district-wide statutory prohibition.",
+    "standingDryDaysSummary": "Statewide mandatory dry days include Republic Day (26 Jan), Maharashtra Day (1 May), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Prohibition Week launch (8 Oct), and the martyrdom anniversary of Mahatma Gandhi (30 Jan). Major religious dry days include Ashadhi Ekadashi and Kartiki Ekadashi (with complete Pandharpur pilgrimage bans), Ganesh Visarjan (Anant Chaturdashi), Moharram, and Mahavir Jayanti.",
+    "transitAndPossessionRule": "Carrying liquor into Maharashtra from Daman, Goa, or Karnataka without a transit pass issued by the Maharashtra Commissioner of State Excise is unlawful. Standard domestic possession within Maharashtra is limited to 12 sealed bottles of spirits with valid consumer permits.",
+    "penaltiesNotice": "Illegal manufacture, possession, or transit is punishable under Section 65 of the Maharashtra Prohibition Act, 1949, with imprisonment of up to 5 years and vehicle confiscation.",
+    "historyAndPolicy": "Rooted in Gandhian temperance principles, Maharashtra maintained a permit-based legal fiction where consumption is technically authorized for medical maintenance. Over decades, this evolved into a streamlined online permit system and a booming indigenous wine industry centered around the Nashik valley.",
+    "retailAndLicensingDetails": "Private retail vends (FL-II) and standalone beer/wine shoppes (FLBR-II) operate across municipal wards. Maharashtra also permits shelf sales of mild fruit wines in licensed supermarkets across major metropolitan areas.",
+    "licenseCategories": [
+      {
+        "code": "FL-II",
+        "name": "Retail Foreign Liquor Merchant Shop",
+        "description": "Packaged off-premise sales of IMFL, imported spirits, beer, and wines (10:30 AM – 10:30 PM)."
+      },
+      {
+        "code": "FL-III",
+        "name": "Restaurant Permit Room & Bar",
+        "description": "Table service of liquor in licensed dining rooms and lounges (operating up to 1:30 AM in Mumbai/Pune)."
+      },
+      {
+        "code": "FLBR-II",
+        "name": "Beer & Wine Shoppe",
+        "description": "Exclusive retail store licensed solely for mild and strong beer and domestic table wines."
+      },
+      {
+        "code": "Form E",
+        "name": "Personal Drinking Permit",
+        "description": "Lifetime or annual consumer permit required under Section 11 of the Prohibition Act."
+      }
+    ],
+    "interstateTransitGuidance": "Maharashtra Excise maintains rigorous border check-posts along the Goa border (Banda, Patradevi) and Gujarat/Daman borders (Achhad, Talasari). Carrying liquor from Goa without a Maharashtra import pass is strictly prohibited; bottles purchased in Goa duty-free shops are routinely confiscated at highway check-posts and Konkan railway stations.",
+    "onlineDeliveryPolicy": "Home delivery is legally permitted through licensed local FL-II retailers who hold home delivery permits. Delivery agents must verify the recipient’s digital excise permit upon delivery. Third-party aggregator apps operate only under strictly defined pilot partnerships in major cities.",
+    "districtAndCityNuances": "Wardha and Gadchiroli are 100% dry districts where alcohol possession is completely banned. Complete pilgrimage dry closures are enforced in Pandharpur during Wari pilgrimages, Alandi, and Dehu. Mumbai, Navi Mumbai, and Pune enjoy extended dining hours up to 1:30 AM."
   },
-  'karnataka': {
-    actName: 'Karnataka Excise Act, 1965 & Karnataka Excise (Sale of Indian and Foreign Liquors) Rules, 1968',
-    regulatoryAuthority: 'Karnataka Excise Department & KSBCL',
-    officialPortal: 'https://karnatakaexcise.karnataka.gov.in',
-    retailModel: 'Wholesale KSBCL Monopoly & Private Retail Licenses (CL-2 Off-Shops, CL-9 Bars)',
-    statutorySummary:
-      'All wholesale liquor procurement and distribution in Karnataka is monopolized by the Karnataka State Beverages Corporation Limited (KSBCL). Retail outlets are classified into CL-2 (off-premise retail vends) and CL-9 (commercial bar-cum-restaurants). In Bengaluru and tier-1 municipal corporations, CL-2 retail shops operate from 9:00 AM to 10:30 PM, whereas pubs and microbreweries in Bengaluru urban areas frequently enjoy weekend operating windows up to 1:00 AM. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Mandatory dry days in Karnataka include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Kannada Rajyotsava (1 Nov). Religious dry observances include Mahavir Jayanti, Good Friday, Eid-ul-Fitr, Muharram, and Valmiki Jayanti. During biennial MLC elections and assembly polls, strict 48-hour section 135C bans are enforced.',
-    transitAndPossessionRule:
-      'Under the Karnataka Excise (Possession, Transport, Import and Export) Rules, an individual can possess up to 18.2 litres of beer, 9 litres of wine, and 2.3 litres of IMFL/spirits without a special permit. Cross-border movement from Goa without a KSBCL permit is intercepted at border checkposts near Karwar and Belagavi.',
-    penaltiesNotice:
-      'Offences involving illicit transit or bootlegging are penalized under Sections 32 and 34 of the Karnataka Excise Act, 1965.',
+  "karnataka": {
+    "actName": "Karnataka Excise Act, 1965 & Karnataka Excise (Sale of Indian and Foreign Liquors) Rules, 1968",
+    "regulatoryAuthority": "Karnataka Excise Department & KSBCL",
+    "officialPortal": "https://karnatakaexcise.karnataka.gov.in",
+    "retailModel": "Wholesale KSBCL Monopoly & Private Retail Licenses (CL-2 Off-Shops, CL-9 Bars)",
+    "statutorySummary": "All wholesale liquor procurement and distribution in Karnataka is monopolized by the Karnataka State Beverages Corporation Limited (KSBCL). Retail outlets are classified into CL-2 (off-premise retail vends) and CL-9 (commercial bar-cum-restaurants). In Bengaluru and tier-1 municipal corporations, CL-2 retail shops operate from 9:00 AM to 10:30 PM, whereas pubs and microbreweries in Bengaluru urban areas frequently enjoy weekend operating windows up to 1:00 AM. The legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Karnataka include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Kannada Rajyotsava (1 Nov). Religious dry observances include Mahavir Jayanti, Good Friday, Eid-ul-Fitr, Muharram, and Valmiki Jayanti. During biennial MLC elections and assembly polls, strict 48-hour section 135C bans are enforced.",
+    "transitAndPossessionRule": "Under the Karnataka Excise (Possession, Transport, Import and Export) Rules, an individual can possess up to 18.2 litres of beer, 9 litres of wine, and 2.3 litres of IMFL/spirits without a special permit. Cross-border movement from Goa without a KSBCL permit is intercepted at border checkposts near Karwar and Belagavi.",
+    "penaltiesNotice": "Offences involving illicit transit or bootlegging are penalized under Sections 32 and 34 of the Karnataka Excise Act, 1965.",
+    "historyAndPolicy": "Karnataka established KSBCL in 2003 to eliminate spurious liquor syndicates and secure wholesale tax revenues. Bengaluru subsequently emerged as India’s craft brewing capital, developing pioneering microbrewery licensing norms that transformed the urban pub culture.",
+    "retailAndLicensingDetails": "Private retailers purchase solely from government KSBCL depots. While CL-2 licenses are tightly capped in number, premium MRP supermarkets (malls) provide modern retail experiences. Commercial bars operate under CL-9 licenses.",
+    "licenseCategories": [
+      {
+        "code": "CL-2",
+        "name": "Retail Off-Premise Liquor Vend",
+        "description": "Standard packaged retail store selling IMFL, beer, and wine (9:00 AM – 10:30 PM)."
+      },
+      {
+        "code": "CL-9",
+        "name": "Commercial Bar & Restaurant",
+        "description": "Table service of food and alcohol in dining facilities and urban pubs."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Craft Brewery On-Premise License",
+        "description": "Specialized license allowing restaurants to brew and dispense craft beer on-site."
+      },
+      {
+        "code": "CL-4",
+        "name": "Private Club License",
+        "description": "Exclusive bar licenses for registered recreation and social clubs."
+      }
+    ],
+    "interstateTransitGuidance": "Vehicles arriving from Goa via Karwar, Chorla Ghat, or Belagavi face intensive excise inspections. Bringing duty-unpaid Goa liquor into Karnataka is strictly prohibited regardless of quantity; offenders face confiscation, vehicle detention, and compounding penalties under Section 34.",
+    "onlineDeliveryPolicy": "Online liquor delivery and app ordering are strictly illegal across Karnataka. The High Court of Karnataka dismissed petitions seeking online alcohol delivery, reaffirming that physical in-person sales at licensed premises are mandatory.",
+    "districtAndCityNuances": "Bengaluru Urban (BBMP limits) allows commercial pubs and microbreweries to operate until 1:00 AM on Fridays and Saturdays. Coastal and interior districts (Mangaluru, Udupi, Hubballi, Mysuru) adhere strictly to standard 10:30 PM / 11:00 PM closing curfews."
   },
-  'rajasthan': {
-    actName: 'Rajasthan Excise Act, 1950 & Rajasthan Excise Rules, 1956',
-    regulatoryAuthority: 'Rajasthan State Excise Department & RSBCL',
-    officialPortal: 'https://rajexcise.gov.in',
-    retailModel: 'RSBCL Wholesale & E-Auctioned Retail Wine Shops',
-    statutorySummary:
-      'Rajasthan regulates liquor distribution through the Rajasthan State Beverages Corporation Limited (RSBCL). The state is known for its strict statewide retail closing curfew: all licensed retail thekas and wine shops across all 50 districts must close doors at exactly 8:00 PM. Hotel bars and heritage dining establishments holding bar licenses may continue serving until 11:00 PM / 12:00 AM. The statutory drinking age in Rajasthan is 18 years under the Rajasthan Excise Act, 1950.',
-    standingDryDaysSummary:
-      'Rajasthan observes statutory dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the death anniversary of Mahatma Gandhi (30 Jan). Religious dry days include Mahaveer Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, Muharram, and Janmashtami. Localized closures are notified during Pushkar Fair in holy lake areas.',
-    transitAndPossessionRule:
-      'Importing duty-unpaid liquor from Haryana or Punjab into Rajasthan is heavily policed along the Alwar, Bharatpur, Hanumangarh, and Sriganganagar borders. Maximum domestic possession is capped at 12 bottles of beer and 3 bottles of spirits per household.',
-    penaltiesNotice:
-      'Bootlegging and illicit transit invite harsh penalties under Section 54 of the Rajasthan Excise Act, 1950, including vehicle impoundment and non-bailable criminal prosecution.',
+  "rajasthan": {
+    "actName": "Rajasthan Excise Act, 1950 & Rajasthan Excise Rules, 1956",
+    "regulatoryAuthority": "Rajasthan State Excise Department & RSBCL",
+    "officialPortal": "https://rajexcise.gov.in",
+    "retailModel": "RSBCL Wholesale & E-Auctioned Retail Wine Shops",
+    "statutorySummary": "Rajasthan regulates liquor distribution through the Rajasthan State Beverages Corporation Limited (RSBCL). The state is known for its strict statewide retail closing curfew: all licensed retail thekas and wine shops across all 50 districts must close doors at exactly 8:00 PM. Hotel bars and heritage dining establishments holding bar licenses may continue serving until 11:00 PM / 12:00 AM. The statutory drinking age in Rajasthan is 18 years under the Rajasthan Excise Act, 1950.",
+    "standingDryDaysSummary": "Rajasthan observes statutory dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the death anniversary of Mahatma Gandhi (30 Jan). Religious dry days include Mahaveer Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, Muharram, and Janmashtami. Localized closures are notified during Pushkar Fair in holy lake areas.",
+    "transitAndPossessionRule": "Importing duty-unpaid liquor from Haryana or Punjab into Rajasthan is heavily policed along the Alwar, Bharatpur, Hanumangarh, and Sriganganagar borders. Maximum domestic possession is capped at 12 bottles of beer and 3 bottles of spirits per household.",
+    "penaltiesNotice": "Bootlegging and illicit transit invite harsh penalties under Section 54 of the Rajasthan Excise Act, 1950, including vehicle impoundment and non-bailable criminal prosecution.",
+    "historyAndPolicy": "Rajasthan implemented its iconic 8:00 PM retail curfew in 2008 to curb evening street drinking and domestic disturbances. The state balances strict retail restrictions with heritage hospitality tourism, permitting luxury palace hotels special exemptions.",
+    "retailAndLicensingDetails": "Retail vends are allocated through an annual e-auction system. Each vend is restricted to selling RSBCL-cleared stock bearing the Rajasthan excise hologram. Counter sales are strictly barred after 8:00 PM sharp.",
+    "licenseCategories": [
+      {
+        "code": "Retail Theka",
+        "name": "Off-Premise Retail Liquor Vend",
+        "description": "Packaged bottle store operating strictly from 10:00 AM to 8:00 PM curfew."
+      },
+      {
+        "code": "Hotel Bar License",
+        "name": "Heritage & Star Hotel Bar",
+        "description": "Dining and lounge liquor service in recognized tourist hotels (up to 11:00 PM / Midnight)."
+      },
+      {
+        "code": "Commercial Bar",
+        "name": "Restaurant Bar & Lounge",
+        "description": "Urban dining bar service operating in major municipal centers."
+      },
+      {
+        "code": "Occasional Permit",
+        "name": "Destination Wedding Liquor Permit",
+        "description": "Mandatory single-day permit for hosting alcohol service at forts, palaces, and banquet lawns."
+      }
+    ],
+    "interstateTransitGuidance": "Interstate check-posts along Haryana (Bhiwadi, Neemrana, Behror) and Punjab (Sriganganagar) are equipped with CCTV and surveillance teams. Carrying commercial quantities of cheaper Haryana alcohol into Rajasthan is treated as organized tax evasion, punishable with vehicle confiscation.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is completely prohibited in Rajasthan. In-person physical purchase at authorized shops before 8:00 PM is legally required.",
+    "districtAndCityNuances": "Complete alcohol prohibition is enforced in the holy municipal perimeter of Pushkar (Ajmer district) around the sacred Pushkar Lake. Tourist hubs like Jaipur, Udaipur, and Jaisalmer enjoy heritage hospitality licenses that permit dining room alcohol service until late evening."
   },
-  'punjab': {
-    actName: 'Punjab Excise Act, 1914 & Punjab Liquor License Rules, 1956',
-    regulatoryAuthority: 'Department of Excise and Taxation, Government of Punjab',
-    officialPortal: 'https://excise.punjab.gov.in',
-    retailModel: 'Auctioned Private Retail Licensing (L-2 Retail & L-14A Country Vends)',
-    statutorySummary:
-      'Punjab governs the liquor trade under the venerable Punjab Excise Act, 1914. Retail licenses are categorized into L-2 (IMFL/Foreign liquor) and L-14A (country liquor). Retail shops typically operate from 9:00 AM to 11:00 PM in municipal corporation limits (Ludhiana, Amritsar, Jalandhar, Patiala, Bathinda). Under Section 26 of the Punjab Panchayati Raj Act, 1994, rural Gram Panchayats possess statutory authority to pass resolutions prohibiting liquor vends within village boundaries. The legal drinking age is 25 years.',
-    standingDryDaysSummary:
-      'Punjab enforces full statewide dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Guru Nanak Jayanti (Prakash Parv). Additional gazetted dry dates include Guru Tegh Bahadur Shaheedi Diwas, Guru Gobind Singh Jayanti, Mahavir Jayanti, and Bhagat Singh Martyrdom Day (23 March).',
-    transitAndPossessionRule:
-      'Individuals may possess up to two bottles of IMFL/imported spirit or 1 case of beer for domestic use. Bringing duty-free or Chandigarh-subsidized liquor into Punjab without a transit permit is prohibited under Section 61.',
-    penaltiesNotice:
-      'Violations are prosecuted under Section 61(1) of the Punjab Excise Act, 1914, involving rigorous imprisonment of up to 3 years and heavy compounding fines.',
+  "punjab": {
+    "actName": "Punjab Excise Act, 1914 & Punjab Liquor License Rules, 1956",
+    "regulatoryAuthority": "Department of Excise and Taxation, Government of Punjab",
+    "officialPortal": "https://excise.punjab.gov.in",
+    "retailModel": "Auctioned Private Retail Licensing (L-2 Retail & L-14A Country Vends)",
+    "statutorySummary": "Punjab governs the liquor trade under the venerable Punjab Excise Act, 1914. Retail licenses are categorized into L-2 (IMFL/Foreign liquor) and L-14A (country liquor). Retail shops typically operate from 9:00 AM to 11:00 PM in municipal corporation limits (Ludhiana, Amritsar, Jalandhar, Patiala, Bathinda). Under Section 26 of the Punjab Panchayati Raj Act, 1994, rural Gram Panchayats possess statutory authority to pass resolutions prohibiting liquor vends within village boundaries. The legal drinking age is 25 years.",
+    "standingDryDaysSummary": "Punjab enforces full statewide dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Guru Nanak Jayanti (Prakash Parv). Additional gazetted dry dates include Guru Tegh Bahadur Shaheedi Diwas, Guru Gobind Singh Jayanti, Mahavir Jayanti, and Bhagat Singh Martyrdom Day (23 March).",
+    "transitAndPossessionRule": "An individual in Punjab may possess up to two bottles of IMFL/imported liquor without a permit, or larger quantities under a valid L-50 permit issued by the Excise Department. Transporting liquor from Chandigarh or Haryana without paying Punjab excise duty is illegal.",
+    "penaltiesNotice": "Offences involving illicit transit, bootlegging, or distillation are prosecuted under Sections 61, 63, and 68 of the Punjab Excise Act, 1914.",
+    "historyAndPolicy": "As one of India’s historic agricultural powerhouses, Punjab’s excise framework represents a major portion of state tax receipts. Progressive reforms have clamped down on spurious liquor networks through digital transport tracking and QR-code verification on all crates.",
+    "retailAndLicensingDetails": "Retail vends are auctioned in commercial groups comprising both urban L-2 shops and rural L-14A country liquor outlets. Modern air-conditioned walk-in vends operate in major retail markets.",
+    "licenseCategories": [
+      {
+        "code": "L-2",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported spirits, and beer (9:00 AM – 11:00 PM)."
+      },
+      {
+        "code": "L-14A",
+        "name": "Country Liquor Theka",
+        "description": "Licensed rural and urban retail shop for traditional country spirit sales."
+      },
+      {
+        "code": "L-4 / L-5",
+        "name": "Bar & Restaurant License",
+        "description": "On-premise table service of liquor in licensed commercial dining facilities."
+      },
+      {
+        "code": "L-50",
+        "name": "Domestic Liquor Storage Permit",
+        "description": "Official permit enabling private households to store higher quotas of alcohol legally."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts between Chandigarh UT and Punjab (Zirakpur, Mohali border, Nayagaon) monitor traffic. Chandigarh alcohol carries lower local duties, and carrying un-manifested liquor into Punjab is strictly penalized under Section 61 with immediate seizure.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is not permitted in Punjab. All retail sales must take place over the counter at designated licensed vends.",
+    "districtAndCityNuances": "Strict religious zoning prohibits alcohol vends and meat shops within the walled heritage city surrounding the Golden Temple (Harmandir Sahib) in Amritsar. Rural Gram Panchayats frequently exercise legal rights to ban vends within village territorial limits."
   },
-  'haryana': {
-    actName: 'Haryana Excise Act, 1914 & Haryana Liquor License Rules, 1970',
-    regulatoryAuthority: 'Excise and Taxation Department, Government of Haryana',
-    officialPortal: 'https://haryanatax.gov.in',
-    retailModel: 'Private Retail Zone Bidding (L-2 & L-2BF Modern Outlets)',
-    statutorySummary:
-      'Haryana regulates liquor sales through competitive zonal bidding. In urban commercial hubs like Gurugram (Cyber City, Golf Course Road) and Faridabad, specialized L-2BF licenses permit large format modern wine stores, and 24-hour retail vend operations are permitted in designated corporate zones upon payment of supplemental annual retail fees. Bars and microbreweries in Gurugram operate until 2:00 AM or later with night extensions. The legal drinking age in Haryana was lowered from 25 to 21 years in 2021.',
-    standingDryDaysSummary:
-      'Haryana observes standard national dry days (26 Jan, 15 Aug, 2 Oct) alongside religious observances including Guru Nanak Jayanti, Janmashtami, and Mahavir Jayanti. Standalone local dry orders are issued during assembly and Lok Sabha polling windows under Section 135C of RPA 1951.',
-    transitAndPossessionRule:
-      'Individual possession is capped at 6 bottles of foreign liquor/IMFL and 12 bottles of beer. Carrying Haryana-purchased bottles across the Delhi or UP borders without paying destination state excise taxes is unlawful under interstate customs pacts.',
-    penaltiesNotice:
-      'Unlawful manufacture, possession, or transit is prosecuted under Section 61 of the Haryana Excise Act, 1914.',
+  "haryana": {
+    "actName": "Punjab Excise Act, 1914 (as adapted for Haryana) & Haryana Excise Policy 2024-26",
+    "regulatoryAuthority": "Excise and Taxation Department, Government of Haryana",
+    "officialPortal": "https://haryanatax.gov.in",
+    "retailModel": "E-Tendered Private Retail Vends & Modern Walk-in Boutiques",
+    "statutorySummary": "Haryana regulates its vibrant liquor market under the adapted Punjab Excise Act, 1914, and biennial state excise policies. Known for competitive excise pricing and premium retail infrastructure in Cyber City Gurugram and Faridabad, retail vends operate from 8:00 AM to 12:00 Midnight, with 24/7 retail options available in designated commercial hospitality zones. The legal drinking age in Haryana is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Haryana include Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct). Religious dry observances include Mahavir Jayanti, Guru Nanak Jayanti, and Eid-ul-Fitr. In addition, 48-hour election bans are enforced across assembly constituencies.",
+    "transitAndPossessionRule": "Domestic possession is permitted up to 6 bottles of spirits (750ml) and 12 bottles of beer. However, transporting Haryana-duty liquor into neighboring Delhi or Uttar Pradesh is strictly restricted by those respective states to at most one bottle.",
+    "penaltiesNotice": "Smuggling duty-evaded liquor into neighboring states or unlicensed retail is penalized under Section 61 of the Excise Act with stringent imprisonment and vehicle confiscation.",
+    "historyAndPolicy": "After a brief, economically disruptive experiment with total prohibition in 1996-1998, Haryana reversed course to pioneer modern retail formats, corporate lounge licenses, and microbreweries in NCR cyber corridors.",
+    "retailAndLicensingDetails": "Haryana retail vends (L-2) feature multi-lane walk-in superstores offering vast international wine and single-malt collections. Premium corporate licenses (L-10BF) operate inside IT parks and business parks.",
+    "licenseCategories": [
+      {
+        "code": "L-2",
+        "name": "Retail Liquor Vend",
+        "description": "Modern packaged liquor store operating from 8:00 AM to 12:00 Midnight (or 24/7 in special zones)."
+      },
+      {
+        "code": "L-4 / L-5",
+        "name": "Bar & Restaurant License",
+        "description": "Table service of alcohol in certified restaurants and club lounges."
+      },
+      {
+        "code": "L-10BF",
+        "name": "Commercial Corporate Retail Vend",
+        "description": "High-end boutique wine and spirit store situated inside corporate IT parks."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Craft Brewing License",
+        "description": "On-premise craft beer production and service inside dining lounges."
+      }
+    ],
+    "interstateTransitGuidance": "Commuters traveling from Gurugram into Delhi are checked by Delhi Excise squads at Sirhaul toll plaza, MG Road, and Kapashera. Carrying more than one bottle across the border invites confiscation under Delhi laws.",
+    "onlineDeliveryPolicy": "Doorstep home delivery is not officially operationalized for general consumer retail in Haryana, despite policy provisions for pilot exploration.",
+    "districtAndCityNuances": "Gurugram and Faridabad feature round-the-clock nightlife hospitality licenses and prominent corporate lounges. In contrast, Kurukshetra enforces complete alcohol-free zones around the sacred Brahma Sarovar and Jyotisar pilgrimage sites."
   },
-  'west-bengal': {
-    actName: 'Bengal Excise Act, 1909 & West Bengal Excise (Foreign Liquor) Rules',
-    regulatoryAuthority: 'Directorate of State Excise, Finance Department, Government of West Bengal',
-    officialPortal: 'https://excise.wb.gov.in',
-    retailModel: 'Bevco Wholesale Monopoly & Licensed Private Off-Shops / On-Shops',
-    statutorySummary:
-      'West Bengal manages liquor distribution via the West Bengal State Beverages Corporation (BEVCO). Retail locations are classified as "Off-shops" (retail carry-out) and "On-shops" (bars and restaurants). In Kolkata, Salt Lake, and Howrah, off-shops operate from 10:00 AM to 10:00 PM, while bars operate until midnight (with late-night 2:00 AM extensions in 4-star and 5-star establishments). The statutory legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'West Bengal observes dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Muharram, Doljatra (Holi), and Bijoya Dashami (the final afternoon/evening of Durga Puja). Christmas Day (25 Dec) and New Year’s Eve (31 Dec) are strictly OPEN commercial trading nights across Kolkata with extended hours.',
-    transitAndPossessionRule:
-      'Under West Bengal excise rules, personal possession is restricted to 12 reputed bottles of IMFL/wine and 24 bottles of beer. Bringing untaxed liquor across borders from Jharkhand or Sikkim requires an excise transit pass.',
-    penaltiesNotice:
-      'Contravening the Bengal Excise Act, 1909 leads to confiscation of goods, vehicle impoundment, and prosecution under Section 46.',
+  "west-bengal": {
+    "actName": "Bengal Excise Act, 1909 & West Bengal Excise (Foreign Liquor) Rules",
+    "regulatoryAuthority": "Directorate of Excise, Finance Department, Government of West Bengal & BEVCO",
+    "officialPortal": "https://excise.wb.gov.in",
+    "retailModel": "BEVCO Wholesale Monopoly & Licensed Private Off/On-Shops",
+    "statutorySummary": "West Bengal administers alcohol taxation and distribution through the Directorate of Excise and the West Bengal State Beverages Corporation (BEVCO). Retail stores operate as \"Off-Shops\" (packaged sales) typically from 12:00 Noon to 10:00 PM (or 10:30 PM in Kolkata), while commercial bars and hotel lounges operate as \"On-Shops\". The minimum legal drinking age in West Bengal is 21 years.",
+    "standingDryDaysSummary": "Statewide statutory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the 10th day of Durga Puja (Bijoya Dashami). Religious dry days include Muharram and Dol Jatra (Holi, up to 2:00 PM). Additional local dry days are notified during assembly and municipal elections.",
+    "transitAndPossessionRule": "Personal possession within West Bengal is permitted up to 12 bottles of beer and 4 bottles of spirits per adult. Cross-border transit into dry Bihar is strictly intercepted at Asansol, Barakar, and Malda border posts.",
+    "penaltiesNotice": "Unlawful manufacturing, possession, or cross-border trafficking into Bihar invites prosecution under Sections 46 and 48 of the Bengal Excise Act, 1909.",
+    "historyAndPolicy": "West Bengal operates a digitally advanced excise ecosystem known as e-Abgari, which tracks every consignment from bonded warehouse to retail shelf. The state also pioneered progressive home delivery frameworks and digitized brand registration.",
+    "retailAndLicensingDetails": "Retail vends are divided into Foreign Liquor Off-Shops and Country Spirit (CS) retail outlets. Kolkata features high-density heritage bars and licensed restobars across Park Street and Sector V.",
+    "licenseCategories": [
+      {
+        "code": "FL Off-Shop",
+        "name": "Retail Packaged Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, beer, and imported wines (12:00 Noon – 10:00 PM)."
+      },
+      {
+        "code": "FL On-Shop",
+        "name": "Bar & Restaurant License",
+        "description": "Table service of spirits and draught beer in certified dining spaces (up to 12:00 Midnight)."
+      },
+      {
+        "code": "Late-Night Permit",
+        "name": "Extended Hospitality License",
+        "description": "Special license allowing luxury hotel bars in Kolkata to serve until 2:00 AM / 4:00 AM."
+      },
+      {
+        "code": "CS Shop",
+        "name": "Country Spirit Retail Shop",
+        "description": "Exclusive licensed retail counters for traditional country spirits."
+      }
+    ],
+    "interstateTransitGuidance": "West Bengal shares sensitive borders with dry Bihar and Jharkhand. Checkposts along the Grand Trunk Road and railway stations (Asansol, Siliguri) strictly monitor outbound luggage to prevent bootlegging into dry Bihar.",
+    "onlineDeliveryPolicy": "West Bengal is one of the few Indian states with an official framework for e-retail and home delivery via registered retail stores under the e-Abgari portal, subject to local municipal orders and verification.",
+    "districtAndCityNuances": "Kolkata and Salt Lake feature historic colonial pub culture and late-night nightlife extensions in star hospitality hubs. Darjeeling and hill subdivisions operate tourism-friendly hotel lounges with winter seasonal timings."
   },
-  'goa': {
-    actName: 'Goa Excise Duty Act, 1964 & Goa Excise Duty Rules, 1964',
-    regulatoryAuthority: 'Office of the Commissioner of Excise, Government of Goa',
-    officialPortal: 'https://goaexcise.gov.in',
-    retailModel: 'Free Market Private Licensing with Subsidized Tariff Rates',
-    statutorySummary:
-      'Goa maintains a liberal excise regime characterized by low state duty rates and extensive licensing for retail wine shops, beach shacks, and hospitality lounges. In coastal tourist belts (Calangute, Baga, Anjuna, Candolim), restaurants and bars operate until 11:00 PM or later with night entertainment permits. The legal drinking age in Goa is 18 years under the Goa Excise Duty Act, 1964.',
-    standingDryDaysSummary:
-      'Goa enforces only 3 mandatory statewide dry days annually: Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct). Additionally, dry days are enforced during statutory election polling across designated constituencies. Notably, major religious holidays like Christmas, Diwali, and New Year are NOT dry days in Goa.',
-    transitAndPossessionRule:
-      'To lawfully carry liquor outside Goa into neighbouring states (Maharashtra, Karnataka), travellers must obtain a valid Liquor Transit Permit (Form 25) from a licensed Goa wine shop (maximum 2 bottles of 750ml IMFL/wine per permit). However, neighbouring states do not always recognize Goa permits without payment of local duties; transit across border checkposts at Patradevi and Majali is subject to destination state laws.',
-    penaltiesNotice:
-      'Transporting alcohol without a permit or exceeding permitted quantities leads to confiscation under Section 34 of the Goa Excise Duty Act.',
+  "goa": {
+    "actName": "Goa Excise Duty Act, 1964 & Goa Excise Duty Rules, 1964",
+    "regulatoryAuthority": "Commissioner of Excise, Government of Goa",
+    "officialPortal": "https://goaexcise.gov.in",
+    "retailModel": "Private Competitive Retail & Iconic Beach Shack Licenses",
+    "statutorySummary": "Goa regulates alcohol production, taxation, and consumption under the Goa Excise Duty Act, 1964. Renowned for its low excise duty structure and vibrant tourism economy, Goa boasts over 10,000 retail, bar, and beach shack licenses. Retail wine stores typically operate from 9:00 AM to 11:00 PM, while tourist beach shacks and nightlife clubs operate until 1:00 AM or later during peak season. The statutory minimum legal drinking age in Goa is 18 years.",
+    "standingDryDaysSummary": "Standing mandatory dry days in Goa include Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct). Statewide election polling days and counting days observe strict 48-hour dry curfews. Local temple and church feasts rarely require full dry days.",
+    "transitAndPossessionRule": "Under Goa state law, tourists may carry up to 2 bottles (750ml each) of IMFL or country liquor out of Goa only if they obtain an official Goa Excise Transit Permit (costing ~₹20-50). However, carrying this liquor into Maharashtra or Karnataka violates their respective state excise laws, where border checkposts routinely confiscate bottles.",
+    "penaltiesNotice": "Unlawful manufacture, evasion of export duties, or carrying liquor outside Goa without a permit is penalized under Section 31 of the Goa Excise Duty Act, 1964.",
+    "historyAndPolicy": "Inherited from Portuguese colonial administration, Goa retains a liberal commercial culture where Feni (distilled from cashew apples and coconut toddy) is protected as a heritage drink with GI (Geographical Indication) status.",
+    "retailAndLicensingDetails": "Liquor retail in Goa is entirely private and competitive, featuring specialty wine supermarkets, neighborhood tavernas, and beachside shacks. Margins are competitive, and shelf prices are among the lowest in India.",
+    "licenseCategories": [
+      {
+        "code": "Retail Sale",
+        "name": "Packaged Liquor Store",
+        "description": "Off-premise sales of spirits, wine, and beer (9:00 AM – 11:00 PM)."
+      },
+      {
+        "code": "Bar & Restaurant",
+        "name": "Dining & Beach Shack License",
+        "description": "Table service of food and alcoholic beverages in beachfront and urban restaurants."
+      },
+      {
+        "code": "Feni Distillation",
+        "name": "Heritage Country Liquor License",
+        "description": "Traditional cottage distillation and sale of Cashew and Coconut Feni."
+      },
+      {
+        "code": "Wholesale Depot",
+        "name": "Commercial Distribution License",
+        "description": "Depot warehousing and distribution of domestic and imported brands."
+      }
+    ],
+    "interstateTransitGuidance": "Border check-posts on highways leading to Maharashtra (Patradevi, Banda, Dodamarg) and Karnataka (Majali, Chorla Ghat) inspect outbound buses, taxis, and private cars. Carrying liquor into Maharashtra or Karnataka without destination state permits is illegal under their laws, regardless of a Goa transit permit.",
+    "onlineDeliveryPolicy": "Home delivery of alcohol by food apps or e-commerce is not permitted in Goa. In-person physical purchase at authorized shops is legally required.",
+    "districtAndCityNuances": "North Goa beach coastal belts (Calangute, Candolim, Anjuna, Morjim) feature active beach shack licensing and late-night nightlife. South Goa (Margao, Colva, Palolem) maintains a more tranquil atmosphere with strictly enforced 11:00 PM residential closing times."
   },
-  'telangana': {
-    actName: 'Telangana Excise Act, 1968 & Telangana Liquor Retail Rules',
-    regulatoryAuthority: 'Prohibition & Excise Department, Government of Telangana',
-    officialPortal: 'https://excise.telangana.gov.in',
-    retailModel: 'Private A4 Retail Wine Stores & Microbreweries (Monitored by TGSBCL)',
-    statutorySummary:
-      'Telangana administers alcohol distribution through the Telangana State Beverages Corporation Limited (TGSBCL). Retail wine stores (A4 licenses) in the Greater Hyderabad Municipal Corporation (GHMC) area operate from 10:00 AM to 11:00 PM, while stores in rural mandals close at 10:00 PM. Hyderabad hosts a thriving microbrewery and pub culture where bar establishments operate until midnight on weekdays and 1:00 AM on weekends. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Telangana observes standing dry days on Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Gandhi Martyrdom Day (30 Jan). Religious dry days include Mahavir Jayanti, Good Friday, Eid-ul-Fitr, and Muharram. Local ward-level closures are enforced during the annual Bonalu and Sri Rama Navami processions in old Hyderabad.',
-    transitAndPossessionRule:
-      'Maximum personal possession allowed without a special permit is 6 bottles of IMFL/foreign liquor (up to 750ml each) and 12 bottles of beer. Bringing alcohol across state lines from Karnataka or Andhra Pradesh requires a valid transit permit.',
-    penaltiesNotice:
-      'Penalties under Section 34 of the Telangana Excise Act, 1968 include up to 3 years imprisonment and property confiscation.',
+  "telangana": {
+    "actName": "Telangana Excise Act, 1968 & Telangana Liquor Retail Rules",
+    "regulatoryAuthority": "Prohibition & Excise Department, Government of Telangana & TSBCL",
+    "officialPortal": "https://excise.telangana.gov.in",
+    "retailModel": "TSBCL Wholesale Monopoly & Biennial Licensed A4 Wine Shops",
+    "statutorySummary": "Telangana administers alcohol production and retail via the Prohibition & Excise Department and Telangana State Beverages Corporation Limited (TSBCL). Retail A4 wine shops are allocated every two years through a transparent online lottery. In the Greater Hyderabad Municipal Corporation (GHMC) area, retail wine shops operate from 10:00 AM to 11:00 PM, while in other districts they close at 10:00 PM. The minimum legal drinking age in Telangana is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Telangana include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Mahatma Gandhi Martyrdom Day (30 Jan). Religious dry days include Mahavir Jayanti, Good Friday, Eid-ul-Fitr, Muharram, and Milad-un-Nabi.",
+    "transitAndPossessionRule": "An individual can legally possess up to 6 bottles of beer (650ml each) and 2 litres of foreign liquor/spirits for domestic consumption. Transit from neighboring states without TSBCL authorization is prohibited.",
+    "penaltiesNotice": "Bootlegging, illicit distillation, or non-duty transit invites prosecution under Section 34 of the Telangana Excise Act, 1968, with mandatory prison sentences and vehicle seizure.",
+    "historyAndPolicy": "Following the bifurcation of Andhra Pradesh in 2014, Telangana developed an independent excise revenue powerhouse. Hyderabad emerged as a booming tech nightlife hub with progressive microbrewery regulations and extended urban operating windows.",
+    "retailAndLicensingDetails": "A4 retail shops are auctioned via high-volume lottery draws. The state also licenses microbreweries, 2B bars, and specialized airport duty-free and corporate lounge outlets.",
+    "licenseCategories": [
+      {
+        "code": "A4",
+        "name": "Retail Wine Shop",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (10:00 AM – 11:00 PM in GHMC)."
+      },
+      {
+        "code": "2B",
+        "name": "Commercial Bar & Restaurant",
+        "description": "Table service of alcohol in certified urban dining establishments (up to 12:00 Midnight / 1:00 AM weekends)."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Craft Brewing License",
+        "description": "On-premise brewing and dispensing of fresh craft beer in Hyderabad metro areas."
+      },
+      {
+        "code": "TD-1",
+        "name": "Toddy Tappers Cooperative Society",
+        "description": "Licensed distribution counters for traditional freshly tapped palm toddy."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts monitor highways connecting Telangana with Karnataka (Zahirabad) and Andhra Pradesh (Garikapadu). Un-manifested commercial carriage across borders is strictly penalized.",
+    "onlineDeliveryPolicy": "Online liquor delivery is prohibited across Telangana. All alcohol sales must take place over the counter at authorized A4 shops or inside licensed 2B bars.",
+    "districtAndCityNuances": "Hyderabad (GHMC zone) permits retail vends to stay open until 11:00 PM and restobars until 1:00 AM on weekends. Rural districts (Nalgonda, Warangal, Karimnagar) enforce strict 10:00 PM retail closures."
   },
-  'tamil-nadu': {
-    actName: 'Tamil Nadu Prohibition Act, 1937 & Tamil Nadu Liquor (Licence and Permit) Rules, 1981',
-    regulatoryAuthority: 'Tamil Nadu State Marketing Corporation (TASMAC)',
-    officialPortal: 'https://tasmac.co.in',
-    retailModel: '100% State Monopoly Retail via TASMAC Outlets',
-    statutorySummary:
-      'Tamil Nadu operates under a complete retail government monopoly via TASMAC. All retail wine and spirit shops are state-owned and operated. TASMAC retail outlets open strictly at 12:00 PM (noon) and shutter at 10:00 PM. Privately owned bars exist only as FL-2 and FL-3 license holders within star-rated hotels and recognized sports clubs. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Tamil Nadu observes strict statewide dry days on Gandhi Jayanti (2 Oct), Republic Day (26 Jan), Mahavir Jayanti, Thiruvalluvar Day (January), Vallalar Memorial Day (Vaikasi Visakam), Milad-un-Nabi, Independence Day (15 Aug), and the death anniversary of Mahatma Gandhi (30 Jan). TASMAC shops are completely sealed on these dates.',
-    transitAndPossessionRule:
-      'Possession of non-TASMAC liquor (e.g. from Puducherry or Karnataka) within Tamil Nadu is illegal under the Tamil Nadu Prohibition Act, 1937. Strict vehicle checking occurs along the ECR (East Coast Road) and borders connecting Puducherry.',
-    penaltiesNotice:
-      'Possession of foreign liquor without Tamil Nadu excise tax stamps is a non-bailable offense under Section 4(1)(a) of the Tamil Nadu Prohibition Act, 1937, punishable with up to 3 years imprisonment.',
+  "tamil-nadu": {
+    "actName": "Tamil Nadu Prohibition Act, 1937 & TASMAC Retail Vending Rules, 2003",
+    "regulatoryAuthority": "Tamil Nadu State Marketing Corporation (TASMAC), Government of Tamil Nadu",
+    "officialPortal": "https://tasmac.co.in",
+    "retailModel": "100% State Corporation Retail Monopoly (TASMAC)",
+    "statutorySummary": "In Tamil Nadu, the wholesale procurement and retail distribution of alcohol is entirely monopolized by the state-run Tamil Nadu State Marketing Corporation (TASMAC). Private retail wine stores and independent thekas are completely illegal. All ~4,800 TASMAC retail shops operate strictly between 12:00 PM (Noon) and 10:00 PM across all 38 districts. The minimum legal drinking age in Tamil Nadu is 21 years.",
+    "standingDryDaysSummary": "Tamil Nadu enforces complete statewide dry-day closures on Gandhi Jayanti (2 Oct), Tiruvalluvar Day (16 Jan), Mahavir Jayanti, Nabigal Nayagam (Milad-un-Nabi), Vaikunda Ekadasi, Republic Day (26 Jan), and Independence Day (15 Aug). Strict 48-hour dry curfews apply during assembly and parliamentary elections.",
+    "transitAndPossessionRule": "Importing liquor from outside Tamil Nadu (especially cheap duty-free alcohol from neighboring Puducherry) is strictly prohibited. Carrying non-TASMAC duty liquor into Tamil Nadu results in immediate vehicle impoundment and criminal booking under the Prohibition Act.",
+    "penaltiesNotice": "Offences involving bootlegging or smuggling liquor into Tamil Nadu are prosecuted under Section 4(1) of the Tamil Nadu Prohibition Act, 1937, carrying non-bailable arrest and asset forfeiture.",
+    "historyAndPolicy": "Tamil Nadu enacted total prohibition under C. Rajagopalachari in 1937. While policy oscillated between dry and wet regimes, the state established a complete government retail monopoly through TASMAC in 2003 under Section 17C, ending private cartels.",
+    "retailAndLicensingDetails": "TASMAC operates standardized government counter shops across urban and rural wards. In addition, \"TASMAC Elite\" air-conditioned walk-in shops operate inside shopping malls in Chennai, Coimbatore, and Madurai to cater to premium buyers.",
+    "licenseCategories": [
+      {
+        "code": "TASMAC Vend",
+        "name": "Government Retail Shop",
+        "description": "Standard packaged state-run counter shop (12:00 Noon – 10:00 PM)."
+      },
+      {
+        "code": "TASMAC Elite",
+        "name": "Premium Air-Conditioned Walk-in Shop",
+        "description": "Mall-based retail stores stocking premium foreign and imported brands."
+      },
+      {
+        "code": "FL-2 / FL-3",
+        "name": "Star Hotel & Club Bar License",
+        "description": "Licensed table service restricted to recognized star hotels and private clubs."
+      },
+      {
+        "code": "FL-11",
+        "name": "Commercial Tourism Bar",
+        "description": "Designated tourism hospitality licenses in certified resort locations."
+      }
+    ],
+    "interstateTransitGuidance": "Intensive round-the-clock check-posts operate along the Puducherry border (Kanagachettikulam, Gorimedu, Villianur) and Karnataka border (Hosur). Police flying squads use sniffer dogs and vehicle checks to confiscate Pondicherry-labeled bottles.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is strictly illegal in Tamil Nadu. Online apps are banned from selling or transporting alcoholic beverages.",
+    "districtAndCityNuances": "Temple cities (Madurai, Rameswaram, Palani) enforce buffer zones where TASMAC outlets are prohibited within 50-100 meters of religious places and educational institutions. Chennai has the highest density of Elite TASMAC outlets."
   },
-  'kerala': {
-    actName: 'Abkari Act, 1 of 1077 (1902) & Kerala Foreign Liquor Rules',
-    regulatoryAuthority: 'Kerala State Beverages Corporation (BEVCO) & Consumerfed',
-    officialPortal: 'https://keralaexcise.gov.in',
-    retailModel: 'Complete State Retail Monopoly via BEVCO & Consumerfed Outlets',
-    statutorySummary:
-      'Kerala manages alcohol retailing exclusively through state-owned corporations: BEVCO and Consumerfed. Private retail liquor shops do not exist in the state. Retail counter timings are 10:00 AM to 9:00 PM. Private hospitality bars operate under FL-3 (hotel) and FL-11 (toddy/beer-wine parlour) licenses. The legal drinking age is 23 years under the Abkari Act.',
-    standingDryDaysSummary:
-      'Kerala is famous for its standing "1st of every month" statutory dry-day closure under Rule 7A of the Foreign Liquor Rules, where all BEVCO retail stores and commercial bars remain closed. Other statutory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Sree Narayana Guru Jayanti, and Sree Narayana Guru Samadhi.',
-    transitAndPossessionRule:
-      'Maximum personal possession is 3 litres of foreign liquor/IMFL, 7.8 litres of beer, and 2.5 litres of toddy. Importing cheaper liquor from Mahe (Puducherry) is heavily monitored by excise squads at Thalassery checkposts.',
-    penaltiesNotice:
-      'Illegal transit or illicit possession is penalized under Sections 55 and 58 of the Abkari Act with minimum fines of ₹1 Lakh and rigorous imprisonment.',
+  "kerala": {
+    "actName": "Kerala Abkari Act (1 of 1077) & Foreign Liquor Rules, 1953",
+    "regulatoryAuthority": "Excise Department, Government of Kerala & KSBC (BEVCO)",
+    "officialPortal": "https://keralaexcise.gov.in",
+    "retailModel": "100% State Corporation Retail (BEVCO & Consumerfed) + Toddy Shops",
+    "statutorySummary": "Kerala manages alcohol distribution through the state-owned Kerala State Beverages Corporation (KSBC / BEVCO) and Consumerfed. Private retail liquor shops are prohibited. Standard retail outlets operate between 10:00 AM and 9:00 PM. Uniquely, the 1st of every calendar month is a mandatory statutory dry day (\"Pay Day Rule\") across the entire state. The legal drinking age in Kerala is 23 years under the Abkari Act.",
+    "standingDryDaysSummary": "Kerala observes mandatory dry days on the 1st of every calendar month (Pay Day), Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Sree Narayana Guru Samadhi Day (21 Sept), and Sree Narayana Guru Jayanti. Bar service is also barred on voting and counting days.",
+    "transitAndPossessionRule": "An individual can possess up to 3 litres of foreign liquor, 7.8 litres of beer, and 2.5 litres of toddy with proof of BEVCO purchase. Bringing alcohol from Mahe (Puducherry enclave), Goa, or Tamil Nadu without paying Kerala excise duty is strictly barred.",
+    "penaltiesNotice": "Offences under the Kerala Abkari Act carry severe penalties, including non-bailable arrest under Section 55 and rigorous imprisonment for up to 10 years for smuggling spurious or duty-evaded liquor.",
+    "historyAndPolicy": "Kerala’s excise policy has oscillated between prohibitionist reforms and revenue pragmatism. The 2014 policy closed hundreds of non-standard bars, restricting bar licenses strictly to 3-star, 4-star, and 5-star hotels, alongside licensed beer and wine parlours.",
+    "retailAndLicensingDetails": "BEVCO operates over 300 walk-in supermarkets and queue-counter vends. Traditional palm toddy is tapped and sold through licensed Toddy Shops (TS), preserving a historic indigenous trade.",
+    "licenseCategories": [
+      {
+        "code": "FL-1",
+        "name": "BEVCO / Consumerfed Retail Outlet",
+        "description": "State-run packaged retail shop (10:00 AM – 9:00 PM)."
+      },
+      {
+        "code": "FL-3",
+        "name": "Star Hotel Bar License",
+        "description": "Full liquor service restricted to verified 3-star, 4-star, and 5-star hotels (11:00 AM – 11:00 PM)."
+      },
+      {
+        "code": "FL-11",
+        "name": "Beer & Wine Parlour",
+        "description": "Commercial parlour license permitting the service of mild and strong beer and wine."
+      },
+      {
+        "code": "TS",
+        "name": "Licensed Toddy Shop",
+        "description": "Traditional rural and coastal outlets selling fresh indigenous fermented palm toddy."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts at Walayar (Tamil Nadu border) and Thalapady / Kasaragod (Karnataka border) conduct systematic vehicle inspections. Mahe enclave borders are especially monitored to stop cheaper UT liquor inflows into Kannur and Kozhikode.",
+    "onlineDeliveryPolicy": "Doorstep home delivery is prohibited. BEVCO operates an online queue token system (BevQ during special circumstances), but customer pick-up in person is mandatory.",
+    "districtAndCityNuances": "Pilgrimage zones surrounding Sabarimala (Pathanamthitta district) and Guruvayur observe local alcohol-free restrictions during temple festivals. Kochi and Thiruvananthapuram feature high-end star hotel lounges."
   },
-  'bihar': {
-    actName: 'Bihar Prohibition and Excise Act, 2016 (amended 2018 & 2022)',
-    regulatoryAuthority: 'Prohibition, Excise & Registration Department, Government of Bihar',
-    officialPortal: 'https://state.bihar.gov.in/excise',
-    retailModel: 'TOTAL STATUTORY PROHIBITION (Zero Retail Sales / Complete Ban)',
-    statutorySummary:
-      'Bihar is under complete statutory alcohol prohibition enacted on 5 April 2016. The manufacture, bottling, distribution, transportation, accumulation, storage, sale, purchase, possession, and consumption of any intoxicating liquor or spirit is strictly prohibited across all 38 districts of the state.',
-    standingDryDaysSummary:
-      'Every day is a statutory dry day in Bihar (365 days a year). There are no exemptions for luxury hotels, tourist resorts, or social celebrations.',
-    transitAndPossessionRule:
-      'Carrying even a single bottle of alcohol through Bihar by car, bus, or train (including personal baggage on Indian Railways) is a criminal offense. Drone cameras, breathalyzers, and dog squads are deployed at border checkposts connecting Uttar Pradesh, Jharkhand, and West Bengal.',
-    penaltiesNotice:
-      'Consumption attracts mandatory compounding fines or jail under Section 37; illegal manufacture, trade, or transit attracts non-bailable imprisonment of 5 to 10 years and property/vehicle confiscation under Section 30(a).',
+  "bihar": {
+    "actName": "Bihar Prohibition and Excise Act, 2016 (as amended 2022)",
+    "regulatoryAuthority": "Excise, Prohibition and Registration Department, Government of Bihar",
+    "officialPortal": "https://state.bihar.gov.in/prohibition",
+    "retailModel": "100% Total Statewide Statutory Prohibition (Sharab-Bandi)",
+    "statutorySummary": "Bihar is under complete statewide statutory alcohol prohibition enacted on 5 April 2016. The manufacture, bottling, distribution, transportation, sale, purchase, possession, and consumption of all forms of alcoholic beverages (including beer, wine, IMFL, and country liquor) are strictly prohibited and criminalized. All retail vends, bars, and commercial licenses stand permanently abolished. There is no legal drinking age; alcohol is illegal for all individuals.",
+    "standingDryDaysSummary": "Because total statutory prohibition is enforced 365 days a year, every single calendar day is a mandatory dry day across all 38 districts of Bihar.",
+    "transitAndPossessionRule": "Zero tolerance. Carrying even a single bottle of alcohol across the border into Bihar from Uttar Pradesh, Jharkhand, West Bengal, or Nepal is a criminal offence. Police and excise flying squads deploy breathalyzers, vehicle scanners, and sniffer dogs at all state entry points.",
+    "penaltiesNotice": "Violations are prosecuted under the Bihar Prohibition and Excise Act, 2016. First-time consumption carries a compoundable fine of ₹2,000–₹5,000 (or mandatory simple imprisonment), while repeat offenders, commercial bootleggers, and transporters face non-bailable arrest, minimum 5–10 years imprisonment, and mandatory vehicle confiscation.",
+    "historyAndPolicy": "Enacted under Chief Minister Nitish Kumar in 2016 following a grassroots anti-liquor movement by rural women, the prohibition act represents the strictest temperance legislation in contemporary India. Subsequent amendments in 2022 provided compoundable fines for first-time casual drinkers to ease judicial caseloads.",
+    "retailAndLicensingDetails": "No commercial retail or hospitality liquor licenses exist in Bihar. Industrial alcohol manufacturing units are heavily audited, and molasses tanks are monitored with 24/7 CCTV surveillance and digital flowmeters.",
+    "licenseCategories": [
+      {
+        "code": "N/A",
+        "name": "Total Statutory Prohibition",
+        "description": "All commercial retail, bar, and hospitality liquor licenses are abolished and null statewide."
+      },
+      {
+        "code": "Industrial Permit",
+        "name": "Denatured Industrial Alcohol Only",
+        "description": "Heavily audited non-potable chemical and pharmaceutical manufacturing licenses."
+      }
+    ],
+    "interstateTransitGuidance": "All border entry corridors (Buxar, Gopalganj, Chhapra from UP; Gaya, Rajauli from Jharkhand; Asansol/Durgapur route from West Bengal) feature permanent multi-agency checkpoints. Carrying duty-paid alcohol through Bihar—even in sealed luggage inside private vehicles or long-distance trains—is completely illegal and results in vehicle impoundment and arrest.",
+    "onlineDeliveryPolicy": "Online liquor delivery is non-existent and completely illegal. Any advertisement or platform claiming to deliver alcohol in Bihar is fraudulent.",
+    "districtAndCityNuances": "Statewide drone surveillance and riverine patrol boats on the Ganga, Gandak, and Son rivers target smuggling routes. Urban centers (Patna, Gaya, Muzaffarpur) operate specialized de-addiction centers."
   },
-  'gujarat': {
-    actName: 'Gujarat Prohibition Act, 1949 (amended 2017)',
-    regulatoryAuthority: 'Directorate of Prohibition & Excise, Government of Gujarat',
-    officialPortal: 'https://eps.gujarat.gov.in',
-    retailModel: 'TOTAL STATUTORY PROHIBITION (Exemptions via Health/Visitor Permits & GIFT City SEZ)',
-    statutorySummary:
-      'Gujarat has practiced statutory prohibition since state inception in 1960. General retail sale, open bars, and public consumption are prohibited statewide. However, authorized domestic visitors and international tourists can obtain temporary liquor permits (Tourist/Visitor Permit) through the state online portal to purchase limited quotas from designated five-star hotel retail counters. Additionally, designated dining areas in GIFT City SEZ have designated liquor access for employees and visitors.',
-    standingDryDaysSummary:
-      'The general public faces 365 days of statutory dry days. Commercial thekas and standard bars do not exist anywhere in Gujarat.',
-    transitAndPossessionRule:
-      'Carrying alcohol without an active, verified digital permit issued by the Prohibition Department is strictly illegal. Interstate vehicle checkposts on highways connecting Rajasthan (Ratanpur), Maharashtra, and Daman intercept unauthorized bottles.',
-    penaltiesNotice:
-      'Under the 2017 amendments to the Gujarat Prohibition Act, bootlegging and unauthorized distribution carry severe prison terms of up to 10 years and fines of up to ₹5 Lakh.',
+  "gujarat": {
+    "actName": "Gujarat Prohibition Act, 1949 (formerly Bombay Prohibition Act, 1949)",
+    "regulatoryAuthority": "Directorate of Prohibition and Excise, Government of Gujarat",
+    "officialPortal": "https://eps.gujaratexcise.gujarat.gov.in",
+    "retailModel": "Statutory Prohibition with Certified Tourist & Health Permits",
+    "statutorySummary": "Gujarat has enforced statutory prohibition since its formation as a tribute to Mahatma Gandhi. However, unlike Bihar, Gujarat incorporates a sophisticated legal permit mechanism. Domestic tourists from other states, international travelers, and resident medical permit holders can legally purchase and consume alcohol through ~70 authorized hotel wine counters located inside certified 4-star and 5-star hotels across the state.",
+    "standingDryDaysSummary": "Public commercial retail is permanently closed. While permit counters inside star hotels operate during designated hours, they observe mandatory closures on national dry days: Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct).",
+    "transitAndPossessionRule": "Possessing alcohol without a valid digital Gujarat excise permit is illegal. Domestic tourists can apply online for a 30-day Tourist Liquor Permit (Form E) upon presenting travel tickets and proof of residence outside Gujarat. Each permit allows purchase of up to 4 units of liquor per calendar month.",
+    "penaltiesNotice": "Unlawful possession, transport, or consumption without a permit is punishable under Section 65 and 66 of the Gujarat Prohibition Act, with imprisonment of up to 3 years and heavy fines.",
+    "historyAndPolicy": "Gujarat has maintained temperance policies since 1960. In December 2023, Gujarat introduced a major regulatory landmark by exempting the Gujarat International Finance Tec-City (GIFT City) in Gandhinagar, allowing authorized employees and visitors to consume alcohol in designated food and beverage areas.",
+    "retailAndLicensingDetails": "Permit stores operate exclusively inside high-end certified hotels (e.g. in Ahmedabad, Vadodara, Surat, Rajkot, Gandhinagar). Transactions require biometric/photo-ID verification, physical permit stamps, and digital ledger entries.",
+    "licenseCategories": [
+      {
+        "code": "Tourist Permit",
+        "name": "Domestic Visitor E-Permit (Form E)",
+        "description": "30-day digital permit issued to non-Gujarat domestic tourists via state portal."
+      },
+      {
+        "code": "Visitor Permit",
+        "name": "International Traveler Liquor Permit",
+        "description": "Digital permit for foreign passport holders upon arrival in Gujarat."
+      },
+      {
+        "code": "Health Permit",
+        "name": "Resident Medical Permit",
+        "description": "Permit granted to permanent Gujarat residents above 40 years on medical grounds."
+      },
+      {
+        "code": "GIFT City Liquor Access",
+        "name": "GIFT SEZ Hospitality Exemption",
+        "description": "Special authorized consumption card for certified employees and guests in GIFT City."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along the Rajasthan border (Ratanpur, Abu Road) and Daman/Diu borders (Vapi, Bhilad, Una) conduct thorough vehicle screenings. Carrying duty-unpaid liquor from Daman or Rajasthan into Gujarat without an approved transit permit constitutes bootlegging.",
+    "onlineDeliveryPolicy": "Home delivery of alcohol is strictly illegal throughout Gujarat. All permit purchases must be made in person at certified star hotel counters.",
+    "districtAndCityNuances": "GIFT City in Gandhinagar operates under special 2023 regulations permitting wine and dine facilities for authorized professionals. Daman and Diu border towns (Vapi, Valsad) experience heavy check-post surveillance."
   },
-  'nagaland': {
-    actName: 'Nagaland Liquor Total Prohibition Act, 1989 (NLTP Act)',
-    regulatoryAuthority: 'Excise & Prohibition Department, Government of Nagaland',
-    officialPortal: 'https://police.nagaland.gov.in',
-    retailModel: 'TOTAL STATUTORY PROHIBITION across all 16 Districts',
-    statutorySummary:
-      'Nagaland enacted total prohibition in 1989 under the NLTP Act, making it unlawful to transport, import, manufacture, sell, or consume alcohol. No legal retail wine shops or commercial bars operate within the state. Special medical permits and defense establishment canteens operate under restricted oversight.',
-    standingDryDaysSummary:
-      'Every day is a statutory prohibition day (365 days a year) throughout Kohima, Dimapur, Mokokchung, and all districts.',
-    transitAndPossessionRule:
-      'Bringing alcohol into Nagaland from neighbouring Assam is strictly monitored at check gates like New Field and Khatkhati in Dimapur.',
-    penaltiesNotice:
-      'Offenders face prosecution under Sections 44 and 45 of the NLTP Act 1989, leading to imprisonment and heavy fines.',
+  "nagaland": {
+    "actName": "Nagaland Liquor Total Prohibition (NLTP) Act, 1989",
+    "regulatoryAuthority": "Department of Excise and Prohibition, Government of Nagaland",
+    "officialPortal": "https://excise.nagaland.gov.in",
+    "retailModel": "100% Total Statutory Prohibition (NLTP)",
+    "statutorySummary": "Nagaland enforces statewide statutory prohibition under the Nagaland Liquor Total Prohibition (NLTP) Act, 1989. Enacted following decades of advocacy by the Nagaland Baptist Church Council (NBCC) and women’s organizations, the act outlaws the import, transport, manufacture, sale, purchase, and possession of alcoholic beverages throughout the state.",
+    "standingDryDaysSummary": "Every day of the year is a mandatory dry day across all districts of Nagaland under the NLTP Act.",
+    "transitAndPossessionRule": "All commercial liquor possession and transit are prohibited. Limited exceptions apply solely to military messes, paramilitary establishments, and civil medical permits issued under certified medical conditions.",
+    "penaltiesNotice": "Offences are prosecuted under Sections 44 and 45 of the NLTP Act, 1989, carrying rigorous imprisonment of up to 3 years and heavy fines.",
+    "historyAndPolicy": "While the NLTP Act has been in force for over 35 years, ongoing policy discussions between the state government, civic bodies, and church organizations continue to examine health impacts and revenue losses along the Assam border.",
+    "retailAndLicensingDetails": "No public retail wine stores, thekas, or commercial bars exist in Nagaland. Traditional non-commercial indigenous rice brews prepared for tribal household festivals are customary.",
+    "licenseCategories": [
+      {
+        "code": "N/A",
+        "name": "Total Prohibition (NLTP)",
+        "description": "Commercial retail and hospitality alcohol licenses are barred statewide."
+      },
+      {
+        "code": "Defense Permit",
+        "name": "Cantonment Mess Permit Only",
+        "description": "Authorized mess supplies for armed forces personnel within base areas."
+      }
+    ],
+    "interstateTransitGuidance": "Major check-posts between Assam and Nagaland (New Field check-post and Dillai gate near Dimapur) monitor commercial vehicular traffic. Transporting liquor from Assam into Nagaland is illegal.",
+    "onlineDeliveryPolicy": "Online liquor sales and app delivery are completely prohibited.",
+    "districtAndCityNuances": "Dimapur, as the commercial gateway of Nagaland, experiences the highest enforcement activity. Kohima and interior districts (Mokokchung, Mon) observe strict community-assisted prohibition enforcement."
   },
-  'mizoram': {
-    actName: 'Mizoram Liquor (Prohibition) Act, 2019 (MLP Act)',
-    regulatoryAuthority: 'Excise and Narcotics Department, Government of Mizoram',
-    officialPortal: 'https://excise.mizoram.gov.in',
-    retailModel: 'STATUTORY PROHIBITION (Repealed Open Policy in 2019)',
-    statutorySummary:
-      'Mizoram implemented the MLP Act in May 2019, reversing its previous open licensing framework. Under current state law, commercial sale, private retail outlets, and public bars are prohibited. Armed forces canteens maintain restricted quotas for authorized personnel.',
-    standingDryDaysSummary:
-      'Statutory prohibition is enforced every day across all 11 districts of Mizoram.',
-    transitAndPossessionRule:
-      'Interstate transit from Assam or international borders is monitored by the Excise and Narcotics Department squads.',
-    penaltiesNotice:
-      'Possession or illegal trafficking is punishable with up to 5 years imprisonment under the MLP Act 2019.',
+  "mizoram": {
+    "actName": "Mizoram Liquor (Prohibition) Act, 2019",
+    "regulatoryAuthority": "Excise & Narcotics Department, Government of Mizoram",
+    "officialPortal": "https://excise.mizoram.gov.in",
+    "retailModel": "Statutory Prohibition with Strict Medical & Defense Exemptions",
+    "statutorySummary": "Mizoram enforces prohibition under the Mizoram Liquor (Prohibition) Act, 2019, which repealed the short-lived 2014 regulatory framework. The sale, purchase, possession, and consumption of alcohol are illegal across the state, supported strongly by church organizations and civil society groups such as the Central Young Mizo Association (CYMA).",
+    "standingDryDaysSummary": "Every calendar day is a statutory dry day across all 11 districts of Mizoram.",
+    "transitAndPossessionRule": "Carrying alcohol into Mizoram is prohibited. Strict exceptions apply only to defense canteens and certified medical prescriptions approved by the Excise & Narcotics Commissioner.",
+    "penaltiesNotice": "Violations are penalized under the 2019 Act with imprisonment of up to 5 years and fines of up to ₹1,00,000.",
+    "historyAndPolicy": "Mizoram originally enacted total prohibition under the MLPC Act in 1997. After replacing it with a regulated license system in 2014, public debate on health and road safety led the state legislature to return to prohibition in 2019.",
+    "retailAndLicensingDetails": "No commercial wine shops or bar licenses operate in the state.",
+    "licenseCategories": [
+      {
+        "code": "N/A",
+        "name": "State Prohibition",
+        "description": "Commercial retail and restobar liquor licenses are completely banned."
+      },
+      {
+        "code": "Medical Permit",
+        "name": "Civil Surgeon Health Exemption",
+        "description": "Strict prescription permits issued on verified medical grounds."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts along the Assam border (Vairengte) and Tripura border (Kanhmun) inspect vehicles to intercept illicit inflows.",
+    "onlineDeliveryPolicy": "Online liquor delivery is completely prohibited.",
+    "districtAndCityNuances": "Local community volunteers (CYMA) actively support state excise and narcotics squads across Aizawl, Lunglei, and Champhai to prevent bootlegging."
   },
-  'lakshadweep': {
-    actName: 'Lakshadweep Prohibition Regulation, 1979',
-    regulatoryAuthority: 'Lakshadweep Union Territory Administration',
-    officialPortal: 'https://lakshadweep.gov.in',
-    retailModel: 'STATUTORY PROHIBITION (Except Designated Resort Island)',
-    statutorySummary:
-      'Alcohol consumption and sale is prohibited across all inhabited islands of the Lakshadweep archipelago (including Kavaratti, Agatti, Amini, Andrott). Commercial sale is exclusively authorized on the uninhabited island resort of Bangaram for licensed tourism purposes.',
-    standingDryDaysSummary:
-      'Inhabited islands are under permanent statutory prohibition throughout the year.',
-    transitAndPossessionRule:
-      'Carrying alcohol onto passenger vessels, ferries, or flights bound for inhabited islands is strictly prohibited and inspected by police at embarkation points in Kochi.',
-    penaltiesNotice:
-      'Unauthorized possession attracts criminal prosecution under the Union Territory Prohibition Regulation.',
+  "lakshadweep": {
+    "actName": "Lakshadweep Prohibition Regulation, 1979",
+    "regulatoryAuthority": "Department of Excise, Union Territory of Lakshadweep Administration",
+    "officialPortal": "https://lakshadweep.gov.in",
+    "retailModel": "Island Prohibition with Exclusive Bangaram Tourist Resort Exemption",
+    "statutorySummary": "Lakshadweep enforces total statutory prohibition across all 10 of its inhabited islands (including Kavaratti, Agatti, Amini, Andrott, and Minicoy) under the Lakshadweep Prohibition Regulation, 1979, respecting local cultural traditions. However, the uninhabited island resort of Bangaram operates an exclusive tourist bar license catering to visiting domestic and international travelers.",
+    "standingDryDaysSummary": "All inhabited islands observe permanent dry days 365 days a year. The licensed resort bar on Bangaram island observes mandatory closures on national dry days (26 Jan, 15 Aug, 2 Oct).",
+    "transitAndPossessionRule": "Carrying alcohol to any inhabited island in Lakshadweep is completely illegal. Passenger baggage arriving via flights at Agatti Airport or passenger ships from Kochi is screened at arrival terminals.",
+    "penaltiesNotice": "Illegal possession or transport is punishable under the Lakshadweep Prohibition Regulation, 1979, with imprisonment and immediate seizure.",
+    "historyAndPolicy": "Administered under special constitutional protections for tribal and island populations, Lakshadweep balances conservative island norms with targeted eco-tourism revenue on uninhabited coral atolls.",
+    "retailAndLicensingDetails": "There are zero retail thekas or public liquor shops anywhere in Lakshadweep. The Bangaram Island Resort is the sole licensed hospitality establishment.",
+    "licenseCategories": [
+      {
+        "code": "Island Prohibition",
+        "name": "Inhabited Islands Prohibition",
+        "description": "Absolute prohibition on alcohol sale, transport, and consumption across all inhabited islands."
+      },
+      {
+        "code": "Resort Bar",
+        "name": "Bangaram Island Tourist Bar",
+        "description": "Exclusive licensed lounge catering to international and domestic tourists on uninhabited Bangaram."
+      }
+    ],
+    "interstateTransitGuidance": "All luggage arriving at Agatti Airport and passenger ferry jetties is screened. Travelers are not permitted to carry personal alcohol into the islands.",
+    "onlineDeliveryPolicy": "Online liquor delivery is non-existent and completely prohibited.",
+    "districtAndCityNuances": "Absolute prohibition across Kavaratti administrative capital and all inhabited atolls; regulated hospitality service exclusively confined to the island of Bangaram."
   },
-  'andhra-pradesh': {
-    actName: 'Andhra Pradesh Excise Act, 1968 & AP Retail Liquor Policy 2024–2026',
-    regulatoryAuthority: 'Prohibition & Excise Department, Government of Andhra Pradesh',
-    officialPortal: 'https://apbcl.ap.gov.in',
-    retailModel: 'Transitioned Private Retail Outlets with Digital Price Transparency',
-    statutorySummary:
-      'Andhra Pradesh transitioned in late 2024 from state-run retail counters back to a regulated private retail licensing policy. Retail stores operate from 10:00 AM to 10:00 PM. Premium brand availability and digital billing are strictly enforced. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Standard national dry days (26 Jan, 15 Aug, 2 Oct) are mandatory alongside major religious festivals including Mahavir Jayanti, Eid-ul-Fitr, and Muharram. Election dry days are strictly enforced 48 hours before polling.',
-    transitAndPossessionRule:
-      'Maximum possession is limited to 3 bottles of IMFL and 6 bottles of beer. Bringing untaxed liquor across borders from Tamil Nadu or Telangana is regulated.',
-    penaltiesNotice:
-      'Unlawful possession or transport violates Section 34 of the AP Excise Act, 1968.',
+  "andhra-pradesh": {
+    "actName": "Andhra Pradesh Excise Act, 1968 & AP Retail Liquor Vending Policy 2024-26",
+    "regulatoryAuthority": "Andhra Pradesh Prohibition & Excise Department & APBCL",
+    "officialPortal": "https://excise.ap.gov.in",
+    "retailModel": "Transparent E-Lottery Private Retail Vends & Premium Stores",
+    "statutorySummary": "Andhra Pradesh returned to a private retail licensing framework in October 2024, allocating over 3,300 retail shops across 26 districts through a transparent lottery system. Wholesale procurement remains centralized under the Andhra Pradesh Beverages Corporation Limited (APBCL). Standard retail shops operate from 10:00 AM to 10:00 PM. The minimum legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Andhra Pradesh include Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct). Major religious observances include Mahavir Jayanti, Good Friday, Eid-ul-Fitr, and Muharram. Election polling windows enforce 48-hour section 135C bans.",
+    "transitAndPossessionRule": "Personal possession is capped at 3 bottles of IMFL/spirits and 6 bottles of beer per person without a special permit. Transport across borders from Telangana, Karnataka, or Odisha requires duty documentation.",
+    "penaltiesNotice": "Smuggling duty-evaded liquor or illicit brewing is penalized under Sections 34 and 37 of the AP Excise Act, 1968, with mandatory imprisonment and asset attachment.",
+    "historyAndPolicy": "After managing retail operations through government-run counters between 2019 and 2024, Andhra Pradesh reformed its excise regime in 2024 to restore private retail, eliminate brand shortages, and re-introduce popular national and international labels at competitive rates.",
+    "retailAndLicensingDetails": "Retailers purchase stock solely from APBCL depots. The state licenses private off-shops, premium walk-in stores in commercial malls, and commercial 2B bars.",
+    "licenseCategories": [
+      {
+        "code": "Retail Shop",
+        "name": "Private Packaged Liquor Vend",
+        "description": "Licensed off-premise retail shops operating under standard 10:00 AM – 10:00 PM hours."
+      },
+      {
+        "code": "2B Bar",
+        "name": "Restaurant & Bar License",
+        "description": "Table service of spirits, wine, and beer in certified dining spaces (up to 11:00 PM)."
+      },
+      {
+        "code": "Premium Store",
+        "name": "Air-Conditioned Mall Vend",
+        "description": "High-end walk-in retail store stocking premium single-malts and imported wines."
+      },
+      {
+        "code": "Toddy Shop",
+        "name": "Licensed Toddy Counter",
+        "description": "Regulated cooperative tapping and retail for fresh natural palm toddy."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along the Telangana border (Garikapadu, Ramapuram), Karnataka border (Madakasira), and Tamil Nadu border monitor commercial traffic. Transit of duty-unpaid liquor is strictly prohibited.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is not permitted in Andhra Pradesh.",
+    "districtAndCityNuances": "Tirupati holy town and the entire Tirumala sacred hill perimeter are strictly alcohol-free zones under Tirumala Tirupati Devasthanams (TTD) statutory regulations. Visakhapatnam and Vijayawada feature active commercial bar cultures."
   },
-  'madhya-pradesh': {
-    actName: 'Madhya Pradesh Excise Act, 1915 & MP Composite Liquor Rules',
-    regulatoryAuthority: 'Excise Department, Government of Madhya Pradesh',
-    officialPortal: 'https://excise.mp.gov.in',
-    retailModel: 'Composite Retail Shops (Joint Country Spirit & IMFL Vends)',
-    statutorySummary:
-      'Madhya Pradesh operates under composite retail licensing where single authorized thekas sell both country liquor and IMFL. All on-premise "ahatas" (drinking areas adjacent to liquor shops) were banned statewide in 2023. Retail shops operate from 9:30 AM to 11:30 PM. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Statutory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Mahavir Jayanti, and religious observances declared by the state gazette. Dry zones exist around holy religious pilgrimage sites like Ujjain and Omkareshwar.',
-    transitAndPossessionRule:
-      'Possession limits are 4 bottles of spirits and 1 case of beer for domestic use. Unauthorized transit from Rajasthan or Uttar Pradesh is monitored.',
-    penaltiesNotice:
-      'Illegal trade or bootlegging attracts strict prosecution under Section 34 of the MP Excise Act, 1915.',
+  "madhya-pradesh": {
+    "actName": "Madhya Pradesh Excise Act, 1915 & MP Excise Rules, 1934",
+    "regulatoryAuthority": "Excise Commissionerate, Government of Madhya Pradesh",
+    "officialPortal": "https://excise.mp.gov.in",
+    "retailModel": "Auctioned Composite Retail Vends (IMFL + Country Liquor)",
+    "statutorySummary": "Madhya Pradesh governs alcohol retail through the Excise Commissionerate in Gwalior under the MP Excise Act, 1915. In 2022, MP introduced \"Composite Liquor Vends\", allowing both Indian Made Foreign Liquor (IMFL) and country liquor to be sold under a single retail counter. In 2023, the state abolished on-premise drinking enclosures (ahatas) attached to vends. Retail stores operate from 9:30 AM to 11:30 PM. The minimum legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Statewide mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the death anniversary of Mahatma Gandhi (30 Jan). Religious dry days include Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, and Muharram.",
+    "transitAndPossessionRule": "An individual can possess up to 4 bottles of spirits and 12 bottles of beer for domestic use. Bringing non-MP duty-paid liquor from Rajasthan, Uttar Pradesh, or Maharashtra is strictly illegal.",
+    "penaltiesNotice": "Offences involving illicit transit or bootlegging are prosecuted under Section 34 of the MP Excise Act, 1915, carrying non-bailable arrest and vehicle impoundment.",
+    "historyAndPolicy": "Madhya Pradesh has systematically streamlined retail licensing through e-tenders while responding to public welfare demands by closing attached ahatas and imposing religious buffer zones around sacred rivers and temple corridors.",
+    "retailAndLicensingDetails": "Composite vends operate across all 55 districts. Star hotels and commercial restaurants in major urban centers operate under FL-2 and FL-3 bar licenses.",
+    "licenseCategories": [
+      {
+        "code": "Composite Vend",
+        "name": "Combined Retail Liquor Shop",
+        "description": "Retail counter licensed for both foreign liquor and country spirits (9:30 AM – 11:30 PM)."
+      },
+      {
+        "code": "FL-2 / FL-3",
+        "name": "Bar & Hotel Restaurant License",
+        "description": "On-premise table service in commercial restaurants and certified hospitality lounges."
+      },
+      {
+        "code": "FL-4",
+        "name": "Commercial Club License",
+        "description": "Private social and recreational club bar licenses."
+      },
+      {
+        "code": "Wildlife Resort Bar",
+        "name": "National Park Tourism License",
+        "description": "Designated hospitality licenses in certified wildlife resort hubs (Kanha, Bandhavgarh, Pench)."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts along borders with Rajasthan, UP, Gujarat, and Maharashtra monitor vehicles. Transporting cheaper Haryana or Delhi alcohol through MP without an in-transit permit is punishable.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is strictly prohibited across Madhya Pradesh.",
+    "districtAndCityNuances": "Complete alcohol prohibition is enforced around the Mahakaleshwar temple corridor in Ujjain, Chitrakoot holy town, Omkareshwar Jyotirlinga perimeter, and Maihar sacred hill. Bhopal and Indore feature modern nightlife and restobar corridors."
   },
-  'odisha': {
-    actName: 'Odisha Excise Act, 2008 & Odisha Excise Rules, 2017',
-    regulatoryAuthority: 'Excise Directorate, Government of Odisha & OSBC',
-    officialPortal: 'https://excise.odisha.gov.in',
-    retailModel: 'OSBC Wholesale & Licensed "Off" Retail Shops',
-    statutorySummary:
-      'Odisha State Beverage Corporation (OSBC) holds the wholesale monopoly. Retail outlets ("Off" shops) and hotel bars ("On" shops) are privately licensed. Standard retail shop hours are 10:30 AM to 10:30 PM. The minimum legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Dry days include 26 January, 15 August, 2 October, Mahavir Jayanti, Buddha Purnima, Eid, and Ratha Yatra day in the holy pilgrim district of Puri.',
-    transitAndPossessionRule:
-      'Possession is limited to 3 bottles of IMFL and 6 bottles of beer per person without an excise transit permit.',
-    penaltiesNotice:
-      'Violations are penalized under Section 52 of the Odisha Excise Act, 2008.',
+  "odisha": {
+    "actName": "Odisha Excise Act, 2008 & Odisha Excise Rules, 2017",
+    "regulatoryAuthority": "Excise Directorate, Government of Odisha & OSBC",
+    "officialPortal": "https://excise.odisha.gov.in",
+    "retailModel": "OSBC Wholesale Monopoly & E-Auctioned Off-Shops and On-Shops",
+    "statutorySummary": "Odisha regulates wholesale liquor procurement and distribution through the Odisha State Beverages Corporation (OSBC). Retail sales are conducted through private licensed \"Off-Shops\" (packaged sales) and \"On-Shops\" (restaurant bars). In municipal areas, retail off-shops operate from 10:30 AM to 10:30 PM. The minimum legal drinking age in Odisha is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Odisha include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Utkal Divas (1 April). Major religious observances include Mahavir Jayanti, Buddha Purnima, Good Friday, Eid-ul-Fitr, and Muharram. Localized dry days are enforced during the annual Puri Ratha Yatra.",
+    "transitAndPossessionRule": "Personal domestic possession is capped at 3 bottles of spirits (750ml each) and 6 bottles of beer. Bringing untaxed liquor across borders from West Bengal or Andhra Pradesh is strictly prohibited.",
+    "penaltiesNotice": "Unlawful manufacturing, possession, or cross-border trafficking is penalized under Section 52 of the Odisha Excise Act, 2008.",
+    "historyAndPolicy": "Odisha modernized its excise operations through digital portal integration (e-Abkari Odisha), ensuring end-to-end QR-code tracking of bottles from OSBC central depots to retail shelves.",
+    "retailAndLicensingDetails": "Licenses are auctioned transparently. In addition to urban IMFL off-shops, Odisha regulates traditional Outstill (OS) liquor and country spirit vends in tribal districts.",
+    "licenseCategories": [
+      {
+        "code": "Off-Shop",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported spirits, and beer (10:30 AM – 10:30 PM)."
+      },
+      {
+        "code": "On-Shop",
+        "name": "Commercial Bar & Restaurant",
+        "description": "Table service of alcoholic beverages in certified dining rooms (up to 12:00 Midnight)."
+      },
+      {
+        "code": "Outstill (OS)",
+        "name": "Traditional Country Liquor Vend",
+        "description": "Licensed rural brewing and retail units catering to traditional indigenous consumers."
+      },
+      {
+        "code": "Hotel Bar",
+        "name": "Star Hospitality Lounge License",
+        "description": "Premium hotel bar service for visiting tourists and business travelers."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts at Jaleswar (West Bengal border), Sunabeda (Andhra border), and Bargarh (Chhattisgarh border) monitor highways. Commercial transit without an OSBC permit results in seizure.",
+    "onlineDeliveryPolicy": "Odisha allowed home delivery via registered retail stores under special regulatory orders, but third-party general app delivery remains strictly regulated by District Collectors.",
+    "districtAndCityNuances": "Puri holy town enforces buffer zones around the Shree Jagannath Temple where liquor vends are prohibited. Bhubaneswar smart city and Cuttack feature the highest density of on-premise bars."
   },
-  'chhattisgarh': {
-    actName: 'Chhattisgarh Excise Act, 1915 & CSMCL Retail Rules',
-    regulatoryAuthority: 'Chhattisgarh State Marketing Corporation Limited (CSMCL)',
-    officialPortal: 'https://excise.cg.nic.in',
-    retailModel: '100% State-Run Corporation Retail Shops (CSMCL)',
-    statutorySummary:
-      'Chhattisgarh manages retail liquor distribution through state-run CSMCL stores. Shops operate from 10:00 AM to 10:00 PM. The minimum legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Mandatory dry days include 26 Jan, 15 Aug, 2 Oct, Gandhi Nirvana Diwas (30 Jan), Mahavir Jayanti, Krishna Janmashtami, and Dussehra.',
-    transitAndPossessionRule:
-      'Possession is limited to 1 bottle of IMFL and 2 bottles of beer. Bringing liquor from Odisha or MP without CSMCL holograms is prohibited.',
-    penaltiesNotice:
-      'Punishable under Section 34 of the Chhattisgarh Excise Act, 1915.',
+  "chhattisgarh": {
+    "actName": "Chhattisgarh Excise Act, 1915 (as adapted) & CSMCL Retail Rules",
+    "regulatoryAuthority": "Excise Department, Government of Chhattisgarh & CSMCL",
+    "officialPortal": "https://excise.cg.nic.in",
+    "retailModel": "100% State Corporation Retail Monopoly (CSMCL)",
+    "statutorySummary": "Chhattisgarh manages retail liquor distribution exclusively through the state-owned Chhattisgarh State Marketing Corporation Limited (CSMCL). All private retail wine shops and thekas are prohibited. Government-managed counters operate strictly from 10:00 AM to 10:00 PM across all 33 districts. The legal drinking age in Chhattisgarh is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Chhattisgarh include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Chhattisgarh Foundation Day (1 Nov). Major religious dry days include Mahavir Jayanti, Guru Ghasidas Jayanti (18 Dec), Eid-ul-Fitr, and Muharram.",
+    "transitAndPossessionRule": "An individual can possess up to 3 bottles of IMFL and 6 bottles of beer purchased from authorized CSMCL vends with a valid cash receipt. Cross-border transit from MP, Odisha, or Maharashtra is prohibited.",
+    "penaltiesNotice": "Violations are prosecuted under Section 34 of the Chhattisgarh Excise Act, carrying non-bailable arrest and vehicle forfeiture for non-duty liquor transport.",
+    "historyAndPolicy": "Formed in 2000, Chhattisgarh created CSMCL in 2017 to eliminate private retail cartels and enforce uniform pricing. Special statutory provisions under PESA empower tribal Gram Sabhas in Bastar and Surguja to regulate traditional local brewing.",
+    "retailAndLicensingDetails": "CSMCL operates standardized government counters for foreign liquor and country liquor. Private bars operate under commercial FL-3 licenses in recognized hotels.",
+    "licenseCategories": [
+      {
+        "code": "CSMCL Vend",
+        "name": "Government Retail Counter",
+        "description": "State-run packaged retail store operating from 10:00 AM to 10:00 PM."
+      },
+      {
+        "code": "FL-3",
+        "name": "Hotel Bar & Restaurant License",
+        "description": "Table service of liquor inside certified commercial hotels and restobars."
+      },
+      {
+        "code": "FL-4",
+        "name": "Commercial Club License",
+        "description": "Private social and recreational club bar licenses."
+      },
+      {
+        "code": "Traditional Brew Exemption",
+        "name": "Tribal Domestic PESA Right",
+        "description": "Customary non-commercial domestic Mahua brewing rights for scheduled tribes."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along borders with Odisha, MP, and Maharashtra inspect passenger and commercial vehicles. Illicit transport into tribal areas is strictly targeted.",
+    "onlineDeliveryPolicy": "CSMCL operated a state-run home delivery portal during specific pandemic periods, but standard commercial food app delivery is prohibited.",
+    "districtAndCityNuances": "Tribal areas in Bastar, Dantewada, and Surguja enjoy customary protections under PESA for domestic Mahua production. Raipur capital region and Bilaspur feature commercial hotel restobars."
   },
-  'jharkhand': {
-    actName: 'Jharkhand Excise Act, 1915 & JSBCL Distribution Rules',
-    regulatoryAuthority: 'Jharkhand State Beverages Corporation Limited (JSBCL)',
-    officialPortal: 'https://jssc.jharkhand.gov.in',
-    retailModel: 'JSBCL Managed / Retail License Vends',
-    statutorySummary:
-      'Liquor trade is regulated by JSBCL with authorized retail counters across 24 districts. Standard shop hours are 10:00 AM to 10:00 PM. Legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Mahavir Jayanti, and Eid-ul-Fitr are observed as full dry days.',
-    transitAndPossessionRule:
-      'Strict inter-state checks are maintained along the Bihar border to prevent cross-border smuggling into dry Bihar.',
-    penaltiesNotice:
-      'Section 47 of the Jharkhand Excise Act penalizes illicit transport with imprisonment up to 3 years.',
+  "jharkhand": {
+    "actName": "Jharkhand Excise Act, 1915 & Jharkhand Liquor Retail Rules",
+    "regulatoryAuthority": "Excise & Prohibition Department, Government of Jharkhand & JSBCL",
+    "officialPortal": "https://excise.jharkhand.gov.in",
+    "retailModel": "Government-Controlled Retail Managed via JSBCL",
+    "statutorySummary": "Jharkhand manages wholesale and retail liquor distribution through the Jharkhand State Beverages Corporation Limited (JSBCL). Retail shops operate through contracted placement agencies under government oversight from 10:00 AM to 10:00 PM. Commercial bars in urban centers operate under valid on-premise licenses. The minimum legal drinking age in Jharkhand is 21 years.",
+    "standingDryDaysSummary": "Statewide mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Jharkhand Foundation Day (15 Nov). Religious dry days include Mahavir Jayanti, Karma Puja, Good Friday, Eid-ul-Fitr, and Muharram.",
+    "transitAndPossessionRule": "Personal possession is capped at 3 bottles of IMFL and 6 bottles of beer with valid JSBCL purchase receipts. Carrying liquor across the northern border into dry Bihar is strictly prohibited and heavily monitored.",
+    "penaltiesNotice": "Offences involving bootlegging or cross-border smuggling into Bihar are penalized under Section 47 of the Jharkhand Excise Act, 1915.",
+    "historyAndPolicy": "Jharkhand transitioned between private auctions and state-managed JSBCL vends to ensure consistent revenue receipts and curb illegal smuggling networks along the extensive border shared with dry Bihar.",
+    "retailAndLicensingDetails": "JSBCL retail outlets operate across all 24 districts. Urban hubs feature commercial restaurant bars and private social clubs.",
+    "licenseCategories": [
+      {
+        "code": "JSBCL Retail",
+        "name": "Government Retail Liquor Vend",
+        "description": "Packaged off-premise retail shop operating under 10:00 AM – 10:00 PM hours."
+      },
+      {
+        "code": "Bar License",
+        "name": "Commercial Restaurant Bar",
+        "description": "Table service of alcoholic beverages in certified dining establishments."
+      },
+      {
+        "code": "Club License",
+        "name": "Private Social Club Bar",
+        "description": "Exclusive bar licenses for registered corporate and recreational clubs (Ranchi, Jamshedpur)."
+      },
+      {
+        "code": "Tribal Customary Exemption",
+        "name": "Handia Brewing Customary Right",
+        "description": "Customary household preparation of traditional rice beer (Handia) for personal use."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along the Bihar border (Rajauli, Barhi, Koderma) are heavily staffed by joint police squads. Vehicles heading into Bihar are thoroughly searched; carrying liquor into Bihar constitutes a non-bailable crime.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Jharkhand.",
+    "districtAndCityNuances": "Deoghar district enforces strict dry days during the holy Shravani Mela in the sacred Baba Baidyanath Dham temple perimeter. Ranchi and Jamshedpur feature modern restobars operating until 11:00 PM."
   },
-  'assam': {
-    actName: 'Assam Excise Act, 2000 & Assam Excise Rules, 2016',
-    regulatoryAuthority: 'Excise Department, Government of Assam',
-    officialPortal: 'https://excise.assam.gov.in',
-    retailModel: 'Licensed Private Retail ("Off" Shops) & Bonded Warehouses',
-    statutorySummary:
-      'Assam operates a regulated private retail and wholesale distribution network. Retail vends operate from 10:00 AM to 10:00 PM, while Guwahati bars operate until 11:30 PM. Legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Standing dry days include 26 Jan, 15 Aug, 2 Oct, Gandhi Jayanti, Mahavir Jayanti, and Sankaradeva Tithi.',
-    transitAndPossessionRule:
-      'Interstate transit to prohibition states (Nagaland, Mizoram) is monitored at exit check gates.',
-    penaltiesNotice:
-      'Offenses are prosecuted under Sections 53 and 54 of the Assam Excise Act, 2000.',
+  "assam": {
+    "actName": "Assam Excise Act, 2000 & Assam Excise Rules, 2016",
+    "regulatoryAuthority": "Excise Department, Government of Assam",
+    "officialPortal": "https://excise.assam.gov.in",
+    "retailModel": "Licensed Private Off-Shops and On-Shops",
+    "statutorySummary": "Assam regulates alcohol production and retail under the Assam Excise Act, 2000. As the commercial engine of Northeast India, Assam features licensed private \"Off-Shops\" (packaged retail) operating from 10:00 AM to 10:00 PM (extended to 11:00 PM in municipal corporation areas). Commercial bars and hotel lounges operate as \"On-Shops\". The minimum legal drinking age in Assam is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Assam include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the martyrdom anniversary of Mahatma Gandhi (30 Jan). Major cultural and religious dry days include Magh Bihu, Rongali Bihu, Mahavir Jayanti, and Eid-ul-Fitr.",
+    "transitAndPossessionRule": "An individual can possess up to 12 bottles of beer and 3 bottles of IMFL with valid proof of purchase. Transporting duty-unpaid liquor across borders from Meghalaya or Arunachal Pradesh is strictly prohibited.",
+    "penaltiesNotice": "Unlawful manufacturing, possession, or cross-border smuggling is penalized under Sections 53 and 54 of the Assam Excise Act, 2000.",
+    "historyAndPolicy": "Assam modernized its excise infrastructure with end-to-end digital tracking (e-Excise Assam), automating permit issuance, brand registration, and warehouse dispatches across the Brahmaputra valley.",
+    "retailAndLicensingDetails": "The state licenses IMFL off-shops, country spirit counters, hotel bars, and microbreweries. Autonomous district councils in Bodoland (BTR) and Karbi Anglong exercise regional licensing coordination.",
+    "licenseCategories": [
+      {
+        "code": "IMFL Off-Shop",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (10:00 AM – 10:00 PM / 11:00 PM)."
+      },
+      {
+        "code": "IMFL On-Shop",
+        "name": "Commercial Bar & Restaurant",
+        "description": "Table service of alcoholic beverages in certified dining rooms and urban lounges."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Craft Brewing License",
+        "description": "On-premise craft beer production and service inside licensed Guwahati restobars."
+      },
+      {
+        "code": "Country Spirit",
+        "name": "Licensed Country Spirit Vend",
+        "description": "Authorized retail counters for regulated country spirit distribution."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts at Khanapara and Jorabat (Meghalaya border) and Dimapur border monitor vehicular movement. Smuggling cheaper military or neighboring state liquor into Assam is prosecuted with vehicle seizure.",
+    "onlineDeliveryPolicy": "Guwahati municipal corporation experimented with online delivery trials via authorized retail stores during specific periods, but general app delivery remains strictly regulated.",
+    "districtAndCityNuances": "Guwahati features a vibrant urban nightlife with microbreweries and restobars operating up to 11:30 PM. Majuli island and historical pilgrimage areas observe strict community-assisted closing norms."
   },
-  'himachal-pradesh': {
-    actName: 'Himachal Pradesh Excise Act, 2011 & HP Liquor License Rules',
-    regulatoryAuthority: 'State Taxes and Excise Department, Himachal Pradesh',
-    officialPortal: 'https://hptax.gov.in',
-    retailModel: 'Annual Auctioned Private Vends (L-2 & Tourist Hotel Licenses)',
-    statutorySummary:
-      'Himachal Pradesh licenses private thekas across its hill districts. Retail shops operate from 9:00 AM to 11:00 PM (midnight during peak summer tourist seasons in Shimla and Manali). The legal drinking age is 18 years.',
-    standingDryDaysSummary:
-      'Mandatory dry days include 26 Jan, 15 Aug, 2 Oct, Himachal Day (15 April), and religious dates notified by the district administration.',
-    transitAndPossessionRule:
-      'Tourists may carry personal consumption quotas (up to 2 bottles per adult) with retail cash receipts.',
-    penaltiesNotice:
-      'Section 39 of the HP Excise Act, 2011 penalizes illicit trade with fines and imprisonment.',
+  "himachal-pradesh": {
+    "actName": "Himachal Pradesh Excise Act, 2011 & HP Liquor License Rules, 1986",
+    "regulatoryAuthority": "State Taxes and Excise Department, Government of Himachal Pradesh",
+    "officialPortal": "https://hptax.gov.in",
+    "retailModel": "Auctioned Private Retail Vends (L-2) & Tourist Hospitality Bars",
+    "statutorySummary": "Himachal Pradesh regulates the liquor trade under the Himachal Pradesh Excise Act, 2011. Known for its mountain tourism economy, retail L-2 shops operate from 9:00 AM to 10:00 PM (or 11:00 PM in peak tourist zones). Hotel bars and resort lounges operate under specialized hospitality licenses. The minimum legal drinking age in Himachal Pradesh is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Himachal Day (15 April). Religious dry days include Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, and Ram Navami.",
+    "transitAndPossessionRule": "Tourists may possess up to 2 bottles of spirits (750ml) and 6 bottles of beer for personal use. Transporting commercial duty-unpaid liquor from Chandigarh or Punjab across border checkposts is strictly illegal.",
+    "penaltiesNotice": "Offences involving bootlegging or unauthorized transport are prosecuted under Section 39 of the HP Excise Act, 2011.",
+    "historyAndPolicy": "Himachal Pradesh has fostered high-end mountain tourism, fruit wine production, and craft microbreweries in scenic hill stations like Shimla, Manali, and Dharamshala, while safeguarding revenue receipts.",
+    "retailAndLicensingDetails": "Retail vends (L-2) are allocated via annual auction-cum-tender across 12 hill districts. Resort bars cater extensively to domestic and international visitors.",
+    "licenseCategories": [
+      {
+        "code": "L-2",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported spirits, and beer (9:00 AM – 10:00 PM / 11:00 PM)."
+      },
+      {
+        "code": "L-3 / L-4 / L-5",
+        "name": "Hotel, Resort & Restaurant Bar",
+        "description": "Licensed table service in certified dining rooms and hill resort lounges."
+      },
+      {
+        "code": "L-10BB",
+        "name": "Microbrewery License",
+        "description": "Craft brewing on-premise inside tourist destination lounges."
+      },
+      {
+        "code": "Horticulture Wine License",
+        "name": "Indigenous Fruit Winery License",
+        "description": "Commercial production and retail of local apple, plum, and rhododendron wines."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts at Parwanoo, Baddi, Mehatpur, and Kala Amb inspect vehicles entering from Punjab, Haryana, and Chandigarh. Carrying duty-unpaid alcohol into Himachal invites heavy fines.",
+    "onlineDeliveryPolicy": "Home delivery of alcohol is prohibited in Himachal Pradesh.",
+    "districtAndCityNuances": "Shimla (The Mall pedestrian zone) prohibits commercial liquor vends directly on the heritage promenade. Manali and McLeodganj feature tourism-extended bar licenses during peak summer and winter seasons."
   },
-  'uttarakhand': {
-    actName: 'Uttarakhand Excise Act, 1910 & Uttarakhand Liquor Policy',
-    regulatoryAuthority: 'Excise Department, Government of Uttarakhand',
-    officialPortal: 'https://excise.uk.gov.in',
-    retailModel: 'E-Auctioned Private Retail Outlets',
-    statutorySummary:
-      'Uttarakhand regulates retail through competitive e-lottery. Retail thekas operate from 10:00 AM to 10:00 PM. The legal drinking age is 21 years. A complete liquor ban is enforced in holy Char Dham pilgrimage zones and designated sacred riverbank areas in Haridwar and Rishikesh.',
-    standingDryDaysSummary:
-      'Standard dry days (26 Jan, 15 Aug, 2 Oct) plus local holy days and election 48-hour curfews.',
-    transitAndPossessionRule:
-      'Personal possession is limited to 2 bottles with valid payment invoice.',
-    penaltiesNotice:
-      'Violations are punished under Section 60 of the Excise Act with vehicle forfeiture.',
+  "uttarakhand": {
+    "actName": "Uttarakhand Excise Act, 2001 (adapted from UP 1910 Act)",
+    "regulatoryAuthority": "Excise Department, Government of Uttarakhand",
+    "officialPortal": "https://excise.uk.gov.in",
+    "retailModel": "Auctioned Private Retail Vends & Strict Pilgrimage Dry Zones",
+    "statutorySummary": "Uttarakhand regulates alcohol distribution under the Uttarakhand Excise Act, 2001. The state operates a dual regulatory philosophy: thriving hospitality licensing in tourist corridors (Dehradun, Mussoorie, Nainital) balanced with complete statutory prohibition across sacred pilgrimage sanctuaries (Haridwar, Rishikesh, Char Dham). Retail shops operate from 10:00 AM to 10:00 PM. The minimum legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Uttarakhand State Foundation Day (9 Nov). Religious dry days include Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, and Rama Navami.",
+    "transitAndPossessionRule": "Domestic possession is limited to 2 bottles of IMFL and 6 bottles of beer per person. Carrying alcohol into designated sacred pilgrimage zones is strictly prohibited under penal statutes.",
+    "penaltiesNotice": "Violations are prosecuted under Sections 60 and 63 of the Excise Act, carrying non-bailable arrest, heavy fines, and vehicle impoundment.",
+    "historyAndPolicy": "Since carving out of Uttar Pradesh in 2000, Uttarakhand has fiercely protected the environmental and spiritual sanctity of the Ganga and the Himalayas, enforcing complete alcohol-free zones across sacred riverbanks.",
+    "retailAndLicensingDetails": "Retail vends (FL-5) are allocated via transparent e-tenders. Tourist hospitality establishments operate under FL-7 bar licenses.",
+    "licenseCategories": [
+      {
+        "code": "FL-5",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (10:00 AM – 10:00 PM)."
+      },
+      {
+        "code": "FL-7",
+        "name": "Hotel & Commercial Restaurant Bar",
+        "description": "Table service of alcoholic beverages in certified dining rooms and tourist resorts."
+      },
+      {
+        "code": "Pilgrimage Prohibition",
+        "name": "Char Dham Statutory Ban",
+        "description": "Statutory ban on alcohol retail and possession in sacred municipal perimeters."
+      },
+      {
+        "code": "Occasional Permit",
+        "name": "Destination Wedding Liquor Permit",
+        "description": "Mandatory single-day permit for hosting alcohol service at banquets and resorts."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along Uttar Pradesh borders (Mohand, Haridwar border, Kashiwala) inspect vehicles. Carrying liquor into the municipal limits of Haridwar or Rishikesh results in immediate seizure and prosecution.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Uttarakhand.",
+    "districtAndCityNuances": "Total statutory prohibition is enforced in Haridwar municipal corporation, Rishikesh (Muni Ki Reti and Swargashram areas), and Char Dham temple perimeters (Badrinath, Kedarnath, Gangotri, Yamunotri). Dehradun and Mussoorie operate modern restobars."
   },
-  'chandigarh': {
-    actName: 'Punjab Excise Act, 1914 (as extended to UT Chandigarh) & UT Excise Policy',
-    regulatoryAuthority: 'Excise & Taxation Department, Chandigarh Administration',
-    officialPortal: 'https://etdut.chandigarh.gov.in',
-    retailModel: 'Auctioned Private Retail Vends with Competitive Tariffs',
-    statutorySummary:
-      'Chandigarh operates under a competitive retail licensing policy with lower duties than neighbouring Punjab and Haryana. Retail stores operate from 9:00 AM to 11:00 PM. Bars and hospitality establishments in Sectors 26, 35, and IT Park operate until 1:00 AM or 2:00 AM with night permissions. The legal drinking age is 25 years under the extended Punjab Excise Act.',
-    standingDryDaysSummary:
-      'Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Guru Nanak Jayanti (24 Nov).',
-    transitAndPossessionRule:
-      'Carrying Chandigarh-purchased liquor across the border into Punjab or Haryana without an excise transit permit is illegal.',
-    penaltiesNotice:
-      'Prosecuted under Section 61 of the Punjab Excise Act, 1914 as applicable to Chandigarh.',
+  "chandigarh": {
+    "actName": "Punjab Excise Act, 1914 (as applicable to UT Chandigarh) & Chandigarh Excise Policy",
+    "regulatoryAuthority": "Excise and Taxation Department, Chandigarh Administration",
+    "officialPortal": "https://chandigarhexcise.gov.in",
+    "retailModel": "Auctioned Private Retail Vends (L-2) with Uniform UT Quotas",
+    "statutorySummary": "Chandigarh Union Territory administers liquor distribution under the adapted Punjab Excise Act, 1914, through annual progressive excise policies. Known for competitive excise duty rates and high-density sector planning, Chandigarh’s ~95 retail vends operate from 9:00 AM to 12:00 Midnight. Bar and restaurant licenses operate until 1:00 AM (extended to 3:00 AM for premium lounges). The legal drinking age in Chandigarh is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Chandigarh include Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct). Religious dry days include Mahavir Jayanti, Guru Nanak Jayanti, and Eid-ul-Fitr. Polling days enforce 48-hour dry curfews.",
+    "transitAndPossessionRule": "An individual can possess up to 12 bottles of beer and 4 bottles of IMFL/wine purchased within Chandigarh. Transporting Chandigarh-labeled liquor into neighboring Punjab (Mohali) or Haryana (Panchkula) without payment of destination state duty is strictly illegal.",
+    "penaltiesNotice": "Smuggling cheaper UT-quota liquor across municipal borders into Punjab or Haryana is prosecuted under Section 61 with immediate vehicle confiscation.",
+    "historyAndPolicy": "As a planned Union Territory serving as the joint capital of Punjab and Haryana, Chandigarh maintains an independent fiscal regime with lower local levies, driving a sophisticated urban hospitality and microbrewery culture.",
+    "retailAndLicensingDetails": "Vends are auctioned individually per commercial sector. Sector 26, Sector 35, and Elante Mall house premier microbreweries and nightlife lounges.",
+    "licenseCategories": [
+      {
+        "code": "L-2",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (9:00 AM – 12:00 Midnight)."
+      },
+      {
+        "code": "L-4 / L-5",
+        "name": "Bar & Restaurant License",
+        "description": "Table service of alcohol in certified restaurants and commercial lounges (up to 1:00 AM / 3:00 AM)."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Craft Brewing License",
+        "description": "On-premise craft beer production and service inside sector dining lounges."
+      },
+      {
+        "code": "Club License",
+        "name": "Private Recreation Club Bar",
+        "description": "Exclusive bar licenses for registered golf and sports clubs."
+      }
+    ],
+    "interstateTransitGuidance": "Intensive joint border checks operate along borders with Mohali (Punjab) and Panchkula (Haryana). Punjab Police regularly intercept vehicles on border sector roads to stop bootlegging of cheaper Chandigarh bottles.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Chandigarh.",
+    "districtAndCityNuances": "Uniform sector-wide administration. Sector 26, Sector 35, Sector 7, and Industrial Area Phase 1 (Elante) feature the highest concentration of late-night microbreweries and lounges."
   },
-  'jammu-and-kashmir': {
-    actName: 'Jammu and Kashmir Excise Act, Samvat 1958 (1901 AD) & JK Retail Policy',
-    regulatoryAuthority: 'Excise Department, Government of Jammu and Kashmir',
-    officialPortal: 'https://jkexcise.nic.in',
-    retailModel: 'E-Auctioned Licensed Private Wine Shops (JKEL-2)',
-    statutorySummary:
-      'J&K manages retail distribution through e-auctioned JKEL-2 retail shops located predominantly in Jammu division and authorized tourist resorts (Gulmarg, Pahalgam, Srinagar). Retail stores operate from 9:00 AM to 9:00 PM (10:00 PM in summer). The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'National holidays (26 Jan, 15 Aug, 2 Oct) are observed as mandatory dry days alongside major religious dates notified by the Excise Commissioner.',
-    transitAndPossessionRule:
-      'Carrying alcohol into holy shrines (Vaishno Devi, Katra base town) is strictly prohibited by law.',
-    penaltiesNotice:
-      'Penalized under Section 48 of the J&K Excise Act.',
+  "jammu-and-kashmir": {
+    "actName": "Jammu and Kashmir Excise Act, Samvat 1958 (1901 AD)",
+    "regulatoryAuthority": "Excise Department, Government of Jammu and Kashmir",
+    "officialPortal": "https://jkexcise.nic.in",
+    "retailModel": "E-Auctioned Private Retail Vends (JKEL-2) & Tourist Hospitality Bars",
+    "statutorySummary": "Jammu and Kashmir administers liquor licensing through the Excise Commissionerate under the historic J&K Excise Act, Samvat 1958. Retail wine shops (JKEL-2) operate primarily in Jammu division and designated tourist/commercial nodes, operating from 9:00 AM to 9:30 PM (or 10:00 PM in summer). The minimum legal drinking age in Jammu and Kashmir is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in J&K include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the death anniversary of Mahatma Gandhi (30 Jan). Religious dry days include Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, and Muharram.",
+    "transitAndPossessionRule": "Domestic possession is limited to 2 bottles of IMFL and 6 bottles of beer per person. Bringing duty-unpaid liquor across the Lakhanpur border checkpost from Punjab or Himachal is prohibited.",
+    "penaltiesNotice": "Violations are penalized under Section 48 of the J&K Excise Act, carrying imprisonment of up to 3 years and vehicle impoundment.",
+    "historyAndPolicy": "Following constitutional re-organization in 2019, J&K transitioned retail vend allocation to transparent online e-auctions, significantly increasing state revenue while enforcing strict zoning around religious and educational institutions.",
+    "retailAndLicensingDetails": "Retail vends operate across Jammu, Kathua, Udhampur, and Samba districts. In Kashmir division, licensing is tightly controlled and confined primarily to certified star hotels and defense messes.",
+    "licenseCategories": [
+      {
+        "code": "JKEL-2",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (9:00 AM – 9:30 PM)."
+      },
+      {
+        "code": "JKEL-3 / 3A",
+        "name": "Hotel & Restaurant Bar License",
+        "description": "Table service in certified commercial dining facilities and star hotel lounges."
+      },
+      {
+        "code": "JKEL-4",
+        "name": "Club Bar License",
+        "description": "Exclusive bar licenses for registered civilian and military clubs."
+      },
+      {
+        "code": "Religious Exclusion",
+        "name": "Katra Holy Town Prohibition",
+        "description": "Statutory prohibition on alcohol sale and consumption within the Katra shrine base."
+      }
+    ],
+    "interstateTransitGuidance": "The Lakhanpur check-post (Punjab-J&K border) inspects all incoming passenger buses, commercial trucks, and private vehicles. Carrying excess duty-unpaid liquor is penalized.",
+    "onlineDeliveryPolicy": "Home delivery of alcohol is strictly prohibited across Jammu and Kashmir.",
+    "districtAndCityNuances": "Complete statutory prohibition is enforced in Katra holy town (base camp for Shri Mata Vaishno Devi shrine). Kashmir division features licensed restobars inside certified tourist hotels in Srinagar, Gulmarg, and Pahalgam."
   },
-  'ladakh': {
-    actName: 'Jammu and Kashmir Excise Act (as adapted to UT of Ladakh)',
-    regulatoryAuthority: 'Excise Department, UT Administration of Ladakh',
-    officialPortal: 'https://ladakh.nic.in',
-    retailModel: 'Government Regulated Licensed Vends in Leh & Kargil',
-    statutorySummary:
-      'Ladakh licenses a limited number of retail vends in Leh and tourist hospitality centers. Operating hours are strictly 10:00 AM to 8:00 PM. Legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'National dry days (26 Jan, 15 Aug, 2 Oct) and Buddha Purnima / Losar local celebrations.',
-    transitAndPossessionRule:
-      'Limited to 2 bottles for bona fide personal consumption by visiting tourists.',
-    penaltiesNotice:
-      'Offenses are prosecuted under the adapted Union Territory Excise Regulations.',
+  "ladakh": {
+    "actName": "Jammu and Kashmir Excise Act (as adapted for UT Ladakh)",
+    "regulatoryAuthority": "Department of Excise, Administration of Union Territory of Ladakh",
+    "officialPortal": "https://ladakh.nic.in",
+    "retailModel": "Regulated Retail Vends in Leh & Tourist Hotel Licenses",
+    "statutorySummary": "Ladakh administers liquor regulation through the UT Administration. Retail vends operate primarily in Leh town to cater to the local population and seasonal high-altitude tourism. Retail shops operate from 10:00 AM to 8:00 PM (subject to winter seasonal adjustments). Hotel and guest house lounges operate under tourist hospitality permits. The legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Ladakh include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Buddha Purnima, and Ladakh UT Foundation Day (31 Oct). Election dates observe 48-hour bans.",
+    "transitAndPossessionRule": "Personal possession is limited to 2 bottles of spirits and 6 bottles of beer. Screenings are conducted at Leh airport and highway checkposts.",
+    "penaltiesNotice": "Illegal transport or bootlegging is penalized under the adapted Excise Act with fines and confiscation.",
+    "historyAndPolicy": "Post-2019 Union Territory governance balances the cultural sensitivities of high-altitude Himalayan communities with the hospitality requirements of mountain expeditions and international tourism.",
+    "retailAndLicensingDetails": "Licensed retail vends in Leh town supply packaged products. Commercial hotel lounges in Leh cater to trekking and leisure tourists during the operational season.",
+    "licenseCategories": [
+      {
+        "code": "Retail Vend",
+        "name": "Packaged Liquor Store (Leh)",
+        "description": "Authorized retail counter operating in Leh town (10:00 AM – 8:00 PM)."
+      },
+      {
+        "code": "Hotel Bar",
+        "name": "Tourist Guest House & Hotel Lounge",
+        "description": "Table service inside certified tourist accommodations."
+      },
+      {
+        "code": "Chhang Exemption",
+        "name": "Traditional Barley Brew Exemption",
+        "description": "Customary domestic non-commercial preparation of traditional barley brew (Chhang)."
+      }
+    ],
+    "interstateTransitGuidance": "Luggage is screened at Kushok Bakula Rimpochee Airport in Leh and at highway check-posts along the Manali-Leh and Srinagar-Leh routes.",
+    "onlineDeliveryPolicy": "Online liquor delivery is non-existent and prohibited in Ladakh.",
+    "districtAndCityNuances": "Leh district features regulated retail and tourist hospitality licenses; Kargil district maintains a conservative social environment with virtually no public commercial retail outlets."
   },
-  'puducherry': {
-    actName: 'Puducherry Excise Act, 1970 & Puducherry Excise Rules',
-    regulatoryAuthority: 'Excise Department, Government of Puducherry',
-    officialPortal: 'https://excise.py.gov.in',
-    retailModel: 'Liberal Private Licensing with Subsidized Union Territory Tariffs',
-    statutorySummary:
-      'Puducherry (including Karaikal, Mahe, and Yanam enclaves) maintains low excise tariffs compared to neighbouring Tamil Nadu, Kerala, and Andhra Pradesh. Wine shops operate from 9:00 AM to 11:00 PM, and tourism lounges operate until midnight. The legal drinking age is 18 years.',
-    standingDryDaysSummary:
-      'National dry days (26 Jan, 15 Aug, 2 Oct) and Mahavir Jayanti, Gandhi Martyrdom Day (30 Jan), and Thiruvalluvar Day are observed.',
-    transitAndPossessionRule:
-      'Carrying alcohol out of Puducherry into Tamil Nadu is heavily intercepted by Tamil Nadu Prohibition Enforcement Wings at Gorimedu, ECR, and toll booths.',
-    penaltiesNotice:
-      'Bootlegging into Tamil Nadu carries non-bailable arrest under Tamil Nadu state laws.',
+  "puducherry": {
+    "actName": "Puducherry Excise Act, 1970 & Puducherry Excise Rules",
+    "regulatoryAuthority": "Excise Department, Government of Puducherry",
+    "officialPortal": "https://excise.py.gov.in",
+    "retailModel": "Competitive Private Retail, French Quarter Cafes & Beach Bars",
+    "statutorySummary": "Puducherry Union Territory regulates liquor distribution under the Puducherry Excise Act, 1970. Famous for its French colonial heritage and tourism-friendly low excise duty rates, alcohol is substantially cheaper in Puducherry than in neighboring Tamil Nadu. Retail wine stores operate from 9:00 AM to 11:00 PM, while tourist restobars and beachfront cafes operate until 11:30 PM. The minimum legal drinking age in Puducherry is 18 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Puducherry include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), Mahavir Jayanti, and Tiruvalluvar Day. Election polling windows enforce strict 48-hour dry curfews.",
+    "transitAndPossessionRule": "Possession within Puducherry is liberal for personal use. However, carrying even a single bottle of Puducherry-labeled alcohol into Tamil Nadu without paying Tamil Nadu duty is strictly illegal under Tamil Nadu law and leads to immediate confiscation.",
+    "penaltiesNotice": "Smuggling liquor out of Puducherry into Tamil Nadu is heavily penalized at border check-posts with vehicle seizure and non-bailable arrest under Tamil Nadu Prohibition statutes.",
+    "historyAndPolicy": "Reflecting its French colonial past, Puducherry has long maintained a competitive commercial tax regime that stimulates tourism, boutique hospitality, and gastronomy across its coastal enclaves.",
+    "retailAndLicensingDetails": "Private retail vends (FL-2) operate throughout the urban boulevard and beachfront. Boutique restobars and heritage French cafes serve wine, beer, and spirits.",
+    "licenseCategories": [
+      {
+        "code": "FL-2",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported spirits, and beer (9:00 AM – 11:00 PM)."
+      },
+      {
+        "code": "Tourism Bar",
+        "name": "Heritage Cafe & Beach Restobar",
+        "description": "Table service of alcoholic beverages in certified dining rooms and beachfront cafes."
+      },
+      {
+        "code": "FL-1",
+        "name": "Wholesale Depot License",
+        "description": "Commercial distribution warehouse supplying retail vends."
+      },
+      {
+        "code": "Arrack / Toddy",
+        "name": "Licensed Local Spirit Counter",
+        "description": "Authorized retail shops for traditional arrack and freshly tapped palm toddy."
+      }
+    ],
+    "interstateTransitGuidance": "Tamil Nadu Police and TASMAC enforcement squads operate permanent check-posts at every exit road (Gorimedu, Kanagachettikulam, Villianur, Mullodai). Tourist cars and buses are systematically searched; transporting bottles into TN invites severe penalties.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Puducherry.",
+    "districtAndCityNuances": "Puducherry comprises four non-contiguous coastal enclaves: Puducherry town, Karaikal (enclosed in TN), Mahe (enclosed in Kerala), and Yanam (enclosed in AP). Each enclave follows UT excise rules within its geographic borders."
   },
-  'dadra-and-nagar-haveli-and-daman-and-diu': {
-    actName: 'Dadra and Nagar Haveli and Daman and Diu Excise Duty Regulation, 2012',
-    regulatoryAuthority: 'Excise Department, UT Administration of DNH & DD',
-    officialPortal: 'https://daman.nic.in',
-    retailModel: 'Regulated Private Retail with Low Union Territory Excise Tariffs',
-    statutorySummary:
-      'Daman and Diu serve as key tourist hospitality hubs for neighbouring dry Gujarat. Retail stores operate from 9:00 AM to 10:00 PM, and hotel bars operate until 11:00 PM. Legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Mandatory dry days include 26 January, 15 August, 2 October, and statutory election periods.',
-    transitAndPossessionRule:
-      'Transporting alcohol across the border into Gujarat is strictly illegal and subject to severe Gujarat Prohibition Act prosecution.',
-    penaltiesNotice:
-      'Border vehicle checkpoints enforce strict prohibition laws against outward smuggling.',
+  "dadra-and-nagar-haveli-and-daman-and-diu": {
+    "actName": "Goa, Daman and Diu Excise Duty Act, 1964 (as adapted)",
+    "regulatoryAuthority": "Excise Department, Administration of Dadra and Nagar Haveli and Daman and Diu",
+    "officialPortal": "https://daman.nic.in",
+    "retailModel": "Competitive Private Retail, Coastal Shacks & Beach Resorts",
+    "statutorySummary": "This unified Union Territory administers liquor distribution under the adapted 1964 Excise Duty Act. Known for low local excise duties and coastal tourism, retail stores in Daman and Diu operate from 9:00 AM to 11:00 PM, while resort bars operate until 11:30 PM. The minimum legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and UT Liberation Day. Polling dates enforce strict 48-hour dry curfews.",
+    "transitAndPossessionRule": "Liberal possession within the UT for personal consumption. However, transporting alcohol across the border into dry Gujarat is strictly illegal and constitutes a major criminal offence under the Gujarat Prohibition Act.",
+    "penaltiesNotice": "Gujarat Police check-posts outside Daman and Diu arrest commuters caught smuggling liquor, leading to non-bailable prosecution, vehicle confiscation, and up to 3 years imprisonment.",
+    "historyAndPolicy": "Former Portuguese coastal territories (Daman and Diu) merged with Dadra and Nagar Haveli in 2020. The territory retains low taxation to support domestic beach tourism and hospitality.",
+    "retailAndLicensingDetails": "High density of private retail shops and coastal resort bars in Daman and Diu island. Dadra and Nagar Haveli (Silvassa) features industrial and resort hospitality licensing.",
+    "licenseCategories": [
+      {
+        "code": "Retail Vend",
+        "name": "Packaged Liquor Store",
+        "description": "Off-premise sales of IMFL, imported liquor, and beer (9:00 AM – 11:00 PM)."
+      },
+      {
+        "code": "Resort Bar",
+        "name": "Coastal Beach Resort License",
+        "description": "Table service in coastal hotel restaurants and sea-facing restobars."
+      },
+      {
+        "code": "Wholesale License",
+        "name": "Territory Distribution Depot",
+        "description": "Wholesale procurement and supply to licensed retail outlets."
+      }
+    ],
+    "interstateTransitGuidance": "Gujarat Police operate intensive 24/7 check-posts at all exit points from Daman (Vapi, Bhilad, Dabhel) and Diu (Tad checkpost, Una). Travelers are breathalyzed, and vehicles are searched for illicit contraband.",
+    "onlineDeliveryPolicy": "Online liquor delivery is prohibited across the territory.",
+    "districtAndCityNuances": "Daman (Nani Daman and Moti Daman) and Diu feature active beachfront hospitality; Silvassa (DNH) caters to corporate and eco-resort tourism."
   },
-  'sikkim': {
-    actName: 'Sikkim Excise Act, 1992 & Sikkim Liquor Rules',
-    regulatoryAuthority: 'Excise Department, Government of Sikkim',
-    officialPortal: 'https://sikkim.gov.in',
-    retailModel: 'Licensed Retail Vends & Microbreweries',
-    statutorySummary:
-      'Sikkim licenses retail outlets and boasts thriving local distilleries and microbreweries. Stores operate from 9:00 AM to 10:00 PM. The legal drinking age is 18 years.',
-    standingDryDaysSummary:
-      'National dry days (26 Jan, 15 Aug, 2 Oct) and Buddha Purnima are observed as statutory closures.',
-    transitAndPossessionRule:
-      'Personal quotas are limited to 2 bottles with valid payment slips.',
-    penaltiesNotice:
-      'Regulated under Section 31 of the Sikkim Excise Act, 1992.',
+  "sikkim": {
+    "actName": "Sikkim Excise Act, 1992 & Sikkim Excise Rules",
+    "regulatoryAuthority": "Excise Department, Government of Sikkim",
+    "officialPortal": "https://sikkim.gov.in",
+    "retailModel": "Licensed Private Retail & Flourishing Indigenous Distilleries",
+    "statutorySummary": "Sikkim regulates alcohol production and retail under the Sikkim Excise Act, 1992. Renowned for its indigenous brewing traditions and prominent distilleries, retail shops operate from 9:00 AM to 10:00 PM. Vibrant pub and restobar culture flourishes in Gangtok along pedestrian boulevards. The minimum legal drinking age in Sikkim is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Sikkim include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Sikkim State Day (16 May). Major religious dry days include Buddha Purnima, Guru Nanak Jayanti, and Eid-ul-Fitr.",
+    "transitAndPossessionRule": "Personal possession is permitted up to 2 bottles of spirits and 6 bottles of beer. Bringing un-manifested commercial liquor from West Bengal across border checkposts is prohibited.",
+    "penaltiesNotice": "Unlawful manufacturing or tax evasion is penalized under Section 38 of the Sikkim Excise Act, 1992.",
+    "historyAndPolicy": "Sikkim has developed a thriving local spirits and brewing industry, producing celebrated Himalayan beers and liquors while maintaining eco-tourism and clean pedestrian zones in Gangtok.",
+    "retailAndLicensingDetails": "Retail vends operate across all 6 districts. Gangtok features stylish modern restobars, live music pubs, and hotel lounges.",
+    "licenseCategories": [
+      {
+        "code": "Retail Vend",
+        "name": "Packaged Liquor Store",
+        "description": "Off-premise sales of IMFL, local spirits, and beer (9:00 AM – 10:00 PM)."
+      },
+      {
+        "code": "Bar License",
+        "name": "Commercial Restobar & Pub License",
+        "description": "Table service of alcoholic beverages in dining spaces and music lounges (up to 11:00 PM)."
+      },
+      {
+        "code": "Brewery / Distillery",
+        "name": "Himalayan Brewery License",
+        "description": "Manufacturing license for commercial brewing and distillation in industrial sectors."
+      }
+    ],
+    "interstateTransitGuidance": "Excise check-posts at Rangpo and Melli on the West Bengal border inspect commercial trucks and private vehicles. Tourists are permitted to carry up to 2 bottles with proof of purchase.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Sikkim.",
+    "districtAndCityNuances": "Gangtok (MG Marg pedestrian corridor) observes strict commercial discipline where vends close at 10:00 PM. South and West Sikkim (Namchi, Pelling) feature eco-resort dining licenses."
   },
-  'tripura': {
-    actName: 'Tripura Excise Act, 1987 & Tripura Liquor Rules',
-    regulatoryAuthority: 'Excise Directorate, Government of Tripura',
-    officialPortal: 'https://tripura.gov.in',
-    retailModel: 'Regulated Private Retail Licenses',
-    statutorySummary:
-      'Tripura regulates alcohol via licensed retail stores operating from 10:00 AM to 9:00 PM. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'National dry days (26 Jan, 15 Aug, 2 Oct) and Durga Puja immersion dates.',
-    transitAndPossessionRule:
-      'Domestic quota capped at 2 bottles of spirits.',
-    penaltiesNotice:
-      'Penalized under Section 42 of the Tripura Excise Act, 1987.',
+  "tripura": {
+    "actName": "Tripura Excise Act, 1987 & Tripura Excise Rules",
+    "regulatoryAuthority": "Department of Taxes & Excise, Government of Tripura",
+    "officialPortal": "https://tax.tripura.gov.in",
+    "retailModel": "Auctioned Private Retail Foreign Liquor Off-Shops and On-Shops",
+    "statutorySummary": "Tripura governs alcohol taxation and distribution under the Tripura Excise Act, 1987. Retail stores operate as private licensed \"Foreign Liquor Off-Shops\" (packaged retail) operating from 10:00 AM to 10:00 PM. Certified hotel bars and commercial restobars operate as \"On-Shops\". The minimum legal drinking age in Tripura is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Tripura include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Tripura Statehood Day (21 Jan). Religious dry days include Mahavir Jayanti, Buddha Purnima, Durga Puja (Bijoya Dashami), Eid-ul-Fitr, and Muharram.",
+    "transitAndPossessionRule": "Personal possession is capped at 2 bottles of IMFL and 6 bottles of beer per person. Transporting commercial duty-unpaid liquor across the Assam border is prohibited.",
+    "penaltiesNotice": "Violations are prosecuted under Section 46 of the Tripura Excise Act, 1987, carrying fines and confiscation.",
+    "historyAndPolicy": "Tripura has modernized revenue collection through e-tendering of retail vends, standardizing retail markups, and monitoring consignments arriving through the Siliguri-Assam corridor.",
+    "retailAndLicensingDetails": "Retail off-shops operate across all 8 districts. Commercial bars operate inside verified hotels in Agartala.",
+    "licenseCategories": [
+      {
+        "code": "FL Off-Shop",
+        "name": "Retail Foreign Liquor Vend",
+        "description": "Packaged off-premise sales of IMFL, imported liquor, and beer (10:00 AM – 10:00 PM)."
+      },
+      {
+        "code": "FL On-Shop",
+        "name": "Commercial Bar & Restaurant",
+        "description": "Table service of alcoholic beverages in certified dining rooms."
+      },
+      {
+        "code": "Country Liquor Vend",
+        "name": "Licensed Country Spirit Shop",
+        "description": "Authorized retail counters for regulated country spirit distribution."
+      }
+    ],
+    "interstateTransitGuidance": "The Churaibari check-post on the Assam-Tripura border inspects incoming commercial consignments. International border crossings with Bangladesh are guarded by BSF against cross-border smuggling.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Tripura.",
+    "districtAndCityNuances": "Agartala urban municipal area features the primary concentration of licensed off-shops and restobars; rural tribal autonomous district council (TTAADC) areas follow local community norms."
   },
-  'meghalaya': {
-    actName: 'Assam Excise Act, 1910 (as adapted by Meghalaya) & Meghalaya Rules',
-    regulatoryAuthority: 'Excise Department, Government of Meghalaya',
-    officialPortal: 'https://megexcise.gov.in',
-    retailModel: 'Licensed Private Bonded Outlets & Retail Wine Stores',
-    statutorySummary:
-      'Meghalaya regulates private retail outlets across Shillong, Tura, and Jowai. Retail shops operate from 10:00 AM to 8:00 PM (9:00 PM on weekends). The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'National holidays (26 Jan, 15 Aug, 2 Oct) are observed as mandatory dry days.',
-    transitAndPossessionRule:
-      'Standard personal possession is 2 bottles of foreign liquor/spirits.',
-    penaltiesNotice:
-      'Prosecuted under the adapted Excise Regulation.',
+  "meghalaya": {
+    "actName": "Meghalaya Excise Act (adapted) & Meghalaya Liquor Licensing Rules",
+    "regulatoryAuthority": "Excise, Registration, Taxation & Stamps Department, Government of Meghalaya",
+    "officialPortal": "https://megexcise.gov.in",
+    "retailModel": "Licensed Private Retail Vends & Vibrant Shillong Pub Culture",
+    "statutorySummary": "Meghalaya regulates alcohol distribution under the adapted Meghalaya Excise Act. Renowned for its live music, cosmopolitan cafe culture, and cool climate, retail wine shops in Shillong and tourist towns operate from 9:00 AM to 10:00 PM. Commercial bars and hotel lounges operate until 11:00 PM. The minimum legal drinking age in Meghalaya is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days in Meghalaya include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Meghalaya Statehood Day (21 Jan). Religious and cultural dry days include Good Friday, U Tirot Sing Day (17 July), Seng Kut Snem (23 Nov), Eid-ul-Fitr, and Christmas Day (25 Dec).",
+    "transitAndPossessionRule": "Personal domestic possession is limited to 2 bottles of IMFL and 6 bottles of beer. Bringing untaxed commercial consignments from Assam across border checkposts is prohibited.",
+    "penaltiesNotice": "Unlawful transport or unlicensed commercial distribution is penalized under Section 53 of the Excise Act with fines and property seizure.",
+    "historyAndPolicy": "Meghalaya’s excise governance intersects with constitutional protections for indigenous tribal communities under the Sixth Schedule. Autonomous District Councils (KHADC, JHADC, GHADC) maintain local commercial coordination.",
+    "retailAndLicensingDetails": "Retail bonded warehouses supply licensed private off-shops. Shillong features iconic music cafes, colonial heritage clubs, and tourist restobars.",
+    "licenseCategories": [
+      {
+        "code": "Retail Vend",
+        "name": "Packaged Wine Store",
+        "description": "Off-premise sales of IMFL, imported wine, and beer (9:00 AM – 10:00 PM)."
+      },
+      {
+        "code": "Bar License",
+        "name": "Music Cafe & Restobar License",
+        "description": "Table service of alcoholic beverages in dining rooms and live music lounges (up to 11:00 PM)."
+      },
+      {
+        "code": "Club License",
+        "name": "Private Heritage Club Bar",
+        "description": "Exclusive bar licenses for registered social and sports clubs."
+      },
+      {
+        "code": "Traditional Brew Exemption",
+        "name": "Customary Rice Brew Exemption",
+        "description": "Customary domestic preparation of traditional Khasi/Garo rice beer (Kyad/Chubitchi)."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts at Byrnihat and Khanapara on the Guwahati-Shillong National Highway inspect vehicles. Duty-unpaid alcohol from outside the state is confiscated.",
+    "onlineDeliveryPolicy": "Online liquor delivery is prohibited across Meghalaya.",
+    "districtAndCityNuances": "Shillong features active live-music restobar corridors (Police Bazar, Laitumkhrah); traditional village councils (dorbar shnong) can regulate the opening of new vends within local residential boundaries."
   },
-  'manipur': {
-    actName: 'Manipur Liquor Prohibition Act, 1991 (partially amended 2022/2023)',
-    regulatoryAuthority: 'Excise Department, Government of Manipur',
-    officialPortal: 'https://manipur.gov.in',
-    retailModel: 'Regulated Tourism/Hospitality Exemption Model',
-    statutorySummary:
-      'Manipur historically enforced statewide prohibition from 1991. In late 2022 and 2023, the state cabinet partially relaxed prohibition in district headquarters and registered hotels for revenue and tourism, while general community prohibition remains widely observed.',
-    standingDryDaysSummary:
-      'Prohibition remains standard across wide local jurisdictions with strict dry enforcement.',
-    transitAndPossessionRule:
-      'Unauthorized possession without an excise permit invites confiscation.',
-    penaltiesNotice:
-      'Penalized under the Manipur Liquor Prohibition Act, 1991.',
+  "manipur": {
+    "actName": "Manipur Liquor Prohibition (Amendment) Act, 2023 & Manipur Excise Rules",
+    "regulatoryAuthority": "Department of Excise, Government of Manipur",
+    "officialPortal": "https://manipur.gov.in",
+    "retailModel": "Regulated Legalization in District HQs & Star Hotels (Post-2023 Reform)",
+    "statutorySummary": "Manipur enacted a landmark policy reform in December 2023 through the Manipur Liquor Prohibition (Amendment) Act, 2023, partially relaxing the total prohibition law that had been in force since 1991. The state cabinet authorized the regulated manufacture, distribution, and sale of liquor in district headquarters, greater Imphal, and certified star hotels to boost state revenue, support tourism, and eradicate illicit spurious alcohol. The legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Manipur Statehood Day (21 Jan). Major cultural and religious dry days include Yaoshang (Holi), Eid-ul-Fitr, and Cheiraoba.",
+    "transitAndPossessionRule": "Personal possession of legally purchased alcohol under the amended framework is subject to excise permits. Unlicensed cross-border smuggling from Myanmar or Assam remains strictly illegal.",
+    "penaltiesNotice": "Smuggling contraband or illicit brewing is prosecuted under the Manipur Excise Act with rigorous imprisonment and fines.",
+    "historyAndPolicy": "For over three decades, Manipur enforced total prohibition driven by women’s activist groups (Meira Paibis). The 2023 regulatory amendment established a controlled commercial model aimed at regulating quality and generating over ₹400 crore in annual state revenue.",
+    "retailAndLicensingDetails": "Under the new framework, the state licenses authorized retail vends in municipal district headquarters and permits bar service inside certified star hotels.",
+    "licenseCategories": [
+      {
+        "code": "District Retail Vend",
+        "name": "Municipal Packaged Liquor Store",
+        "description": "Authorized retail store operating under regulated hours in district headquarters."
+      },
+      {
+        "code": "Hotel Bar",
+        "name": "Star Hotel & Tourist Lounge License",
+        "description": "Table service of alcoholic beverages inside certified commercial hotels."
+      },
+      {
+        "code": "Export Distillery",
+        "name": "Commercial Local Distillation",
+        "description": "Licensed commercial brewing and distillation of local grain spirits for export."
+      },
+      {
+        "code": "Tribal Brew Customary",
+        "name": "Customary Indigenous Brew Exemption",
+        "description": "Traditional domestic brewing rights protected in tribal hill districts."
+      }
+    ],
+    "interstateTransitGuidance": "Check-posts along the Assam border (Jiribam) and Nagaland border (Mao) inspect vehicles. Border trade with Myanmar at Moreh is heavily guarded against contraband smuggling.",
+    "onlineDeliveryPolicy": "Home delivery of alcohol is strictly prohibited in Manipur.",
+    "districtAndCityNuances": "Regulated commercial sales are authorized in Imphal municipal areas and district headquarters; tribal hill districts (Churachandpur, Ukhrul, Senapati) retain traditional customary community practices."
   },
-  'arunachal-pradesh': {
-    actName: 'Arunachal Pradesh Excise Act, 1993 & Rules',
-    regulatoryAuthority: 'Department of Tax & Excise, Government of Arunachal Pradesh',
-    officialPortal: 'https://arunachaltax.nic.in',
-    retailModel: 'Licensed Private Retail Outlets & Distilleries',
-    statutorySummary:
-      'Arunachal Pradesh licenses private retail thekas operating from 9:00 AM to 9:00 PM. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Mandatory dry days include 26 January, 15 August, 2 October, and local festival notifications.',
-    transitAndPossessionRule:
-      'Carrying alcohol into inner line permit (ILP) areas is regulated.',
-    penaltiesNotice:
-      'Penalized under Section 41 of the Arunachal Pradesh Excise Act, 1993.',
+  "arunachal-pradesh": {
+    "actName": "Arunachal Pradesh Excise Act, 1993 & AP Excise Rules, 1994",
+    "regulatoryAuthority": "Department of Tax, Excise & Narcotics, Government of Arunachal Pradesh",
+    "officialPortal": "https://arunachalexcise.gov.in",
+    "retailModel": "Licensed APST Retail Vends & Customary Tribal Protections",
+    "statutorySummary": "Arunachal Pradesh regulates alcohol production and retail under the Arunachal Pradesh Excise Act, 1993. In accordance with state policy, commercial retail licenses are granted exclusively to indigenous Arunachal Pradesh Scheduled Tribes (APST). Retail stores operate from 9:00 AM to 9:00 PM. Commercial bars operate inside certified hotels in Itanagar and tourist towns. The minimum legal drinking age in Arunachal Pradesh is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and Statehood Day (20 Feb). Major tribal festival days (Nyokum, Losar, Solung, Mopin) observe local dry notifications.",
+    "transitAndPossessionRule": "Personal possession is limited to 2 bottles of IMFL and 6 bottles of beer. Visitors entering with an Inner Line Permit (ILP) are screened at entry checkgates.",
+    "penaltiesNotice": "Illegal transport or bootlegging is penalized under Section 42 of the AP Excise Act, 1993, with fines and property seizure.",
+    "historyAndPolicy": "Arunachal Pradesh balances state excise revenue with constitutional protections for indigenous tribes under the Bengal Eastern Frontier Regulation, 1873, exempting traditional fermented rice beers (Apong) from commercial excise duty.",
+    "retailAndLicensingDetails": "Retail vends operate across all 26 districts under APST ownership. Tawang, Bomdila, and Ziro feature tourism-oriented hotel dining lounges.",
+    "licenseCategories": [
+      {
+        "code": "IMFL Retail Vend",
+        "name": "APST Packaged Liquor Store",
+        "description": "Licensed retail vend owned by indigenous APST entrepreneurs (9:00 AM – 9:00 PM)."
+      },
+      {
+        "code": "Bar & Restaurant",
+        "name": "Hotel & Commercial Restaurant Bar",
+        "description": "Table service of alcoholic beverages in certified dining rooms."
+      },
+      {
+        "code": "Microbrewery",
+        "name": "Hill Resort Craft Brewery",
+        "description": "Craft brewing on-premise inside tourist destination lounges."
+      },
+      {
+        "code": "Apong Customary Exemption",
+        "name": "Traditional Tribal Brew Exemption",
+        "description": "Statutory exemption for customary domestic brewing of traditional rice and millet beer (Apong)."
+      }
+    ],
+    "interstateTransitGuidance": "Inner Line Permit (ILP) checkgates at Banderdewa, Hollongi, and Gumto inspect all arriving passenger vehicles. Carrying un-manifested commercial alcohol into the state is barred.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Arunachal Pradesh.",
+    "districtAndCityNuances": "Itanagar and Naharlagun feature the primary concentration of commercial vends. High-altitude tourist circuits (Tawang, Dirang) operate tourism hotel bars during travel seasons."
   },
-  'andaman-and-nicobar-islands': {
-    actName: 'Andaman and Nicobar Islands Excise Regulation, 2012',
-    regulatoryAuthority: 'Excise Department, Andaman & Nicobar Administration',
-    officialPortal: 'https://andaman.gov.in',
-    retailModel: 'ANIIDCO State Corporation Retail Counters & Licensed Resort Bars',
-    statutorySummary:
-      'Retail liquor sales in the Andaman & Nicobar Islands are operated primarily through the Andaman & Nicobar Islands Integrated Development Corporation (ANIIDCO). Private licensed bars operate in tourist resort destinations (Havelock/Swaraj Dweep, Neil/Shaheed Dweep, Port Blair). Retail hours are 10:00 AM to 8:00 PM. The legal drinking age is 21 years.',
-    standingDryDaysSummary:
-      'Standing dry days are observed on the 7th and 21st of every month in select municipal zones, alongside national holidays (26 Jan, 15 Aug, 2 Oct) and Gandhi Martyrdom Day (30 Jan).',
-    transitAndPossessionRule:
-      'Strictly prohibited to carry or sell alcohol within designated tribal reserve zones (e.g. Jarawa reserve areas) under the Protection of Aboriginal Tribes (PAT) Regulation.',
-    penaltiesNotice:
-      'Violations in tribal reserves carry severe non-bailable criminal imprisonment.',
-  },
+  "andaman-and-nicobar-islands": {
+    "actName": "Andaman and Nicobar Islands Excise Regulation, 2012",
+    "regulatoryAuthority": "Excise Department, Andaman and Nicobar Administration & ANIIDCO",
+    "officialPortal": "https://andaman.gov.in",
+    "retailModel": "100% State Corporation Retail (ANIIDCO) & Strict Tribal Reserves Ban",
+    "statutorySummary": "The Andaman and Nicobar Islands Union Territory administers alcohol distribution through the state-owned Andaman and Nicobar Islands Integrated Development Corporation (ANIIDCO). Private retail wine stores are prohibited. Government retail shops operate from 10:00 AM to 8:30 PM. Commercial bars operate inside certified star hotels and beach resorts on tourist islands. The minimum legal drinking age is 21 years.",
+    "standingDryDaysSummary": "Mandatory dry days include Republic Day (26 Jan), Independence Day (15 Aug), Gandhi Jayanti (2 Oct), and the 1st of every calendar month. Major religious observances include Mahavir Jayanti, Buddha Purnima, Guru Nanak Jayanti, Eid-ul-Fitr, and Good Friday.",
+    "transitAndPossessionRule": "Personal possession is limited to 2 bottles of spirits and 6 bottles of beer with valid ANIIDCO receipts. Absolute statutory prohibition applies within all designated Tribal Reserve Areas under the ANPATR 1956 regulation.",
+    "penaltiesNotice": "Carrying alcohol into or trading with indigenous tribal reserves (Jarawa, Sentinelese, Shompen) is a grave non-bailable offence under the Protection of Aboriginal Tribes Regulation, carrying up to 7 years rigorous imprisonment.",
+    "historyAndPolicy": "The island administration balances tourist hospitality in Swaraj Dweep (Havelock) and Shaheed Dweep (Neil) with rigorous ecological and anthropological protections for vulnerable indigenous island tribes.",
+    "retailAndLicensingDetails": "ANIIDCO operates standardized government counter shops in Port Blair, Havelock, and Neil. Beach resorts operate licensed hospitality lounges.",
+    "licenseCategories": [
+      {
+        "code": "ANIIDCO Retail",
+        "name": "Government Packaged Retail Shop",
+        "description": "State-run retail store operating under 10:00 AM – 8:30 PM hours."
+      },
+      {
+        "code": "Resort Bar",
+        "name": "Island Beach Resort Bar License",
+        "description": "Table service of alcoholic beverages in certified tourist beach resorts and dive lounges."
+      },
+      {
+        "code": "Club Bar",
+        "name": "Civilian & Armed Forces Club License",
+        "description": "Bar service inside authorized civilian clubs and defense cantonments."
+      },
+      {
+        "code": "Tribal Reserve Ban",
+        "name": "Aboriginal Tribal Reserve Total Ban",
+        "description": "Complete statutory ban on alcohol possession or transport in tribal reserve zones."
+      }
+    ],
+    "interstateTransitGuidance": "Passenger baggage arriving at Veer Savarkar International Airport in Port Blair and sea passenger terminals (Haddo Wharf) is screened. Inter-island ferries heading toward tribal zones are heavily policed.",
+    "onlineDeliveryPolicy": "Home delivery of liquor is completely prohibited in the Andaman and Nicobar Islands.",
+    "districtAndCityNuances": "Havelock and Neil island beach cafes feature tourism hospitality bar licenses; South Andaman (Port Blair) features ANIIDCO vends. The Nicobar district and all tribal reserve zones enforce absolute statutory prohibition."
+  }
 };
 
 export function getStateExciseProfile(stateSlug: string): StateExciseProfile | undefined {
-  return STATE_EXCISE_PROFILES[stateSlug.toLowerCase()];
+  return STATE_EXCISE_PROFILES[stateSlug];
 }

@@ -119,6 +119,12 @@ describe('Page Title & Metadata Formatting', () => {
       expect(p.standingDryDaysSummary.length).toBeGreaterThan(20);
       expect(p.transitAndPossessionRule.length).toBeGreaterThan(20);
       expect(p.penaltiesNotice.length).toBeGreaterThan(20);
+      expect(p.historyAndPolicy.length).toBeGreaterThan(50);
+      expect(p.retailAndLicensingDetails.length).toBeGreaterThan(50);
+      expect(p.interstateTransitGuidance.length).toBeGreaterThan(50);
+      expect(p.onlineDeliveryPolicy.length).toBeGreaterThan(30);
+      expect(p.districtAndCityNuances.length).toBeGreaterThan(50);
+      expect(Array.isArray(p.licenseCategories) && p.licenseCategories.length >= 2).toBe(true);
 
       expect(summaries.has(p.statutorySummary)).toBe(false);
       summaries.add(p.statutorySummary);
