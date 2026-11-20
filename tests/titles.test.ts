@@ -102,4 +102,26 @@ describe('Page Title & Metadata Formatting', () => {
       expect(preBrand.length).toBeLessThanOrEqual(60);
     }
   });
+
+  test('all 36 states have unique authoritative excise profiles and zero boilerplate', async () => {
+    const { STATE_EXCISE_PROFILES } = await import('@/lib/state-excise-profiles');
+    const profileKeys = Object.keys(STATE_EXCISE_PROFILES);
+    expect(profileKeys.length).toBe(36);
+
+    const summaries = new Set<string>();
+    for (const key of profileKeys) {
+      const p = STATE_EXCISE_PROFILES[key];
+      expect(p.actName.length).toBeGreaterThan(10);
+      expect(p.regulatoryAuthority.length).toBeGreaterThan(10);
+      expect(p.officialPortal.startsWith('https://') || p.officialPortal.startsWith('http://')).toBe(true);
+      expect(p.retailModel.length).toBeGreaterThan(5);
+      expect(p.statutorySummary.length).toBeGreaterThan(50);
+      expect(p.standingDryDaysSummary.length).toBeGreaterThan(20);
+      expect(p.transitAndPossessionRule.length).toBeGreaterThan(20);
+      expect(p.penaltiesNotice.length).toBeGreaterThan(20);
+
+      expect(summaries.has(p.statutorySummary)).toBe(false);
+      summaries.add(p.statutorySummary);
+    }
+  });
 });

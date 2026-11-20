@@ -257,7 +257,7 @@ export default async function StatePage({ params }: Props) {
             ? `Wine shop status is pending official confirmation for today in ${state.name}.`
             : todayStatus === 'unavailable'
             ? `Wine shop operating status in ${state.name} is temporarily unavailable.`
-            : `Yes, licensed retail wine shops and thekas in ${state.name} are open today (${formattedToday}) during standard excise hours (typically 10:00 AM to 10:00 PM).`,
+            : `Yes, licensed retail wine shops and thekas in ${state.name} are open today (${formattedToday}) during standard excise hours (${timingInfo.retailHours}).`,
         },
       },
       {
@@ -273,7 +273,7 @@ export default async function StatePage({ params }: Props) {
             ? `Bar service rules for today are pending official confirmation in ${state.name}.`
             : todayStatus === 'unavailable'
             ? `Bar operating status in ${state.name} is temporarily unavailable.`
-            : `Yes, licensed bars, clubs, and hotel lounges in ${state.name} are permitted to serve liquor today during standard licensed hours.`,
+            : `Yes, licensed bars, clubs, and hotel lounges in ${state.name} are permitted to serve liquor today during standard licensed hours (${timingInfo.barHours}).`,
         },
       },
       {
@@ -281,15 +281,37 @@ export default async function StatePage({ params }: Props) {
         name: `What are the guaranteed dry days in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `In ${state.name}, standard national dry days include Republic Day (26 January), Independence Day (15 August), and Mahatma Gandhi Jayanti (2 October), alongside designated religious festivals and election polling windows declared by the State Election Commission.`,
+          text: state.prohibition
+            ? `Under the ${exciseProfile?.actName || 'State Prohibition Act'}, ${state.name} observes complete statewide statutory prohibition. Every day of the year is a dry day; no commercial retail, purchase, or possession of alcohol is permitted.`
+            : `In ${state.name}, mandatory dry days are governed by the ${exciseProfile?.actName || 'State Excise Act'}. Standing gazetted closures include: ${exciseProfile?.standingDryDaysSummary || 'Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct)'}. Additionally, 48-hour dry curfews apply during assembly, parliamentary, and local civic election polling across affected constituencies.`,
         },
       },
       {
         '@type': 'Question',
-        name: `How do I know about upcoming dry days in ${state.name}?`,
+        name: `How do I check official excise circulars and dry day notices for ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `You can check real-time updates on DryCheck India, or consult notifications published on the ${state.name} State Excise Department portal and official gazette.`,
+          text: `Official dry day circulars, licensing orders, and festival schedules for ${state.name} are published by the ${exciseProfile?.regulatoryAuthority || state.name + ' State Excise Department'}. Citizens and business operators can review gazette notifications on their official portal (${exciseProfile?.officialPortal || 'state excise portal'}) or monitor live status verifications on DryCheck India.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What is the legal drinking age and alcohol possession limit in ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `${state.name} is a complete statutory prohibition state under the ${exciseProfile?.actName || 'state law'}. There is no legal drinking age because alcohol possession, transport, and consumption are strictly banned and punishable by law.`
+            : `In ${state.name}, the statutory minimum legal drinking age is ${timingInfo.legalAge} years. Under the ${exciseProfile?.actName || 'state excise regulations'}, personal possession and transit rules specify: ${exciseProfile?.transitAndPossessionRule || 'possession is restricted to domestic limits with valid duty paid'}. ${exciseProfile?.penaltiesNotice || ''}`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `How does the retail liquor distribution system operate in ${state.name}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: state.prohibition
+            ? `Commercial liquor retail is prohibited in ${state.name}. No licensed private thekas, wine shops, or state corporations operate within the state.`
+            : `Retail alcohol distribution in ${state.name} is structured as ${exciseProfile?.retailModel || 'licensed retail vends'}. ${exciseProfile?.statutorySummary || 'Licensed shops operate within regulated municipal trading hours.'}`,
         },
       },
       {
@@ -805,6 +827,30 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
+            {state.slug === 'goa' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on Goa excise permits, beach shack closing hours, and the strict 2-bottle border transit limit, read our verified guide:{' '}
+                <Link
+                  href="/guides/goa-dry-days-and-liquor-rules"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Goa Dry Days, Wine Shop Timings, Permit Rules &amp; 2-Bottle Border Limit
+                </Link>
+                .
+              </p>
+            )}
+            {state.slug === 'punjab' && (
+              <p className="text-xs text-neutral-300 pt-1">
+                For detailed rules on Punjab retail vends, 10 PM operating limits, and Chandigarh border transit rules, read our verified guide:{' '}
+                <Link
+                  href="/guides/punjab-dry-days-and-liquor-timings"
+                  className="text-amber-400 underline font-medium hover:text-white"
+                >
+                  Punjab Dry Days 2026: Vend Timings, Official Calendar &amp; Chandigarh Border Rules
+                </Link>
+                .
+              </p>
+            )}
             {(state.slug === 'punjab' || state.slug === 'haryana' || state.slug === 'chandigarh') && (
               <p className="text-xs text-neutral-300 pt-1">
                 For detailed rules on Guru Nanak Jayanti (24 Nov), Punjab Excise Act vends closure, and Chandigarh border rules, read our verified guide:{' '}
@@ -817,16 +863,49 @@ export default async function StatePage({ params }: Props) {
                 .
               </p>
             )}
-            <p className="text-xs text-neutral-400 pt-1 border-t border-neutral-800/60 mt-2">
-              Looking for upcoming festival dates? Check the official{' '}
-              <Link
-                href="/guides/november-dry-days-2026"
-                className="text-amber-400 underline font-medium hover:text-white"
-              >
-                November Dry Days 2026 All-India Calendar
-              </Link>{' '}
-              for confirmed Diwali (8 Nov) and Guru Nanak Jayanti (24 Nov) wine shop closures.
-            </p>
+            <div className="text-xs text-neutral-400 pt-2 border-t border-neutral-800/60 mt-3 space-y-1.5">
+              <p className="font-medium text-neutral-300">
+                Planning ahead for upcoming nationwide festival dates and year-end celebrations? Check our verified editorial guides:
+              </p>
+              <ul className="list-disc list-inside space-y-1 text-neutral-300">
+                <li>
+                  <Link
+                    href="/guides/november-dry-days-2026"
+                    className="text-amber-400 underline font-medium hover:text-white"
+                  >
+                    November Dry Days 2026: All-India Calendar
+                  </Link>{' '}
+                  &bull; Complete statewide gazette schedules
+                </li>
+                <li>
+                  <Link
+                    href="/guides/guru-nanak-jayanti-2026-dry-day"
+                    className="text-amber-400 underline font-medium hover:text-white"
+                  >
+                    Guru Nanak Jayanti 2026 Dry Day (24 Nov)
+                  </Link>{' '}
+                  &bull; Northern states, Punjab &amp; NCR vend closures
+                </li>
+                <li>
+                  <Link
+                    href="/guides/christmas-2026-dry-day"
+                    className="text-amber-400 underline font-medium hover:text-white"
+                  >
+                    Christmas 2026 Dry Day Guide (25 Dec)
+                  </Link>{' '}
+                  &bull; Goa, Mumbai, Meghalaya &amp; nationwide theka rules
+                </li>
+                <li>
+                  <Link
+                    href="/guides/new-year-2027-dry-day"
+                    className="text-amber-400 underline font-medium hover:text-white"
+                  >
+                    New Year 2027 Dry Day &amp; Party Guide (31 Dec &ndash; 1 Jan)
+                  </Link>{' '}
+                  &bull; Late-night pub extensions &amp; 1-Day event permits
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
