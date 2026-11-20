@@ -4,6 +4,7 @@ import HeroAnswer from '@/components/HeroAnswer';
 import LocationBanner from '@/components/LocationBanner';
 import DryStateList from '@/components/DryStateList';
 import UpcomingDryDays from '@/components/UpcomingDryDays';
+import FeaturedGuides from '@/components/FeaturedGuides';
 import StateDirectory from '@/components/StateDirectory';
 import AdSlot from '@/components/AdSlot';
 import JsonLd from '@/components/JsonLd';
@@ -166,6 +167,9 @@ export default async function HomePage() {
           datasetEmpty={datasetEmpty}
           dataUnavailable={dataUnavailable}
         />
+
+        {/* 7. Featured Regulatory & Festival Guides */}
+        <FeaturedGuides />
 
         {/* Searchable State Selector on mobile (e.g. typing "bih" shows Bihar) */}
         <StateDirectory />

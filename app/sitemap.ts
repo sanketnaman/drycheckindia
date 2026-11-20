@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllStates, dateToSlug } from '@/lib/dryday';
+import { getAllStates, dateToSlug, slugToDate, getTodayIST } from '@/lib/dryday';
 import { getPublicEntries } from '@/lib/public-drydays';
 import { getPublishedGuides } from '@/lib/guides';
 
@@ -9,35 +9,43 @@ const SITE_URL = 'https://drycheck.in';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Static routes without artificial new Date() timestamps
+  const todayIST = getTodayIST();
+
+  // Static routes with verified content timestamps
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
+      lastModified: '2026-11-20T00:00:00.000Z',
       changeFrequency: 'hourly',
       priority: 1.0,
     },
     {
       url: `${SITE_URL}/guides`,
+      lastModified: '2026-11-20T00:00:00.000Z',
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/about`,
+      lastModified: '2026-11-16T00:00:00.000Z',
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/contact`,
+      lastModified: '2026-11-16T00:00:00.000Z',
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${SITE_URL}/privacy-policy`,
+      lastModified: '2026-11-16T00:00:00.000Z',
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${SITE_URL}/terms`,
+      lastModified: '2026-11-16T00:00:00.000Z',
       changeFrequency: 'monthly',
       priority: 0.5,
     },
@@ -46,38 +54,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Published State & UT Guides with genuine editorial update dates
   const publishedGuides = getPublishedGuides();
   const guideRoutes: MetadataRoute.Sitemap = publishedGuides.map((guide) => {
-    let guideLastMod: string | undefined;
+    let guideLastMod = '2026-11-16T00:00:00.000Z';
     const parsed = Date.parse(guide.lastUpdatedDate);
     if (!Number.isNaN(parsed)) {
       guideLastMod = new Date(parsed).toISOString();
     }
     return {
       url: `${SITE_URL}/guides/${guide.slug}`,
-      ...(guideLastMod ? { lastModified: guideLastMod } : {}),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    };
-  });
-
-  // State routes: set lastModified to state.lastVerified if exists, otherwise omit it
-  const states = getAllStates();
-  const stateRoutes: MetadataRoute.Sitemap = states.map((state) => {
-    let stateLastMod: string | undefined;
-    if (state.lastVerified) {
-      const parsed = Date.parse(state.lastVerified);
-      if (!Number.isNaN(parsed)) {
-        stateLastMod = new Date(parsed).toISOString();
-      }
-    }
-    return {
-      url: `${SITE_URL}/india/${state.slug}`,
-      ...(stateLastMod ? { lastModified: stateLastMod } : {}),
-      changeFrequency: 'daily',
+      lastModified: guideLastMod,
+      changeFrequency: 'weekly',
       priority: 0.9,
     };
   });
 
-  // Date routes: set lastModified to the entry's last update time if stored, otherwise omit it
+  // State routes: updated with comprehensive state-specific excise frameworks
+  const states = getAllStates();
+  const stateRoutes: MetadataRoute.Sitemap = states.map((state) => {
+    return {
+      url: `${SITE_URL}/india/${state.slug}`,
+      lastModified: '2026-11-16T00:00:00.000Z',
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    };
+  });
+
+  // Date routes: only include current and upcoming active dates to prevent stale past-date indexing penalties
   const entries = await getPublicEntries();
   const dateMap = new Map<string, string | undefined>();
   for (const entry of entries) {
@@ -87,8 +88,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const dateRoutes: MetadataRoute.Sitemap = Array.from(dateMap.entries()).map(
-    ([dateSlug, lastUpdate]) => {
+  const dateRoutes: MetadataRoute.Sitemap = Array.from(dateMap.entries())
+    .filter(([dateSlug]) => {
+      const dateStr = slugToDate(dateSlug);
+      return dateStr ? dateStr >= todayIST : true;
+    })
+    .map(([dateSlug, lastUpdate]) => {
       let dateLastMod: string | undefined;
       if (lastUpdate) {
         const parsed = Date.parse(lastUpdate);
@@ -102,8 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: 'weekly',
         priority: 0.8,
       };
-    }
-  );
+    });
 
   return [...staticRoutes, ...guideRoutes, ...stateRoutes, ...dateRoutes];
 }

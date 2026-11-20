@@ -1063,12 +1063,11 @@ export function formatDayMonthDisplay(dateStr: string): string {
   return `${d} ${monthStr}`;
 }
 
-export function getStatePageTitle(slug: string, stateName: string, dateStr: string): string {
+export function getStatePageTitle(slug: string, stateName: string, _dateStr?: string): string {
   const short = getTitleStateName(slug, stateName);
-  const dMon = formatDayMonthDisplay(dateStr);
-  let title = `Is Today a Dry Day in ${short}? Theka Status, ${dMon}`;
+  let title = `Is Today a Dry Day in ${short}? Theka Status & Rules`;
   if (title.length > 55) {
-    title = `Is Today a Dry Day in ${short}? ${dMon}`;
+    title = `Is Today a Dry Day in ${short}? Theka Status`;
   }
   if (title.length > 55) {
     title = `Is Today a Dry Day in ${short}?`;
