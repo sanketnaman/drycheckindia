@@ -12,6 +12,11 @@ export interface LicenseCategory {
   description: string;
 }
 
+export interface StateExciseFaq {
+  question: string;
+  answer: string;
+}
+
 export interface StateExciseProfile {
   actName: string;
   regulatoryAuthority: string;
@@ -27,6 +32,7 @@ export interface StateExciseProfile {
   interstateTransitGuidance: string;
   onlineDeliveryPolicy: string;
   districtAndCityNuances: string;
+  bespokeFaqs: StateExciseFaq[];
 }
 
 export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
@@ -65,7 +71,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Delhi Police and the Excise Flying Squad conduct random vehicle inspections along NCR border points (DND Flyway, Kalindi Kunj, Badarpur, Sirhaul border). Commuters entering Delhi from Haryana or UP are restricted to at most one sealed bottle (750ml) for personal consumption. Bulk carriage or commercial transit of Haryana-labeled bottles into Delhi constitutes an unbailable revenue offence.",
     "onlineDeliveryPolicy": "Home delivery of liquor is completely illegal in the NCT of Delhi. Although legal draft provisions for app-based delivery were proposed during policy revisions, no licenses have been operationalized. Food delivery aggregators (Zomato, Swiggy, Blinkit) are prohibited from delivering alcohol; online liquor vendors operating in Delhi are fraudulent.",
-    "districtAndCityNuances": "New Delhi Municipal Council (NDMC) and South Delhi zones (Connaught Place, Khan Market, Mehrauli, Aerocity) feature the highest density of L-16 restobars and extended night-time hospitality hours. In contrast, residential vends in East and North East Delhi face strict 10:00 PM shuttering with intense local community policing."
+    "districtAndCityNuances": "New Delhi Municipal Council (NDMC) and South Delhi zones (Connaught Place, Khan Market, Mehrauli, Aerocity) feature the highest density of L-16 restobars and extended night-time hospitality hours. In contrast, residential vends in East and North East Delhi face strict 10:00 PM shuttering with intense local community policing.",
+    "bespokeFaqs": [
+      {
+        "question": "Can I bring liquor from Gurgaon (Haryana) or Noida (UP) into Delhi?",
+        "answer": "Yes, but under Rule 20 of the Delhi Excise Rules, 2010, an individual is legally permitted to bring at most one sealed 750ml bottle of liquor across NCR borders for personal consumption without paying Delhi state excise duty. Carrying commercial quantities, unmanifested cartons, or multiple bottles from Haryana or UP into Delhi constitutes illegal bootlegging and is prosecuted under Section 33 with non-bailable arrest."
+      },
+      {
+        "question": "Why do retail liquor thekas in Delhi close strictly at 10:00 PM?",
+        "answer": "All retail liquor vends in Delhi are operated by state government undertakings (DTTDC, DSIIDC, DCCWS, DSCSC). Under Delhi Excise Department regulations, these government stores are mandated to close their shutters at exactly 10:00 PM sharp to maintain urban public order and prevent late-night street loitering."
+      },
+      {
+        "question": "Which bars in Delhi are allowed to serve alcohol until 3:00 AM?",
+        "answer": "Standalone restaurants and hotel bars with L-16/L-17 licenses typically close by 1:00 AM. However, licensed hospitality venues in designated tourism hubs—most notably the Aerocity hospitality district near IGI Airport and select 5-star luxury hotels in New Delhi—hold special extended licenses allowing alcohol service until 3:00 AM."
+      },
+      {
+        "question": "Can you order alcohol online or through food apps like Swiggy or Zomato in Delhi?",
+        "answer": "No. Doorstep home delivery of alcohol is completely illegal in the NCT of Delhi. Although proposed in draft policies, no online delivery license has ever been operationalized. Any website, WhatsApp group, or delivery app claiming to deliver liquor to your home in Delhi is fraudulent."
+      },
+      {
+        "question": "What is the legal drinking age in Delhi?",
+        "answer": "Under the Delhi Excise Act, 2009, the statutory minimum legal drinking age in the National Capital Territory of Delhi is 21 years."
+      }
+    ]
   },
   "uttar-pradesh": {
     "actName": "United Provinces Excise Act, 1910 (as amended for Uttar Pradesh)",
@@ -102,7 +130,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Commuters crossing NCR borders (Noida, Greater Noida, Ghaziabad) from Delhi or Haryana are closely monitored at toll checkposts (Chilla, DND, Kalindi Kunj). Only one unsealed bottle per passenger is tolerated for genuine personal transit; transporting sealed cartons or bootlegged liquor from Haryana incurs immediate seizure, FIR registration, and impoundment of the vehicle.",
     "onlineDeliveryPolicy": "Doorstep home delivery of liquor is prohibited across Uttar Pradesh. E-commerce food aggregators are not authorized to deliver alcohol; purchases must be made physically at licensed counters during authorized hours.",
-    "districtAndCityNuances": "Strict religious zoning is enforced: complete alcohol bans operate within the sacred perimeters of Ayodhya (Panchkosi and Chaudah Kosi parikrama rings), Mathura-Vrindavan (22 designated municipal wards), and the Kashi Vishwanath temple corridor in Varanasi. Commercial hubs like Noida and Lucknow enjoy model shop culture."
+    "districtAndCityNuances": "Strict religious zoning is enforced: complete alcohol bans operate within the sacred perimeters of Ayodhya (Panchkosi and Chaudah Kosi parikrama rings), Mathura-Vrindavan (22 designated municipal wards), and the Kashi Vishwanath temple corridor in Varanasi. Commercial hubs like Noida and Lucknow enjoy model shop culture.",
+    "bespokeFaqs": [
+      {
+        "question": "What are UP Model Shops, and are you allowed to drink inside them?",
+        "answer": "Model Shops in Uttar Pradesh are premium, air-conditioned retail walk-in liquor stores that hold a specialized license allowing an enclosed consumption cabin called an \"Ahata\". Customers can buy chilled beer, wine, or spirits at printed retail prices and consume them legally with food inside the attached seating area."
+      },
+      {
+        "question": "Can I bring alcohol purchased in Delhi or Haryana into Noida or Ghaziabad?",
+        "answer": "UP Excise enforcement strictly monitors NCR border checkpoints such as Chilla, Kalindi Kunj, and DND Flyway. Commuters are permitted at most one unsealed bottle for transit. Carrying sealed bottles or cartons of cheaper Delhi or Haryana duty-paid liquor into UP violates Section 63 of the UP Excise Act, carrying non-bailable arrest and immediate vehicle impoundment."
+      },
+      {
+        "question": "Why is alcohol completely prohibited in Ayodhya and Mathura?",
+        "answer": "Under Uttar Pradesh government statutory notifications, absolute alcohol-free holy zones are enforced around sacred Hindu shrines. In Ayodhya, liquor sales are banned across the Panchkosi and Chaudah Kosi parikrama pilgrimage routes. In Mathura-Vrindavan, all 22 municipal wards surrounding the Krishna Janmabhoomi temple are complete dry zones."
+      },
+      {
+        "question": "What are the theka operating hours across Uttar Pradesh?",
+        "answer": "All retail liquor stores, country liquor thekas, beer shops, and model shops across all 75 districts of Uttar Pradesh operate strictly from 10:00 AM to 10:00 PM."
+      },
+      {
+        "question": "Is home delivery of liquor permitted anywhere in Uttar Pradesh?",
+        "answer": "No. Doorstep home delivery of alcohol is completely prohibited across Uttar Pradesh. In-person physical purchase at authorized licensed counters is mandatory."
+      }
+    ]
   },
   "maharashtra": {
     "actName": "Maharashtra Prohibition Act, 1949 (formerly Bombay Prohibition Act, 1949)",
@@ -139,7 +189,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Maharashtra Excise maintains rigorous border check-posts along the Goa border (Banda, Patradevi) and Gujarat/Daman borders (Achhad, Talasari). Carrying liquor from Goa without a Maharashtra import pass is strictly prohibited; bottles purchased in Goa duty-free shops are routinely confiscated at highway check-posts and Konkan railway stations.",
     "onlineDeliveryPolicy": "Home delivery is legally permitted through licensed local FL-II retailers who hold home delivery permits. Delivery agents must verify the recipient’s digital excise permit upon delivery. Third-party aggregator apps operate only under strictly defined pilot partnerships in major cities.",
-    "districtAndCityNuances": "Wardha and Gadchiroli are 100% dry districts where alcohol possession is completely banned. Complete pilgrimage dry closures are enforced in Pandharpur during Wari pilgrimages, Alandi, and Dehu. Mumbai, Navi Mumbai, and Pune enjoy extended dining hours up to 1:30 AM."
+    "districtAndCityNuances": "Wardha and Gadchiroli are 100% dry districts where alcohol possession is completely banned. Complete pilgrimage dry closures are enforced in Pandharpur during Wari pilgrimages, Alandi, and Dehu. Mumbai, Navi Mumbai, and Pune enjoy extended dining hours up to 1:30 AM.",
+    "bespokeFaqs": [
+      {
+        "question": "Do I legally need a liquor permit to drink alcohol in Mumbai or Pune?",
+        "answer": "Yes. Under Section 11 of the Maharashtra Prohibition Act, 1949, any individual consuming or possessing alcohol is technically required to hold a valid personal liquor permit (Form E). Daily permits can be purchased for a nominal fee (around ₹5) at licensed permit rooms, or annual/lifetime permits can be obtained digitally via the state excise Aaple Sarkar portal."
+      },
+      {
+        "question": "Why are Wardha and Gadchiroli completely dry districts in Maharashtra?",
+        "answer": "Wardha enforces complete statutory prohibition in reverence to Mahatma Gandhi, who established Sevagram Ashram there. Gadchiroli enforces district-wide prohibition to protect vulnerable tribal communities and combat public health concerns associated with alcoholism."
+      },
+      {
+        "question": "Why is the legal drinking age 25 for spirits in Maharashtra?",
+        "answer": "Maharashtra enforces a bifurcated legal drinking age: adults who are 21 years old may legally purchase and consume mild beer and wine, but you must be at least 25 years old to consume or purchase hard spirits and foreign liquor."
+      },
+      {
+        "question": "Is alcohol banned during Ganesh Visarjan in Mumbai and Pune?",
+        "answer": "Yes. Anant Chaturdashi (the final day of Ganesh Visarjan) is a mandatory statewide statutory dry day in Maharashtra. All retail wine shops, permit rooms, and hotel bars are strictly mandated to remain closed."
+      },
+      {
+        "question": "Can I carry alcohol from Goa into Maharashtra?",
+        "answer": "No. Transporting liquor from Goa into Maharashtra without a valid transit pass issued by the Maharashtra Commissioner of State Excise is strictly illegal. Flying squads and border checkposts at Banda and Patradevi intercept vehicles and confiscate bottles under Section 65."
+      }
+    ]
   },
   "karnataka": {
     "actName": "Karnataka Excise Act, 1965 & Karnataka Excise (Sale of Indian and Foreign Liquors) Rules, 1968",
@@ -176,7 +248,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Vehicles arriving from Goa via Karwar, Chorla Ghat, or Belagavi face intensive excise inspections. Bringing duty-unpaid Goa liquor into Karnataka is strictly prohibited regardless of quantity; offenders face confiscation, vehicle detention, and compounding penalties under Section 34.",
     "onlineDeliveryPolicy": "Online liquor delivery and app ordering are strictly illegal across Karnataka. The High Court of Karnataka dismissed petitions seeking online alcohol delivery, reaffirming that physical in-person sales at licensed premises are mandatory.",
-    "districtAndCityNuances": "Bengaluru Urban (BBMP limits) allows commercial pubs and microbreweries to operate until 1:00 AM on Fridays and Saturdays. Coastal and interior districts (Mangaluru, Udupi, Hubballi, Mysuru) adhere strictly to standard 10:30 PM / 11:00 PM closing curfews."
+    "districtAndCityNuances": "Bengaluru Urban (BBMP limits) allows commercial pubs and microbreweries to operate until 1:00 AM on Fridays and Saturdays. Coastal and interior districts (Mangaluru, Udupi, Hubballi, Mysuru) adhere strictly to standard 10:30 PM / 11:00 PM closing curfews.",
+    "bespokeFaqs": [
+      {
+        "question": "Do Bangalore pubs and microbreweries stay open until 1:00 AM?",
+        "answer": "Yes. In the Bengaluru Urban (BBMP) metropolitan area, commercial pubs, craft microbreweries, and CL-9 restaurant bars are permitted extended operating hours until 1:00 AM on Friday and Saturday nights to accommodate the city's nightlife culture."
+      },
+      {
+        "question": "Why is online liquor delivery strictly banned in Bangalore and Karnataka?",
+        "answer": "The High Court of Karnataka dismissed legal petitions seeking permission for app-based alcohol delivery, upholding the state government's policy that in-person retail sales at licensed premises are mandatory to prevent underage drinking and maintain verification standards."
+      },
+      {
+        "question": "What is the difference between CL-2 and CL-9 licenses in Karnataka?",
+        "answer": "CL-2 licenses are granted to off-premise retail liquor vends that sell sealed packaged bottles for home consumption (operating 9:00 AM – 10:30 PM). CL-9 licenses are commercial bar and restaurant licenses that permit the table service of food and alcoholic beverages on-site."
+      },
+      {
+        "question": "Can I bring alcohol from Goa into Karnataka by road or train?",
+        "answer": "No. Transporting duty-unpaid liquor from Goa into Karnataka is illegal without a permit from KSBCL. State excise checkposts along the Western Ghats (Karwar, Chorla Ghat, and Belagavi) actively search vehicles and confiscate bottles."
+      },
+      {
+        "question": "Is Kannada Rajyotsava (1 November) a dry day across Karnataka?",
+        "answer": "Yes. 1 November is an official state dry day celebrating Kannada Rajyotsava (Karnataka Formation Day); all retail wine shops, CL-2 stores, and commercial bars remain closed statewide."
+      }
+    ]
   },
   "rajasthan": {
     "actName": "Rajasthan Excise Act, 1950 & Rajasthan Excise Rules, 1956",
@@ -213,7 +307,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Interstate check-posts along Haryana (Bhiwadi, Neemrana, Behror) and Punjab (Sriganganagar) are equipped with CCTV and surveillance teams. Carrying commercial quantities of cheaper Haryana alcohol into Rajasthan is treated as organized tax evasion, punishable with vehicle confiscation.",
     "onlineDeliveryPolicy": "Home delivery of liquor is completely prohibited in Rajasthan. In-person physical purchase at authorized shops before 8:00 PM is legally required.",
-    "districtAndCityNuances": "Complete alcohol prohibition is enforced in the holy municipal perimeter of Pushkar (Ajmer district) around the sacred Pushkar Lake. Tourist hubs like Jaipur, Udaipur, and Jaisalmer enjoy heritage hospitality licenses that permit dining room alcohol service until late evening."
+    "districtAndCityNuances": "Complete alcohol prohibition is enforced in the holy municipal perimeter of Pushkar (Ajmer district) around the sacred Pushkar Lake. Tourist hubs like Jaipur, Udaipur, and Jaisalmer enjoy heritage hospitality licenses that permit dining room alcohol service until late evening.",
+    "bespokeFaqs": [
+      {
+        "question": "Why do all wine shops and thekas in Rajasthan close strictly at 8:00 PM?",
+        "answer": "Under the Rajasthan Excise Rules, all licensed retail liquor thekas across all 50 districts must close their shutters at exactly 8:00 PM. This early closing curfew was implemented by the state government to maintain public safety, prevent evening street drinking, and curb drunk driving."
+      },
+      {
+        "question": "Can heritage palace hotels in Jaipur and Udaipur serve liquor after 8:00 PM?",
+        "answer": "Yes. While retail packaged thekas must close at 8:00 PM sharp, certified heritage palace hotels, star luxury resorts, and recognized restaurant bars holding valid bar licenses are permitted to serve liquor to dining guests until 11:00 PM or Midnight."
+      },
+      {
+        "question": "Is alcohol completely prohibited in Pushkar holy town?",
+        "answer": "Yes. Under local municipal regulations, alcohol sale, transport, and public consumption are strictly banned within the sacred municipal perimeter surrounding the holy Pushkar Lake and Brahma Temple."
+      },
+      {
+        "question": "What is the legal drinking age in Rajasthan?",
+        "answer": "Under the Rajasthan Excise Act, 1950, the statutory minimum legal drinking age in Rajasthan is 18 years, making it lower than Delhi (21), UP (21), or Punjab (25)."
+      },
+      {
+        "question": "Can I carry liquor from Haryana into Rajasthan?",
+        "answer": "No. Smuggling cheaper Haryana-duty alcohol across borders into Rajasthan (Alwar, Bhiwadi, Behror, Sriganganagar) is heavily penalized under Section 54 of the Rajasthan Excise Act, resulting in immediate vehicle seizure and criminal prosecution."
+      }
+    ]
   },
   "punjab": {
     "actName": "Punjab Excise Act, 1914 & Punjab Liquor License Rules, 1956",
@@ -250,7 +366,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts between Chandigarh UT and Punjab (Zirakpur, Mohali border, Nayagaon) monitor traffic. Chandigarh alcohol carries lower local duties, and carrying un-manifested liquor into Punjab is strictly penalized under Section 61 with immediate seizure.",
     "onlineDeliveryPolicy": "Home delivery of liquor is not permitted in Punjab. All retail sales must take place over the counter at designated licensed vends.",
-    "districtAndCityNuances": "Strict religious zoning prohibits alcohol vends and meat shops within the walled heritage city surrounding the Golden Temple (Harmandir Sahib) in Amritsar. Rural Gram Panchayats frequently exercise legal rights to ban vends within village territorial limits."
+    "districtAndCityNuances": "Strict religious zoning prohibits alcohol vends and meat shops within the walled heritage city surrounding the Golden Temple (Harmandir Sahib) in Amritsar. Rural Gram Panchayats frequently exercise legal rights to ban vends within village territorial limits.",
+    "bespokeFaqs": [
+      {
+        "question": "Why is the legal drinking age 25 in Punjab?",
+        "answer": "Under Section 29 of the Punjab Excise Act, 1914, the statutory minimum legal drinking age is 25 years. Selling alcohol to anyone under 25 or employing minors in licensed premises is a punishable criminal offence."
+      },
+      {
+        "question": "Can rural Gram Panchayats ban liquor thekas in their village in Punjab?",
+        "answer": "Yes. Under Section 26 of the Punjab Panchayati Raj Act, 1994, any Gram Panchayat has the statutory right to pass a formal two-thirds majority resolution demanding that no retail liquor vend be opened within the territorial limits of their village."
+      },
+      {
+        "question": "Is alcohol prohibited around the Golden Temple in Amritsar?",
+        "answer": "Yes. The historic walled city surrounding Sri Harmandir Sahib (Golden Temple) in Amritsar is an officially designated sacred zone where the sale, storage, and consumption of alcohol, tobacco, and meat are completely banned."
+      },
+      {
+        "question": "What is the difference between L-2 and L-14A thekas in Punjab?",
+        "answer": "L-2 thekas are licensed retail vends for Indian Made Foreign Liquor (IMFL), imported spirits, and commercial beer. L-14A thekas are specialized rural and urban outlets licensed to sell traditional country liquor (Desi Sharab)."
+      },
+      {
+        "question": "Can I bring cheaper liquor from Chandigarh into Mohali or Ludhiana?",
+        "answer": "No. Transporting Chandigarh-labeled liquor into Punjab without paying Punjab excise duty violates Section 61. Police and excise flying squads regularly intercept vehicles along the Mohali and Zirakpur borders."
+      }
+    ]
   },
   "haryana": {
     "actName": "Punjab Excise Act, 1914 (as adapted for Haryana) & Haryana Excise Policy 2024-26",
@@ -287,7 +425,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Commuters traveling from Gurugram into Delhi are checked by Delhi Excise squads at Sirhaul toll plaza, MG Road, and Kapashera. Carrying more than one bottle across the border invites confiscation under Delhi laws.",
     "onlineDeliveryPolicy": "Doorstep home delivery is not officially operationalized for general consumer retail in Haryana, despite policy provisions for pilot exploration.",
-    "districtAndCityNuances": "Gurugram and Faridabad feature round-the-clock nightlife hospitality licenses and prominent corporate lounges. In contrast, Kurukshetra enforces complete alcohol-free zones around the sacred Brahma Sarovar and Jyotisar pilgrimage sites."
+    "districtAndCityNuances": "Gurugram and Faridabad feature round-the-clock nightlife hospitality licenses and prominent corporate lounges. In contrast, Kurukshetra enforces complete alcohol-free zones around the sacred Brahma Sarovar and Jyotisar pilgrimage sites.",
+    "bespokeFaqs": [
+      {
+        "question": "Are liquor shops open 24/7 in Gurgaon (Gurugram)?",
+        "answer": "Under the Haryana Excise Policy, designated premium retail vends and corporate lounges located in authorized commercial cyber corridors (such as Cyber City and Golf Course Road in Gurugram) are permitted to operate extended hours or 24/7 upon payment of special license fees."
+      },
+      {
+        "question": "Why is liquor significantly cheaper in Haryana compared to Delhi?",
+        "answer": "Haryana levies lower excise tax slabs and allocates vends through competitive e-auctions with flexible retail pricing, allowing retailers to offer heavy volume discounts on premium single malts and imported beers compared to Delhi's government-run MRP vends."
+      },
+      {
+        "question": "Can I bring liquor from Gurgaon or Faridabad into Delhi?",
+        "answer": "Delhi law strictly caps personal import from neighboring states at maximum one sealed 750ml bottle per person. Carrying cartons or multiple bottles across the Sirhaul toll plaza into Delhi results in vehicle seizure and prosecution by Delhi Excise squads."
+      },
+      {
+        "question": "Is alcohol banned in Kurukshetra holy city?",
+        "answer": "Yes. Commercial liquor vends and public alcohol sales are strictly prohibited within the sacred pilgrimage perimeter surrounding Brahma Sarovar, Sannehit Sarovar, and Jyotisar in Kurukshetra."
+      }
+    ]
   },
   "west-bengal": {
     "actName": "Bengal Excise Act, 1909 & West Bengal Excise (Foreign Liquor) Rules",
@@ -324,7 +480,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "West Bengal shares sensitive borders with dry Bihar and Jharkhand. Checkposts along the Grand Trunk Road and railway stations (Asansol, Siliguri) strictly monitor outbound luggage to prevent bootlegging into dry Bihar.",
     "onlineDeliveryPolicy": "West Bengal is one of the few Indian states with an official framework for e-retail and home delivery via registered retail stores under the e-Abgari portal, subject to local municipal orders and verification.",
-    "districtAndCityNuances": "Kolkata and Salt Lake feature historic colonial pub culture and late-night nightlife extensions in star hospitality hubs. Darjeeling and hill subdivisions operate tourism-friendly hotel lounges with winter seasonal timings."
+    "districtAndCityNuances": "Kolkata and Salt Lake feature historic colonial pub culture and late-night nightlife extensions in star hospitality hubs. Darjeeling and hill subdivisions operate tourism-friendly hotel lounges with winter seasonal timings.",
+    "bespokeFaqs": [
+      {
+        "question": "Is online home delivery of liquor legal in Kolkata?",
+        "answer": "Yes. West Bengal is one of the few Indian states with an official regulatory framework for e-retail and doorstep delivery under the Directorate of Excise's e-Abgari portal, enabling licensed local retail off-shops to fulfill digital orders within municipal wards."
+      },
+      {
+        "question": "Are bars and restaurants in Kolkata open late night during Durga Puja and New Year?",
+        "answer": "Yes. During Durga Puja carnival celebrations and New Year festivities, the West Bengal government routinely issues special notifications allowing licensed hotel bars and restobars in Kolkata to operate until 2:00 AM or 4:00 AM."
+      },
+      {
+        "question": "Is Bijoya Dashami (Dussehra) a dry day across West Bengal?",
+        "answer": "Yes. The 10th day of Durga Puja (Bijoya Dashami) is an official state dry day across West Bengal, and all retail off-shops remain closed during idol immersion ceremonies."
+      },
+      {
+        "question": "Can you take liquor purchased in West Bengal across the border into Bihar?",
+        "answer": "No. Bihar enforces complete statutory prohibition. Transporting even a single bottle of alcohol across the border via Asansol, Barakar, or Malda is treated as criminal bootlegging, resulting in immediate arrest and vehicle confiscation."
+      }
+    ]
   },
   "goa": {
     "actName": "Goa Excise Duty Act, 1964 & Goa Excise Duty Rules, 1964",
@@ -361,7 +535,29 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Border check-posts on highways leading to Maharashtra (Patradevi, Banda, Dodamarg) and Karnataka (Majali, Chorla Ghat) inspect outbound buses, taxis, and private cars. Carrying liquor into Maharashtra or Karnataka without destination state permits is illegal under their laws, regardless of a Goa transit permit.",
     "onlineDeliveryPolicy": "Home delivery of alcohol by food apps or e-commerce is not permitted in Goa. In-person physical purchase at authorized shops is legally required.",
-    "districtAndCityNuances": "North Goa beach coastal belts (Calangute, Candolim, Anjuna, Morjim) feature active beach shack licensing and late-night nightlife. South Goa (Margao, Colva, Palolem) maintains a more tranquil atmosphere with strictly enforced 11:00 PM residential closing times."
+    "districtAndCityNuances": "North Goa beach coastal belts (Calangute, Candolim, Anjuna, Morjim) feature active beach shack licensing and late-night nightlife. South Goa (Margao, Colva, Palolem) maintains a more tranquil atmosphere with strictly enforced 11:00 PM residential closing times.",
+    "bespokeFaqs": [
+      {
+        "question": "Can I legally carry 2 bottles of alcohol out of Goa?",
+        "answer": "Under Goa state law, tourists may purchase an official Goa Excise Transit Permit (costing ~₹20–₹50) to export up to 2 bottles (750ml each). However, this permit is only recognized if your destination state allows import. Neighboring Maharashtra and Karnataka strictly ban importing Goa liquor, and their highway checkposts at Banda and Majali routinely confiscate bottles."
+      },
+      {
+        "question": "Is drinking alcohol allowed on beaches in Goa?",
+        "answer": "No. Drinking alcohol in public spaces, open beaches, and public roads is strictly prohibited under the Goa Tourist Places (Protection and Maintenance) Act, punishable with spot fines up to ₹2,000–₹10,000. Alcohol consumption is only legal inside licensed beach shacks, restobars, and private resort premises."
+      },
+      {
+        "question": "What are the operating hours for beach shacks and clubs in Goa?",
+        "answer": "Licensed beach shacks and coastal nightlife venues in North Goa (Calangute, Baga, Anjuna, Morjim) are permitted to serve food and alcoholic beverages until 1:00 AM or later during the peak tourist season."
+      },
+      {
+        "question": "What is Feni, and what is its legal status in Goa?",
+        "answer": "Feni is Goa's traditional heritage spirit distilled from cashew apples or coconut toddy. It holds official Geographical Indication (GI) status and is classified as a 'Heritage Liquor' under the Goa Excise Duty Act, exempt from standard foreign liquor tax restrictions."
+      },
+      {
+        "question": "What is the legal drinking age in Goa?",
+        "answer": "The statutory minimum legal drinking age in Goa is 18 years, which is the lowest in India alongside Rajasthan and Puducherry."
+      }
+    ]
   },
   "telangana": {
     "actName": "Telangana Excise Act, 1968 & Telangana Liquor Retail Rules",
@@ -398,7 +594,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts monitor highways connecting Telangana with Karnataka (Zahirabad) and Andhra Pradesh (Garikapadu). Un-manifested commercial carriage across borders is strictly penalized.",
     "onlineDeliveryPolicy": "Online liquor delivery is prohibited across Telangana. All alcohol sales must take place over the counter at authorized A4 shops or inside licensed 2B bars.",
-    "districtAndCityNuances": "Hyderabad (GHMC zone) permits retail vends to stay open until 11:00 PM and restobars until 1:00 AM on weekends. Rural districts (Nalgonda, Warangal, Karimnagar) enforce strict 10:00 PM retail closures."
+    "districtAndCityNuances": "Hyderabad (GHMC zone) permits retail vends to stay open until 11:00 PM and restobars until 1:00 AM on weekends. Rural districts (Nalgonda, Warangal, Karimnagar) enforce strict 10:00 PM retail closures.",
+    "bespokeFaqs": [
+      {
+        "question": "What are the wine shop timings in Hyderabad compared to rural Telangana?",
+        "answer": "In the Greater Hyderabad Municipal Corporation (GHMC) area, licensed A4 wine shops operate from 10:00 AM to 11:00 PM. In rural and non-GHMC district towns, shops are mandated to close earlier at 10:00 PM."
+      },
+      {
+        "question": "Do Hyderabad pubs and microbreweries stay open until 1:00 AM on weekends?",
+        "answer": "Yes. Commercial restobars and craft microbreweries in Hyderabad holding 2B licenses are permitted to operate until 12:00 Midnight on weekdays and until 1:00 AM on Friday and Saturday nights."
+      },
+      {
+        "question": "Can you order alcohol online or through apps in Hyderabad?",
+        "answer": "No. Online liquor ordering and doorstep delivery apps are completely illegal in Telangana. Counter sales at licensed A4 retail vends are legally required."
+      },
+      {
+        "question": "What is the domestic possession limit for alcohol in Telangana?",
+        "answer": "An adult can legally possess up to 6 bottles of beer (650ml each) and 2 litres of Indian Made Foreign Liquor (IMFL) or imported spirits for domestic personal consumption."
+      }
+    ]
   },
   "tamil-nadu": {
     "actName": "Tamil Nadu Prohibition Act, 1937 & TASMAC Retail Vending Rules, 2003",
@@ -435,7 +649,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Intensive round-the-clock check-posts operate along the Puducherry border (Kanagachettikulam, Gorimedu, Villianur) and Karnataka border (Hosur). Police flying squads use sniffer dogs and vehicle checks to confiscate Pondicherry-labeled bottles.",
     "onlineDeliveryPolicy": "Home delivery of liquor is strictly illegal in Tamil Nadu. Online apps are banned from selling or transporting alcoholic beverages.",
-    "districtAndCityNuances": "Temple cities (Madurai, Rameswaram, Palani) enforce buffer zones where TASMAC outlets are prohibited within 50-100 meters of religious places and educational institutions. Chennai has the highest density of Elite TASMAC outlets."
+    "districtAndCityNuances": "Temple cities (Madurai, Rameswaram, Palani) enforce buffer zones where TASMAC outlets are prohibited within 50-100 meters of religious places and educational institutions. Chennai has the highest density of Elite TASMAC outlets.",
+    "bespokeFaqs": [
+      {
+        "question": "Why is TASMAC the only place to buy alcohol in Tamil Nadu?",
+        "answer": "Under Section 17C of the Tamil Nadu Prohibition Act, 1937, the state government holds an absolute monopoly over wholesale procurement and retail distribution of alcohol through the Tamil Nadu State Marketing Corporation (TASMAC). Private retail liquor stores are completely banned."
+      },
+      {
+        "question": "Why do TASMAC wine shops open only at 12:00 PM (Noon)?",
+        "answer": "All ~4,800 TASMAC retail shops follow a strict standardized operating window: 12:00 PM (Noon) to 10:00 PM. Morning sales are barred by state policy to prevent early commercial alcohol consumption."
+      },
+      {
+        "question": "What are TASMAC Elite shops?",
+        "answer": "TASMAC Elite stores are air-conditioned, walk-in boutique shops located inside shopping malls in Chennai, Coimbatore, and Madurai that stock premium imported wines, single malts, and international beer brands."
+      },
+      {
+        "question": "Can I bring cheaper alcohol from Puducherry into Tamil Nadu?",
+        "answer": "No. Tamil Nadu Police and TASMAC enforcement squads operate round-the-clock checkposts at all Puducherry borders (Kanagachettikulam, Gorimedu). Transporting duty-unpaid Puducherry liquor into TN is a non-bailable offence carrying vehicle impoundment and prison terms."
+      }
+    ]
   },
   "kerala": {
     "actName": "Kerala Abkari Act (1 of 1077) & Foreign Liquor Rules, 1953",
@@ -472,7 +704,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts at Walayar (Tamil Nadu border) and Thalapady / Kasaragod (Karnataka border) conduct systematic vehicle inspections. Mahe enclave borders are especially monitored to stop cheaper UT liquor inflows into Kannur and Kozhikode.",
     "onlineDeliveryPolicy": "Doorstep home delivery is prohibited. BEVCO operates an online queue token system (BevQ during special circumstances), but customer pick-up in person is mandatory.",
-    "districtAndCityNuances": "Pilgrimage zones surrounding Sabarimala (Pathanamthitta district) and Guruvayur observe local alcohol-free restrictions during temple festivals. Kochi and Thiruvananthapuram feature high-end star hotel lounges."
+    "districtAndCityNuances": "Pilgrimage zones surrounding Sabarimala (Pathanamthitta district) and Guruvayur observe local alcohol-free restrictions during temple festivals. Kochi and Thiruvananthapuram feature high-end star hotel lounges.",
+    "bespokeFaqs": [
+      {
+        "question": "Why is the 1st of every month a dry day in Kerala?",
+        "answer": "Known as the \"Pay Day Rule\", Kerala enforces a statutory dry day on the first calendar day of every month across the state to protect household wages and prevent immediate alcohol spending on salary days."
+      },
+      {
+        "question": "Why is the legal drinking age 23 in Kerala?",
+        "answer": "Under the Kerala Abkari Act, the minimum legal drinking age is 23 years, making it one of the strictest age thresholds in India, enacted to curb alcohol abuse among college students."
+      },
+      {
+        "question": "Where can you buy alcohol in Kerala?",
+        "answer": "Alcohol is available only through government-run retail outlets operated by the Kerala State Beverages Corporation (BEVCO) and Consumerfed, or consumed on-premise at certified star hotels (3-star, 4-star, and 5-star) holding FL-3 bar licenses."
+      },
+      {
+        "question": "Are traditional Toddy Shops open on dry days in Kerala?",
+        "answer": "No. Licensed Toddy Shops (TS) that tap and sell fresh coconut and palm toddy must remain completely shut on all official dry days, including the 1st of every month."
+      }
+    ]
   },
   "bihar": {
     "actName": "Bihar Prohibition and Excise Act, 2016 (as amended 2022)",
@@ -499,7 +749,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "All border entry corridors (Buxar, Gopalganj, Chhapra from UP; Gaya, Rajauli from Jharkhand; Asansol/Durgapur route from West Bengal) feature permanent multi-agency checkpoints. Carrying duty-paid alcohol through Bihar—even in sealed luggage inside private vehicles or long-distance trains—is completely illegal and results in vehicle impoundment and arrest.",
     "onlineDeliveryPolicy": "Online liquor delivery is non-existent and completely illegal. Any advertisement or platform claiming to deliver alcohol in Bihar is fraudulent.",
-    "districtAndCityNuances": "Statewide drone surveillance and riverine patrol boats on the Ganga, Gandak, and Son rivers target smuggling routes. Urban centers (Patna, Gaya, Muzaffarpur) operate specialized de-addiction centers."
+    "districtAndCityNuances": "Statewide drone surveillance and riverine patrol boats on the Ganga, Gandak, and Son rivers target smuggling routes. Urban centers (Patna, Gaya, Muzaffarpur) operate specialized de-addiction centers.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol completely banned in Bihar?",
+        "answer": "Yes. Bihar enforces complete statewide statutory prohibition under the Bihar Prohibition and Excise Act, 2016. The manufacture, transport, storage, sale, purchase, possession, and consumption of all forms of alcohol are criminalized."
+      },
+      {
+        "question": "What happens if you are caught with alcohol at Patna airport or railway station?",
+        "answer": "All baggage arriving at Patna airport and major railway stations is screened by police and excise teams using X-ray scanners and breathalyzers. Carrying alcohol results in immediate FIR registration, non-bailable arrest, and seizure of luggage."
+      },
+      {
+        "question": "Can transit train passengers carry alcohol while traveling through Bihar?",
+        "answer": "No. Even if you boarded a long-distance train in Delhi or West Bengal with legally purchased duty-paid alcohol, carrying it through Bihar territorial territory constitutes illegal transit and invites arrest during RPF and excise train inspections."
+      },
+      {
+        "question": "What is the penalty for a first-time alcohol consumption offence in Bihar?",
+        "answer": "Under the 2022 amendments to the Bihar Prohibition Act, a first-time casual drinker can be released upon paying a compoundable penalty of ₹2,000–₹5,000 before an Executive Magistrate; repeat offenders or failure to pay results in mandatory imprisonment."
+      }
+    ]
   },
   "gujarat": {
     "actName": "Gujarat Prohibition Act, 1949 (formerly Bombay Prohibition Act, 1949)",
@@ -536,7 +804,25 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along the Rajasthan border (Ratanpur, Abu Road) and Daman/Diu borders (Vapi, Bhilad, Una) conduct thorough vehicle screenings. Carrying duty-unpaid liquor from Daman or Rajasthan into Gujarat without an approved transit permit constitutes bootlegging.",
     "onlineDeliveryPolicy": "Home delivery of alcohol is strictly illegal throughout Gujarat. All permit purchases must be made in person at certified star hotel counters.",
-    "districtAndCityNuances": "GIFT City in Gandhinagar operates under special 2023 regulations permitting wine and dine facilities for authorized professionals. Daman and Diu border towns (Vapi, Valsad) experience heavy check-post surveillance."
+    "districtAndCityNuances": "GIFT City in Gandhinagar operates under special 2023 regulations permitting wine and dine facilities for authorized professionals. Daman and Diu border towns (Vapi, Valsad) experience heavy check-post surveillance.",
+    "bespokeFaqs": [
+      {
+        "question": "How can a domestic tourist get a liquor permit in Gujarat?",
+        "answer": "Domestic tourists from other Indian states can apply online via the official Gujarat Excise portal (eps.gujaratexcise.gujarat.gov.in) for a 30-day Tourist Liquor Permit (Form E) by uploading valid travel tickets and proof of out-of-state residence."
+      },
+      {
+        "question": "Can you drink alcohol in GIFT City Gandhinagar?",
+        "answer": "Yes. In December 2023, Gujarat introduced a special regulatory exemption allowing certified employees and authorized official visitors to consume alcohol in designated food and beverage areas within the GIFT City financial zone."
+      },
+      {
+        "question": "Where can permit holders buy alcohol in Gujarat?",
+        "answer": "Alcohol can only be purchased at approximately 70 authorized hotel wine shops located inside certified 4-star and 5-star hotels in cities like Ahmedabad, Vadodara, Surat, and Rajkot upon in-person biometric and permit verification."
+      },
+      {
+        "question": "Can I bring my own alcohol into Gujarat if I hold an e-permit?",
+        "answer": "No. An e-permit only authorizes purchase from licensed hotel counters located within Gujarat. Transporting alcohol across state borders from Rajasthan, Daman, or Maharashtra remains illegal bootlegging."
+      }
+    ]
   },
   "nagaland": {
     "actName": "Nagaland Liquor Total Prohibition (NLTP) Act, 1989",
@@ -563,7 +849,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Major check-posts between Assam and Nagaland (New Field check-post and Dillai gate near Dimapur) monitor commercial vehicular traffic. Transporting liquor from Assam into Nagaland is illegal.",
     "onlineDeliveryPolicy": "Online liquor sales and app delivery are completely prohibited.",
-    "districtAndCityNuances": "Dimapur, as the commercial gateway of Nagaland, experiences the highest enforcement activity. Kohima and interior districts (Mokokchung, Mon) observe strict community-assisted prohibition enforcement."
+    "districtAndCityNuances": "Dimapur, as the commercial gateway of Nagaland, experiences the highest enforcement activity. Kohima and interior districts (Mokokchung, Mon) observe strict community-assisted prohibition enforcement.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol completely illegal in Nagaland under the NLTP Act?",
+        "answer": "Yes. Nagaland enforces statewide statutory prohibition under the Nagaland Liquor Total Prohibition (NLTP) Act, 1989. Commercial retail stores, vends, and public bars are prohibited across all districts."
+      },
+      {
+        "question": "Are there any exemptions under the NLTP Act in Nagaland?",
+        "answer": "Strict statutory exemptions apply solely to armed forces cantonment messes, paramilitary establishments, and civil medical permits issued under verified health conditions by a civil medical board."
+      },
+      {
+        "question": "Can tourists bring alcohol into Nagaland?",
+        "answer": "No. Police and excise checkposts at Dimapur and Assam border gates screen incoming vehicles, and carrying commercial liquor into Nagaland is penalized with fines and imprisonment."
+      }
+    ]
   },
   "mizoram": {
     "actName": "Mizoram Liquor (Prohibition) Act, 2019",
@@ -590,7 +890,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts along the Assam border (Vairengte) and Tripura border (Kanhmun) inspect vehicles to intercept illicit inflows.",
     "onlineDeliveryPolicy": "Online liquor delivery is completely prohibited.",
-    "districtAndCityNuances": "Local community volunteers (CYMA) actively support state excise and narcotics squads across Aizawl, Lunglei, and Champhai to prevent bootlegging."
+    "districtAndCityNuances": "Local community volunteers (CYMA) actively support state excise and narcotics squads across Aizawl, Lunglei, and Champhai to prevent bootlegging.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol banned in Mizoram?",
+        "answer": "Yes. Mizoram enforces total prohibition under the Mizoram Liquor (Prohibition) Act, 2019, which repealed the previous regulatory regime with strong backing from church organizations and civil society."
+      },
+      {
+        "question": "Are there any commercial wine shops in Aizawl?",
+        "answer": "No. Commercial retail thekas and public bars do not operate anywhere in Mizoram; public sales are completely prohibited."
+      },
+      {
+        "question": "What is the penalty for illegal alcohol possession in Mizoram?",
+        "answer": "Under the Mizoram Liquor (Prohibition) Act, 2019, unlawful possession, transport, or sale of alcohol carries rigorous imprisonment of up to 5 years and heavy fines of up to ₹1,00,000."
+      }
+    ]
   },
   "lakshadweep": {
     "actName": "Lakshadweep Prohibition Regulation, 1979",
@@ -617,7 +931,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "All luggage arriving at Agatti Airport and passenger ferry jetties is screened. Travelers are not permitted to carry personal alcohol into the islands.",
     "onlineDeliveryPolicy": "Online liquor delivery is non-existent and completely prohibited.",
-    "districtAndCityNuances": "Absolute prohibition across Kavaratti administrative capital and all inhabited atolls; regulated hospitality service exclusively confined to the island of Bangaram."
+    "districtAndCityNuances": "Absolute prohibition across Kavaratti administrative capital and all inhabited atolls; regulated hospitality service exclusively confined to the island of Bangaram.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol banned across the Lakshadweep islands?",
+        "answer": "Yes. All 10 inhabited islands (including Kavaratti and Agatti) enforce total statutory prohibition under the Lakshadweep Prohibition Regulation, 1979, to respect local cultural traditions."
+      },
+      {
+        "question": "Where can tourists drink alcohol in Lakshadweep?",
+        "answer": "Alcohol service is exclusively permitted on the uninhabited coral resort island of Bangaram, which operates a licensed tourist bar for visiting domestic and international travelers."
+      },
+      {
+        "question": "Can I carry alcohol in flight baggage to Agatti Airport?",
+        "answer": "No. Baggage arriving at Agatti Airport is thoroughly scanned by security and excise personnel. Carrying alcohol onto any inhabited island in Lakshadweep is completely illegal and results in confiscation."
+      }
+    ]
   },
   "andhra-pradesh": {
     "actName": "Andhra Pradesh Excise Act, 1968 & AP Retail Liquor Vending Policy 2024-26",
@@ -654,7 +982,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along the Telangana border (Garikapadu, Ramapuram), Karnataka border (Madakasira), and Tamil Nadu border monitor commercial traffic. Transit of duty-unpaid liquor is strictly prohibited.",
     "onlineDeliveryPolicy": "Home delivery of liquor is not permitted in Andhra Pradesh.",
-    "districtAndCityNuances": "Tirupati holy town and the entire Tirumala sacred hill perimeter are strictly alcohol-free zones under Tirumala Tirupati Devasthanams (TTD) statutory regulations. Visakhapatnam and Vijayawada feature active commercial bar cultures."
+    "districtAndCityNuances": "Tirupati holy town and the entire Tirumala sacred hill perimeter are strictly alcohol-free zones under Tirumala Tirupati Devasthanams (TTD) statutory regulations. Visakhapatnam and Vijayawada feature active commercial bar cultures.",
+    "bespokeFaqs": [
+      {
+        "question": "Are liquor shops in Andhra Pradesh run by government or private vendors?",
+        "answer": "In October 2024, Andhra Pradesh abolished government-run retail counters and returned to a private retail licensing framework, allocating over 3,300 retail shops across 26 districts through a transparent lottery system."
+      },
+      {
+        "question": "Is alcohol completely banned in Tirupati and Tirumala?",
+        "answer": "Yes. The sacred Tirumala hill shrine and surrounding pilgrim zones enforce absolute alcohol prohibition under statutory Tirumala Tirupati Devasthanams (TTD) regulations."
+      },
+      {
+        "question": "What are retail wine shop timings in Andhra Pradesh?",
+        "answer": "Standard licensed private retail shops operate from 10:00 AM to 10:00 PM across all 26 districts of Andhra Pradesh."
+      }
+    ]
   },
   "madhya-pradesh": {
     "actName": "Madhya Pradesh Excise Act, 1915 & MP Excise Rules, 1934",
@@ -691,7 +1033,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts along borders with Rajasthan, UP, Gujarat, and Maharashtra monitor vehicles. Transporting cheaper Haryana or Delhi alcohol through MP without an in-transit permit is punishable.",
     "onlineDeliveryPolicy": "Home delivery of liquor is strictly prohibited across Madhya Pradesh.",
-    "districtAndCityNuances": "Complete alcohol prohibition is enforced around the Mahakaleshwar temple corridor in Ujjain, Chitrakoot holy town, Omkareshwar Jyotirlinga perimeter, and Maihar sacred hill. Bhopal and Indore feature modern nightlife and restobar corridors."
+    "districtAndCityNuances": "Complete alcohol prohibition is enforced around the Mahakaleshwar temple corridor in Ujjain, Chitrakoot holy town, Omkareshwar Jyotirlinga perimeter, and Maihar sacred hill. Bhopal and Indore feature modern nightlife and restobar corridors.",
+    "bespokeFaqs": [
+      {
+        "question": "What are Composite Liquor Shops in Madhya Pradesh?",
+        "answer": "Madhya Pradesh operates \"Composite Vends\" where both Indian Made Foreign Liquor (IMFL) and country liquor are sold from a single retail counter, eliminating separate country thekas."
+      },
+      {
+        "question": "Are ahatas (drinking enclosures) still open in MP?",
+        "answer": "No. In 2023, the MP government permanently abolished all on-premise drinking ahatas attached to liquor shops to improve public safety and curb public drinking."
+      },
+      {
+        "question": "Which cities in MP enforce complete alcohol prohibition?",
+        "answer": "Complete prohibition is enforced around holy temple corridors: Ujjain (Mahakaleshwar perimeter), Chitrakoot, Omkareshwar Jyotirlinga, and Maihar sacred hill."
+      }
+    ]
   },
   "odisha": {
     "actName": "Odisha Excise Act, 2008 & Odisha Excise Rules, 2017",
@@ -728,7 +1084,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts at Jaleswar (West Bengal border), Sunabeda (Andhra border), and Bargarh (Chhattisgarh border) monitor highways. Commercial transit without an OSBC permit results in seizure.",
     "onlineDeliveryPolicy": "Odisha allowed home delivery via registered retail stores under special regulatory orders, but third-party general app delivery remains strictly regulated by District Collectors.",
-    "districtAndCityNuances": "Puri holy town enforces buffer zones around the Shree Jagannath Temple where liquor vends are prohibited. Bhubaneswar smart city and Cuttack feature the highest density of on-premise bars."
+    "districtAndCityNuances": "Puri holy town enforces buffer zones around the Shree Jagannath Temple where liquor vends are prohibited. Bhubaneswar smart city and Cuttack feature the highest density of on-premise bars.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol banned in Puri near the Jagannath Temple?",
+        "answer": "Yes. Strict buffer zones around the Shree Jagannath Temple in Puri prohibit retail liquor shops and public alcohol consumption."
+      },
+      {
+        "question": "What are retail off-shop timings in Bhubaneswar and Cuttack?",
+        "answer": "Licensed off-shops operate from 10:30 AM to 10:30 PM, with stock supplied solely through the Odisha State Beverages Corporation (OSBC)."
+      },
+      {
+        "question": "What is the domestic liquor possession limit in Odisha?",
+        "answer": "Under the Odisha Excise Rules, an adult can legally possess up to 3 bottles of spirits (750ml each) and 6 bottles of beer for domestic consumption with valid OSBC purchase receipts."
+      }
+    ]
   },
   "chhattisgarh": {
     "actName": "Chhattisgarh Excise Act, 1915 (as adapted) & CSMCL Retail Rules",
@@ -765,7 +1135,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along borders with Odisha, MP, and Maharashtra inspect passenger and commercial vehicles. Illicit transport into tribal areas is strictly targeted.",
     "onlineDeliveryPolicy": "CSMCL operated a state-run home delivery portal during specific pandemic periods, but standard commercial food app delivery is prohibited.",
-    "districtAndCityNuances": "Tribal areas in Bastar, Dantewada, and Surguja enjoy customary protections under PESA for domestic Mahua production. Raipur capital region and Bilaspur feature commercial hotel restobars."
+    "districtAndCityNuances": "Tribal areas in Bastar, Dantewada, and Surguja enjoy customary protections under PESA for domestic Mahua production. Raipur capital region and Bilaspur feature commercial hotel restobars.",
+    "bespokeFaqs": [
+      {
+        "question": "Who operates liquor stores in Chhattisgarh?",
+        "answer": "All retail liquor shops in Chhattisgarh are owned and operated directly by the state government through the Chhattisgarh State Marketing Corporation Limited (CSMCL); private thekas are prohibited."
+      },
+      {
+        "question": "Are traditional tribal drinks (Mahua) legal in Bastar?",
+        "answer": "Yes. Under customary PESA protections, scheduled tribal households in Bastar and Surguja are legally permitted to brew traditional Mahua for personal domestic consumption."
+      },
+      {
+        "question": "What is the legal drinking age in Chhattisgarh?",
+        "answer": "The statutory minimum legal drinking age in Chhattisgarh is 21 years under the Chhattisgarh Excise Act."
+      }
+    ]
   },
   "jharkhand": {
     "actName": "Jharkhand Excise Act, 1915 & Jharkhand Liquor Retail Rules",
@@ -802,7 +1186,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along the Bihar border (Rajauli, Barhi, Koderma) are heavily staffed by joint police squads. Vehicles heading into Bihar are thoroughly searched; carrying liquor into Bihar constitutes a non-bailable crime.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Jharkhand.",
-    "districtAndCityNuances": "Deoghar district enforces strict dry days during the holy Shravani Mela in the sacred Baba Baidyanath Dham temple perimeter. Ranchi and Jamshedpur feature modern restobars operating until 11:00 PM."
+    "districtAndCityNuances": "Deoghar district enforces strict dry days during the holy Shravani Mela in the sacred Baba Baidyanath Dham temple perimeter. Ranchi and Jamshedpur feature modern restobars operating until 11:00 PM.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol banned in Deoghar during Shravani Mela?",
+        "answer": "Yes. Deoghar district enforces strict dry day notifications during the holy month of Shravani Mela in the sacred Baba Baidyanath Dham temple perimeter."
+      },
+      {
+        "question": "Can you carry alcohol from Jharkhand into Bihar?",
+        "answer": "No. Intensive multi-agency checkposts at Rajauli, Koderma, and Barhi intercept vehicles heading into Bihar; bootlegging into dry Bihar carries non-bailable prison terms."
+      },
+      {
+        "question": "What are retail theka operating hours in Ranchi and Jamshedpur?",
+        "answer": "Government-managed JSBCL retail vends operate from 10:00 AM to 10:00 PM, while certified commercial bars operate until 11:00 PM in major urban centers."
+      }
+    ]
   },
   "assam": {
     "actName": "Assam Excise Act, 2000 & Assam Excise Rules, 2016",
@@ -839,7 +1237,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts at Khanapara and Jorabat (Meghalaya border) and Dimapur border monitor vehicular movement. Smuggling cheaper military or neighboring state liquor into Assam is prosecuted with vehicle seizure.",
     "onlineDeliveryPolicy": "Guwahati municipal corporation experimented with online delivery trials via authorized retail stores during specific periods, but general app delivery remains strictly regulated.",
-    "districtAndCityNuances": "Guwahati features a vibrant urban nightlife with microbreweries and restobars operating up to 11:30 PM. Majuli island and historical pilgrimage areas observe strict community-assisted closing norms."
+    "districtAndCityNuances": "Guwahati features a vibrant urban nightlife with microbreweries and restobars operating up to 11:30 PM. Majuli island and historical pilgrimage areas observe strict community-assisted closing norms.",
+    "bespokeFaqs": [
+      {
+        "question": "Are bars in Guwahati open late night?",
+        "answer": "Yes. In Guwahati municipal corporation areas, licensed restobars, pubs, and microbreweries are permitted to operate until 11:30 PM."
+      },
+      {
+        "question": "What are the dry days during Bihu in Assam?",
+        "answer": "Magh Bihu (Uruka) and designated Rongali Bihu festival days observe official dry day closures notified by district commissioners."
+      },
+      {
+        "question": "Can I bring liquor from Meghalaya into Assam without paying duty?",
+        "answer": "No. Transporting duty-unpaid liquor across the Khanapara or Jorabat border checkpoints without an Assam Excise transit pass is strictly illegal and subject to seizure."
+      }
+    ]
   },
   "himachal-pradesh": {
     "actName": "Himachal Pradesh Excise Act, 2011 & HP Liquor License Rules, 1986",
@@ -876,7 +1288,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts at Parwanoo, Baddi, Mehatpur, and Kala Amb inspect vehicles entering from Punjab, Haryana, and Chandigarh. Carrying duty-unpaid alcohol into Himachal invites heavy fines.",
     "onlineDeliveryPolicy": "Home delivery of alcohol is prohibited in Himachal Pradesh.",
-    "districtAndCityNuances": "Shimla (The Mall pedestrian zone) prohibits commercial liquor vends directly on the heritage promenade. Manali and McLeodganj feature tourism-extended bar licenses during peak summer and winter seasons."
+    "districtAndCityNuances": "Shimla (The Mall pedestrian zone) prohibits commercial liquor vends directly on the heritage promenade. Manali and McLeodganj feature tourism-extended bar licenses during peak summer and winter seasons.",
+    "bespokeFaqs": [
+      {
+        "question": "Can tourists drink along The Mall Road in Shimla?",
+        "answer": "No. Public consumption and retail vends are strictly prohibited on the heritage pedestrian promenade of The Mall in Shimla; alcohol may only be consumed inside licensed hotel bars and restobars."
+      },
+      {
+        "question": "Are fruit wines legal and available in Himachal Pradesh?",
+        "answer": "Yes. Himachal Pradesh actively licenses indigenous cottage wineries that produce and retail local apple, plum, and rhododendron wines across tourist hill stations."
+      },
+      {
+        "question": "Can tourists carry alcohol in their cars while driving to Manali or Shimla?",
+        "answer": "Tourists may carry up to 2 bottles of spirits (750ml) and 6 bottles of beer for personal use with valid retail cash receipts. Transporting unmanifested cartons from Chandigarh or Haryana is strictly prohibited."
+      }
+    ]
   },
   "uttarakhand": {
     "actName": "Uttarakhand Excise Act, 2001 (adapted from UP 1910 Act)",
@@ -913,7 +1339,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along Uttar Pradesh borders (Mohand, Haridwar border, Kashiwala) inspect vehicles. Carrying liquor into the municipal limits of Haridwar or Rishikesh results in immediate seizure and prosecution.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Uttarakhand.",
-    "districtAndCityNuances": "Total statutory prohibition is enforced in Haridwar municipal corporation, Rishikesh (Muni Ki Reti and Swargashram areas), and Char Dham temple perimeters (Badrinath, Kedarnath, Gangotri, Yamunotri). Dehradun and Mussoorie operate modern restobars."
+    "districtAndCityNuances": "Total statutory prohibition is enforced in Haridwar municipal corporation, Rishikesh (Muni Ki Reti and Swargashram areas), and Char Dham temple perimeters (Badrinath, Kedarnath, Gangotri, Yamunotri). Dehradun and Mussoorie operate modern restobars.",
+    "bespokeFaqs": [
+      {
+        "question": "Why is alcohol strictly prohibited in Haridwar and Rishikesh?",
+        "answer": "Under statutory government notifications, Haridwar municipal corporation and the sacred pilgrimage perimeters of Rishikesh (Muni Ki Reti and Swargashram) are 100% dry zones."
+      },
+      {
+        "question": "Can tourists drink in Dehradun and Mussoorie?",
+        "answer": "Yes. Dehradun, Mussoorie, and Nainital operate licensed retail vends (10:00 AM – 10:00 PM) and commercial restobars."
+      },
+      {
+        "question": "Is alcohol banned on the Char Dham Yatra in Uttarakhand?",
+        "answer": "Yes. Absolute statutory prohibition is enforced across the sacred shrine perimeters of Badrinath, Kedarnath, Gangotri, and Yamunotri."
+      }
+    ]
   },
   "chandigarh": {
     "actName": "Punjab Excise Act, 1914 (as applicable to UT Chandigarh) & Chandigarh Excise Policy",
@@ -950,7 +1390,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Intensive joint border checks operate along borders with Mohali (Punjab) and Panchkula (Haryana). Punjab Police regularly intercept vehicles on border sector roads to stop bootlegging of cheaper Chandigarh bottles.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Chandigarh.",
-    "districtAndCityNuances": "Uniform sector-wide administration. Sector 26, Sector 35, Sector 7, and Industrial Area Phase 1 (Elante) feature the highest concentration of late-night microbreweries and lounges."
+    "districtAndCityNuances": "Uniform sector-wide administration. Sector 26, Sector 35, Sector 7, and Industrial Area Phase 1 (Elante) feature the highest concentration of late-night microbreweries and lounges.",
+    "bespokeFaqs": [
+      {
+        "question": "Why are wine shops in Chandigarh open until 12:00 Midnight?",
+        "answer": "Under the Chandigarh UT Excise Policy, retail vends hold authorized operating hours from 9:00 AM to 12:00 Midnight, the latest retail curfew in northern India."
+      },
+      {
+        "question": "Can I take liquor from Chandigarh into Mohali or Panchkula?",
+        "answer": "No. Chandigarh alcohol carries lower UT duties. Crossing municipal borders into Punjab or Haryana without paying destination state excise duty is illegal and heavily policed."
+      },
+      {
+        "question": "Are craft microbreweries legal in Chandigarh?",
+        "answer": "Yes. Chandigarh actively licenses on-premise craft microbreweries in commercial entertainment corridors, including Sector 26, Sector 35, and Elante Mall."
+      }
+    ]
   },
   "jammu-and-kashmir": {
     "actName": "Jammu and Kashmir Excise Act, Samvat 1958 (1901 AD)",
@@ -987,7 +1441,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "The Lakhanpur check-post (Punjab-J&K border) inspects all incoming passenger buses, commercial trucks, and private vehicles. Carrying excess duty-unpaid liquor is penalized.",
     "onlineDeliveryPolicy": "Home delivery of alcohol is strictly prohibited across Jammu and Kashmir.",
-    "districtAndCityNuances": "Complete statutory prohibition is enforced in Katra holy town (base camp for Shri Mata Vaishno Devi shrine). Kashmir division features licensed restobars inside certified tourist hotels in Srinagar, Gulmarg, and Pahalgam."
+    "districtAndCityNuances": "Complete statutory prohibition is enforced in Katra holy town (base camp for Shri Mata Vaishno Devi shrine). Kashmir division features licensed restobars inside certified tourist hotels in Srinagar, Gulmarg, and Pahalgam.",
+    "bespokeFaqs": [
+      {
+        "question": "Is alcohol banned in Katra (Mata Vaishno Devi)?",
+        "answer": "Yes. Complete statutory prohibition is enforced in Katra holy town and throughout the Trikuta Hills pilgrim route to the Vaishno Devi shrine."
+      },
+      {
+        "question": "Where can you buy alcohol in Srinagar and Kashmir?",
+        "answer": "In Kashmir division, retail vends are strictly restricted; alcohol is primarily served inside certified tourist star hotels and private clubs in Srinagar, Gulmarg, and Pahalgam."
+      },
+      {
+        "question": "What is the legal drinking age in Jammu and Kashmir?",
+        "answer": "Under the Jammu and Kashmir Excise Act, the statutory minimum legal drinking age is 21 years."
+      }
+    ]
   },
   "ladakh": {
     "actName": "Jammu and Kashmir Excise Act (as adapted for UT Ladakh)",
@@ -1019,7 +1487,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Luggage is screened at Kushok Bakula Rimpochee Airport in Leh and at highway check-posts along the Manali-Leh and Srinagar-Leh routes.",
     "onlineDeliveryPolicy": "Online liquor delivery is non-existent and prohibited in Ladakh.",
-    "districtAndCityNuances": "Leh district features regulated retail and tourist hospitality licenses; Kargil district maintains a conservative social environment with virtually no public commercial retail outlets."
+    "districtAndCityNuances": "Leh district features regulated retail and tourist hospitality licenses; Kargil district maintains a conservative social environment with virtually no public commercial retail outlets.",
+    "bespokeFaqs": [
+      {
+        "question": "Where is alcohol available in Ladakh?",
+        "answer": "Licensed retail vends and tourist hotel lounges operate in Leh town; Kargil district maintains culturally conservative norms with virtually no commercial retail vends."
+      },
+      {
+        "question": "Is traditional Chhang legal in Ladakh?",
+        "answer": "Yes. Indigenous non-commercial preparation of barley brew (Chhang) is customary and exempt from commercial excise licensing for local household use."
+      },
+      {
+        "question": "Why are there no commercial wine shops in Kargil?",
+        "answer": "Kargil district observes culturally conservative local community norms where public commercial liquor vends do not operate; retail sales are centered in Leh town."
+      }
+    ]
   },
   "puducherry": {
     "actName": "Puducherry Excise Act, 1970 & Puducherry Excise Rules",
@@ -1056,7 +1538,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Tamil Nadu Police and TASMAC enforcement squads operate permanent check-posts at every exit road (Gorimedu, Kanagachettikulam, Villianur, Mullodai). Tourist cars and buses are systematically searched; transporting bottles into TN invites severe penalties.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Puducherry.",
-    "districtAndCityNuances": "Puducherry comprises four non-contiguous coastal enclaves: Puducherry town, Karaikal (enclosed in TN), Mahe (enclosed in Kerala), and Yanam (enclosed in AP). Each enclave follows UT excise rules within its geographic borders."
+    "districtAndCityNuances": "Puducherry comprises four non-contiguous coastal enclaves: Puducherry town, Karaikal (enclosed in TN), Mahe (enclosed in Kerala), and Yanam (enclosed in AP). Each enclave follows UT excise rules within its geographic borders.",
+    "bespokeFaqs": [
+      {
+        "question": "Why is alcohol so cheap in Pondicherry?",
+        "answer": "Puducherry levies low Union Territory excise duties to support coastal hospitality and tourism, making beer, wine, and spirits up to 30–50% cheaper than in neighboring Tamil Nadu."
+      },
+      {
+        "question": "Can I bring alcohol from Pondicherry into Chennai or Tamil Nadu?",
+        "answer": "No. Tamil Nadu Police maintain permanent border checkposts at Gorimedu and Kanagachettikulam. Carrying Pondicherry liquor into Tamil Nadu is a non-bailable offence resulting in vehicle confiscation."
+      },
+      {
+        "question": "Are beach cafes and French Quarter bars open late in Pondicherry?",
+        "answer": "Yes. Licensed tourist restobars and heritage cafes in the French Quarter and beach promenade serve alcohol until 11:30 PM."
+      }
+    ]
   },
   "dadra-and-nagar-haveli-and-daman-and-diu": {
     "actName": "Goa, Daman and Diu Excise Duty Act, 1964 (as adapted)",
@@ -1088,7 +1584,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Gujarat Police operate intensive 24/7 check-posts at all exit points from Daman (Vapi, Bhilad, Dabhel) and Diu (Tad checkpost, Una). Travelers are breathalyzed, and vehicles are searched for illicit contraband.",
     "onlineDeliveryPolicy": "Online liquor delivery is prohibited across the territory.",
-    "districtAndCityNuances": "Daman (Nani Daman and Moti Daman) and Diu feature active beachfront hospitality; Silvassa (DNH) caters to corporate and eco-resort tourism."
+    "districtAndCityNuances": "Daman (Nani Daman and Moti Daman) and Diu feature active beachfront hospitality; Silvassa (DNH) caters to corporate and eco-resort tourism.",
+    "bespokeFaqs": [
+      {
+        "question": "Can I bring alcohol from Daman or Diu into Gujarat?",
+        "answer": "No. Gujarat Police operate 24/7 checkposts at Bhilad, Vapi, and Una. Commuters caught bringing liquor into dry Gujarat face non-bailable arrest under the Gujarat Prohibition Act."
+      },
+      {
+        "question": "What are the wine shop timings in Daman and Diu?",
+        "answer": "Retail stores operate from 9:00 AM to 11:00 PM, while coastal resort restobars serve alcohol until 11:30 PM."
+      },
+      {
+        "question": "What happens if you are caught with Daman liquor at the Vapi or Bhilad border?",
+        "answer": "Gujarat Police operate 24/7 checkposts at Bhilad and Vapi. Carrying even one bottle into dry Gujarat leads to immediate non-bailable arrest under the Gujarat Prohibition Act and vehicle seizure."
+      }
+    ]
   },
   "sikkim": {
     "actName": "Sikkim Excise Act, 1992 & Sikkim Excise Rules",
@@ -1120,7 +1630,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Excise check-posts at Rangpo and Melli on the West Bengal border inspect commercial trucks and private vehicles. Tourists are permitted to carry up to 2 bottles with proof of purchase.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited in Sikkim.",
-    "districtAndCityNuances": "Gangtok (MG Marg pedestrian corridor) observes strict commercial discipline where vends close at 10:00 PM. South and West Sikkim (Namchi, Pelling) feature eco-resort dining licenses."
+    "districtAndCityNuances": "Gangtok (MG Marg pedestrian corridor) observes strict commercial discipline where vends close at 10:00 PM. South and West Sikkim (Namchi, Pelling) feature eco-resort dining licenses.",
+    "bespokeFaqs": [
+      {
+        "question": "What are pub and theka timings on MG Marg in Gangtok?",
+        "answer": "Retail shops close at 10:00 PM, while certified pubs, restobars, and live-music lounges along MG Marg operate until 11:00 PM."
+      },
+      {
+        "question": "Can tourists carry Sikkim-manufactured beer or spirits home?",
+        "answer": "Tourists may carry up to 2 bottles with proof of purchase across the Rangpo checkpost into West Bengal."
+      },
+      {
+        "question": "What local beers and spirits are manufactured in Sikkim?",
+        "answer": "Sikkim houses celebrated Himalayan breweries and distilleries that produce well-known regional beers like Hit and Dansberg, as well as local fruit brandies and malt spirits."
+      }
+    ]
   },
   "tripura": {
     "actName": "Tripura Excise Act, 1987 & Tripura Excise Rules",
@@ -1152,7 +1676,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "The Churaibari check-post on the Assam-Tripura border inspects incoming commercial consignments. International border crossings with Bangladesh are guarded by BSF against cross-border smuggling.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Tripura.",
-    "districtAndCityNuances": "Agartala urban municipal area features the primary concentration of licensed off-shops and restobars; rural tribal autonomous district council (TTAADC) areas follow local community norms."
+    "districtAndCityNuances": "Agartala urban municipal area features the primary concentration of licensed off-shops and restobars; rural tribal autonomous district council (TTAADC) areas follow local community norms.",
+    "bespokeFaqs": [
+      {
+        "question": "What are retail wine shop hours in Agartala?",
+        "answer": "Licensed Foreign Liquor Off-Shops operate from 10:00 AM to 10:00 PM across Agartala and district subdivisions."
+      },
+      {
+        "question": "Can you bring alcohol into Tripura from Assam or West Bengal?",
+        "answer": "Personal transit is limited to 2 bottles of IMFL with valid cash receipts. Commercial transit without an official Tripura Excise permit across the Churaibari border checkpost is illegal."
+      },
+      {
+        "question": "Is alcohol allowed in tribal autonomous areas (TTAADC) in Tripura?",
+        "answer": "Commercial sales are tightly regulated, and local tribal village councils in autonomous areas may enforce customary restrictions on public drinking."
+      }
+    ]
   },
   "meghalaya": {
     "actName": "Meghalaya Excise Act (adapted) & Meghalaya Liquor Licensing Rules",
@@ -1189,7 +1727,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts at Byrnihat and Khanapara on the Guwahati-Shillong National Highway inspect vehicles. Duty-unpaid alcohol from outside the state is confiscated.",
     "onlineDeliveryPolicy": "Online liquor delivery is prohibited across Meghalaya.",
-    "districtAndCityNuances": "Shillong features active live-music restobar corridors (Police Bazar, Laitumkhrah); traditional village councils (dorbar shnong) can regulate the opening of new vends within local residential boundaries."
+    "districtAndCityNuances": "Shillong features active live-music restobar corridors (Police Bazar, Laitumkhrah); traditional village councils (dorbar shnong) can regulate the opening of new vends within local residential boundaries.",
+    "bespokeFaqs": [
+      {
+        "question": "Can traditional village dorbars ban wine shops in Shillong?",
+        "answer": "Yes. Traditional Khasi Dorbar Shnongs (locality councils) possess customary authority to oppose and prevent commercial liquor vends from opening in residential neighborhoods."
+      },
+      {
+        "question": "What are pub timings in Shillong?",
+        "answer": "Licensed music cafes, restobars, and heritage club bars in Police Bazar and Laitumkhrah operate until 11:00 PM."
+      },
+      {
+        "question": "Can tourists drink alcohol in Cherrapunji (Sohra) and Dawki?",
+        "answer": "Alcohol consumption in tourist destinations like Cherrapunji and Dawki is only legal inside certified resorts, guest houses, and licensed restobars; drinking in open waterfalls or public viewpoints is strictly banned."
+      }
+    ]
   },
   "manipur": {
     "actName": "Manipur Liquor Prohibition (Amendment) Act, 2023 & Manipur Excise Rules",
@@ -1226,7 +1778,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Check-posts along the Assam border (Jiribam) and Nagaland border (Mao) inspect vehicles. Border trade with Myanmar at Moreh is heavily guarded against contraband smuggling.",
     "onlineDeliveryPolicy": "Home delivery of alcohol is strictly prohibited in Manipur.",
-    "districtAndCityNuances": "Regulated commercial sales are authorized in Imphal municipal areas and district headquarters; tribal hill districts (Churachandpur, Ukhrul, Senapati) retain traditional customary community practices."
+    "districtAndCityNuances": "Regulated commercial sales are authorized in Imphal municipal areas and district headquarters; tribal hill districts (Churachandpur, Ukhrul, Senapati) retain traditional customary community practices.",
+    "bespokeFaqs": [
+      {
+        "question": "What is the 2023 Manipur liquor policy reform?",
+        "answer": "In December 2023, Manipur amended its 1991 prohibition act to permit regulated manufacture, distribution, and sale of alcohol in district headquarters and certified star hotels to boost revenue and curb spurious alcohol."
+      },
+      {
+        "question": "Where can you buy alcohol in Manipur following the 2023 policy relaxation?",
+        "answer": "Under the amended 2023 policy, regulated commercial alcohol sales are permitted in district headquarters, greater Imphal municipal zones, and certified star hotels; unlicensed bootlegging remains prohibited."
+      },
+      {
+        "question": "Can tourists carry alcohol into Manipur across state borders?",
+        "answer": "Interstate checkposts at Jiribam (Assam border) and Mao (Nagaland border) inspect incoming vehicles. Travelers may carry limited personal duty-paid alcohol with valid purchase receipts."
+      }
+    ]
   },
   "arunachal-pradesh": {
     "actName": "Arunachal Pradesh Excise Act, 1993 & AP Excise Rules, 1994",
@@ -1263,7 +1829,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Inner Line Permit (ILP) checkgates at Banderdewa, Hollongi, and Gumto inspect all arriving passenger vehicles. Carrying un-manifested commercial alcohol into the state is barred.",
     "onlineDeliveryPolicy": "Home delivery of liquor is prohibited across Arunachal Pradesh.",
-    "districtAndCityNuances": "Itanagar and Naharlagun feature the primary concentration of commercial vends. High-altitude tourist circuits (Tawang, Dirang) operate tourism hotel bars during travel seasons."
+    "districtAndCityNuances": "Itanagar and Naharlagun feature the primary concentration of commercial vends. High-altitude tourist circuits (Tawang, Dirang) operate tourism hotel bars during travel seasons.",
+    "bespokeFaqs": [
+      {
+        "question": "Who can own retail wine shops in Arunachal Pradesh?",
+        "answer": "Commercial retail licenses are statutorily reserved exclusively for indigenous Arunachal Pradesh Scheduled Tribes (APST)."
+      },
+      {
+        "question": "Is traditional rice beer (Apong) legal in Arunachal?",
+        "answer": "Yes. Customary household brewing of Apong and Marua is legally exempt from excise duties for traditional tribal festivals like Nyokum, Losar, and Solung."
+      },
+      {
+        "question": "Can tourists bring alcohol through Inner Line Permit (ILP) checkgates into Arunachal Pradesh?",
+        "answer": "Visitors entering Arunachal Pradesh with a valid ILP may carry up to 2 bottles of spirits for personal domestic use with verified retail receipts."
+      }
+    ]
   },
   "andaman-and-nicobar-islands": {
     "actName": "Andaman and Nicobar Islands Excise Regulation, 2012",
@@ -1300,7 +1880,21 @@ export const STATE_EXCISE_PROFILES: Record<string, StateExciseProfile> = {
     ],
     "interstateTransitGuidance": "Passenger baggage arriving at Veer Savarkar International Airport in Port Blair and sea passenger terminals (Haddo Wharf) is screened. Inter-island ferries heading toward tribal zones are heavily policed.",
     "onlineDeliveryPolicy": "Home delivery of liquor is completely prohibited in the Andaman and Nicobar Islands.",
-    "districtAndCityNuances": "Havelock and Neil island beach cafes feature tourism hospitality bar licenses; South Andaman (Port Blair) features ANIIDCO vends. The Nicobar district and all tribal reserve zones enforce absolute statutory prohibition."
+    "districtAndCityNuances": "Havelock and Neil island beach cafes feature tourism hospitality bar licenses; South Andaman (Port Blair) features ANIIDCO vends. The Nicobar district and all tribal reserve zones enforce absolute statutory prohibition.",
+    "bespokeFaqs": [
+      {
+        "question": "Who sells alcohol in Port Blair and Havelock?",
+        "answer": "Alcohol retail is exclusively managed by the government-owned Andaman and Nicobar Islands Integrated Development Corporation (ANIIDCO); private retail stores are prohibited."
+      },
+      {
+        "question": "Why is alcohol strictly prohibited in tribal reserves in Andaman?",
+        "answer": "Under the Aboriginal Tribes Regulation, 1956, carrying alcohol into Jarawa, Sentinelese, or Nicobarese tribal reserves is a grave criminal offence carrying up to 7 years rigorous imprisonment."
+      },
+      {
+        "question": "Are there wine shops on Havelock (Swaraj Dweep) and Neil (Shaheed Dweep)?",
+        "answer": "Yes. ANIIDCO operates authorized packaged retail vends on Havelock and Neil islands, and licensed beach resorts provide on-premise bar service."
+      }
+    ]
   }
 };
 

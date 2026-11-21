@@ -125,6 +125,7 @@ describe('Page Title & Metadata Formatting', () => {
       expect(p.onlineDeliveryPolicy.length).toBeGreaterThan(30);
       expect(p.districtAndCityNuances.length).toBeGreaterThan(50);
       expect(Array.isArray(p.licenseCategories) && p.licenseCategories.length >= 2).toBe(true);
+      expect(Array.isArray(p.bespokeFaqs) && p.bespokeFaqs.length >= 2).toBe(true);
 
       expect(summaries.has(p.statutorySummary)).toBe(false);
       summaries.add(p.statutorySummary);

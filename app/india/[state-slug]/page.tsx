@@ -212,6 +212,15 @@ export default async function StatePage({ params }: Props) {
     ],
   };
 
+  const bespokeFaqItems = (exciseProfile?.bespokeFaqs || []).map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  }));
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -234,22 +243,6 @@ export default async function StatePage({ params }: Props) {
       },
       {
         '@type': 'Question',
-        name: `Is tomorrow a dry day in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `Yes, because ${state.name} enforces permanent prohibition year-round.`
-            : tomorrowStatus === 'dry'
-            ? `Yes, tomorrow (${formattedTomorrow}) is a dry day in ${state.name}. Licensed shops and bars will remain closed.`
-            : tomorrowStatus === 'maybe'
-            ? `Tomorrow's dry status is reported but not yet officially confirmed in ${state.name}.`
-            : tomorrowStatus === 'unavailable'
-            ? `Tomorrow's dry-day status in ${state.name} could not be retrieved from the database right now.`
-            : `No, tomorrow is not scheduled as a dry day in ${state.name}.`,
-        },
-      },
-      {
-        '@type': 'Question',
         name: `Are wine shops and thekas open today in ${state.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
@@ -264,80 +257,7 @@ export default async function StatePage({ params }: Props) {
             : `Yes, licensed retail wine shops and thekas in ${state.name} are open today (${formattedToday}) during standard excise hours (${timingInfo.retailHours}).`,
         },
       },
-      {
-        '@type': 'Question',
-        name: `Are bars and restaurants serving alcohol today in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `No, serving or selling alcohol is illegal in ${state.name}.`
-            : todayStatus === 'dry'
-            ? `No, licensed bars, clubs, and hotel lounges in ${state.name} are strictly prohibited from serving alcohol on official dry days.`
-            : todayStatus === 'maybe'
-            ? `Bar service rules for today are pending official confirmation in ${state.name}.`
-            : todayStatus === 'unavailable'
-            ? `Bar operating status in ${state.name} is temporarily unavailable.`
-            : `Yes, licensed bars, clubs, and hotel lounges in ${state.name} are permitted to serve liquor today during standard licensed hours (${timingInfo.barHours}).`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `What are the guaranteed dry days in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `Under the ${exciseProfile?.actName || 'State Prohibition Act'}, ${state.name} observes complete statewide statutory prohibition. Every day of the year is a dry day; no commercial retail, purchase, or possession of alcohol is permitted.`
-            : `In ${state.name}, mandatory dry days are governed by the ${exciseProfile?.actName || 'State Excise Act'}. Standing gazetted closures include: ${exciseProfile?.standingDryDaysSummary || 'Republic Day (26 Jan), Independence Day (15 Aug), and Gandhi Jayanti (2 Oct)'}. Additionally, 48-hour dry curfews apply during assembly, parliamentary, and local civic election polling across affected constituencies.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `How do I check official excise circulars and dry day notices for ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Official dry day circulars, licensing orders, and festival schedules for ${state.name} are published by the ${exciseProfile?.regulatoryAuthority || state.name + ' State Excise Department'}. Citizens and business operators can review gazette notifications on their official portal (${exciseProfile?.officialPortal || 'state excise portal'}) or monitor live status verifications on DryCheck India.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `What is the legal drinking age and alcohol possession limit in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `${state.name} is a complete statutory prohibition state under the ${exciseProfile?.actName || 'state law'}. There is no legal drinking age because alcohol possession, transport, and consumption are strictly banned and punishable by law.`
-            : `In ${state.name}, the statutory minimum legal drinking age is ${timingInfo.legalAge} years. Under the ${exciseProfile?.actName || 'state excise regulations'}, personal possession and transit rules specify: ${exciseProfile?.transitAndPossessionRule || 'possession is restricted to domestic limits with valid duty paid'}. ${exciseProfile?.penaltiesNotice || ''}`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `How does the retail liquor distribution system operate in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `Commercial liquor retail is prohibited in ${state.name}. No licensed private thekas, wine shops, or state corporations operate within the state.`
-            : `Retail alcohol distribution in ${state.name} is structured as ${exciseProfile?.retailModel || 'licensed retail vends'}. ${exciseProfile?.statutorySummary || 'Licensed shops operate within regulated municipal trading hours.'}`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `Can you order alcohol online or get home delivery in ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `No, alcohol sales and home delivery are completely banned in ${state.name}. Any online platform claiming to deliver alcohol is fraudulent and unlawful.`
-            : `${exciseProfile?.onlineDeliveryPolicy || `Home delivery of alcohol is not authorized in ${state.name}. In-person physical purchase at licensed retail vends is legally required.`}`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `What are the rules for carrying alcohol across borders into ${state.name}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: state.prohibition
-            ? `Carrying any quantity of alcohol into ${state.name} from other states is strictly illegal and results in immediate non-bailable arrest, heavy fines, and vehicle impoundment under state prohibition laws.`
-            : `${exciseProfile?.interstateTransitGuidance || `Interstate transit is strictly restricted to authorized domestic personal quotas with valid proof of duty paid.`}`,
-        },
-      },
+      ...bespokeFaqItems,
       {
         '@type': 'Question',
         name: `Kya aaj ${state.name} me theka ya wine shop khula hai? (Is wine shop open today?)`,
