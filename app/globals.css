@@ -31,3 +31,42 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #525252;
 }
+
+/* Gold Theme Grid Pattern for Homepage */
+.bg-grid-gold {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(245, 158, 11, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.08) 1px, transparent 1px);
+}
+
+/* Animated Gold Border (#fac53f) for Celebration / Not Dry Status Card */
+@keyframes border-beam {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam 4s linear infinite;
+}
+
+@keyframes gold-border-pulse {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(250, 197, 63, 0.25), inset 0 0 14px rgba(250, 197, 63, 0.08);
+    border-color: rgba(250, 197, 63, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(250, 197, 63, 0.55), 0 0 10px rgba(250, 197, 63, 0.35), inset 0 0 22px rgba(250, 197, 63, 0.18);
+    border-color: #fac53f;
+  }
+}
+
+.animate-gold-border-pulse {
+  animation: gold-border-pulse 3s ease-in-out infinite;
+}
+
+

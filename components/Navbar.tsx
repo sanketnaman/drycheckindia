@@ -50,7 +50,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav Links */}
-          <nav aria-label="Main Navigation" className="hidden sm:flex items-center gap-6 text-xs font-semibold text-neutral-300">
+          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-6 text-xs font-semibold text-neutral-300">
             <Link
               href="/states"
               className="hover:text-amber-400 transition-colors py-2"
@@ -71,15 +71,31 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Top-Right: Menu / Search button with min 44px tap target */}
-          <div className="flex items-center gap-2">
+          {/* Top-Right: Mobile Links + Search / Menu button */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Mobile Direct Nav Links */}
+            <nav aria-label="Mobile Quick Navigation" className="flex md:hidden items-center gap-1 text-xs font-semibold">
+              <Link
+                href="/states"
+                className="px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors min-h-[36px] flex items-center"
+              >
+                States
+              </Link>
+              <Link
+                href="/guides"
+                className="px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors min-h-[36px] flex items-center"
+              >
+                Guides
+              </Link>
+            </nav>
+
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl border border-neutral-700 bg-neutral-900/90 text-xs font-semibold text-neutral-200 hover:text-white hover:border-amber-500/60 transition-colors min-h-[44px] min-w-[44px]"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl border border-neutral-700 bg-neutral-900/90 text-xs font-semibold text-neutral-200 hover:text-white hover:border-amber-500/60 transition-colors min-h-[44px] min-w-[44px]"
               aria-label="Open state search and menu"
             >
-              <Search className="h-4 w-4 text-amber-400" />
-              <span className="font-medium">State / Menu</span>
+              <Search className="h-4 w-4 text-amber-400 shrink-0" />
+              <span className="hidden sm:inline font-medium">State / Menu</span>
             </button>
           </div>
         </div>
@@ -109,6 +125,31 @@ export default function Navbar() {
               >
                 <X className="h-5 w-5" />
               </button>
+            </div>
+
+            {/* Quick Destination Pills in Modal */}
+            <div className="flex items-center gap-2 pt-3 pb-1 text-xs">
+              <Link
+                href="/states"
+                onClick={() => setIsSearchOpen(false)}
+                className="px-3 py-1.5 rounded-lg bg-neutral-800 text-amber-400 font-semibold hover:bg-neutral-700 transition-colors"
+              >
+                All 36 States
+              </Link>
+              <Link
+                href="/guides"
+                onClick={() => setIsSearchOpen(false)}
+                className="px-3 py-1.5 rounded-lg bg-neutral-800 text-neutral-200 font-semibold hover:bg-neutral-700 transition-colors"
+              >
+                State Guides
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setIsSearchOpen(false)}
+                className="px-3 py-1.5 rounded-lg bg-neutral-800 text-neutral-300 hover:bg-neutral-700 transition-colors"
+              >
+                About &amp; Excise
+              </Link>
             </div>
 
             {/* Search Input - Auto focus, mobile ready */}

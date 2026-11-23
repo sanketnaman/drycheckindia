@@ -42,21 +42,6 @@ export default function KeralaGuideArticle({ guide }: KeralaGuideArticleProps) {
 
   return (
     <article className="mx-auto w-full max-w-4xl px-3 sm:px-6 pt-2 pb-16 text-neutral-200">
-      {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="my-2 flex flex-wrap items-center text-xs text-neutral-400">
-        <Link href="/" className="hover:text-white transition-colors min-h-[36px] flex items-center">
-          Home
-        </Link>
-        <span className="mx-2 text-neutral-600">/</span>
-        <Link href="/guides" className="hover:text-white transition-colors min-h-[36px] flex items-center">
-          Guides
-        </Link>
-        <span className="mx-2 text-neutral-600">/</span>
-        <span className="text-amber-400 font-medium truncate max-w-[260px] sm:max-w-none">
-          Kerala Dry Days 2026
-        </span>
-      </nav>
-
       {/* Header section with H1 */}
       <header className="border-b border-neutral-800 pb-6 mb-6">
         <div className="flex flex-wrap items-center gap-2 mb-3">

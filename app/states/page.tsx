@@ -4,6 +4,12 @@ import { getAllStates, StateInfo, getStateExciseTimings } from '@/lib/dryday';
 import { getStateExciseProfile } from '@/lib/state-excise-profiles';
 import JsonLd from '@/components/JsonLd';
 import AdSlot from '@/components/AdSlot';
+import StateDirectorySearch from '@/components/states/StateDirectorySearch';
+import StateRulesMatrix from '@/components/states/StateRulesMatrix';
+import InterstateTransitGuide from '@/components/states/InterstateTransitGuide';
+import StateRetailModelsGuide from '@/components/states/StateRetailModelsGuide';
+import StateDirectoryFaqs from '@/components/states/StateDirectoryFaqs';
+import { STATE_DIRECTORY_FAQS } from '@/lib/state-matrix-data';
 import {
   MapPin,
   ChevronRight,
@@ -18,16 +24,28 @@ import {
 const SITE_URL = 'https://drycheck.in';
 
 export const metadata: Metadata = {
-  title: 'All 36 States & UTs Dry Day Directory | Official Excise Rules',
+  title: 'All 36 States & UTs Dry Day Directory | Drinking Age & Excise Rules 2026',
   description:
-    'Comprehensive directory of all 28 Indian States and 8 Union Territories. Check state-wise dry day lists, retail wine shop timings, liquor possession limits, and excise laws.',
+    'Comprehensive directory of all 28 Indian States and 8 Union Territories. Compare state-wise legal drinking age, retail wine shop timings, interstate transit quotas, and excise laws.',
   alternates: {
     canonical: `${SITE_URL}/states`,
   },
+  keywords: [
+    'dry days list for all states in india 2026',
+    'legal drinking age in all states of india',
+    'can we take alcohol from goa to karnataka',
+    'how much alcohol can i carry from one state to another in india',
+    'can i carry liquor from delhi to up by road',
+    'carrying alcohol in flight domestic india rules',
+    'wine shop opening and closing timings by state',
+    'government liquor corporations in india bevco tasmac ksbc',
+    'state excise department list india',
+    'list of dry states and union territories in india',
+  ],
   openGraph: {
-    title: 'All 36 States & UTs Dry Day Directory | DryCheck India',
+    title: 'All 36 States & UTs Dry Day Directory | Drinking Age & Excise Rules 2026',
     description:
-      'Comprehensive directory of all 28 Indian States and 8 Union Territories. Check state-wise dry day lists, retail wine shop timings, liquor possession limits, and excise laws.',
+      'Comprehensive directory of all 28 Indian States and 8 Union Territories. Compare state-wise legal drinking age, retail wine shop timings, interstate transit quotas, and excise laws.',
     url: `${SITE_URL}/states`,
     siteName: 'DryCheck India',
     type: 'website',
@@ -36,13 +54,13 @@ export const metadata: Metadata = {
         url: '/logo-desktop.png',
         width: 450,
         height: 150,
-        alt: 'DryCheck India',
+        alt: 'DryCheck India All States Directory',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'All 36 States & UTs Dry Day Directory | DryCheck India',
+    title: 'All 36 States & UTs Dry Day Directory | Drinking Age & Excise Rules 2026',
     description:
       'Comprehensive directory of all 28 Indian States and 8 Union Territories. State excise laws, dry day notifications, and wine shop timings.',
   },
@@ -53,25 +71,14 @@ export const revalidate = 86400;
 export default function StatesIndexPage() {
   const allStates = getAllStates();
 
-  const regionsOrder = [
-    'North',
-    'West',
-    'South',
-    'East',
-    'North-East',
-    'Central',
-    'UT',
-  ] as const;
-
-  const regionLabels: Record<string, string> = {
-    North: 'Northern States & Territories',
-    West: 'Western States & Territories',
-    South: 'Southern States & Territories',
-    East: 'Eastern States & Territories',
-    'North-East': 'North-Eastern States',
-    Central: 'Central Indian States',
-    UT: 'Island & Union Territories',
-  };
+  const stateProfiles: Record<string, { actName?: string }> = {};
+  const stateTimings: Record<string, { retailHours?: string }> = {};
+  for (const st of allStates) {
+    const prof = getStateExciseProfile(st.slug);
+    stateProfiles[st.slug] = { actName: prof?.actName };
+    const timing = getStateExciseTimings(st.slug);
+    stateTimings[st.slug] = { retailHours: timing.retailHours };
+  }
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -97,7 +104,7 @@ export default function StatesIndexPage() {
     '@type': 'CollectionPage',
     name: 'DryCheck India All States and Union Territories Directory',
     description:
-      'Official directory covering alcohol laws, retail shop timings, statutory dry days, and excise notifications across all 36 Indian States and Union Territories.',
+      'Official directory covering alcohol laws, retail shop timings, statutory dry days, legal drinking age, and excise notifications across all 36 Indian States and Union Territories.',
     url: `${SITE_URL}/states`,
     publisher: {
       '@type': 'Organization',
@@ -115,10 +122,24 @@ export default function StatesIndexPage() {
     },
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: STATE_DIRECTORY_FAQS.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={collectionSchema} />
+      <JsonLd data={faqSchema} />
 
       <div className="mx-auto w-full max-w-5xl px-3 sm:px-6 pt-2 pb-16 text-neutral-200">
         {/* Breadcrumb Navigation */}
@@ -144,7 +165,8 @@ export default function StatesIndexPage() {
           <p className="text-sm sm:text-base text-neutral-400 max-w-3xl leading-relaxed">
             In the Republic of India, alcohol manufacturing, sale, and dry-day enforcement are state subjects under
             Entry 8 of the State List (Seventh Schedule of the Constitution). Explore verified regulatory frameworks,
-            theka timings, statutory dry day orders, and possession rules across all 28 states and 8 Union Territories.
+            legal drinking ages, theka timings, domestic possession quotas, and interstate carriage rules across all 28
+            states and 8 Union Territories.
           </p>
 
           {/* Quick Regulatory Highlights Cards */}
@@ -174,80 +196,26 @@ export default function StatesIndexPage() {
 
         <AdSlot id="states-directory-top" />
 
-        {/* Directory Categorized by Region */}
-        <div className="space-y-10">
-          {regionsOrder.map((regionKey) => {
-            const statesInRegion = allStates.filter((s) => s.region === regionKey);
-            if (statesInRegion.length === 0) return null;
+        {/* 1. Search, Autocomplete & State Directory Cards */}
+        <StateDirectorySearch
+          allStates={allStates}
+          stateProfiles={stateProfiles}
+          stateTimings={stateTimings}
+        />
 
-            return (
-              <section key={regionKey} aria-labelledby={`region-heading-${regionKey}`}>
-                <div className="flex items-center gap-2 mb-4 border-b border-neutral-800 pb-2">
-                  <h2
-                    id={`region-heading-${regionKey}`}
-                    className="text-lg sm:text-xl font-bold text-white tracking-wide"
-                  >
-                    {regionLabels[regionKey] || `${regionKey} India`}
-                  </h2>
-                  <span className="text-xs font-mono text-neutral-400 bg-neutral-800/80 px-2 py-0.5 rounded-full">
-                    {statesInRegion.length} {statesInRegion.length === 1 ? 'state' : 'states'}
-                  </span>
-                </div>
+        {/* 2. State Rules Comparison Matrix Table */}
+        <StateRulesMatrix />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {statesInRegion.map((st: StateInfo) => {
-                    const profile = getStateExciseProfile(st.slug);
-                    const timing = getStateExciseTimings(st.slug);
-                    return (
-                      <Link
-                        key={st.slug}
-                        href={`/india/${st.slug}`}
-                        className="group flex flex-col justify-between rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 hover:border-amber-500/50 hover:bg-neutral-900/90 transition-all duration-200 shadow-sm hover:shadow-md"
-                      >
-                        <div>
-                          <div className="flex items-start justify-between gap-2">
-                            <h3 className="font-bold text-base text-neutral-100 group-hover:text-amber-400 transition-colors">
-                              {st.name}
-                            </h3>
-                            {st.prohibition ? (
-                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-800/60 shrink-0">
-                                Prohibition
-                              </span>
-                            ) : (
-                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 shrink-0">
-                                Regulated
-                              </span>
-                            )}
-                          </div>
+        {/* 3. Interstate Transit & Carriage Rules Guide */}
+        <InterstateTransitGuide />
 
-                          <p className="mt-2 text-xs text-neutral-400 line-clamp-2 leading-relaxed">
-                            {profile?.actName || `Excise laws and wine shop guidelines for ${st.name}.`}
-                          </p>
-                        </div>
+        {/* 4. State Retail Models & Monopolies Guide */}
+        <StateRetailModelsGuide />
 
-                        <div className="mt-4 pt-3 border-t border-neutral-800/60 flex items-center justify-between text-xs text-neutral-400">
-                          <span className="flex items-center gap-1.5 text-neutral-400">
-                            <Clock className="h-3 w-3 text-amber-500" />
-                            <span className="truncate max-w-[170px]">
-                              {st.prohibition ? 'Closed permanently' : timing.retailHours || 'Check state schedule'}
-                            </span>
-                          </span>
+        {/* 5. Authoritative FAQs on State Liquor Laws */}
+        <StateDirectoryFaqs />
 
-                          <span className="inline-flex items-center gap-0.5 font-medium text-amber-400 group-hover:translate-x-0.5 transition-transform">
-                            <span>Check</span>
-                            <ChevronRight className="h-3.5 w-3.5" />
-                          </span>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
-        </div>
-
-        {/* Informational Context Box */}
+        {/* Informational Constitutional Context Box */}
         <section className="mt-14 rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 text-xs text-neutral-400 space-y-3 leading-relaxed">
           <div className="flex items-center gap-2 text-neutral-200 font-semibold text-sm">
             <Scale className="h-4 w-4 text-amber-400" />

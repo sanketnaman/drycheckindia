@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatDateDisplay } from '@/lib/dryday';
 import { AlertCircle, CheckCircle2, HelpCircle, MapPin } from 'lucide-react';
 
@@ -42,17 +43,17 @@ export default function HeroAnswer({
   const styleConfig = {
     dry: {
       color: 'text-rose-400',
-      border: 'border-rose-500/40',
-      bgGlow: 'bg-rose-500/10 shadow-[0_0_24px_rgba(244,63,94,0.15)]',
+      border: 'border-[#fac53f]/40',
+      bgGlow: 'bg-gradient-to-b from-[#2d0714] via-[#1f050d] to-[#140207] shadow-[0_0_28px_rgba(250,197,63,0.22)]',
       badgeBg: 'bg-rose-950/80 border-rose-700/60 text-rose-300',
       subtext: 'Shops & bars closed by excise directive',
       icon: AlertCircle,
     },
     not_dry: {
-      color: 'text-emerald-400',
-      border: 'border-emerald-500/40',
-      bgGlow: 'bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.15)]',
-      badgeBg: 'bg-emerald-950/80 border-emerald-700/60 text-emerald-300',
+      color: 'text-emerald-300',
+      border: 'border-[#fac53f]/40',
+      bgGlow: 'bg-gradient-to-b from-[#052e23] via-[#022018] to-[#011712] shadow-[0_0_28px_rgba(250,197,63,0.22)]',
+      badgeBg: 'bg-emerald-950/90 border-emerald-500/50 text-emerald-300',
       subtext: 'Normal retail trading hours apply',
       icon: CheckCircle2,
     },
@@ -77,6 +78,14 @@ export default function HeroAnswer({
   const StatusIcon = styleConfig.icon;
   // Full-sentence answers wrap; single words keep the giant poster scale.
   const isShortAnswer = answer.length <= 10;
+  const isCardAnimated =
+    statusType === 'not_dry' ||
+    statusType === 'dry' ||
+    Boolean(prohibitionNote) ||
+    answer === 'Always' ||
+    (typeof answer === 'string' &&
+      (answer.toLowerCase().includes('theka band') ||
+        answer.toLowerCase().includes('prohibition')));
 
   return (
     <section
@@ -106,9 +115,60 @@ export default function HeroAnswer({
 
       {/* 2. Big Answer Card (short answers keep the >=96px poster scale; sentences wrap) */}
       <div
-        className={`w-full max-w-sm sm:max-w-md my-1.5 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} p-4 sm:p-5 transition-all`}
+        className={`relative w-full max-w-md sm:max-w-lg my-2 rounded-3xl border ${styleConfig.border} ${styleConfig.bgGlow} px-6 sm:px-10 py-5 transition-all ${
+          isCardAnimated ? 'animate-gold-border-pulse' : ''
+        }`}
       >
-        <div className="flex flex-col items-center justify-center">
+        {isCardAnimated && (
+          <>
+            {/* Animated Rotating Border Beam in #fac53f */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden p-[2px] z-0"
+            >
+              <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_270deg,rgba(250,197,63,0.4)_315deg,#fac53f_360deg)] animate-border-beam" />
+              <div
+                className={`relative z-[1] w-full h-full rounded-[calc(1.5rem-2px)] ${
+                  statusType === 'not_dry'
+                    ? 'bg-gradient-to-b from-[#052e23] via-[#022018] to-[#011712]'
+                    : 'bg-gradient-to-b from-[#2d0714] via-[#1f050d] to-[#140207]'
+                }`}
+              />
+            </div>
+
+            {/* Drunk emoji at bottom-left */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none select-none absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-7 md:-left-8 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 drop-shadow-xl z-20"
+            >
+              <Image
+                src="/images/icons/drunked.svg"
+                alt=""
+                width={80}
+                height={80}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </div>
+
+            {/* Cheers glasses clinking at right side (positioned lower to avoid text collision) */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none select-none absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-7 md:-right-8 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 drop-shadow-xl z-20"
+            >
+              <Image
+                src="/images/icons/glasses_cheers.svg"
+                alt=""
+                width={80}
+                height={80}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </div>
+          </>
+        )}
+
+        <div className="relative z-10 flex flex-col items-center justify-center">
           <div className="flex flex-col items-center justify-center gap-1.5">
             <span
               className={`font-black tracking-tight select-none text-balance ${

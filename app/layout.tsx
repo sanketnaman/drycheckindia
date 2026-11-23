@@ -111,12 +111,26 @@ export default async function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col antialiased selection:bg-amber-500 selection:text-neutral-950 font-sans"
+        className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col antialiased selection:bg-amber-500 selection:text-neutral-950 font-sans relative overflow-x-clip"
       >
-        <Navbar />
-        {notices.length > 0 && <PublicNoticeBar notices={notices} />}
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+        {/* Subtle Gold Theme Ambient Glow on Top Header/Hero across all pages */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[550px] bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(245,158,11,0.12),transparent_75%)] z-0"
+        />
+
+        {/* Global Gold Grid Pattern Background across all pages */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 bg-grid-gold"
+        />
+
+        <div className="relative z-10 flex min-h-screen flex-col">
+          <Navbar />
+          {notices.length > 0 && <PublicNoticeBar notices={notices} />}
+          <main className="flex-1 flex flex-col">{children}</main>
+          <Footer />
+        </div>
         <GoogleAnalytics />
         <BuyMeACoffee />
         <Suspense fallback={null}>
