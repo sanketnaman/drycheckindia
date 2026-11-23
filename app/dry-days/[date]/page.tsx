@@ -480,7 +480,7 @@ export default async function DatePage({ params }: Props) {
               <span>Check State Trackers &amp; Theka Status</span>
             </h2>
             <Link
-              href="/#state-directory"
+              href="/states"
               className="text-xs text-amber-400 hover:underline"
             >
               All 36 States &rarr;
@@ -612,7 +612,7 @@ export default async function DatePage({ params }: Props) {
             <span>Back to Home</span>
           </Link>
           <Link
-            href="/#state-directory"
+            href="/states"
             className="hover:text-white transition-colors min-h-[44px] flex items-center"
           >
             All 36 States &amp; UTs &rarr;

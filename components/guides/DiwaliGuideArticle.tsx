@@ -360,7 +360,7 @@ export default function DiwaliGuideArticle({ guide }: DiwaliGuideArticleProps) {
               Need real-time status for states not listed above (e.g. Punjab, Goa, Odisha, Assam)?
             </span>
             <Link
-              href="/#state-directory"
+              href="/states"
               className="inline-flex items-center gap-1.5 text-amber-400 font-semibold hover:underline min-h-[36px]"
             >
               <span>Explore All 36 States &amp; UTs Directory &rarr;</span>

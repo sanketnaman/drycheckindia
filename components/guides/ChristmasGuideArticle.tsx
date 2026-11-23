@@ -363,7 +363,7 @@ export default function ChristmasGuideArticle({ guide }: Props) {
             Check Live IST Status Today
           </Link>
           <Link
-            href="/#state-directory"
+            href="/states"
             className="px-5 py-2.5 rounded-xl bg-neutral-800 text-white font-semibold text-xs hover:bg-neutral-700 transition-colors"
           >
             Explore All 36 State Hubs

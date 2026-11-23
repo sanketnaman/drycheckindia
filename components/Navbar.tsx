@@ -49,6 +49,28 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Desktop Nav Links */}
+          <nav aria-label="Main Navigation" className="hidden sm:flex items-center gap-6 text-xs font-semibold text-neutral-300">
+            <Link
+              href="/states"
+              className="hover:text-amber-400 transition-colors py-2"
+            >
+              All States &amp; UTs
+            </Link>
+            <Link
+              href="/guides"
+              className="hover:text-amber-400 transition-colors py-2"
+            >
+              State Guides
+            </Link>
+            <Link
+              href="/about"
+              className="hover:text-amber-400 transition-colors py-2"
+            >
+              About &amp; Excise
+            </Link>
+          </nav>
+
           {/* Top-Right: Menu / Search button with min 44px tap target */}
           <div className="flex items-center gap-2">
             <button
@@ -135,18 +157,25 @@ export default function Navbar() {
             <div className="mt-3 pt-3 border-t border-neutral-800 flex flex-wrap justify-between items-center text-xs text-neutral-400 gap-2">
               <div className="flex items-center gap-3">
                 <Link
+                  href="/states"
+                  onClick={() => setIsSearchOpen(false)}
+                  className="text-amber-400 hover:text-white min-h-[44px] flex items-center font-medium"
+                >
+                  All States
+                </Link>
+                <Link
                   href="/guides"
                   onClick={() => setIsSearchOpen(false)}
                   className="text-neutral-300 hover:text-white min-h-[44px] flex items-center font-medium"
                 >
-                  State Guides
+                  Guides
                 </Link>
                 <Link
                   href="/about"
                   onClick={() => setIsSearchOpen(false)}
                   className="text-neutral-300 hover:text-white min-h-[44px] flex items-center"
                 >
-                  About &amp; Excise Info
+                  About
                 </Link>
               </div>
               <button

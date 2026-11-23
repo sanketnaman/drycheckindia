@@ -201,7 +201,7 @@ export default async function StatePage({ params }: Props) {
         '@type': 'ListItem',
         position: 2,
         name: 'States & UTs',
-        item: `${SITE_URL}/#state-directory`,
+        item: `${SITE_URL}/states`,
       },
       {
         '@type': 'ListItem',
@@ -305,8 +305,8 @@ export default async function StatePage({ params }: Props) {
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 mx-1.5 text-neutral-600" />
-          <Link href="/#state-directory" className="hover:text-white transition-colors">
-            India
+          <Link href="/states" className="hover:text-white transition-colors">
+            States &amp; UTs
           </Link>
           <ChevronRight className="h-3.5 w-3.5 mx-1.5 text-neutral-600" />
           <span className="text-amber-400 font-medium">{state.name}</span>
@@ -1064,7 +1064,7 @@ export default async function StatePage({ params }: Props) {
             &larr; Back to Nationwide Overview
           </Link>
           <Link
-            href="/#state-directory"
+            href="/states"
             className="hover:text-white transition-colors min-h-[44px] flex items-center"
           >
             All 36 States &amp; UTs &rarr;

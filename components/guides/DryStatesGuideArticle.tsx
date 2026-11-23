@@ -104,7 +104,7 @@ export default function DryStatesGuideArticle({ guide }: DryStatesGuideArticlePr
             <p className="leading-relaxed text-amber-200/90">
               Whether you are planning travel or checking if alcohol is banned in your destination state today,
               DryCheck India evaluates live gazette notifications in real-time IST for all 36 Indian states and union territories:{' '}
-              <Link href="/#state-directory" className="underline font-semibold text-white hover:text-amber-300">
+              <Link href="/states" className="underline font-semibold text-white hover:text-amber-300">
                 Explore All 36 States Directory &rarr;
               </Link>
             </p>

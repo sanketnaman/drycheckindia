@@ -218,7 +218,7 @@ export default function GuidesIndexPage() {
             </p>
             <div className="pt-2">
               <Link
-                href="/#state-directory"
+                href="/states"
                 className="inline-flex items-center gap-1.5 text-amber-400 hover:underline font-semibold"
               >
                 <span>Explore the 36-State Real-Time Directory</span>

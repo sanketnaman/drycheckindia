@@ -33,7 +33,7 @@ export default function NotFound() {
         </Link>
 
         <Link
-          href="/#state-directory"
+          href="/states"
           className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-amber-500/40 hover:bg-neutral-900 transition-colors block group"
         >
           <div className="flex items-center gap-2 text-white font-semibold text-xs sm:text-sm group-hover:text-amber-400">

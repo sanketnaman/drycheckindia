@@ -511,7 +511,7 @@ export default function UPGuideArticle({ guide }: UPGuideArticleProps) {
             </Link>
 
             <Link
-              href="/#state-directory"
+              href="/states"
               className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-amber-500/50 hover:bg-neutral-900 transition-all group"
             >
               <span className="text-xs font-mono text-amber-400 font-semibold block mb-1">

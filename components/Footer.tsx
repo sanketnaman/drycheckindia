@@ -39,6 +39,9 @@ export default function Footer() {
             <Link href="/" className="hover:text-white transition-colors min-h-[44px] flex items-center">
               Home
             </Link>
+            <Link href="/states" className="hover:text-white transition-colors min-h-[44px] flex items-center font-medium text-neutral-300">
+              All States &amp; UTs
+            </Link>
             <Link href="/guides" className="hover:text-white transition-colors min-h-[44px] flex items-center">
               State Guides
             </Link>

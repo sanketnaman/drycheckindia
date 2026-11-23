@@ -15,13 +15,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: '2026-11-20T00:00:00.000Z',
+      lastModified: '2026-11-23T00:00:00.000Z',
       changeFrequency: 'hourly',
       priority: 1.0,
     },
     {
+      url: `${SITE_URL}/states`,
+      lastModified: '2026-11-23T00:00:00.000Z',
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/guides`,
-      lastModified: '2026-11-20T00:00:00.000Z',
+      lastModified: '2026-11-23T00:00:00.000Z',
       changeFrequency: 'weekly',
       priority: 0.9,
     },
@@ -72,9 +78,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const stateRoutes: MetadataRoute.Sitemap = states.map((state) => {
     return {
       url: `${SITE_URL}/india/${state.slug}`,
-      lastModified: '2026-11-16T00:00:00.000Z',
+      lastModified: '2026-11-23T00:00:00.000Z',
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     };
   });
 
